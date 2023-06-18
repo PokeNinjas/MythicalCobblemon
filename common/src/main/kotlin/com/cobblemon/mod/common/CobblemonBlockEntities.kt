@@ -81,6 +81,6 @@ object CobblemonBlockEntities : PlatformRegistry<Registry<BlockEntityType<*>>, R
 
     @JvmField
     val DISPLAY_CASE: BlockEntityType<DisplayCaseBlockEntity> = this.create("display_case",
-        BlockEntityType.Builder.create(::DisplayCaseBlockEntity, CobblemonBlocks.DISPLAY_CASE).build(null)
+        BlockEntityType.Builder.create(::DisplayCaseBlockEntity, CobblemonBlocks.DISPLAY_CASE, CobblemonBlocks.GREEN_DISPLAY_CASE, CobblemonBlocks.GOLD_DISPLAY_CASE, CobblemonBlocks.PURPLE_DISPLAY_CASE).build(null)
     )
 }

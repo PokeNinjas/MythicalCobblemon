@@ -256,6 +256,13 @@ object CobblemonItems : PlatformRegistry<Registry<Item>, RegistryKey<Registry<It
     val PASTURE = blockItem("pasture", CobblemonBlocks.PASTURE)
     @JvmField
     val DISPLAY_CASE = blockItem("display_case", CobblemonBlocks.DISPLAY_CASE)
+    @JvmField
+    val GREEN_DISPLAY_CASE = blockItem("green_display_case", CobblemonBlocks.GREEN_DISPLAY_CASE)
+    @JvmField
+    val GOLD_DISPLAY_CASE = blockItem("gold_display_case", CobblemonBlocks.GOLD_DISPLAY_CASE)
+    @JvmField
+    val PURPLE_DISPLAY_CASE = blockItem("purple_display_case", CobblemonBlocks.PURPLE_DISPLAY_CASE)
+
 
     // Evolution items
     @JvmField val LINK_CABLE = create("link_cable", LinkCableItem())

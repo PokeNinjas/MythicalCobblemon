@@ -221,7 +221,10 @@ object CobblemonClient {
             CobblemonBlocks.LARGE_BUDDING_SKY_TUMBLESTONE,
             CobblemonBlocks.SKY_TUMBLESTONE_CLUSTER,
             CobblemonBlocks.GIMMIGHOUL_CHEST,
-            CobblemonBlocks.DISPLAY_CASE
+            CobblemonBlocks.DISPLAY_CASE,
+            CobblemonBlocks.GREEN_DISPLAY_CASE,
+            CobblemonBlocks.GOLD_DISPLAY_CASE,
+            CobblemonBlocks.PURPLE_DISPLAY_CASE
         )
 
         this.createBoatModelLayers()

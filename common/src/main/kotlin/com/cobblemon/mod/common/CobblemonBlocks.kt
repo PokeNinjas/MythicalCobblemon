@@ -401,6 +401,45 @@ object CobblemonBlocks : PlatformRegistry<Registry<Block>, RegistryKey<Registry<
         )
     )
 
+    @JvmField
+    val GREEN_DISPLAY_CASE = create(
+        "green_display_case",
+        DisplayCaseBlock(
+            AbstractBlock.Settings.create()
+                .sounds(CobblemonSounds.DISPLAY_CASE_SOUNDS)
+                .nonOpaque()
+                .pistonBehavior(PistonBehavior.BLOCK)
+                .mapColor(MapColor.GREEN)
+                .strength(0.3f)
+        )
+    )
+
+    @JvmField
+    val GOLD_DISPLAY_CASE = create(
+        "gold_display_case",
+        DisplayCaseBlock(
+            AbstractBlock.Settings.create()
+                .sounds(CobblemonSounds.DISPLAY_CASE_SOUNDS)
+                .nonOpaque()
+                .pistonBehavior(PistonBehavior.BLOCK)
+                .mapColor(MapColor.GOLD)
+                .strength(0.3f)
+        )
+    )
+
+    @JvmField
+    val PURPLE_DISPLAY_CASE = create(
+        "purple_display_case",
+        DisplayCaseBlock(
+            AbstractBlock.Settings.create()
+                .sounds(CobblemonSounds.DISPLAY_CASE_SOUNDS)
+                .nonOpaque()
+                .pistonBehavior(PistonBehavior.BLOCK)
+                .mapColor(MapColor.PURPLE)
+                .strength(0.3f)
+        )
+    )
+
     val RED_MINT = create("red_mint", MintBlock(MintType.RED, AbstractBlock.Settings.create().mapColor(MapColor.RED).noCollision().ticksRandomly().breakInstantly().sounds(CobblemonSounds.MINT_SOUNDS)))
     @JvmField
     val BLUE_MINT = create("blue_mint", MintBlock(MintType.BLUE, AbstractBlock.Settings.create().mapColor(MapColor.BLUE).noCollision().ticksRandomly().breakInstantly().sounds(CobblemonSounds.MINT_SOUNDS)))
