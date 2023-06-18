@@ -17,6 +17,10 @@ import com.cobblemon.mod.common.api.net.serializers.StringSetDataSerializer
 import com.cobblemon.mod.common.api.net.serializers.Vec3DataSerializer
 import com.cobblemon.mod.common.api.pokeball.PokeBalls
 import com.cobblemon.mod.common.api.pokeball.catching.CaptureContext
+import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature
+import com.cobblemon.mod.common.api.pokemon.feature.SpeciesFeatureAssignment
+import com.cobblemon.mod.common.api.pokemon.feature.SpeciesFeatureAssignments
+import com.cobblemon.mod.common.api.pokemon.feature.SpeciesFeatures
 import com.cobblemon.mod.common.api.pokemon.status.Statuses
 import com.cobblemon.mod.common.api.scheduling.ScheduledTask
 import com.cobblemon.mod.common.api.scheduling.after
@@ -34,12 +38,7 @@ import com.cobblemon.mod.common.entity.pokemon.PokemonEntity
 import com.cobblemon.mod.common.net.messages.client.battle.BattleApplyCaptureResponsePacket
 import com.cobblemon.mod.common.net.messages.client.battle.BattleCaptureStartPacket
 import com.cobblemon.mod.common.pokeball.PokeBall
-import com.cobblemon.mod.common.util.asResource
-import com.cobblemon.mod.common.util.isServerSide
-import com.cobblemon.mod.common.util.lang
-import com.cobblemon.mod.common.util.playSoundServer
-import com.cobblemon.mod.common.util.sendParticlesServer
-import com.cobblemon.mod.common.util.setPositionSafely
+import com.cobblemon.mod.common.util.*
 import dev.architectury.extensions.network.EntitySpawnExtension
 import dev.architectury.networking.NetworkManager
 import java.util.concurrent.CompletableFuture
@@ -57,6 +56,7 @@ import net.minecraft.network.PacketByteBuf
 import net.minecraft.particle.ParticleTypes
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.sound.SoundEvents
+import net.minecraft.text.Text
 import net.minecraft.util.hit.BlockHitResult
 import net.minecraft.util.hit.EntityHitResult
 import net.minecraft.util.math.MathHelper
@@ -168,6 +168,11 @@ class EmptyPokeBallEntity : ThrownItemEntity, Poseable, EntitySpawnExtension {
 
                 if (!pokemonEntity.pokemon.isWild()) {
                     owner?.sendMessage(lang("capture.not_wild", pokemonEntity.pokemon.species.translatedName).red())
+                    return drop()
+                }
+
+                if(!pokemonEntity.pokemon.aspects.contains("alpha_defeated") && pokemonEntity.pokemon.aspects.contains("alpha")){
+                    owner?.sendMessage(Text.literal("This Pokémon is too strong to capture right now!").red())
                     return drop()
                 }
 

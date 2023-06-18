@@ -14,6 +14,7 @@ import com.cobblemon.mod.common.CobblemonSounds
 import com.cobblemon.mod.common.api.drop.DropTable
 import com.cobblemon.mod.common.api.entity.Despawner
 import com.cobblemon.mod.common.api.events.CobblemonEvents
+import com.cobblemon.mod.common.api.events.entity.PokemonEntityGoalsEvent
 import com.cobblemon.mod.common.api.events.entity.PokemonEntityLoadEvent
 import com.cobblemon.mod.common.api.events.entity.PokemonEntitySaveEvent
 import com.cobblemon.mod.common.api.events.entity.PokemonEntitySaveToWorldEvent
@@ -26,6 +27,7 @@ import com.cobblemon.mod.common.api.pokemon.status.Statuses
 import com.cobblemon.mod.common.api.reactive.ObservableSubscription
 import com.cobblemon.mod.common.api.reactive.SimpleObservable
 import com.cobblemon.mod.common.api.scheduling.afterOnMain
+import com.cobblemon.mod.common.api.text.red
 import com.cobblemon.mod.common.api.types.ElementalTypes
 import com.cobblemon.mod.common.api.types.ElementalTypes.FIRE
 import com.cobblemon.mod.common.battles.BattleRegistry
@@ -55,9 +57,11 @@ import dev.architectury.networking.NetworkManager
 import net.minecraft.block.BlockState
 import net.minecraft.entity.*
 import net.minecraft.entity.ai.control.MoveControl
+import net.minecraft.entity.ai.goal.ActiveTargetGoal
 import net.minecraft.entity.ai.goal.EatGrassGoal
 import net.minecraft.entity.ai.goal.Goal
 import net.minecraft.entity.ai.pathing.PathNodeType
+import net.minecraft.entity.attribute.EntityAttributes
 import net.minecraft.entity.damage.DamageSource
 import net.minecraft.entity.data.DataTracker
 import net.minecraft.entity.data.TrackedData
@@ -302,6 +306,10 @@ class PokemonEntity(
         return super.isInvulnerableTo(damageSource)
     }
 
+    override fun tryAttack(target: Entity?): Boolean {
+        return super.tryAttack(target)
+    }
+
     var beingRecalled = false;
 
     fun recallWithAnimation(): CompletableFuture<Pokemon> {
@@ -397,7 +405,17 @@ class PokemonEntity(
             if (pokemon.getFeature<FlagSpeciesFeature>(DataKeys.HAS_BEEN_SHEARED) != null) {
                 goalSelector.add(5, EatGrassGoal(this))
             }
-
+            CobblemonEvents.POKEMON_ENTITY_GOALS.post(PokemonEntityGoalsEvent(this, goalSelector)) { event ->
+                if(event.entity.pokemon.aspects.contains("alpha")){
+                    event.goalSelector.add(0, ActiveTargetGoal(event.entity, ServerPlayerEntity::class.java, true))
+                    if(event.entity.pokemon.form.labels.contains("basic-melee")) {
+                        event.goalSelector.add(1, PokemonMeleeAttackGoal(event.entity))
+                    }
+                    if(pokemon.form.labels.contains("ranged")){
+                        event.goalSelector.add(2, PokemonBreathAttackGoal(event.entity, event.entity.getAttributeValue(EntityAttributes.GENERIC_MOVEMENT_SPEED), 20, 10.0F, 60, 120))
+                    }
+                }
+            }
             goalSelector.add(6, PokemonWanderAroundGoal(this))
             goalSelector.add(7, PokemonLookAtEntityGoal(this, ServerPlayerEntity::class.java, 5F))
         }
@@ -538,6 +556,9 @@ class PokemonEntity(
         } else if (ownerUuid != null) {
             return false
         } else if (health <= 0F || isDead) {
+            return false
+        } else if (pokemon.aspects.contains("alpha") && !pokemon.aspects.contains("alpha_defeated")){
+            player.sendMessage(Text.literal("This Pokémon is too strong to be battled by other Pokémon right now!").red())
             return false
         }
 

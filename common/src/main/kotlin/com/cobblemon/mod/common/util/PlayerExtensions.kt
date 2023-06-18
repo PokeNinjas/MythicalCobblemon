@@ -75,6 +75,23 @@ fun Entity.isLookingAt(other: Entity, maxDistance: Float = 10F, stepDistance: Fl
     }
     return false
 }
+
+fun Entity.isHeadLookingAt(other: Entity, maxDistance: Float = 10F, stepDistance: Float = 0.01F): Boolean {
+    var step = stepDistance
+    val startPos = eyePos
+    val direction = Vec3d.fromPolar(pitch, headYaw)
+
+    while (step <= maxDistance) {
+        val location = startPos.add(direction.multiply(step.toDouble()))
+        step += stepDistance
+
+        if (location in other.boundingBox) {
+            return true
+        }
+    }
+    return false
+}
+
 class EntityTraceResult<T : Entity>(
     val location: Vec3d,
     val entities: Iterable<T>

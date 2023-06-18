@@ -43,6 +43,35 @@
           "translucent": true
         }
       ]
+    },
+    {
+      "aspects": [
+        "alpha"
+      ],
+      "texture": "cobblemon:textures/pokemon/0006_charizard/charizard_alpha.png",
+      "layers": [
+        {
+          "name": "glow",
+          "texture": "cobblemon:textures/pokemon/0006_charizard/charizard_emissive.png",
+          "emissive": true,
+          "translucent": true
+        }
+      ]
+    },
+    {
+      "aspects": [
+        "alpha",
+        "alpha_defeated"
+      ],
+      "texture": "cobblemon:textures/pokemon/0006_charizard/charizard.png",
+      "layers": [
+        {
+          "name": "glow",
+          "texture": "cobblemon:textures/pokemon/0006_charizard/charizard_emissive.png",
+          "emissive": true,
+          "translucent": true
+        }
+      ]
     }
   ]
 }

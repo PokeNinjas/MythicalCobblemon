@@ -99,4 +99,8 @@ object DataKeys {
     // Features
     const val CAN_BE_MILKED = "milkable"
     const val HAS_BEEN_SHEARED = "sheared"
+
+    // Delta Pokemon
+    const val ALPHA_POKEMON = "alpha"
+    const val ALPHA_DEFEATED = "alpha_defeated"
 }

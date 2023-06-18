@@ -30,6 +30,7 @@ import com.cobblemon.mod.common.api.net.serializers.Vec3DataSerializer
 import com.cobblemon.mod.common.api.permission.PermissionValidator
 import com.cobblemon.mod.common.api.pokeball.catching.calculators.CaptureCalculator
 import com.cobblemon.mod.common.api.pokeball.catching.calculators.CaptureCalculators
+import com.cobblemon.mod.common.api.pokemon.PokemonProperties
 import com.cobblemon.mod.common.api.pokemon.PokemonSpecies
 import com.cobblemon.mod.common.api.pokemon.effect.ShoulderEffectRegistry
 import com.cobblemon.mod.common.api.pokemon.experience.ExperienceCalculator
@@ -67,12 +68,12 @@ import com.cobblemon.mod.common.battles.BattleSide
 import com.cobblemon.mod.common.battles.ShowdownThread
 import com.cobblemon.mod.common.battles.actor.PokemonBattleActor
 import com.cobblemon.mod.common.battles.pokemon.BattlePokemon
-import com.cobblemon.mod.common.battles.runner.ShowdownService
 import com.cobblemon.mod.common.config.CobblemonConfig
 import com.cobblemon.mod.common.config.LastChangedVersion
 import com.cobblemon.mod.common.config.constraint.IntConstraint
 import com.cobblemon.mod.common.config.starter.StarterConfig
 import com.cobblemon.mod.common.data.CobblemonDataProvider
+import com.cobblemon.mod.common.entity.pokemon.PokemonEntity
 import com.cobblemon.mod.common.events.AdvancementHandler
 import com.cobblemon.mod.common.events.ServerTickHandler
 import com.cobblemon.mod.common.item.PokeBallItem
@@ -105,6 +106,7 @@ import com.cobblemon.mod.common.world.feature.CobblemonOrePlacedFeatures
 import com.cobblemon.mod.common.world.placement.CobblemonPlacementTypes
 import dev.architectury.event.EventResult
 import dev.architectury.event.events.common.CommandRegistrationEvent
+import dev.architectury.event.events.common.EntityEvent
 import dev.architectury.event.events.common.InteractionEvent
 import dev.architectury.event.events.common.PlayerEvent
 import dev.architectury.hooks.item.tool.AxeItemHooks
@@ -121,6 +123,7 @@ import net.minecraft.client.MinecraftClient
 import net.minecraft.entity.data.TrackedDataHandlerRegistry
 import net.minecraft.item.NameTagItem
 import net.minecraft.server.network.ServerPlayerEntity
+import net.minecraft.sound.SoundEvents
 import net.minecraft.util.WorldSavePath
 import net.minecraft.util.registry.RegistryKey
 import net.minecraft.world.World
@@ -251,6 +254,11 @@ object Cobblemon {
             DataKeys.HAS_BEEN_SHEARED,
             FlagSpeciesFeatureProvider(keys = listOf(DataKeys.HAS_BEEN_SHEARED), default = false))
 
+        // Delta
+        SpeciesFeatures.register(
+            DataKeys.ALPHA_POKEMON,
+            FlagSpeciesFeatureProvider(keys = listOf(DataKeys.ALPHA_POKEMON), default = false))
+
         CustomPokemonProperty.register(UntradeableProperty)
         CustomPokemonProperty.register(UncatchableProperty)
         CustomPokemonProperty.register(PokemonFlagProperty)
@@ -285,6 +293,22 @@ object Cobblemon {
                     pcConstructor = { uuid -> PCStore(uuid).also { it.resize(config.defaultBoxCount) } }
                 )
             )
+        }
+
+        EntityEvent.LIVING_HURT.register { entity, source, amount ->
+            if(entity is PokemonEntity){
+                if(entity.pokemon.aspects.contains("alpha")){
+                    if(!entity.pokemon.aspects.contains("alpha_defeated")){
+                        if(entity.health - amount <= 0){
+                            PokemonProperties.parse("alpha_defeated=true").apply(entity.pokemon)
+                            entity.health = entity.maxHealth
+                            entity.playSound(SoundEvents.BLOCK_FIRE_EXTINGUISH, 1f, 1f)
+                            return@register EventResult.interruptFalse()
+                        }
+                    }
+                }
+            }
+            return@register EventResult.pass()
         }
 
         SERVER_STOPPED.subscribe {

@@ -35,6 +35,9 @@ object CobblemonEntities : CompletableRegistry<EntityType<*>>(Registry.ENTITY_TY
             {
                 LivingEntity.createLivingAttributes()
                     .add(EntityAttributes.GENERIC_FOLLOW_RANGE)
+                    .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 1.0)
+                    .add(EntityAttributes.GENERIC_ATTACK_KNOCKBACK, 1.0)
+                    .add(EntityAttributes.GENERIC_ATTACK_SPEED, 1.0)
                     .also { CobblemonEvents.ENTITY_ATTRIBUTE.post(EntityAttributeEvent(POKEMON.get(), it)) }
             }
         )

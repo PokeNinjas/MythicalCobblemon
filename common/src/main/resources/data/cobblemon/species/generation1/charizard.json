@@ -161,6 +161,55 @@
       "evolutions": [],
       "cannotDynamax": false,
       "battleOnly": false
+    },
+    {
+      "name": "Alpha",
+      "primaryType": "fire",
+      "secondaryType": "flying",
+      "abilities": [
+        "blaze",
+        "h:solarpower"
+      ],
+      "baseStats": {
+        "hp": 78,
+        "attack": 84,
+        "defence": 78,
+        "special_attack": 109,
+        "special_defence": 85,
+        "speed": 100
+      },
+      "catchRate": 45,
+      "maleRatio": 0.875,
+      "baseExperienceYield": 240,
+      "baseFriendship": 50,
+      "evYield": {
+        "hp": 0,
+        "attack": 0,
+        "defence": 0,
+        "special_attack": 3,
+        "special_defence": 0,
+        "speed": 0
+      },
+      "experienceGroup": "medium_slow",
+      "eggCycles": 20,
+      "eggGroups": [
+        "monster",
+        "dragon"
+      ],
+      "moves": [],
+      "labels": [
+        "gen8",
+        "ranged"
+      ],
+      "aspects": [
+        "alpha"
+      ],
+      "height": 280,
+      "weight": 0,
+      "evolutions": [],
+      "cannotDynamax": false,
+      "battleOnly": false,
+      "baseScale": 1.2
     }
   ],
   "baseExperienceYield": 267,
@@ -410,6 +459,9 @@
   ],
   "pokedex": [
     "cobblemon.species.charizard.desc"
+  ],
+  "features": [
+    "alpha"
   ],
   "preEvolution": "charmeleon",
   "evolutions": [],
