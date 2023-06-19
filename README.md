@@ -1,3 +1,9 @@
+# Changes from main
+- Added BattleCapture event
+- Added CaptureConditions event
+- Reworked BattleVictory event
+- Added PokemonEntityGoals event
+
 # Cobblemon
 
 An open-source Pokémon mod for Minecraft Java Edition, written in Kotlin for Fabric and Forge.
