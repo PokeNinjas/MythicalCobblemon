@@ -12,6 +12,7 @@ import com.cobblemon.mod.common.Cobblemon
 import com.cobblemon.mod.common.CobblemonEntities.EMPTY_POKEBALL
 import com.cobblemon.mod.common.CobblemonSounds
 import com.cobblemon.mod.common.api.events.CobblemonEvents
+import com.cobblemon.mod.common.api.events.pokemon.PokeballCaptureConditionsEvent
 import com.cobblemon.mod.common.api.events.pokemon.PokemonCapturedEvent
 import com.cobblemon.mod.common.api.net.serializers.StringSetDataSerializer
 import com.cobblemon.mod.common.api.net.serializers.Vec3DataSerializer
@@ -56,6 +57,7 @@ import net.minecraft.network.PacketByteBuf
 import net.minecraft.particle.ParticleTypes
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.sound.SoundEvents
+import net.minecraft.text.MutableText
 import net.minecraft.text.Text
 import net.minecraft.util.hit.BlockHitResult
 import net.minecraft.util.hit.EntityHitResult
@@ -63,6 +65,7 @@ import net.minecraft.util.math.MathHelper
 import net.minecraft.util.math.MathHelper.PI
 import net.minecraft.util.math.Vec3d
 import net.minecraft.world.World
+import kotlin.properties.Delegates
 
 class EmptyPokeBallEntity : ThrownItemEntity, Poseable, EntitySpawnExtension {
     enum class CaptureState {
@@ -171,8 +174,17 @@ class EmptyPokeBallEntity : ThrownItemEntity, Poseable, EntitySpawnExtension {
                     return drop()
                 }
 
-                if(!pokemonEntity.pokemon.aspects.contains("alpha_defeated") && pokemonEntity.pokemon.aspects.contains("alpha")){
-                    owner?.sendMessage(Text.literal("This Pokémon is too strong to capture right now!").red())
+                var eventTest by Delegates.notNull<Boolean>()
+                var failMessage by Delegates.notNull<MutableText>()
+                CobblemonEvents.CAPTURE_CONDITIONS.postThen(PokeballCaptureConditionsEvent(pokemonEntity, CaptureState.values()[captureState.get().toInt()], this), {
+                    eventTest = false
+                    failMessage = it.getFailMessageOrDefault()
+                }, {
+                    eventTest = true
+                })
+
+                if(!eventTest){
+                    owner?.sendMessage(failMessage.red())
                     return drop()
                 }
 
