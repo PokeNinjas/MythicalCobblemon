@@ -405,17 +405,7 @@ class PokemonEntity(
             if (pokemon.getFeature<FlagSpeciesFeature>(DataKeys.HAS_BEEN_SHEARED) != null) {
                 goalSelector.add(5, EatGrassGoal(this))
             }
-            CobblemonEvents.POKEMON_ENTITY_GOALS.post(PokemonEntityGoalsEvent(this, goalSelector)) { event ->
-                if(event.entity.pokemon.aspects.contains("alpha")){
-                    event.goalSelector.add(0, ActiveTargetGoal(event.entity, ServerPlayerEntity::class.java, true))
-                    if(event.entity.pokemon.form.labels.contains("basic-melee")) {
-                        event.goalSelector.add(1, PokemonMeleeAttackGoal(event.entity))
-                    }
-                    if(pokemon.form.labels.contains("ranged")){
-                        event.goalSelector.add(2, PokemonBreathAttackGoal(event.entity, event.entity.getAttributeValue(EntityAttributes.GENERIC_MOVEMENT_SPEED), 20, 10.0F, 60, 120))
-                    }
-                }
-            }
+            CobblemonEvents.POKEMON_ENTITY_GOALS.post(PokemonEntityGoalsEvent(this, goalSelector))
             goalSelector.add(6, PokemonWanderAroundGoal(this))
             goalSelector.add(7, PokemonLookAtEntityGoal(this, ServerPlayerEntity::class.java, 5F))
         }
