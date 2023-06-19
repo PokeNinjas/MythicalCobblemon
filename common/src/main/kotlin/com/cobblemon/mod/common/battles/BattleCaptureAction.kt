@@ -9,6 +9,9 @@
 package com.cobblemon.mod.common.battles
 
 import com.cobblemon.mod.common.api.battles.model.PokemonBattle
+import com.cobblemon.mod.common.api.events.CobblemonEvents
+import com.cobblemon.mod.common.api.events.battles.BattleCaptureEvent
+import com.cobblemon.mod.common.api.events.battles.BattleCaptureState
 import com.cobblemon.mod.common.api.reactive.Observable.Companion.emitWhile
 import com.cobblemon.mod.common.api.text.green
 import com.cobblemon.mod.common.api.text.red
@@ -35,15 +38,20 @@ class BattleCaptureAction(
 
         pokeBallEntity.shakeEmitter
             .pipe(emitWhile { pokeBallEntity.isAlive && this in battle.captureActions })
-            .subscribe { battle.sendUpdate(BattleCaptureShakePacket(targetPokemon.getPNX(), it)) }
+            .subscribe {
+                battle.sendUpdate(BattleCaptureShakePacket(targetPokemon.getPNX(), it))
+                CobblemonEvents.BATTLE_CAPTURE.post(BattleCaptureEvent(battle, targetPokemon, pokeBallEntity, BattleCaptureState.SHAKE))
+            }
 
         pokeBallEntity.captureFuture.thenAccept { successful ->
             if (successful) {
                 targetPokemon.battlePokemon?.gone = true
                 battle.writeShowdownAction(">capture ${targetPokemon.getPNX()}")
                 battle.broadcastChatMessage(lang("capture.succeeded", pokemonName).green())
+                CobblemonEvents.BATTLE_CAPTURE.post(BattleCaptureEvent(battle, targetPokemon, pokeBallEntity, BattleCaptureState.CAPTURE))
             } else {
                 battle.broadcastChatMessage(lang("capture.broke_free", pokemonName).red())
+                CobblemonEvents.BATTLE_CAPTURE.post(BattleCaptureEvent(battle, targetPokemon, pokeBallEntity, BattleCaptureState.BREAK_FREE))
             }
             battle.sendUpdate(BattleCaptureEndPacket(targetPokemon.getPNX(), successful))
             battle.finishCaptureAction(this)

@@ -19,5 +19,13 @@ import com.cobblemon.mod.common.api.battles.model.actor.BattleActor
  */
 data class BattleVictoryEvent (
     val battle: PokemonBattle,
-    val winners : List<BattleActor>
+    val winners : List<BattleActor>,
+    val victoryType: BattleVictoryType
 )
+
+enum class BattleVictoryType {
+    KO,
+    FORFEIT,
+    CAPTURE,
+    ESCAPE
+}

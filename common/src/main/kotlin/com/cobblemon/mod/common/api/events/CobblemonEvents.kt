@@ -8,6 +8,8 @@
 
 package com.cobblemon.mod.common.api.events
 
+import com.cobblemon.mod.common.api.events.battles.BattleCaptureEvent
+import com.cobblemon.mod.common.api.events.battles.BattleCaptureState
 import com.cobblemon.mod.common.api.events.battles.BattleVictoryEvent
 import com.cobblemon.mod.common.api.events.drops.LootDroppedEvent
 import com.cobblemon.mod.common.api.events.entity.*
@@ -73,6 +75,23 @@ object CobblemonEvents {
 //    val EGG_HATCH = EventObservable<HatchEggEvent>()
     @JvmField
     val BATTLE_VICTORY = EventObservable<BattleVictoryEvent>()
+    @JvmField
+    val BATTLE_CAPTURE = EventObservable<BattleCaptureEvent>()
+    @JvmField
+    val BATTLE_CAPTURE_SHAKE = BATTLE_CAPTURE
+        .pipe(
+            filter { it.captureState == BattleCaptureState.SHAKE },
+        )
+    @JvmField
+    val BATTLE_CAPTURE_SUCCESS = BATTLE_CAPTURE
+        .pipe(
+            filter { it.captureState == BattleCaptureState.CAPTURE },
+        )
+    @JvmField
+    val BATTLE_CAPTURE_FAIL = BATTLE_CAPTURE
+        .pipe(
+            filter { it.captureState == BattleCaptureState.BREAK_FREE },
+        )
 
     @JvmField
     val LEVEL_UP_EVENT = EventObservable<LevelUpEvent>()

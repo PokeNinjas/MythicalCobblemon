@@ -13,11 +13,13 @@ import com.cobblemon.mod.common.CobblemonItems
 import com.cobblemon.mod.common.api.battles.interpreter.BattleMessage
 import com.cobblemon.mod.common.api.battles.interpreter.Effect
 import com.cobblemon.mod.common.api.battles.model.PokemonBattle
+import com.cobblemon.mod.common.api.battles.model.actor.ActorType
 import com.cobblemon.mod.common.api.battles.model.actor.BattleActor
 import com.cobblemon.mod.common.api.battles.model.actor.EntityBackedBattleActor
 import com.cobblemon.mod.common.api.data.ShowdownIdentifiable
 import com.cobblemon.mod.common.api.events.CobblemonEvents
 import com.cobblemon.mod.common.api.events.battles.BattleVictoryEvent
+import com.cobblemon.mod.common.api.events.battles.BattleVictoryType
 import com.cobblemon.mod.common.api.moves.Moves
 import com.cobblemon.mod.common.api.pokemon.stats.Stats
 import com.cobblemon.mod.common.api.pokemon.status.Statuses
@@ -514,7 +516,18 @@ object ShowdownInterpreter {
             battle.broadcastChatMessage(battleLang("win", winnersText).gold())
 
             battle.end()
-            CobblemonEvents.BATTLE_VICTORY.post(BattleVictoryEvent(battle, winners))
+            var type: BattleVictoryType = BattleVictoryType.KO
+            if(battle.isPvW){
+                // get the non-player actor
+                val nonPlayerActor = battle.actors.first { it.type == ActorType.WILD }
+                val wildPokemon: BattlePokemon = nonPlayerActor.pokemonList.first()
+                if(wildPokemon.health > 0){
+                    type = BattleVictoryType.CAPTURE
+                } else {
+                    type = BattleVictoryType.KO
+                }
+            }
+            CobblemonEvents.BATTLE_VICTORY.post(BattleVictoryEvent(battle, winners, type))
 
             this.lastMover.remove(battle.battleId)
             GO
