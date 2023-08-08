@@ -12,6 +12,7 @@ import com.cobblemon.mod.common.api.events.battles.BattleCaptureEvent
 import com.cobblemon.mod.common.api.events.battles.BattleEndEvent
 import com.cobblemon.mod.common.api.events.client.ClientBattleEndEvent
 import com.cobblemon.mod.common.api.events.battles.BattleVictoryEvent
+import com.cobblemon.mod.common.api.events.client.RenderBeamEvent
 import com.cobblemon.mod.common.api.events.drops.LootDroppedEvent
 import com.cobblemon.mod.common.api.events.entity.*
 import com.cobblemon.mod.common.api.events.farming.ApricornHarvestEvent
@@ -71,6 +72,8 @@ object CobblemonEvents {
     val BATTLE_CAPTURE = EventObservable<BattleCaptureEvent>()
     @JvmField
     val BATTLE_END_CLIENT = EventObservable<ClientBattleEndEvent>()
+    @JvmField
+    val BEAM_RENDER = EventObservable<RenderBeamEvent>()
     @JvmField
     val BATTLE_END = EventObservable<BattleEndEvent>()
     @JvmField

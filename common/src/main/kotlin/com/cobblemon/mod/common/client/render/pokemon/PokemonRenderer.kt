@@ -8,6 +8,8 @@
 
 package com.cobblemon.mod.common.client.render.pokemon
 
+import com.cobblemon.mod.common.api.events.CobblemonEvents
+import com.cobblemon.mod.common.api.events.client.RenderBeamEvent
 import com.cobblemon.mod.common.api.text.add
 import com.cobblemon.mod.common.client.entity.PokemonClientDelegate
 import com.cobblemon.mod.common.client.entity.PokemonClientDelegate.Companion.BEAM_EXTEND_TIME
@@ -48,6 +50,7 @@ import net.minecraft.util.Identifier
 import net.minecraft.util.math.MathConstants.PI
 import net.minecraft.util.math.MathHelper
 import net.minecraft.util.math.Quaternion
+import net.minecraft.util.math.Vec3d
 import net.minecraft.util.math.Vec3f
 import net.minecraft.util.math.Vector4f
 
@@ -152,13 +155,22 @@ class PokemonRenderer(
             (beamTarget.delegate as PokeBallPoseableState).locatorStates["beam"]?.getOrigin() ?: beamTarget.pos
 //            beamTarget.pos.let { it.add(pokemonPosition.subtract(it).normalize().multiply(0.4, 0.0, 0.4)) }
         } else {
-            beamTarget as PlayerEntity
-            if (beamTarget.uuid == MinecraftClient.getInstance().player?.uuid) {
-                val lookVec = beamTarget.rotationVector.rotateY(PI / 2).multiply(1.0, 0.0, 1.0).normalize()
-                beamTarget.getCameraPosVec(partialTicks).subtract(0.0, 0.4, 0.0).subtract(lookVec.multiply(0.3))
+            if(beamTarget is PlayerEntity){
+                if (beamTarget.uuid == MinecraftClient.getInstance().player?.uuid) {
+                    val lookVec = beamTarget.rotationVector.rotateY(PI / 2).multiply(1.0, 0.0, 1.0).normalize()
+                    val targetVec = beamTarget.getCameraPosVec(partialTicks).subtract(0.0, 0.4, 0.0).subtract(lookVec.multiply(0.3))
+                    CobblemonEvents.BEAM_RENDER.post(RenderBeamEvent(matrixStack, partialTicks, entity, beamTarget, colour, buffer, targetVec))
+                    targetVec
+                } else {
+                    val lookVec = beamTarget.rotationVector.rotateY(PI / 2 - (beamTarget.bodyYaw - beamTarget.pitch).toRadians()).multiply(1.0, 0.0, 1.0).normalize()
+                    val targetVec = beamTarget.getCameraPosVec(partialTicks).subtract(0.0, 0.7, 0.0).subtract(lookVec.multiply(0.4))
+                    CobblemonEvents.BEAM_RENDER.post(RenderBeamEvent(matrixStack, partialTicks, entity, beamTarget, colour, buffer, targetVec))
+                    targetVec
+                }
             } else {
-                val lookVec = beamTarget.rotationVector.rotateY(PI / 2 - (beamTarget.bodyYaw - beamTarget.pitch).toRadians()).multiply(1.0, 0.0, 1.0).normalize()
-                beamTarget.getCameraPosVec(partialTicks).subtract(0.0, 0.7, 0.0).subtract(lookVec.multiply(0.4))
+                val targetVec = Vec3d(0.0,0.0,0.0)
+                CobblemonEvents.BEAM_RENDER.post(RenderBeamEvent(matrixStack, partialTicks, entity, beamTarget, colour, buffer, targetVec))
+                targetVec
             }
         }
 
