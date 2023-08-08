@@ -13,6 +13,8 @@ import com.cobblemon.mod.common.CobblemonBlockEntities
 import com.cobblemon.mod.common.CobblemonBlocks
 import com.cobblemon.mod.common.CobblemonClientImplementation
 import com.cobblemon.mod.common.CobblemonItems
+import com.cobblemon.mod.common.api.events.CobblemonEvents
+import com.cobblemon.mod.common.api.events.battles.ClientBattleEndEvent
 import com.cobblemon.mod.common.api.scheduling.ScheduledTaskTracker
 import com.cobblemon.mod.common.client.battle.ClientBattle
 import com.cobblemon.mod.common.client.gui.PartyOverlay
@@ -161,5 +163,6 @@ object CobblemonClient {
 
     fun endBattle() {
         battle = null
+        CobblemonEvents.BATTLE_END_CLIENT.post(ClientBattleEndEvent())
     }
 }

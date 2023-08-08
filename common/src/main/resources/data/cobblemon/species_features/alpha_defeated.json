@@ -1,6 +1,0 @@
-{
-  "keys": ["alpha_defeated"],
-  "type": "flag",
-  "isAspect": true,
-  "default": false
-}

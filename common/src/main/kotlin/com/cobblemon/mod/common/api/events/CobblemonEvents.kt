@@ -9,7 +9,8 @@
 package com.cobblemon.mod.common.api.events
 
 import com.cobblemon.mod.common.api.events.battles.BattleCaptureEvent
-import com.cobblemon.mod.common.api.events.battles.BattleCaptureState
+import com.cobblemon.mod.common.api.events.battles.BattleEndEvent
+import com.cobblemon.mod.common.api.events.battles.ClientBattleEndEvent
 import com.cobblemon.mod.common.api.events.battles.BattleVictoryEvent
 import com.cobblemon.mod.common.api.events.drops.LootDroppedEvent
 import com.cobblemon.mod.common.api.events.entity.*
@@ -25,10 +26,7 @@ import com.cobblemon.mod.common.api.events.starter.StarterChosenEvent
 import com.cobblemon.mod.common.api.events.storage.ReleasePokemonEvent
 import com.cobblemon.mod.common.api.reactive.CancelableObservable
 import com.cobblemon.mod.common.api.reactive.EventObservable
-import com.cobblemon.mod.common.api.reactive.Observable.Companion.filter
-import com.cobblemon.mod.common.api.reactive.Observable.Companion.map
 import com.cobblemon.mod.common.api.reactive.SimpleObservable
-import com.cobblemon.mod.common.entity.pokemon.PokemonEntity
 import com.cobblemon.mod.common.util.asObservable
 import com.cobblemon.mod.common.util.asServerObservable
 import com.cobblemon.mod.common.util.asTickObservable
@@ -72,22 +70,13 @@ object CobblemonEvents {
     @JvmField
     val BATTLE_CAPTURE = EventObservable<BattleCaptureEvent>()
     @JvmField
-    val BATTLE_CAPTURE_SHAKE = BATTLE_CAPTURE
-        .pipe(
-            filter { it.captureState == BattleCaptureState.SHAKE },
-        )
+    val BATTLE_END_CLIENT = EventObservable<ClientBattleEndEvent>()
     @JvmField
-    val BATTLE_CAPTURE_SUCCESS = BATTLE_CAPTURE
-        .pipe(
-            filter { it.captureState == BattleCaptureState.CAPTURE },
-        )
-    @JvmField
-    val BATTLE_CAPTURE_FAIL = BATTLE_CAPTURE
-        .pipe(
-            filter { it.captureState == BattleCaptureState.BREAK_FREE },
-        )
+    val BATTLE_END = EventObservable<BattleEndEvent>()
     @JvmField
     val CAPTURE_CONDITIONS = CancelableObservable<PokeballCaptureConditionsEvent>()
+    @JvmField
+    val UNRECOGNIZED_TARGET = CancelableObservable<UnrecognizedChallengeTargetEvent>()
 
     @JvmField
     val LEVEL_UP_EVENT = EventObservable<LevelUpEvent>()
@@ -103,12 +92,12 @@ object CobblemonEvents {
     @JvmField
     val ENTITY_SPAWN = CancelableObservable<SpawnEvent<*>>()
 
-    @JvmField
-    val POKEMON_ENTITY_SPAWN = ENTITY_SPAWN
-        .pipe(
-            filter { it.entity is PokemonEntity },
-            map { it as SpawnEvent<PokemonEntity> }
-        )
+//    @JvmField
+//    val POKEMON_ENTITY_SPAWN = ENTITY_SPAWN
+//        .pipe(
+//            filter { it.entity is PokemonEntity },
+//            map { it as SpawnEvent<PokemonEntity> }
+//        )
 
     @JvmField
     val EXPERIENCE_GAINED_EVENT_PRE = CancelableObservable<ExperienceGainedPreEvent>()

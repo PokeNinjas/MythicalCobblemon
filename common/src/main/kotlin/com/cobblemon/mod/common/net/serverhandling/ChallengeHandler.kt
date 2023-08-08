@@ -10,6 +10,8 @@ package com.cobblemon.mod.common.net.serverhandling
 
 import com.cobblemon.mod.common.CobblemonNetwork
 import com.cobblemon.mod.common.CobblemonNetwork.sendPacket
+import com.cobblemon.mod.common.api.events.CobblemonEvents
+import com.cobblemon.mod.common.api.events.entity.UnrecognizedChallengeTargetEvent
 import com.cobblemon.mod.common.api.scheduling.after
 import com.cobblemon.mod.common.api.text.aqua
 import com.cobblemon.mod.common.api.text.red
@@ -69,6 +71,7 @@ object ChallengeHandler : ServerPacketHandler<BattleChallengePacket> {
             }
             else -> {
                 // Unrecognized challenge target. NPCs will probably go here.
+                CobblemonEvents.UNRECOGNIZED_TARGET.post(UnrecognizedChallengeTargetEvent(targetedEntity, player, leadingPokemon))
             }
         }
     }
