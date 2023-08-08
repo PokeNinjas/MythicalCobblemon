@@ -6,6 +6,6 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-package com.cobblemon.mod.common.api.events.battles
+package com.cobblemon.mod.common.api.events.client
 
 class ClientBattleEndEvent()

@@ -10,7 +10,7 @@ package com.cobblemon.mod.common.api.events
 
 import com.cobblemon.mod.common.api.events.battles.BattleCaptureEvent
 import com.cobblemon.mod.common.api.events.battles.BattleEndEvent
-import com.cobblemon.mod.common.api.events.battles.ClientBattleEndEvent
+import com.cobblemon.mod.common.api.events.client.ClientBattleEndEvent
 import com.cobblemon.mod.common.api.events.battles.BattleVictoryEvent
 import com.cobblemon.mod.common.api.events.drops.LootDroppedEvent
 import com.cobblemon.mod.common.api.events.entity.*
