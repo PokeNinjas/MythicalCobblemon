@@ -15,4 +15,4 @@ import net.minecraft.entity.Entity
 import net.minecraft.util.math.Vec3d
 import net.minecraft.util.math.Vector4f
 
-class RenderBeamEvent(matrixStack: MatrixStack, partialTicks: Float, entity: PokemonEntity, beamTarget: Entity, colour: Vector4f, buffer: VertexConsumerProvider, val sourcePosition: Vec3d)
+class RenderBeamEvent(matrixStack: MatrixStack, val partialTicks: Float, entity: PokemonEntity, val beamTarget: Entity, colour: Vector4f, buffer: VertexConsumerProvider, val sourcePosition: Vec3d)
