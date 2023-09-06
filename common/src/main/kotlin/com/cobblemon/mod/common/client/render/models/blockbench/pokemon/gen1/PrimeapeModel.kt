@@ -18,6 +18,7 @@ import com.cobblemon.mod.common.entity.PoseType.Companion.UI_POSES
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity
 import net.minecraft.client.model.ModelPart
 import net.minecraft.util.math.Vec3d
+
 class PrimeapeModel(root: ModelPart) : PokemonPoseableModel() {
     override val rootPart = root.registerChildWithAllChildren("primeape")
 
@@ -62,5 +63,5 @@ class PrimeapeModel(root: ModelPart) : PokemonPoseableModel() {
     override fun getFaintAnimation(
         pokemonEntity: PokemonEntity,
         state: PoseableEntityState<PokemonEntity>
-    ) = if (state.isPosedIn(standing, walk)) bedrockStateful("primeape", "faint") else null
+    ) = if (state.isPosedIn(standing, walk, sleep)) bedrockStateful("primeape", "faint") else null
 }

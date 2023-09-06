@@ -1,3 +1,13 @@
+/*
+ *
+ *  * Copyright (C) 2023 Cobblemon Contributors
+ *  *
+ *  * This Source Code Form is subject to the terms of the Mozilla Public
+ *  * License, v. 2.0. If a copy of the MPL was not distributed with this
+ *  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ *
+ */
+
 plugins {
     id("cobblemon.platform-conventions")
     id("cobblemon.publish-conventions")
@@ -11,6 +21,7 @@ architectury {
 loom {
     forge {
         convertAccessWideners.set(true)
+
         mixinConfig("mixins.cobblemon-forge.json")
         mixinConfig("mixins.cobblemon-common.json")
     }
@@ -24,9 +35,9 @@ repositories {
 
 dependencies {
     forge(libs.forge)
-    modApi(libs.architecturyForge)
-//    modApi(libs.kotlinForForge)
-
+    //Because of the JEI mapping issues if we want
+    //a forge launch we gotta do some wacky stuff
+    //modRuntimeOnly(libs.jeiForge)
     //shadowCommon group: 'commons-io', name: 'commons-io', version: '2.6'
 
     implementation(project(":common", configuration = "namedElements")) {
@@ -48,31 +59,40 @@ dependencies {
         forgeRuntimeLibrary(it)
         bundle(it)
     }
-
-    listOf(
-        libs.stdlib,
-        libs.serializationCore,
-        libs.serializationJson,
-        libs.reflect
-    ).forEach(::forgeRuntimeLibrary)
 }
 
 tasks {
     shadowJar {
-        exclude("architectury.common.json")
         exclude("architectury-common.accessWidener")
+        exclude("architectury.common.json")
 
         relocate ("com.ibm.icu", "com.cobblemon.mod.relocations.ibm.icu")
     }
 
     processResources {
         inputs.property("version", rootProject.version)
+        inputs.property("minecraft_version", rootProject.property("mc_version").toString())
 
         filesMatching("META-INF/mods.toml") {
-            expand("version" to rootProject.version)
+            expand(
+                "version" to rootProject.version,
+                "minecraft_version" to rootProject.property("mc_version").toString()
+            )
         }
     }
 }
+
+tasks {
+    sourcesJar {
+        val depSources = project(":common").tasks.sourcesJar
+        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+        dependsOn(depSources)
+        from(depSources.get().archiveFile.map { zipTree(it) }) {
+            exclude("architectury.accessWidener")
+        }
+    }
+}
+
 
 //jar {
 //    classifier("dev")

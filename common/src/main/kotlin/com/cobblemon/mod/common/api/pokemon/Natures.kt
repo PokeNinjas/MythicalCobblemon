@@ -8,11 +8,10 @@
 
 package com.cobblemon.mod.common.api.pokemon
 
-import com.cobblemon.mod.common.api.item.Flavor
+import com.cobblemon.mod.common.api.berry.Flavor
 import com.cobblemon.mod.common.api.pokemon.stats.Stats
 import com.cobblemon.mod.common.pokemon.Nature
 import com.cobblemon.mod.common.util.cobblemonResource
-import com.cobblemon.mod.common.util.lang
 import net.minecraft.util.Identifier
 
 /**

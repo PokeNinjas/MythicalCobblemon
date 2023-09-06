@@ -18,12 +18,7 @@ import com.cobblemon.mod.common.api.drop.ItemDropEntry
 import com.cobblemon.mod.common.api.events.CobblemonEvents.BATTLE_VICTORY
 import com.cobblemon.mod.common.api.events.CobblemonEvents.DATA_SYNCHRONIZED
 import com.cobblemon.mod.common.api.events.CobblemonEvents.EVOLUTION_COMPLETE
-import com.cobblemon.mod.common.api.events.CobblemonEvents.LIVING_DEATH
-import com.cobblemon.mod.common.api.events.CobblemonEvents.PLAYER_QUIT
 import com.cobblemon.mod.common.api.events.CobblemonEvents.POKEMON_CAPTURED
-import com.cobblemon.mod.common.api.events.CobblemonEvents.SERVER_STARTED
-import com.cobblemon.mod.common.api.events.CobblemonEvents.SERVER_STOPPED
-import com.cobblemon.mod.common.api.events.CobblemonEvents.TICK_POST
 import com.cobblemon.mod.common.api.net.serializers.PoseTypeDataSerializer
 import com.cobblemon.mod.common.api.net.serializers.StringSetDataSerializer
 import com.cobblemon.mod.common.api.net.serializers.Vec3DataSerializer
@@ -44,8 +39,6 @@ import com.cobblemon.mod.common.api.pokemon.stats.EvCalculator
 import com.cobblemon.mod.common.api.pokemon.stats.Generation8EvCalculator
 import com.cobblemon.mod.common.api.pokemon.stats.StatProvider
 import com.cobblemon.mod.common.api.properties.CustomPokemonProperty
-import com.cobblemon.mod.common.api.reactive.Observable.Companion.filter
-import com.cobblemon.mod.common.api.reactive.Observable.Companion.map
 import com.cobblemon.mod.common.api.scheduling.ScheduledTaskTracker
 import com.cobblemon.mod.common.api.spawning.BestSpawner
 import com.cobblemon.mod.common.api.spawning.CobblemonSpawningProspector
@@ -62,12 +55,19 @@ import com.cobblemon.mod.common.api.storage.pc.PCStore
 import com.cobblemon.mod.common.api.storage.pc.link.PCLinkManager
 import com.cobblemon.mod.common.api.storage.player.PlayerDataStoreManager
 import com.cobblemon.mod.common.api.tags.CobblemonEntityTypeTags
+import com.cobblemon.mod.common.battles.BagItems
 import com.cobblemon.mod.common.battles.BattleFormat
 import com.cobblemon.mod.common.battles.BattleRegistry
 import com.cobblemon.mod.common.battles.BattleSide
 import com.cobblemon.mod.common.battles.ShowdownThread
 import com.cobblemon.mod.common.battles.actor.PokemonBattleActor
 import com.cobblemon.mod.common.battles.pokemon.BattlePokemon
+import com.cobblemon.mod.common.command.argument.MoveArgumentType
+import com.cobblemon.mod.common.command.argument.PartySlotArgumentType
+import com.cobblemon.mod.common.command.argument.PokemonArgumentType
+import com.cobblemon.mod.common.command.argument.PokemonPropertiesArgumentType
+import com.cobblemon.mod.common.command.argument.PokemonStoreArgumentType
+import com.cobblemon.mod.common.command.argument.SpawnBucketArgumentType
 import com.cobblemon.mod.common.config.CobblemonConfig
 import com.cobblemon.mod.common.config.LastChangedVersion
 import com.cobblemon.mod.common.config.constraint.IntConstraint
@@ -78,38 +78,31 @@ import com.cobblemon.mod.common.events.AdvancementHandler
 import com.cobblemon.mod.common.events.ServerTickHandler
 import com.cobblemon.mod.common.item.PokeBallItem
 import com.cobblemon.mod.common.net.messages.client.settings.ServerSettingsPacket
-import com.cobblemon.mod.common.net.serverhandling.ServerPacketRegistrar
-import com.cobblemon.mod.common.particle.CobblemonParticles
 import com.cobblemon.mod.common.permission.LaxPermissionValidator
+import com.cobblemon.mod.common.platform.events.PlatformEvents
 import com.cobblemon.mod.common.pokemon.Pokemon
 import com.cobblemon.mod.common.pokemon.aspects.GENDER_ASPECT
 import com.cobblemon.mod.common.pokemon.aspects.SHINY_ASPECT
 import com.cobblemon.mod.common.pokemon.evolution.variants.BlockClickEvolution
-import com.cobblemon.mod.common.pokemon.feature.*
+import com.cobblemon.mod.common.pokemon.feature.TagSeasonResolver
 import com.cobblemon.mod.common.pokemon.helditem.CobblemonHeldItemManager
 import com.cobblemon.mod.common.pokemon.properties.HiddenAbilityPropertyType
 import com.cobblemon.mod.common.pokemon.properties.UncatchableProperty
 import com.cobblemon.mod.common.pokemon.properties.UntradeableProperty
 import com.cobblemon.mod.common.pokemon.properties.tags.PokemonFlagProperty
 import com.cobblemon.mod.common.pokemon.stat.CobblemonStatProvider
-import com.cobblemon.mod.common.registry.CompletableRegistry
 import com.cobblemon.mod.common.starter.CobblemonStarterHandler
+import com.cobblemon.mod.common.trade.TradeManager
 import com.cobblemon.mod.common.util.DataKeys
 import com.cobblemon.mod.common.util.cobblemonResource
-import com.cobblemon.mod.common.util.getServer
 import com.cobblemon.mod.common.util.ifDedicatedServer
 import com.cobblemon.mod.common.util.isLaterVersion
 import com.cobblemon.mod.common.util.party
 import com.cobblemon.mod.common.util.removeAmountIf
+import com.cobblemon.mod.common.util.server
+import com.cobblemon.mod.common.world.feature.CobblemonPlacedFeatures
+import com.cobblemon.mod.common.world.feature.ore.CobblemonOrePlacedFeatures
 import com.cobblemon.mod.common.world.gamerules.CobblemonGameRules
-import com.cobblemon.mod.common.world.feature.CobblemonOrePlacedFeatures
-import com.cobblemon.mod.common.world.placement.CobblemonPlacementTypes
-import dev.architectury.event.EventResult
-import dev.architectury.event.events.common.CommandRegistrationEvent
-import dev.architectury.event.events.common.EntityEvent
-import dev.architectury.event.events.common.InteractionEvent
-import dev.architectury.event.events.common.PlayerEvent
-import dev.architectury.hooks.item.tool.AxeItemHooks
 import java.io.File
 import java.io.FileReader
 import java.io.FileWriter
@@ -120,18 +113,18 @@ import kotlin.reflect.full.memberProperties
 import kotlin.reflect.jvm.isAccessible
 import kotlin.reflect.jvm.javaField
 import net.minecraft.client.MinecraftClient
+import net.minecraft.command.argument.serialize.ConstantArgumentSerializer
 import net.minecraft.entity.data.TrackedDataHandlerRegistry
+import net.minecraft.item.Items
 import net.minecraft.item.NameTagItem
-import net.minecraft.server.network.ServerPlayerEntity
-import net.minecraft.sound.SoundEvents
+import net.minecraft.registry.RegistryKey
 import net.minecraft.util.WorldSavePath
-import net.minecraft.util.registry.RegistryKey
 import net.minecraft.world.World
 import org.apache.logging.log4j.LogManager
 
 object Cobblemon {
     const val MODID = "cobblemon"
-    const val VERSION = "1.3.1"
+    const val VERSION = "1.4.0"
     const val CONFIG_PATH = "config/$MODID/main.json"
     val LOGGER = LogManager.getLogger()
 
@@ -161,6 +154,17 @@ object Cobblemon {
     var seasonResolver: SeasonResolver = TagSeasonResolver
 
     fun preInitialize(implementation: CobblemonImplementation) {
+        this.implementation = implementation
+        implementation.registerPermissionValidator()
+        implementation.registerSoundEvents()
+        implementation.registerBlocks()
+        implementation.registerItems()
+        implementation.registerEntityTypes()
+        implementation.registerEntityAttributes()
+        implementation.registerBlockEntityTypes()
+        implementation.registerWorldGenFeatures()
+        implementation.registerParticles()
+
         DropEntry.register("command", CommandDropEntry::class.java)
         DropEntry.register("item", ItemDropEntry::class.java, isDefault = true)
 
@@ -168,18 +172,13 @@ object Cobblemon {
         CaptureCalculators.registerDefaults()
 
         this.loadConfig()
-        this.implementation = implementation
+//        CobblemonBlockPredicates.touch()
+        CobblemonOrePlacedFeatures.register()
+        CobblemonPlacedFeatures.register()
+        this.registerArgumentTypes()
 
         CobblemonCriteria // Init the fields and register the criteria
-        CobblemonEntities.register()
-        CobblemonBlocks.register()
-        CobblemonBlockEntities.register()
-        CobblemonItems.register()
-        ServerPacketRegistrar.registerHandlers()
-        CobblemonSounds.register()
-        CobblemonFeatures.register()
-        CobblemonGameRules.register()
-        CobblemonParticles.register()
+        CobblemonGameRules // Init fields and register
 
         ShoulderEffectRegistry.register()
 
@@ -187,26 +186,28 @@ object Cobblemon {
             storage.onPlayerDataSync(it)
             playerData.get(it).sendToPlayer(it)
             starterHandler.handleJoin(it)
-            ServerSettingsPacket().sendToPlayer(it)
+            ServerSettingsPacket(this.config.preventCompletePartyDeposit, this.config.displayEntityLevelLabel).sendToPlayer(it)
         }
-        PLAYER_QUIT.subscribe {
-            PCLinkManager.removeLink(it.uuid)
-            BattleRegistry.getBattleByParticipatingPlayer(it)?.stop()
+        PlatformEvents.SERVER_PLAYER_LOGOUT.subscribe {
+            PCLinkManager.removeLink(it.player.uuid)
+            BattleRegistry.getBattleByParticipatingPlayer(it.player)?.stop()
+            storage.onPlayerDisconnect(it.player)
+            playerData.onPlayerDisconnect(it.player)
+            TradeManager.onLogoff(it.player)
         }
-        LIVING_DEATH.pipe(filter { it is ServerPlayerEntity }, map { it as ServerPlayerEntity }).subscribe {
-            PCLinkManager.removeLink(it.uuid)
-            battleRegistry.getBattleByParticipatingPlayer(it)?.stop()
+        PlatformEvents.PLAYER_DEATH.subscribe {
+            PCLinkManager.removeLink(it.player.uuid)
+            battleRegistry.getBattleByParticipatingPlayer(it.player)?.stop()
         }
 
-        InteractionEvent.INTERACT_ENTITY.register(InteractionEvent.InteractEntity { player, entity, hand ->
-            if (player.getStackInHand(hand).item is NameTagItem && entity.type.isIn(CobblemonEntityTypeTags.CANNOT_HAVE_NAME_TAG))
-                EventResult.interruptTrue()
-            else
-                EventResult.pass()
-        })
-        InteractionEvent.RIGHT_CLICK_BLOCK.register(InteractionEvent.RightClickBlock { pl, _, pos, _ ->
-            val player = pl as? ServerPlayerEntity ?: return@RightClickBlock EventResult.pass()
-            val block = player.world.getBlockState(pos).block
+        PlatformEvents.RIGHT_CLICK_ENTITY.subscribe { event ->
+            if (event.player.getStackInHand(event.hand).item is NameTagItem && event.entity.type.isIn(CobblemonEntityTypeTags.CANNOT_HAVE_NAME_TAG)) {
+                event.cancel()
+            }
+        }
+        PlatformEvents.RIGHT_CLICK_BLOCK.subscribe { event ->
+            val player = event.player
+            val block = player.world.getBlockState(event.pos).block
             player.party().forEach { pokemon ->
                 pokemon.evolutions
                     .filterIsInstance<BlockClickEvolution>()
@@ -214,12 +215,11 @@ object Cobblemon {
                         evolution.attemptEvolution(pokemon, BlockClickEvolution.BlockInteractionContext(block, player.world))
                     }
             }
-            return@RightClickBlock EventResult.pass()
-        })
+        }
 
-        PlayerEvent.CHANGE_DIMENSION.register(PlayerEvent.ChangeDimension{ player, _, _ ->
-            player.party().forEach { pokemon -> pokemon.entity?.recallWithAnimation() }
-        })
+        PlatformEvents.CHANGE_DIMENSION.subscribe {
+            it.player.party().forEach { pokemon -> pokemon.entity?.recallWithAnimation() }
+        }
 
         TrackedDataHandlerRegistry.register(Vec3DataSerializer)
         TrackedDataHandlerRegistry.register(StringSetDataSerializer)
@@ -230,13 +230,6 @@ object Cobblemon {
 
     fun initialize() {
         showdownThread.launch()
-
-        CompletableRegistry.allRegistriesCompleted.thenAccept {
-            LOGGER.info("All registries loaded.")
-        }
-
-        CobblemonPlacementTypes.register()
-        CobblemonOrePlacedFeatures.register()
 
         // Start up the data provider.
         CobblemonDataProvider.registerDefaults()
@@ -264,23 +257,15 @@ object Cobblemon {
         CustomPokemonProperty.register(PokemonFlagProperty)
         CustomPokemonProperty.register(HiddenAbilityPropertyType)
 
-        CommandRegistrationEvent.EVENT.register(CobblemonCommands::register)
-
         ifDedicatedServer {
             isDedicatedServer = true
-            TICK_POST.subscribe { ScheduledTaskTracker.update() }
-            CobblemonNetwork.clientHandlersRegistered.complete(Unit)
+            PlatformEvents.SERVER_TICK_POST.subscribe { ScheduledTaskTracker.update() }
         }
 
-        CobblemonBlocks.completed.thenAccept {
-            AxeItemHooks.addStrippable(CobblemonBlocks.APRICORN_LOG.get(), CobblemonBlocks.STRIPPED_APRICORN_LOG.get())
-            AxeItemHooks.addStrippable(CobblemonBlocks.APRICORN_WOOD.get(), CobblemonBlocks.STRIPPED_APRICORN_WOOD.get())
-        }
-
-        SERVER_STARTED.subscribe { server ->
+        PlatformEvents.SERVER_STARTING.subscribe { event ->
+            val server = event.server
             playerData = PlayerDataStoreManager().also { it.setup(server) }
             val pokemonStoreRoot = server.getSavePath(WorldSavePath.ROOT).resolve("pokemon").toFile()
-
             storage.registerFactory(
                 priority = Priority.LOWEST,
                 factory = FileBackedPokemonStoreFactory(
@@ -295,31 +280,32 @@ object Cobblemon {
             )
         }
 
-        EntityEvent.LIVING_HURT.register { entity, source, amount ->
-            if(entity is PokemonEntity){
-                if(entity.pokemon.aspects.contains("alpha")){
-                    if(!entity.pokemon.aspects.contains("alpha_defeated")){
-                        if(entity.health - amount <= 0){
-                            PokemonProperties.parse("alpha_defeated=true").apply(entity.pokemon)
-                            entity.health = entity.maxHealth
-                            entity.playSound(SoundEvents.BLOCK_FIRE_EXTINGUISH, 1f, 1f)
-                            return@register EventResult.interruptFalse()
-                        }
-                    }
-                }
-            }
-            return@register EventResult.pass()
-        }
+        PlatformEvents.SERVER_STOPPED.subscribe {
+//        EntityEvent.LIVING_HURT.register { entity, source, amount ->
+//            if(entity is PokemonEntity){
+//                if(entity.pokemon.aspects.contains("alpha")){
+//                    if(!entity.pokemon.aspects.contains("alpha_defeated")){
+//                        if(entity.health - amount <= 0){
+//                            PokemonProperties.parse("alpha_defeated=true").apply(entity.pokemon)
+//                            entity.health = entity.maxHealth
+//                            entity.playSound(SoundEvents.BLOCK_FIRE_EXTINGUISH, 1f, 1f)
+//                            return@register EventResult.interruptFalse()
+//                        }
+//                    }
+//                }
+//            }
+//            return@register EventResult.pass()
+//        }
 
         SERVER_STOPPED.subscribe {
             storage.unregisterAll()
             playerData.saveAll()
         }
-        SERVER_STARTED.subscribe {
+        PlatformEvents.SERVER_STARTED.subscribe {
             bestSpawner.onServerStarted()
             battleRegistry.onServerStarted()
         }
-        TICK_POST.subscribe { ServerTickHandler.onTick(it) }
+        PlatformEvents.SERVER_TICK_POST.subscribe { ServerTickHandler.onTick(it.server) }
         POKEMON_CAPTURED.subscribe { AdvancementHandler.onCapture(it) }
 //        EGG_HATCH.subscribe { AdvancementHandler.onHatch(it) }
         BATTLE_VICTORY.subscribe { AdvancementHandler.onWinBattle(it) }
@@ -331,18 +317,27 @@ object Cobblemon {
             if (this.config.ninjaskCreatesShedinja && pokemon.species.resourceIdentifier == ninjaskIdentifier && PokemonSpecies.getByIdentifier(Pokemon.SHEDINJA) != null) {
                 val player = pokemon.getOwnerPlayer() ?: return@subscribe
                 if (player.inventory.containsAny { it.item is PokeBallItem }) {
+                    var pokeball = Items.AIR
+                    player.inventory.combinedInventory.forEach {
+                        it.forEach {
+                            itemStack -> if (itemStack.item is PokeBallItem && pokeball == Items.AIR) {
+                                pokeball = itemStack.item as PokeBallItem
+                            }
+                        }
+                    }
                     player.inventory.removeAmountIf(1) { it.item is PokeBallItem }
                     val properties = event.evolution.result.copy()
                     properties.species = Pokemon.SHEDINJA.toString()
                     val product = pokemon.clone()
                     product.removeHeldItem()
                     properties.apply(product)
+                    product.caughtBall = (pokeball as PokeBallItem).pokeBall
                     pokemon.storeCoordinates.get()?.store?.add(product)
                 }
             }
         }
 
-        PokemonSpecies.observable.subscribe {
+        BagItems.observable.subscribe {
             LOGGER.info("Starting dummy Showdown battle to force it to pre-load data.")
             battleRegistry.startBattle(
                 BattleFormat.GEN_9_SINGLES,
@@ -354,7 +349,7 @@ object Cobblemon {
 
     fun getLevel(dimension: RegistryKey<World>): World? {
         return if (isDedicatedServer) {
-            getServer()?.getWorld(dimension)
+            server()?.getWorld(dimension)
         } else {
             val mc = MinecraftClient.getInstance()
             return mc.server?.getWorld(dimension) ?: mc.world
@@ -445,4 +440,14 @@ object Cobblemon {
             exception.printStackTrace()
         }
     }
+
+    private fun registerArgumentTypes() {
+        this.implementation.registerCommandArgument(cobblemonResource("pokemon"), PokemonArgumentType::class, ConstantArgumentSerializer.of(PokemonArgumentType::pokemon))
+        this.implementation.registerCommandArgument(cobblemonResource("pokemon_properties"), PokemonPropertiesArgumentType::class, ConstantArgumentSerializer.of(PokemonPropertiesArgumentType::properties))
+        this.implementation.registerCommandArgument(cobblemonResource("spawn_bucket"), SpawnBucketArgumentType::class, ConstantArgumentSerializer.of(SpawnBucketArgumentType::spawnBucket))
+        this.implementation.registerCommandArgument(cobblemonResource("move"), MoveArgumentType::class, ConstantArgumentSerializer.of(MoveArgumentType::move))
+        this.implementation.registerCommandArgument(cobblemonResource("party_slot"), PartySlotArgumentType::class, ConstantArgumentSerializer.of(PartySlotArgumentType::partySlot))
+        this.implementation.registerCommandArgument(cobblemonResource("pokemon_store"), PokemonStoreArgumentType::class, ConstantArgumentSerializer.of(PokemonStoreArgumentType::pokemonStore))
+    }
+
 }

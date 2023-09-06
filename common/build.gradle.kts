@@ -1,10 +1,20 @@
+/*
+ *
+ *  * Copyright (C) 2023 Cobblemon Contributors
+ *  *
+ *  * This Source Code Form is subject to the terms of the Mozilla Public
+ *  * License, v. 2.0. If a copy of the MPL was not distributed with this
+ *  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ *
+ */
+
 plugins {
     id("cobblemon.base-conventions")
     id("cobblemon.publish-conventions")
 }
 
 architectury {
-    common()
+    common("forge", "fabric")
 }
 
 repositories {
@@ -17,8 +27,8 @@ dependencies {
     implementation(libs.reflect)
 
     modImplementation(libs.fabricLoader)
-    modApi(libs.architectury)
     modApi(libs.molang)
+    compileOnlyApi(libs.jeiApi)
 
     // For Showdown
     modCompileOnly(libs.graal)
@@ -31,10 +41,13 @@ dependencies {
     testImplementation(libs.junitParams)
     testImplementation(libs.mockito)
     testImplementation(libs.mockk)
-
-    compileOnly("net.luckperms:api:${rootProject.property("luckperms_version")}")
+    testImplementation(libs.classgraph)
 }
 
 tasks.withType<Test> {
     useJUnitPlatform()
+    testLogging {
+        setEvents(listOf("failed"))
+        setExceptionFormat("full")
+    }
 }

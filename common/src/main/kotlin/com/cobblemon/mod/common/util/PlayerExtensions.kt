@@ -9,10 +9,13 @@
 package com.cobblemon.mod.common.util
 
 import com.cobblemon.mod.common.Cobblemon
-import com.cobblemon.mod.common.api.events.CobblemonEvents
+import com.cobblemon.mod.common.api.battles.model.PokemonBattle
+import com.cobblemon.mod.common.api.battles.model.actor.BattleActor
 import com.cobblemon.mod.common.api.reactive.Observable.Companion.filter
 import com.cobblemon.mod.common.api.reactive.Observable.Companion.takeFirst
 import com.cobblemon.mod.common.battles.BattleRegistry
+import com.cobblemon.mod.common.platform.events.PlatformEvents
+import java.util.UUID
 import net.minecraft.block.BlockState
 import net.minecraft.entity.Entity
 import net.minecraft.entity.player.PlayerEntity
@@ -25,16 +28,15 @@ import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Box
 import net.minecraft.util.math.Direction
 import net.minecraft.util.math.Vec3d
-import java.util.*
 
 // Stuff like getting their party
 fun ServerPlayerEntity.party() = Cobblemon.storage.getParty(this)
 fun ServerPlayerEntity.pc() = Cobblemon.storage.getPC(this.uuid)
 fun ServerPlayerEntity.extraData(key: String) = Cobblemon.playerData.get(this).extraData[key]
-fun UUID.getPlayer() = getServer()?.playerManager?.getPlayer(this)
+fun UUID.getPlayer() = server()?.playerManager?.getPlayer(this)
 
 fun ServerPlayerEntity.onLogout(handler: () -> Unit) {
-    CobblemonEvents.PLAYER_QUIT.pipe(filter { it.uuid == uuid }, takeFirst()).subscribe { handler() }
+    PlatformEvents.SERVER_PLAYER_LOGOUT.pipe(filter { it.player.uuid == uuid }, takeFirst()).subscribe { handler() }
 }
 
 /**
@@ -52,6 +54,16 @@ fun ServerPlayerEntity.didSleep(): Boolean {
 }
 
 fun ServerPlayerEntity.isInBattle() = BattleRegistry.getBattleByParticipatingPlayer(this) != null
+fun ServerPlayerEntity.getBattleState(): Pair<PokemonBattle, BattleActor>? {
+    val battle = BattleRegistry.getBattleByParticipatingPlayer(this)
+    if (battle != null) {
+        val actor = battle.getActor(this)
+        if (actor != null) {
+            return battle to actor
+        }
+    }
+    return null
+}
 
 // TODO Player extension for queueing next login?
 class TraceResult(
@@ -145,7 +157,7 @@ fun <T : Entity> PlayerEntity.traceEntityCollision(
 fun PlayerEntity.traceBlockCollision(
     maxDistance: Float = 10F,
     stepDistance: Float = 0.05F,
-    blockFilter: (BlockState) -> Boolean = { it.material.isSolid }
+    blockFilter: (BlockState) -> Boolean = { it.isSolid }
 ): TraceResult? {
     var step = stepDistance
     val startPos = eyePos
@@ -262,7 +274,8 @@ fun PlayerEntity.giveOrDropItemStack(stack: ItemStack, playSound: Boolean = true
     else {
         this.dropItem(stack, false)?.let { itemEntity ->
             itemEntity.resetPickupDelay()
-            itemEntity.owner = this.uuid
+            itemEntity.setOwner(this.uuid)
         }
     }
 }
+

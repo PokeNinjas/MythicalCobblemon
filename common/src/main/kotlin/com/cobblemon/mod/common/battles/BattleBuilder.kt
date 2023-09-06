@@ -11,6 +11,8 @@ package com.cobblemon.mod.common.battles
 import com.cobblemon.mod.common.Cobblemon
 import com.cobblemon.mod.common.api.battles.model.PokemonBattle
 import com.cobblemon.mod.common.api.battles.model.actor.BattleActor
+import com.cobblemon.mod.common.api.events.CobblemonEvents
+import com.cobblemon.mod.common.api.events.battles.BattleStartedPreEvent
 import com.cobblemon.mod.common.api.storage.party.PartyStore
 import com.cobblemon.mod.common.battles.actor.PlayerBattleActor
 import com.cobblemon.mod.common.battles.actor.PokemonBattleActor
@@ -27,16 +29,19 @@ import net.minecraft.text.MutableText
 import net.minecraft.text.Text
 
 object BattleBuilder {
+    @JvmOverloads
     fun pvp1v1(
         player1: ServerPlayerEntity,
         player2: ServerPlayerEntity,
+        leadingPokemonPlayer1: UUID? = null,
+        leadingPokemonPlayer2: UUID? = null,
         battleFormat: BattleFormat = BattleFormat.GEN_9_SINGLES,
         cloneParties: Boolean = false,
         healFirst: Boolean = false,
         partyAccessor: (ServerPlayerEntity) -> PartyStore = { it.party() }
     ): BattleStartResult {
-        val team1 = partyAccessor(player1).toBattleTeam(clone = cloneParties, checkHealth = !healFirst)
-        val team2 = partyAccessor(player2).toBattleTeam(clone = cloneParties, checkHealth = !healFirst)
+        val team1 = partyAccessor(player1).toBattleTeam(clone = cloneParties, checkHealth = !healFirst, leadingPokemonPlayer1)
+        val team2 = partyAccessor(player2).toBattleTeam(clone = cloneParties, checkHealth = !healFirst, leadingPokemonPlayer2)
 
         val player1Actor = PlayerBattleActor(player1.uuid, team1)
         val player2Actor = PlayerBattleActor(player2.uuid, team2)
@@ -58,13 +63,18 @@ object BattleBuilder {
         }
 
         return if (errors.isEmpty) {
-            SuccessfulBattleStart(
-                BattleRegistry.startBattle(
-                    battleFormat = battleFormat,
-                    side1 = BattleSide(player1Actor),
-                    side2 = BattleSide(player2Actor)
+            CobblemonEvents.BATTLE_STARTED_PRE.postThen(
+                    BattleStartedPreEvent(listOf(player1Actor, player2Actor), battleFormat, true, false, false))
+            {
+                SuccessfulBattleStart(
+                        BattleRegistry.startBattle(
+                                battleFormat = battleFormat,
+                                side1 = BattleSide(player1Actor),
+                                side2 = BattleSide(player2Actor)
+                        )
                 )
-            )
+            }
+            errors
         } else {
             errors
         }
@@ -82,6 +92,7 @@ object BattleBuilder {
      * @param fleeDistance How far away the player must get to flee the Pokémon. If the value is -1, it cannot be fled.
      * @param party The party of the player to use for the battle. This does not need to be their actual party. Defaults to it though.
      */
+    @JvmOverloads
     fun pve(
         player: ServerPlayerEntity,
         pokemonEntity: PokemonEntity,
@@ -114,15 +125,20 @@ object BattleBuilder {
         }
 
         return if (errors.isEmpty) {
-            val battle = BattleRegistry.startBattle(
-                battleFormat = battleFormat,
-                side1 = BattleSide(playerActor),
-                side2 = BattleSide(wildActor)
-            )
-            if (!cloneParties) {
-                pokemonEntity.battleId.set(Optional.of(battle.battleId))
+            CobblemonEvents.BATTLE_STARTED_PRE.postThen(
+                    BattleStartedPreEvent(listOf(playerActor, wildActor), battleFormat, false, false, true))
+            {
+                val battle = BattleRegistry.startBattle(
+                        battleFormat = battleFormat,
+                        side1 = BattleSide(playerActor),
+                        side2 = BattleSide(wildActor)
+                )
+                if (!cloneParties) {
+                    pokemonEntity.battleId.set(Optional.of(battle.battleId))
+                }
+                SuccessfulBattleStart(battle)
             }
-            SuccessfulBattleStart(battle)
+            errors
         } else {
             errors
         }
