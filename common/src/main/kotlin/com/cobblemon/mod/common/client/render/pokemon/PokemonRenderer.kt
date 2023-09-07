@@ -53,10 +53,7 @@ import org.joml.Vector4f
 import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.tan
-import net.minecraft.util.math.Quaternion
 import net.minecraft.util.math.Vec3d
-import net.minecraft.util.math.Vec3f
-import net.minecraft.util.math.Vector4f
 
 class PokemonRenderer(
     context: EntityRendererFactory.Context

@@ -67,7 +67,6 @@ import net.minecraft.entity.ai.goal.Goal
 import net.minecraft.entity.ai.pathing.PathNodeType
 import net.minecraft.entity.attribute.DefaultAttributeContainer
 import net.minecraft.entity.attribute.EntityAttributes
-import net.minecraft.entity.attribute.EntityAttributes
 import net.minecraft.entity.damage.DamageSource
 import net.minecraft.entity.damage.DamageTypes
 import net.minecraft.entity.data.DataTracker
@@ -469,13 +468,12 @@ class PokemonEntity(
         goalSelector.add(5, SleepOnTrainerGoal(this))
         goalSelector.add(5, WildRestGoal(this))
 
-            if (pokemon.getFeature<FlagSpeciesFeature>(DataKeys.HAS_BEEN_SHEARED) != null) {
-                goalSelector.add(5, EatGrassGoal(this))
-            }
-            CobblemonEvents.POKEMON_ENTITY_GOALS.post(PokemonEntityGoalsEvent(this, goalSelector))
-            goalSelector.add(6, PokemonWanderAroundGoal(this))
-            goalSelector.add(7, PokemonLookAtEntityGoal(this, ServerPlayerEntity::class.java, 5F))
+        if (pokemon.getFeature<FlagSpeciesFeature>(DataKeys.HAS_BEEN_SHEARED) != null) {
+            goalSelector.add(5, EatGrassGoal(this))
         }
+        CobblemonEvents.POKEMON_ENTITY_GOALS.post(PokemonEntityGoalsEvent(this, goalSelector))
+        goalSelector.add(6, PokemonWanderAroundGoal(this))
+        goalSelector.add(7, PokemonLookAtEntityGoal(this, ServerPlayerEntity::class.java, 5F))
         if (pokemon.getFeature<FlagSpeciesFeature>(DataKeys.HAS_BEEN_SHEARED) != null) {
             goalSelector.add(5, EatGrassGoal(this))
         }
@@ -975,7 +973,7 @@ class PokemonEntity(
             if(this.ownerUuid == player.uuid) {
                 if(!beingRecalled) {
                     // We're loading the chunk because it creates a ghost if we don't.
-                    val chunkPos = ChunkPos(BlockPos(x, y, z))
+                    val chunkPos = ChunkPos(BlockPos(blockX, blockY, blockZ))
                     (world as ServerWorld).chunkManager.addTicket(
                         ChunkTicketType.POST_TELEPORT, chunkPos, 0,
                         id

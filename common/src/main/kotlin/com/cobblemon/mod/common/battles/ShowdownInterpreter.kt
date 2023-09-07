@@ -578,10 +578,11 @@ object ShowdownInterpreter {
                     type = VictoryReason.KO
                 }
             }
-            CobblemonEvents.BATTLE_VICTORY.post(BattleVictoryEvent(battle, winners, type))
+            // TODO: What was this even for??
+//            CobblemonEvents.BATTLE_VICTORY.post(BattleVictoryEvent(battle, winners, type))
 
             val wasCaught = battle.showdownMessages.any { "capture" in it }
-            CobblemonEvents.BATTLE_VICTORY.post(BattleVictoryEvent(battle, winners, losers, wasCaught))
+            CobblemonEvents.BATTLE_VICTORY.post(BattleVictoryEvent(battle, winners, losers, wasCaught, type))
 
             this.lastCauser.remove(battle.battleId)
         }

@@ -280,7 +280,7 @@ object Cobblemon {
             )
         }
 
-        PlatformEvents.SERVER_STOPPED.subscribe {
+//        PlatformEvents.SERVER_STOPPED.subscribe {
 //        EntityEvent.LIVING_HURT.register { entity, source, amount ->
 //            if(entity is PokemonEntity){
 //                if(entity.pokemon.aspects.contains("alpha")){
@@ -297,7 +297,7 @@ object Cobblemon {
 //            return@register EventResult.pass()
 //        }
 
-        SERVER_STOPPED.subscribe {
+        PlatformEvents.SERVER_STOPPED.subscribe {
             storage.unregisterAll()
             playerData.saveAll()
         }
