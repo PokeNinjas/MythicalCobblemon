@@ -403,7 +403,7 @@ open class PokemonBattle(
                 .forEach{it.pokemon.heal()}
             CobblemonEvents.BATTLE_FLED.post(BattleFledEvent(this, actors.asSequence().filterIsInstance<PlayerBattleActor>().iterator().next()))
             actors.filterIsInstance<EntityBackedBattleActor<*>>().mapNotNull { it.entity }.forEach { it.sendMessage(battleLang("flee").yellow()) }
-            // TODO: What's the point of this victory event?
+            // TODO AMO: What's the point of this victory event?
 //            CobblemonEvents.BATTLE_VICTORY.post(BattleVictoryEvent(this, actors.toList(), VictoryReason.ESCAPE))
             stop()
         }

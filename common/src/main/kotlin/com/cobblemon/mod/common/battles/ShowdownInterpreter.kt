@@ -578,7 +578,7 @@ object ShowdownInterpreter {
                     type = VictoryReason.KO
                 }
             }
-            // TODO: What was this even for??
+            // TODO AMO: What was this even for??
 //            CobblemonEvents.BATTLE_VICTORY.post(BattleVictoryEvent(battle, winners, type))
 
             val wasCaught = battle.showdownMessages.any { "capture" in it }
