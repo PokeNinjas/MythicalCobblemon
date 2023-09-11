@@ -106,6 +106,9 @@ object CobblemonEvents {
     val UNRECOGNIZED_TARGET = CancelableObservable<UnrecognizedChallengeTargetEvent>()
 
     @JvmField
+    val TRADE_COMPLETED = EventObservable<TradeCompletedEvent>()
+
+    @JvmField
     val LEVEL_UP_EVENT = EventObservable<LevelUpEvent>()
 
     @JvmField
