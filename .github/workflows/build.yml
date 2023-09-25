@@ -2,7 +2,7 @@ name: Build Gradle JAR
 on:
   push:
     branches:
-      - 1.3.2-dupe-fix
+      - main
 permissions:
   contents: write
 
