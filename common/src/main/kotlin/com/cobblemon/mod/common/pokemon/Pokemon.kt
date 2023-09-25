@@ -77,6 +77,8 @@ import com.cobblemon.mod.common.pokemon.evolution.CobblemonEvolutionProxy
 import com.cobblemon.mod.common.pokemon.evolution.progress.DamageTakenEvolutionProgress
 import com.cobblemon.mod.common.pokemon.evolution.progress.RecoilEvolutionProgress
 import com.cobblemon.mod.common.pokemon.feature.SeasonFeatureHandler
+import com.cobblemon.mod.common.pokemon.properties.UncatchableProperty
+import com.cobblemon.mod.common.pokemon.properties.UntradeableProperty
 import com.cobblemon.mod.common.pokemon.status.PersistentStatus
 import com.cobblemon.mod.common.pokemon.status.PersistentStatusContainer
 import com.cobblemon.mod.common.util.DataKeys
@@ -117,8 +119,6 @@ import net.minecraft.util.InvalidIdentifierException
 import net.minecraft.util.math.MathHelper.ceil
 import net.minecraft.util.math.MathHelper.clamp
 import net.minecraft.util.math.Vec3d
-import kotlin.properties.ReadWriteProperty
-import kotlin.reflect.KProperty
 
 open class Pokemon : ShowdownIdentifiable {
     var uuid = UUID.randomUUID()
@@ -333,6 +333,8 @@ open class Pokemon : ShowdownIdentifiable {
         set(value) { field = value ; _nature.emit(value) }
     var mintedNature: Nature? = null
         set(value) { field = value ; _mintedNature.emit(value) }
+    val effectiveNature: Nature
+        get() = mintedNature ?: nature
 
     val moveSet = MoveSet()
 
@@ -471,7 +473,7 @@ open class Pokemon : ShowdownIdentifiable {
     ): CompletableFuture<PokemonEntity> {
         val future = CompletableFuture<PokemonEntity>()
         sendOut(level, position) {
-            level.playSoundServer(position, CobblemonSounds.POKE_BALL_SEND_OUT, volume = 0.8F)
+            level.playSoundServer(position, CobblemonSounds.POKE_BALL_SEND_OUT, volume = 0.6F)
             it.phasingTargetId.set(source.id)
             it.beamModeEmitter.set(1)
             it.battleId.set(Optional.ofNullable(battleId))
@@ -522,6 +524,7 @@ open class Pokemon : ShowdownIdentifiable {
         this.healTimer = -1
         val entity = entity
         entity?.heal(entity.maxHealth - entity.health)
+        this.moveSet.partialHeal()
     }
 
     /**
@@ -554,8 +557,16 @@ open class Pokemon : ShowdownIdentifiable {
     fun isLegendary() = this.hasLabels(CobblemonPokemonLabels.LEGENDARY)
 
     /**
+     * A utility method that checks if this Pokémon species or form data contains the [CobblemonPokemonLabels.MYTHICAL] label.
+     * This is used in Pokémon officially considered mythical.
+     *
+     * @return If the Pokémon is mythical.
+     */
+    fun isMythical() = this.hasLabels(CobblemonPokemonLabels.MYTHICAL)
+
+    /**
      * A utility method that checks if this Pokémon species or form data contains the [CobblemonPokemonLabels.ULTRA_BEAST] label.
-     * This is used in Pokémon officially considered legendary.
+     * This is used in Pokémon officially considered an ultra beast.
      *
      * @return If the Pokémon is an ultra beast.
      */
@@ -569,6 +580,20 @@ open class Pokemon : ShowdownIdentifiable {
      * @return If the Pokémon has all the given labels.
      */
     fun hasLabels(vararg labels: String) = labels.all { label -> this.form.labels.any { it.equals(label, true) } }
+
+    /**
+     * A utility method that checks if this Pokémon has the [UncatchableProperty.uncatchable] property.
+     *
+     * @return If the Pokémon is uncatchable.
+     */
+    fun isUncatchable() = UncatchableProperty.uncatchable().matches(this)
+
+    /**
+     * A utility method that checks if this Pokémon has the [UntradableProperty.untradable] property.
+     *
+     * @return If the Pokémon is untradable.
+     */
+    fun isUntradable() = UntradeableProperty.untradeable().matches(this)
 
     /**
      * Returns a copy of the held item.
