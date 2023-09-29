@@ -866,7 +866,15 @@ open class Pokemon : ShowdownIdentifiable {
         if (json.has(DataKeys.TETHERING_ID)) {
             tetheringId = UUID.fromString(json.get(DataKeys.TETHERING_ID).asString)
         }
-        this.teraType = ElementalTypes.get(json.get(DataKeys.POKEMON_TERA_TYPE).asString) ?: this.primaryType
+
+        val jsonObjectTeraType = json.get(DataKeys.POKEMON_TERA_TYPE)
+
+        if (jsonObjectTeraType == null) {
+            this.teraType = this.primaryType;
+        } else {
+            this.teraType = ElementalTypes.get(json.get(DataKeys.POKEMON_TERA_TYPE).asString) ?: this.primaryType
+        }
+        
         this.dmaxLevel = json.get(DataKeys.POKEMON_DMAX_LEVEL).asInt
         this.gmaxFactor = json.get(DataKeys.POKEMON_GMAX_FACTOR).asBoolean
         return this
