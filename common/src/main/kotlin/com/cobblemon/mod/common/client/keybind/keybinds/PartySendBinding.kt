@@ -96,6 +96,9 @@ object PartySendBinding : CobblemonBlockingKeyBinding(
                 if (!entity.canBattle(player)) return
                 sendPacketToServer(BattleChallengePacket(entity.id, pokemon.uuid))
             }
+            else -> {
+                sendPacketToServer(BattleChallengePacket(entity.id, pokemon.uuid))
+            }
         }
     }
 
