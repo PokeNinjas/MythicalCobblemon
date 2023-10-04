@@ -432,7 +432,7 @@ open class Pokemon : ShowdownIdentifiable {
     private var heldItem: ItemStack = ItemStack.EMPTY
 
     init {
-        storeCoordinates.subscribe { if (it != null && it.store !is PCStore && this.tetheringId != null) this.tetheringId = null }
+        storeCoordinates.subscribe { if (it != null && it.store !is PCStore && this.tetheringId != null) afterOnMain(ticks = 1) { this.tetheringId = null } }
     }
 
     open fun getStat(stat: Stat) = Cobblemon.statProvider.getStatForPokemon(this, stat)
@@ -864,19 +864,19 @@ open class Pokemon : ShowdownIdentifiable {
             this.persistentData = Dynamic.convert(JsonOps.INSTANCE, NbtOps.INSTANCE, json.get(DataKeys.POKEMON_PERSISTENT_DATA)) as NbtCompound
         }
         if (json.has(DataKeys.TETHERING_ID)) {
-            tetheringId = UUID.fromString(json.get(DataKeys.TETHERING_ID).asString)
+            this.tetheringId = UUID.fromString(json.get(DataKeys.TETHERING_ID).asString)
         }
-
-        val jsonObjectTeraType = json.get(DataKeys.POKEMON_TERA_TYPE)
-
-        if (jsonObjectTeraType == null) {
-            this.teraType = this.primaryType;
-        } else {
+        if (json.has(DataKeys.POKEMON_TERA_TYPE)) {
             this.teraType = ElementalTypes.get(json.get(DataKeys.POKEMON_TERA_TYPE).asString) ?: this.primaryType
+        } else {
+            this.teraType = this.primaryType
         }
-        
-        this.dmaxLevel = json.get(DataKeys.POKEMON_DMAX_LEVEL).asInt
-        this.gmaxFactor = json.get(DataKeys.POKEMON_GMAX_FACTOR).asBoolean
+        if (json.has(DataKeys.POKEMON_DMAX_LEVEL)) {
+            this.dmaxLevel = json.get(DataKeys.POKEMON_DMAX_LEVEL).asInt
+        }
+        if (json.has(DataKeys.POKEMON_GMAX_FACTOR)) {
+            this.gmaxFactor = json.get(DataKeys.POKEMON_GMAX_FACTOR).asBoolean
+        }
         return this
     }
 

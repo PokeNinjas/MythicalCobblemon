@@ -387,7 +387,7 @@
 - Fixed particle animations not running when a Pokémon is off-screen.
 - Fixed Pokémon variants and layers not rendering correctly when shouldered and playing on a dedicated server, existing shoulders affected will need to be retrieved and shouldered again.
 - Shoulder effects will now stay applied through situations that remove potion effects such as drinking milk.
-- Fixed Shedinja evolving to use the consumed Pokeball and removed the held item.
+- Fixed Shedinja evolving to use the consumed PokéBall and removed the held item.
 - Fixed non-existent species in spawn pool file causing random species to spawn.
 - Fixed shearing Pokémon dropping 0-2 wool instead of 1-3.
 - Fixed some alignment issues in the stat hexagon of the summary menu.
@@ -402,6 +402,7 @@
 - Fixed Primeape, Qwilfish and Stantler not being able to evolve and by proxy the ``use_move`` evolution requirement.
 - Fixed Bramblin, Pawmo, and Rellor not being able to evolve and by proxy the ``blocks_traveled`` evolution requirement.
 - Fixed displayName property in spawn files not doing what it's meant to do.
+- Fixed Pokémon not sleeping in the wild like we wanted them to.
 
 ### Developer
 - Added SpawnEvent, ThrownPokeballHitEvent, PokemonSentEvent, PokemonRecalledEvent.
