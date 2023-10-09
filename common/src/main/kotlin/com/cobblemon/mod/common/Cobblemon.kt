@@ -260,7 +260,6 @@ object Cobblemon {
             DataKeys.ALPHA_POKEMON,
             FlagSpeciesFeatureProvider(keys = listOf(DataKeys.ALPHA_POKEMON), default = false))
 
-        CustomPokemonProperty.register(UntradeableProperty)
         CustomPokemonProperty.register(UncatchableProperty)
         CustomPokemonProperty.register(PokemonFlagProperty)
         CustomPokemonProperty.register(HiddenAbilityPropertyType)
