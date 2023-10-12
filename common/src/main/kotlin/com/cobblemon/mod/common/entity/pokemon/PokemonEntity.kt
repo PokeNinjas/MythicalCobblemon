@@ -61,7 +61,6 @@ import com.cobblemon.mod.common.util.*
 import com.cobblemon.mod.common.world.gamerules.CobblemonGameRules
 import net.minecraft.entity.*
 import net.minecraft.entity.ai.control.MoveControl
-import net.minecraft.entity.ai.goal.ActiveTargetGoal
 import net.minecraft.entity.ai.goal.EatGrassGoal
 import net.minecraft.entity.ai.goal.Goal
 import net.minecraft.entity.ai.pathing.EntityNavigation
@@ -335,7 +334,7 @@ class PokemonEntity(
         return super.tryAttack(target)
     }
 
-    var beingRecalled = false;
+    var beingRecalled = false
 	
     /**
      * A utility method that checks if this Pokémon has the [UncatchableProperty.uncatchable] property.
@@ -641,7 +640,6 @@ class PokemonEntity(
 
     fun getBehaviourFlag(flag: PokemonBehaviourFlag): Boolean = getBitForByte(behaviourFlags.get(), flag.bit)
 
-    @Suppress("UNUSED_PARAMETER")
     fun canBattle(player: PlayerEntity): Boolean {
         if (unbattleable.get()) {
             return false
@@ -1008,14 +1006,21 @@ class PokemonEntity(
     }
 
     override fun onStoppedTrackingBy(player: ServerPlayerEntity?) {
-        if (player != null) {
-            if(this.ownerUuid == player.uuid && tethering == null) {
-                val chunkPos = ChunkPos(BlockPos(x.toInt(), y.toInt(), z.toInt()))
-                (world as ServerWorld).chunkManager
-                    .addTicket(ChunkTicketType.POST_TELEPORT, chunkPos, 0, id)
-                this.goalSelector.tick()
-                if(distanceTo(player.blockPos) > 100) pokemon.recall()
+        if (player == null) {
+            return
+        }
+
+        if(this.ownerUuid == player.uuid && tethering == null) {
+            if (player.isDisconnected) {
+                this.remove(RemovalReason.DISCARDED)
+                return
             }
+
+            val chunkPos = ChunkPos(BlockPos(x.toInt(), y.toInt(), z.toInt()))
+            (world as ServerWorld).chunkManager
+                .addTicket(ChunkTicketType.POST_TELEPORT, chunkPos, 0, id)
+            this.goalSelector.tick()
+            if(distanceTo(player.blockPos) > 100) pokemon.recall()
         }
     }
 
