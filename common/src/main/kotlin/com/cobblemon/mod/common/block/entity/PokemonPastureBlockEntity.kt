@@ -238,7 +238,7 @@ class PokemonPastureBlockEntity(pos: BlockPos, val state: BlockState) : BlockEnt
     }
 
     fun checkPokemon() {
-        val deadLinks = mutableListOf<UUID>()
+        /*val deadLinks = mutableListOf<UUID>()
         tetheredPokemon.forEach {
             val pokemon = it.getPokemon()
             if (pokemon == null) {
@@ -247,7 +247,7 @@ class PokemonPastureBlockEntity(pos: BlockPos, val state: BlockState) : BlockEnt
                 deadLinks.add(it.pokemonId)
             }
         }
-        deadLinks.forEach(::releasePokemon)
+        deadLinks.forEach(::releasePokemon)*/
         ticksUntilCheck = Cobblemon.config.pastureBlockUpdateTicks
         markDirty()
     }
