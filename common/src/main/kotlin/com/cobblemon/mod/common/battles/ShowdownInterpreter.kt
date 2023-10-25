@@ -571,8 +571,6 @@ object ShowdownInterpreter {
      * USER has won the battle.
      */
     private fun handleWinInstruction(battle: PokemonBattle, message: BattleMessage, remainingLines: MutableList<String>) {
-        LOGGER.info("Win Instruction: ${message.rawMessage}")
-
         battle.dispatchGo {
             val user = message.argumentAt(0) ?: return@dispatchGo
             val ids = user.split("&").map { it.trim() }
