@@ -8,6 +8,7 @@
 
 package com.cobblemon.mod.common.battles
 
+import com.cobblemon.mod.common.Cobblemon
 import com.cobblemon.mod.common.Cobblemon.LOGGER
 import com.cobblemon.mod.common.CobblemonSounds
 import com.cobblemon.mod.common.api.battles.interpreter.*
@@ -26,6 +27,7 @@ import com.cobblemon.mod.common.api.pokemon.status.Statuses
 import com.cobblemon.mod.common.api.scheduling.after
 import com.cobblemon.mod.common.api.text.*
 import com.cobblemon.mod.common.api.types.ElementalTypes
+import com.cobblemon.mod.common.battles.actor.PlayerBattleActor
 import com.cobblemon.mod.common.battles.dispatch.BattleDispatch
 import com.cobblemon.mod.common.battles.dispatch.DispatchResult
 import com.cobblemon.mod.common.battles.dispatch.GO
@@ -569,6 +571,8 @@ object ShowdownInterpreter {
      * USER has won the battle.
      */
     private fun handleWinInstruction(battle: PokemonBattle, message: BattleMessage, remainingLines: MutableList<String>) {
+        LOGGER.info("Win Instruction: ${message.rawMessage}")
+
         battle.dispatchGo {
             val user = message.argumentAt(0) ?: return@dispatchGo
             val ids = user.split("&").map { it.trim() }
@@ -579,23 +583,19 @@ object ShowdownInterpreter {
             battle.broadcastChatMessage(battleLang("win", winnersText).gold())
 
             battle.end()
-            var type: VictoryReason = VictoryReason.KO
-            if(battle.isPvW){
-                // get the non-player actor
-                val nonPlayerActor = battle.actors.first { it.type == ActorType.WILD }
-                val wildPokemon: BattlePokemon = nonPlayerActor.pokemonList.first()
-                if(wildPokemon.health > 0){
-                    type = VictoryReason.CAPTURE
-                } else {
-                    type = VictoryReason.KO
-                }
-            }
-            // TODO AMO: What was this even for??
-//            CobblemonEvents.BATTLE_VICTORY.post(BattleVictoryEvent(battle, winners, type))
 
             val wasCaught = battle.showdownMessages.any { "capture" in it }
-            CobblemonEvents.BATTLE_VICTORY.post(BattleVictoryEvent(battle, winners, losers, wasCaught, type))
 
+            if (battle.isPvW) {
+                val nonPlayerActor = battle.actors.first { it.type == ActorType.WILD }
+                val wildPokemon: BattlePokemon = nonPlayerActor.pokemonList.first()
+
+                if (!wasCaught) {
+                    wildPokemon.effectedPokemon.entity?.killer = (battle.actors.firstOrNull { it.type == ActorType.PLAYER } as? PlayerBattleActor)?.entity
+                }
+            }
+
+            CobblemonEvents.BATTLE_VICTORY.post(BattleVictoryEvent(battle, winners, losers, wasCaught, if (wasCaught) VictoryReason.CAPTURE else VictoryReason.KO))
             this.lastCauser.remove(battle.battleId)
         }
     }
