@@ -41,6 +41,10 @@ class PokemonItemRenderer : CobblemonBuiltinItemRenderer {
         matrices.translate(model.profileTranslation.x, model.profileTranslation.y,  model.profileTranslation.z - 4.0)
         matrices.scale(model.profileScale, model.profileScale, 0.15F)
 
+        // scale from nbt, if present
+        val scale = pokemonItem.scale(stack)
+        matrices.scale(scale, scale, scale)
+
         val rotation = Quaternionf().fromEulerXYZDegrees(Vector3f(transformations.rotation.x, transformations.rotation.y, transformations.rotation.z))
         matrices.multiply(rotation)
         rotation.conjugate()

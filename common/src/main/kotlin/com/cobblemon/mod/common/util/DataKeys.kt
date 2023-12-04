@@ -118,6 +118,7 @@ object DataKeys {
     const val POKEMON_ITEM_TINT_GREEN = "TintGreen"
     const val POKEMON_ITEM_TINT_BLUE = "TintBlue"
     const val POKEMON_ITEM_TINT_ALPHA = "TintAlpha"
+    const val POKEMON_ITEM_SCALE = "scale"
 
     // Features
     const val CAN_BE_MILKED = "milkable"

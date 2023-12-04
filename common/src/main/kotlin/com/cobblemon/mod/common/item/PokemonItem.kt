@@ -95,6 +95,14 @@ class PokemonItem : CobblemonItem(Settings().maxCount(1)) {
         return Vector4f(red, green, blue, alpha)
     }
 
+    fun scale(stack: ItemStack): Float {
+        val nbt = stack.nbt ?: return 1.0F
+
+        return if (nbt.contains(DataKeys.POKEMON_ITEM_SCALE))
+            nbt.getFloat(DataKeys.POKEMON_ITEM_SCALE)
+        else 1.0F
+    }
+
     companion object {
 
         @JvmOverloads
