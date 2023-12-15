@@ -11,11 +11,8 @@ package com.cobblemon.mod.common.util
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity
 import net.minecraft.block.LeavesBlock
 import net.minecraft.entity.Entity
-import net.minecraft.entity.ai.pathing.LandPathNodeMaker
-import net.minecraft.entity.ai.pathing.PathNodeType
-import net.minecraft.entity.passive.TameableEntity
-import net.minecraft.server.world.ChunkTicketType
-import net.minecraft.server.world.ServerWorld
+import net.minecraft.entity.data.DataTracker
+import net.minecraft.entity.data.TrackedData
 import net.minecraft.util.function.BooleanBiFunction
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.ChunkPos
@@ -67,7 +64,7 @@ fun Entity.setPositionSafely(pos: Vec3d): Boolean {
                     BooleanBiFunction.AND
                 )
         if (collides) {
-            val x = BlockPos(eyes)
+            val x = eyes.toBlockPos()
             for (direction in Direction.values()) {
                 if (conflicts.contains(direction)) continue
 
@@ -126,4 +123,12 @@ fun Entity.closestPosition(positions: Iterable<BlockPos>, filter: (BlockPos) -> 
     }
 
     return closest
+}
+
+fun <T> DataTracker.update(data: TrackedData<T>, mutator: (T) -> T) {
+    val value = get(data)
+    val newValue = mutator(value)
+    if (value != newValue) {
+        set(data, newValue)
+    }
 }

@@ -9,6 +9,15 @@
     "skilllink",
     "h:overcoat"
   ],
+  "drops": {
+    "amount": 1,
+    "entries": [
+      {
+        "item": "cobblemon:aspear_berry",
+        "percentage": 5
+      }
+    ]
+  },
   "baseStats": {
     "hp": 50,
     "attack": 95,
@@ -40,20 +49,20 @@
     "1:hydropump",
     "1:icebeam",
     "1:iceshard",
+    "1:iciclecrash",
     "1:irondefense",
     "1:leer",
     "1:protect",
-    "1:razorshell",
     "1:shellsmash",
+    "1:spikes",
     "1:supersonic",
     "1:tackle",
     "1:toxicspikes",
     "1:watergun",
     "1:whirlpool",
     "1:withdraw",
-    "33:spikes",
-    "41:spikecannon",
-    "52:iciclecrash",
+    "5:razorshell",
+    "13:spikecannon",
     "tm:attract",
     "tm:avalanche",
     "tm:blizzard",

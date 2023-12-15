@@ -18,6 +18,7 @@
   },
   "catchRate": 100,
   "maleRatio": 0.5,
+  "shoulderMountable": false,
   "baseExperienceYield": 166,
   "baseFriendship": 50,
   "evYield": {
@@ -42,13 +43,17 @@
     }
   },
   "drops": {
-    "amount": "2",
+    "amount": 3,
     "entries": [
       {
-        "item": "minecraft:raw_salmon"
+        "item": "minecraft:salmon"
       },
       {
         "item": "minecraft:bone_meal",
+        "percentage": 5
+      },
+      {
+        "item": "cobblemon:haban_berry",
         "percentage": 5
       }
     ]

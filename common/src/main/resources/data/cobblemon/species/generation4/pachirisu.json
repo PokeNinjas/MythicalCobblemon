@@ -8,6 +8,16 @@
     "pickup",
     "h:voltabsorb"
   ],
+  "drops": {
+    "amount": 1,
+    "entries": [
+      {
+        "item": "cobblemon:cheri_berry",
+        "percentage": 5
+      }
+    ]
+  },
+
   "baseStats": {
     "hp": 60,
     "attack": 45,
@@ -39,9 +49,13 @@
     "25:electroball",
     "25:sweetkiss",
     "29:discharge",
+    "29:sweetkiss",
     "33:superfang",
     "33:thunderwave",
     "37:lastresort",
+    "37:superfang",
+    "41:discharge",
+    "45:lastresort",
     "49:hyperfang",
     "49:thunder",
     "egg:babydolleyes",

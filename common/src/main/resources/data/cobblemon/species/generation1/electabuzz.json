@@ -25,7 +25,7 @@
     "human_like"
   ],
   "drops": {
-    "amount": "2",
+    "amount": 3,
     "entries": [
       {
         "item": "minecraft:redstone",
@@ -34,7 +34,10 @@
       },
       {
         "item": "cobblemon:electirizer",
-        "quantityRange": "1",
+        "percentage": 5
+      },
+      {
+        "item": "cobblemon:cheri_berry",
         "percentage": 5
       }
     ]
@@ -43,17 +46,17 @@
     "1:charge",
     "1:leer",
     "1:quickattack",
-    "1:thunderpunch",
     "1:thundershock",
-    "10:lowkick",
-    "17:lightscreen",
-    "19:shockwave",
-    "19:thunderwave",
-    "25:swift",
-    "32:electroball",
-    "36:screech",
-    "37:discharge",
-    "47:thunderbolt",
+    "12:swift",
+    "16:shockwave",
+    "20:thunderwave",
+    "22:electroball",
+    "24:screech",
+    "28:thunderpunch",
+    "34:discharge",
+    "40:lowkick",
+    "46:thunderbolt",
+    "52:lightscreen",
     "58:thunder",
     "64:gigaimpact",
     "tm:attract",

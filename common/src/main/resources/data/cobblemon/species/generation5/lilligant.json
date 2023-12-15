@@ -7,6 +7,23 @@
     "owntempo",
     "h:leafguard"
   ],
+  "drops": {
+    "amount": 3,
+    "entries": [
+      {
+        "item": "cobblemon:big_root",
+        "percentage": 5
+      },
+      {
+        "item": "cobblemon:revival_herb",
+        "percentage": 5
+      },
+      {
+        "item": "cobblemon:persim_berry",
+        "percentage": 5
+      }
+    ]
+  },
   "baseStats": {
     "hp": 70,
     "attack": 60,
@@ -38,6 +55,7 @@
       },
       "catchRate": 75,
       "maleRatio": 0,
+      "baseExperienceYield": 168,
       "baseFriendship": 50,
       "evYield": {
         "hp": 0,
@@ -147,16 +165,16 @@
     "1:helpinghand",
     "1:leafstorm",
     "1:leechseed",
-    "1:magicalleaf",
     "1:megadrain",
+    "1:petalblizzard",
+    "1:quiverdance",
     "1:sleeppowder",
     "1:stunspore",
     "1:sunnyday",
     "1:synthesis",
-    "10:teeterdance",
-    "28:quiverdance",
+    "1:teeterdance",
+    "5:magicalleaf",
     "46:petaldance",
-    "50:petalblizzard",
     "tm:attract",
     "tm:bulletseed",
     "tm:charm",

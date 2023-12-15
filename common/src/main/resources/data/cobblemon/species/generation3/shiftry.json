@@ -9,6 +9,20 @@
     "earlybird",
     "h:pickpocket"
   ],
+  "drops": {
+    "amount": 2,
+    "entries": [
+      {
+        "item": "minecraft:dark_oak_sapling",
+        "percentage": 75,
+        "quantityRange": "1-3"
+      },
+      {
+        "item": "cobblemon:tanga_berry",
+        "percentage": 10
+      }
+    ]
+  },
   "baseStats": {
     "hp": 90,
     "attack": 100,
@@ -37,6 +51,7 @@
     "1:feintattack",
     "1:growth",
     "1:harden",
+    "1:hurricane",
     "1:leafblade",
     "1:megadrain",
     "1:nastyplot",
@@ -52,9 +67,8 @@
     "1:tackle",
     "1:torment",
     "1:whirlwind",
-    "19:leaftornado",
-    "32:hurricane",
-    "49:leafstorm",
+    "20:leaftornado",
+    "44:leafstorm",
     "tm:aerialace",
     "tm:airslash",
     "tm:amnesia",

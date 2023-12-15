@@ -27,29 +27,33 @@
     "human_like"
   ],
   "drops": {
-    "amount": "1",
+    "amount": 2,
     "entries": [
       {
         "item": "minecraft:bamboo",
         "quantityRange": "1-2",
         "percentage": 66
+      },
+      {
+        "item": "cobblemon:chesto_berry",
+        "percentage": 5
       }
     ]
   },
   "moves": [
     "1:tackle",
-    "5:uproar",
-    "10:copycat",
-    "12:feintattack",
-    "16:psybeam",
-    "23:hypnosis",
-    "27:dizzypunch",
-    "32:suckerpunch",
-    "34:teeterdance",
-    "38:psychup",
-    "45:doubleedge",
-    "49:flail",
-    "56:thrash",
+    "5:copycat",
+    "10:feintattack",
+    "14:psybeam",
+    "19:hypnosis",
+    "23:dizzypunch",
+    "28:suckerpunch",
+    "32:teeterdance",
+    "37:uproar",
+    "41:psychup",
+    "46:doubleedge",
+    "50:flail",
+    "55:thrash",
     "egg:assist",
     "egg:batonpass",
     "egg:disable",

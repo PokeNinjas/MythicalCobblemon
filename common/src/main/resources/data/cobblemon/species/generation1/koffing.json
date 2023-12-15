@@ -29,17 +29,18 @@
     "moving": {
       "fly": {
         "canFly": true
-      },
-      "walk": {
-        "canWalk": false
       }
     }
   },
   "drops": {
-    "amount": "1",
+    "amount": 2,
     "entries": [
       {
         "item": "cobblemon:black_sludge",
+        "percentage": 2.5
+      },
+      {
+        "item": "cobblemon:pecha_berry",
         "percentage": 2.5
       }
     ]
@@ -47,20 +48,20 @@
   "moves": [
     "1:poisongas",
     "1:tackle",
-    "9:smog",
-    "15:assurance",
-    "17:selfdestruct",
-    "19:clearsmog",
-    "21:sludge",
-    "25:smokescreen",
-    "33:gyroball",
-    "33:haze",
+    "4:smog",
+    "8:smokescreen",
+    "12:clearsmog",
+    "16:assurance",
+    "20:sludge",
+    "24:haze",
+    "28:selfdestruct",
+    "29:gyroball",
+    "32:sludgebomb",
     "36:toxic",
-    "41:explosion",
-    "42:belch",
-    "42:sludgebomb",
-    "45:destinybond",
-    "49:memento",
+    "40:belch",
+    "44:explosion",
+    "48:memento",
+    "52:destinybond",
     "egg:curse",
     "egg:destinybond",
     "egg:grudge",
@@ -215,7 +216,7 @@
   "features": [
     "galarian"
   ],
-  "baseScale": 0.8,
+  "baseScale": 0.9,
   "hitbox": {
     "width": 0.9,
     "height": 1.2,

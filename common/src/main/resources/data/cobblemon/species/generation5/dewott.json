@@ -7,6 +7,19 @@
     "torrent",
     "h:shellarmor"
   ],
+  "drops": {
+    "amount": 2,
+    "entries": [
+      {
+        "item": "cobblemon:mystic_water",
+        "percentage": 10
+      },
+      {
+        "item": "minecraft:nautilus_shell",
+        "percentage": 10
+      }
+    ]
+  },
   "baseStats": {
     "hp": 75,
     "attack": 75,
@@ -24,20 +37,6 @@
   "eggGroups": [
     "field"
   ],
-  "drops": {
-    "amount": "2",
-    "entries": [
-      {
-        "item": "minecraft:nautilus_shell",
-        "quantityRange": "1-2",
-        "percentage": 66
-      },
-      {
-        "item": "cobblemon:mystic_water",
-        "percentage": 10
-      }
-    ]
-  },
   "moves": [
     "1:soak",
     "1:tackle",
@@ -45,17 +44,17 @@
     "1:watergun",
     "1:watersport",
     "13:focusenergy",
-    "17:razorshell",
-    "20:furycutter",
-    "25:waterpulse",
-    "28:revenge",
+    "18:razorshell",
+    "21:furycutter",
+    "26:waterpulse",
     "29:aerialace",
-    "33:aquajet",
-    "36:encore",
-    "41:aquatail",
-    "44:retaliate",
-    "49:swordsdance",
-    "52:hydropump",
+    "29:revenge",
+    "34:aquajet",
+    "37:encore",
+    "42:aquatail",
+    "45:retaliate",
+    "50:swordsdance",
+    "53:hydropump",
     "tm:aerialace",
     "tm:airslash",
     "tm:attract",

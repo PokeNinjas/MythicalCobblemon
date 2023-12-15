@@ -8,6 +8,27 @@
     "magnetpull",
     "h:sandforce"
   ],
+  "drops": {
+    "amount": 4,
+    "entries": [
+      {
+        "item": "minecraft:flint",
+        "percentage": 50
+      },
+      {
+        "item": "cobblemon:magnet",
+        "percentage": 2.5
+      },
+      {
+        "item": "cobblemon:hard_stone",
+        "percentage": 2.5
+      },
+      {
+        "item": "cobblemon:chople_berry",
+        "percentage": 2.5
+      }
+    ]
+  },
   "baseStats": {
     "hp": 30,
     "attack": 45,
@@ -22,6 +43,9 @@
       "willSleepOnBed": false,
       "depth": "normal",
       "light": "0-4"
+    },
+    "idle": {
+      "pointsAtSpawn": true
     }
   },
   "catchRate": 255,
@@ -35,21 +59,21 @@
   ],
   "moves": [
     "1:tackle",
-    "7:harden",
-    "13:rockthrow",
-    "16:block",
-    "18:rockblast",
-    "22:thunderwave",
-    "25:spark",
-    "28:rockslide",
-    "31:sandstorm",
-    "37:rest",
+    "4:harden",
+    "7:block",
+    "10:rockthrow",
+    "13:thunderwave",
+    "16:rest",
+    "19:spark",
+    "22:rockslide",
+    "25:powergem",
+    "28:rockblast",
+    "31:discharge",
+    "34:sandstorm",
+    "37:earthpower",
+    "40:stoneedge",
+    "43:lockon",
     "43:zapcannon",
-    "46:lockon",
-    "49:discharge",
-    "49:powergem",
-    "55:stoneedge",
-    "73:earthpower",
     "egg:block",
     "egg:doubleedge",
     "egg:endure",

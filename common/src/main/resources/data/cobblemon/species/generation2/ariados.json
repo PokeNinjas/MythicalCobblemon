@@ -1,4 +1,5 @@
 {
+  "implemented": true,
   "name": "Ariados",
   "nationalPokedexNumber": 168,
   "primaryType": "bug",
@@ -8,6 +9,29 @@
     "insomnia",
     "h:sniper"
   ],
+  "drops": {
+    "amount": 4,
+    "entries": [
+      {
+        "item": "minecraft:string",
+        "quantityRange": "1-2",
+        "percentage": 66
+      },
+      {
+        "item": "minecraft:spider_eye",
+        "quantityRange": "1-2",
+        "percentage": 66
+      },
+      {
+        "item": "cobblemon:poison_barb",
+        "percentage": 2.5
+      },
+      {
+        "item": "minecraft:rotten_flesh",
+        "quantityRange": "1-2"
+      }
+    ]
+  },
   "baseStats": {
     "hp": 70,
     "attack": 90,
@@ -32,23 +56,23 @@
     "1:fellstinger",
     "1:focusenergy",
     "1:poisonsting",
-    "1:scaryface",
     "1:stringshot",
     "1:swordsdance",
     "1:venomdrench",
     "8:infestation",
-    "17:nightshade",
+    "12:leechlife",
+    "12:scaryface",
+    "15:nightshade",
     "19:shadowsneak",
-    "25:leechlife",
+    "23:furyswipes",
     "28:suckerpunch",
-    "34:furyswipes",
+    "32:spiderweb",
+    "37:agility",
     "41:pinmissile",
-    "43:spiderweb",
+    "46:psychic",
     "50:poisonjab",
-    "53:agility",
     "55:crosspoison",
     "58:stickyweb",
-    "63:psychic",
     "63:toxicthread",
     "tm:attract",
     "tm:captivate",
@@ -140,7 +164,7 @@
   ],
   "preEvolution": "spinarak",
   "evolutions": [],
-  "baseScale": 1,
+  "baseScale": 0.8,
   "hitbox": {
     "width": 1,
     "height": 1,

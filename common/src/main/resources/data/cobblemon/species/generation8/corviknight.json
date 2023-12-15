@@ -1,4 +1,5 @@
 {
+  "implemented": true,
   "name": "Corviknight",
   "nationalPokedexNumber": 823,
   "primaryType": "flying",
@@ -8,6 +9,27 @@
     "unnerve",
     "h:mirrorarmor"
   ],
+  "drops": {
+    "amount": 4,
+    "entries": [
+      {
+        "item": "minecraft:feather",
+        "percentage": 75,
+        "quantityRange": "1-3"
+      },
+      {
+        "item": "minecraft:chicken"
+      },
+      {
+        "item": "cobblemon:metal_coat",
+        "percentage": 10
+      },
+      {
+        "item": "cobblemon:wacan_berry",
+        "percentage": 10
+      }
+    ]
+  },
   "baseStats": {
     "hp": 98,
     "attack": 87,
@@ -54,7 +76,6 @@
       "eggGroups": [
         "flying"
       ],
-      "moves": [],
       "labels": [
         "gen8",
         "gmax"
@@ -75,6 +96,13 @@
   "eggGroups": [
     "flying"
   ],
+  "behaviour": {
+    "moving": {
+      "fly": {
+        "canFly": true
+      }
+    }
+  },
   "moves": [
     "1:honeclaws",
     "1:irondefense",
@@ -151,10 +179,10 @@
   ],
   "preEvolution": "corvisquire",
   "evolutions": [],
-  "baseScale": 1,
+  "baseScale": 1.1,
   "hitbox": {
-    "width": 1,
-    "height": 1,
+    "width": 2.0,
+    "height": 4.4,
     "fixed": false
   },
   "baseFriendship": 50,

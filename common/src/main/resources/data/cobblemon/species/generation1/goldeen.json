@@ -39,7 +39,7 @@
     "water_2"
   ],
   "drops": {
-    "amount": "1",
+    "amount": 4,
     "entries": [
       {
         "item": "minecraft:salmon"
@@ -47,6 +47,14 @@
       {
         "item": "minecraft:bone_meal",
         "percentage": 5
+      },
+      {
+        "item": "cobblemon:mystic_water",
+        "percentage": 2.5
+      },
+      {
+        "item": "cobblemon:wacan_berry",
+        "percentage": 2.5
       }
     ]
   },
@@ -54,17 +62,17 @@
     "1:peck",
     "1:tailwhip",
     "1:watersport",
-    "10:supersonic",
+    "5:supersonic",
+    "10:waterpulse",
     "15:hornattack",
-    "17:waterpulse",
-    "24:flail",
-    "27:aquaring",
-    "29:furyattack",
-    "38:waterfall",
-    "43:horndrill",
-    "51:soak",
-    "52:agility",
-    "57:megahorn",
+    "20:agility",
+    "24:furyattack",
+    "25:aquaring",
+    "30:flail",
+    "35:waterfall",
+    "40:soak",
+    "45:megahorn",
+    "50:horndrill",
     "egg:acupressure",
     "egg:aquatail",
     "egg:bodyslam",

@@ -9,6 +9,15 @@
     "competitive",
     "h:frisk"
   ],
+  "drops": {
+    "amount": 1,
+    "entries": [
+      {
+        "item": "cobblemon:oran_berry",
+        "percentage": 10
+      }
+    ]
+  },
   "baseStats": {
     "hp": 140,
     "attack": 70,
@@ -16,6 +25,14 @@
     "special_attack": 85,
     "special_defence": 50,
     "speed": 45
+  },
+  "behaviour": {
+    "resting": {
+      "canSleep": true,
+      "willSleepOnBed": false,
+      "depth": "normal",
+      "light": "0-4"
+    }
   },
   "catchRate": 50,
   "maleRatio": 0.25,
@@ -40,7 +57,6 @@
     "1:gyroball",
     "1:hypervoice",
     "1:mimic",
-    "1:playrough",
     "1:pound",
     "1:rest",
     "1:round",
@@ -49,6 +65,7 @@
     "1:stockpile",
     "1:swallow",
     "1:sweetkiss",
+    "5:playrough",
     "tm:allyswitch",
     "tm:amnesia",
     "tm:attract",

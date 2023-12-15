@@ -7,6 +7,15 @@
   "abilities": [
     "airlock"
   ],
+  "drops": {
+    "amount": 1,
+    "entries": [
+      {
+        "item": "minecraft:dragons_breath",
+        "quantityRange": "3-5"
+      }
+    ]
+  },
   "baseStats": {
     "hp": 105,
     "attack": 150,
@@ -36,7 +45,7 @@
       },
       "catchRate": 45,
       "maleRatio": -1,
-      "baseExperienceYield": 351,
+      "baseExperienceYield": 340,
       "baseFriendship": 0,
       "evYield": {
         "hp": 0,
@@ -51,7 +60,6 @@
       "eggGroups": [
         "undiscovered"
       ],
-      "moves": [],
       "labels": [
         "gen6",
         "mega",
@@ -64,7 +72,8 @@
       "weight": 3920,
       "evolutions": [],
       "cannotDynamax": false,
-      "battleOnly": true
+      "battleOnly": true,
+      "requiredMove": "Dragon Ascent"
     }
   ],
   "baseExperienceYield": 340,
@@ -74,22 +83,22 @@
     "undiscovered"
   ],
   "moves": [
+    "1:airslash",
+    "1:ancientpower",
     "1:dragonascent",
+    "1:scaryface",
     "1:twister",
-    "5:scaryface",
-    "15:ancientpower",
+    "9:crunch",
+    "18:dragondance",
     "20:dragonclaw",
-    "20:hypervoice",
-    "30:dragondance",
-    "35:airslash",
-    "35:crunch",
-    "45:fly",
-    "50:rest",
-    "60:extremespeed",
-    "65:outrage",
+    "27:extremespeed",
+    "36:dragonpulse",
+    "45:hypervoice",
+    "54:rest",
+    "63:fly",
     "72:hurricane",
-    "75:dragonpulse",
-    "75:hyperbeam",
+    "81:outrage",
+    "90:hyperbeam",
     "tm:aerialace",
     "tm:airslash",
     "tm:avalanche",

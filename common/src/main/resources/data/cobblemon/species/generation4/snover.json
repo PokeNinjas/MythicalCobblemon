@@ -7,6 +7,23 @@
     "snowwarning",
     "h:soundproof"
   ],
+  "drops": {
+    "amount": 3,
+    "entries": [
+      {
+        "item": "minecraft:snowball",
+        "percentage": 50
+      },
+      {
+        "item": "cobblemon:never_melt_ice",
+        "percentage": 2.5
+      },
+      {
+        "item": "cobblemon:occa_berry",
+        "percentage": 2.5
+      }
+    ]
+  },
   "baseStats": {
     "hp": 60,
     "attack": 62,
@@ -31,14 +48,23 @@
     "5:leafage",
     "5:razorleaf",
     "9:icywind",
+    "10:mist",
     "13:grasswhistle",
+    "15:iceshard",
     "17:swagger",
+    "20:razorleaf",
     "21:mist",
+    "25:icywind",
     "26:iceshard",
+    "30:swagger",
     "31:ingrain",
+    "35:ingrain",
     "36:woodhammer",
     "41:blizzard",
+    "41:woodhammer",
+    "45:blizzard",
     "46:sheercold",
+    "50:sheercold",
     "egg:avalanche",
     "egg:bulletseed",
     "egg:doubleedge",

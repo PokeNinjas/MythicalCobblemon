@@ -39,7 +39,7 @@
     }
   },
   "drops": {
-    "amount": "3",
+    "amount": 4,
     "entries": [
       {
         "item": "minecraft:feather",
@@ -51,22 +51,26 @@
       {
         "item": "cobblemon:sharp_beak",
         "percentage": 2.5
+      },
+      {
+        "item": "cobblemon:charti_berry",
+        "percentage": 2.5
       }
     ]
   },
   "moves": [
     "1:growl",
     "1:peck",
-    "7:leer",
-    "13:furyattack",
-    "19:pursuit",
-    "25:aerialace",
-    "29:assurance",
+    "4:leer",
+    "8:pursuit",
+    "11:furyattack",
+    "15:aerialace",
+    "18:mirrormove",
+    "22:assurance",
+    "25:agility",
     "29:focusenergy",
-    "31:mirrormove",
-    "33:roost",
-    "37:drillpeck",
-    "43:agility",
+    "32:roost",
+    "36:drillpeck",
     "egg:astonish",
     "egg:falseswipe",
     "egg:featherdance",

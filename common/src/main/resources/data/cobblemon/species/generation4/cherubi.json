@@ -5,6 +5,19 @@
   "abilities": [
     "chlorophyll"
   ],
+  "drops": {
+    "amount": 2,
+    "entries": [
+      {
+        "item": "cobblemon:miracle_seed",
+        "percentage": 2.5
+      },
+      {
+        "item": "cobblemon:persim_berry",
+        "percentage": 2.5
+      }
+    ]
+  },
   "baseStats": {
     "hp": 45,
     "attack": 35,
@@ -28,14 +41,22 @@
     "1:tackle",
     "5:leafage",
     "7:growth",
+    "10:growth",
     "10:leechseed",
     "13:helpinghand",
+    "15:helpinghand",
     "19:magicalleaf",
+    "20:magicalleaf",
     "22:sunnyday",
+    "26:leechseed",
     "28:worryseed",
+    "30:takedown",
     "31:takedown",
+    "35:petalblizzard",
     "37:solarbeam",
     "40:luckychant",
+    "40:worryseed",
+    "45:solarbeam",
     "47:petalblizzard",
     "egg:aromatherapy",
     "egg:defensecurl",

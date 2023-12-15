@@ -9,6 +9,15 @@
     "naturalcure",
     "h:analytic"
   ],
+  "drops": {
+    "amount": 2,
+    "entries": [
+      {
+        "item": "cobblemon:persim_berry",
+        "percentage": 5
+      }
+    ]
+  },
   "baseStats": {
     "hp": 60,
     "attack": 75,
@@ -37,6 +46,7 @@
   },
   "moves": [
     "1:brine",
+    "1:confuseray",
     "1:cosmicpower",
     "1:harden",
     "1:hydropump",
@@ -52,7 +62,6 @@
     "1:swift",
     "1:tackle",
     "1:watergun",
-    "33:confuseray",
     "tm:agility",
     "tm:allyswitch",
     "tm:avalanche",

@@ -7,6 +7,15 @@
     "blaze",
     "h:ironfist"
   ],
+  "drops": {
+    "amount": 1,
+    "entries": [
+      {
+        "item": "cobblemon:charcoal_stick",
+        "percentage": 5
+      }
+    ]
+  },
   "baseStats": {
     "hp": 44,
     "attack": 58,
@@ -14,6 +23,14 @@
     "special_attack": 58,
     "special_defence": 44,
     "speed": 61
+  },
+  "behaviour": {
+    "resting": {
+      "canSleep": true,
+      "willSleepOnBed": true,
+      "depth": "normal",
+      "light": "0-4"
+    }
   },
   "catchRate": 45,
   "maleRatio": 0.875,
@@ -25,15 +42,6 @@
     "field",
     "human_like"
   ],
-  "drops": {
-    "amount": "1",
-    "entries": [
-      {
-        "item": "cobblemon:charcoal_stick",
-        "percentage": 5
-      }
-    ]
-  },
   "moves": [
     "1:leer",
     "1:scratch",
@@ -48,6 +56,8 @@
     "39:acrobatics",
     "39:slackoff",
     "41:flamethrower",
+    "41:slackoff",
+    "47:flamethrower",
     "egg:assist",
     "egg:blazekick",
     "egg:counter",

@@ -8,6 +8,19 @@
     "blaze",
     "h:reckless"
   ],
+  "drops": {
+    "amount": 2,
+    "entries": [
+      {
+        "item": "minecraft:porkchop",
+        "quantityRange": "2-4"
+      },
+      {
+        "item": "cobblemon:charcoal_stick",
+        "percentage": 25
+      }
+    ]
+  },
   "baseStats": {
     "hp": 110,
     "attack": 123,
@@ -33,20 +46,8 @@
   "eggGroups": [
     "field"
   ],
-  "drops": {
-    "amount": "2",
-    "entries": [
-      {
-        "item": "minecraft:porkchop",
-        "quantityRange": "2-4"
-      },
-      {
-        "item": "cobblemon:charcoal_stick",
-        "percentage": 20
-      }
-    ]
-  },
   "moves": [
+    "1:armthrust",
     "1:ember",
     "1:hammerarm",
     "1:odorsleuth",
@@ -54,7 +55,6 @@
     "1:tailwhip",
     "13:defensecurl",
     "15:flamecharge",
-    "17:armthrust",
     "20:smog",
     "23:rollout",
     "28:takedown",

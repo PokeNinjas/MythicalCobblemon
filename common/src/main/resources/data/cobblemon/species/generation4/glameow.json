@@ -7,6 +7,15 @@
     "owntempo",
     "h:keeneye"
   ],
+  "drops": {
+    "amount": 1,
+    "entries": [
+      {
+        "item": "cobblemon:cheri_berry",
+        "percentage": 2.5
+      }
+    ]
+  },
   "baseStats": {
     "hp": 49,
     "attack": 55,
@@ -36,6 +45,7 @@
     "32:captivate",
     "37:slash",
     "41:suckerpunch",
+    "44:attract",
     "45:attract",
     "48:honeclaws",
     "50:playrough",

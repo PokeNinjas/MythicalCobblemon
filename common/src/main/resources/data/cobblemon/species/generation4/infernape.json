@@ -8,6 +8,15 @@
     "blaze",
     "h:ironfist"
   ],
+  "drops": {
+    "amount": 1,
+    "entries": [
+      {
+        "item": "cobblemon:charcoal_stick",
+        "percentage": 25
+      }
+    ]
+  },
   "baseStats": {
     "hp": 76,
     "attack": 104,
@@ -15,6 +24,14 @@
     "special_attack": 104,
     "special_defence": 71,
     "speed": 108
+  },
+  "behaviour": {
+    "resting": {
+      "canSleep": true,
+      "willSleepOnBed": false,
+      "depth": "normal",
+      "light": "0-4"
+    }
   },
   "catchRate": 45,
   "maleRatio": 0.875,
@@ -26,30 +43,32 @@
     "field",
     "human_like"
   ],
-  "drops": {
-    "amount": "1",
-    "entries": [
-      {
-        "item": "cobblemon:charcoal_stick",
-        "percentage": 20
-      }
-    ]
-  },
   "moves": [
+    "1:closecombat",
     "1:ember",
+    "1:flareblitz",
     "1:leer",
+    "1:machpunch",
     "1:scratch",
     "1:taunt",
     "14:machpunch",
+    "16:furyswipes",
     "17:furyswipes",
+    "19:flamewheel",
     "21:flamewheel",
+    "26:feint",
     "29:feint",
+    "29:punishment",
     "33:punishment",
+    "36:closecombat",
     "41:closecombat",
+    "42:firespin",
     "45:firespin",
     "52:acrobatics",
     "53:calmmind",
     "57:flareblitz",
+    "58:calmmind",
+    "68:flareblitz",
     "tm:acrobatics",
     "tm:aerialace",
     "tm:attract",

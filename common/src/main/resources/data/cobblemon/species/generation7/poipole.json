@@ -6,6 +6,16 @@
   "abilities": [
     "beastboost"
   ],
+  "drops": {
+    "amount": 1,
+    "entries": [
+      {
+        "item": "minecraft:echo_shard",
+        "percentage": 66,
+        "quantityRange": "1-2"
+      }
+    ]
+  },
   "baseStats": {
     "hp": 67,
     "attack": 73,
@@ -30,14 +40,14 @@
     "1:helpinghand",
     "1:peck",
     "7:furyattack",
-    "13:venoshock",
-    "19:charm",
-    "23:venomdrench",
-    "31:nastyplot",
-    "37:poisonjab",
-    "41:toxic",
-    "47:fellstinger",
+    "14:fellstinger",
+    "21:charm",
+    "28:venoshock",
+    "35:venomdrench",
+    "42:nastyplot",
+    "49:poisonjab",
     "56:gastroacid",
+    "63:toxic",
     "tm:charm",
     "tm:confide",
     "tm:dragonpulse",

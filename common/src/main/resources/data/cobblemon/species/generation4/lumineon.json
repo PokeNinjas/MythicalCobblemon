@@ -7,6 +7,22 @@
     "stormdrain",
     "h:waterveil"
   ],
+  "drops": {
+    "amount": 3,
+    "entries": [
+      {
+        "item": "cobblemon:cod"
+      },
+      {
+        "item": "cobblemon:bone_meal",
+        "percentage": 10
+      },
+      {
+        "item": "cobblemon:rindo_berry",
+        "percentage": 5
+      }
+    ]
+  },
   "baseStats": {
     "hp": 69,
     "attack": 69,
@@ -26,11 +42,14 @@
   ],
   "moves": [
     "1:attract",
+    "1:gust",
     "1:pound",
+    "1:soak",
     "1:watergun",
     "13:raindance",
     "17:gust",
     "22:waterpulse",
+    "26:attract",
     "26:captivate",
     "29:safeguard",
     "35:aquaring",

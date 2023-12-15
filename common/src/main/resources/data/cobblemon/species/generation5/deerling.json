@@ -9,6 +9,19 @@
     "sapsipper",
     "h:serenegrace"
   ],
+  "drops": {
+    "amount": 2,
+    "entries": [
+      {
+        "item": "minecraft:leather",
+        "percentage": 50
+      },
+      {
+        "item": "cobblemon:yache_berry",
+        "percentage": 2.5
+      }
+    ]
+  },
   "baseStats": {
     "hp": 60,
     "attack": 60,
@@ -29,15 +42,6 @@
   "eggGroups": [
     "field"
   ],
-  "drops": {
-    "amount": "1",
-    "entries": [
-      {
-        "item": "minecraft:leather",
-        "percentage": 50
-      }
-    ]
-  },
   "moves": [
     "1:camouflage",
     "1:tackle",
@@ -51,11 +55,11 @@
     "24:jumpkick",
     "24:zenheadbutt",
     "28:aromatherapy",
-    "32:energyball",
-    "36:charm",
+    "28:energyball",
+    "32:charm",
+    "37:doubleedge",
     "41:naturepower",
-    "46:doubleedge",
-    "51:solarbeam",
+    "42:solarbeam",
     "egg:agility",
     "egg:batonpass",
     "egg:faketears",

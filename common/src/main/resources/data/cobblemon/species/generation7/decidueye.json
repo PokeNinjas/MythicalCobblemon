@@ -38,6 +38,7 @@
       },
       "catchRate": 45,
       "maleRatio": 0.875,
+      "baseExperienceYield": 265,
       "baseFriendship": 50,
       "evYield": {
         "hp": 0,
@@ -58,6 +59,7 @@
         "1:leafstorm",
         "1:tackle",
         "1:uturn",
+		"1:spiritshackle",
         "9:peck",
         "12:shadowsneak",
         "15:razorleaf",
@@ -139,7 +141,7 @@
     "flying"
   ],
   "drops": {
-    "amount": "2",
+    "amount": 2,
     "entries": [
       {
         "item": "minecraft:feather",
@@ -148,6 +150,10 @@
       },
       {
         "item": "minecraft:chicken"
+      },
+      {
+        "item": "cobblemon:miracle_seed",
+        "percentage": 25
       }
     ]
   },
@@ -159,28 +165,28 @@
     }
   },
   "moves": [
+    "1:astonish",
     "1:growl",
     "1:leafage",
     "1:leafstorm",
-    "1:peck",
     "1:phantomforce",
-    "1:shadowsneak",
     "1:spiritshackle",
     "1:spite",
     "1:tackle",
     "1:uturn",
-    "11:astonish",
-    "14:razorleaf",
+    "9:peck",
+    "12:shadowsneak",
+    "15:razorleaf",
     "16:ominouswind",
     "19:foresight",
-    "24:pluck",
-    "28:synthesis",
+    "20:synthesis",
+    "25:pluck",
+    "30:nastyplot",
     "33:furyattack",
-    "38:suckerpunch",
+    "37:suckerpunch",
     "44:leafblade",
-    "49:featherdance",
-    "55:bravebird",
-    "60:nastyplot",
+    "51:featherdance",
+    "58:bravebird",
     "tm:acrobatics",
     "tm:aerialace",
     "tm:aircutter",

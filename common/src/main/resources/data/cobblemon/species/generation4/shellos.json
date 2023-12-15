@@ -7,6 +7,19 @@
     "stormdrain",
     "h:sandforce"
   ],
+  "drops": {
+    "amount": 2,
+    "entries": [
+      {
+        "item": "minecraft:clay_ball",
+        "percentage": 50
+      },
+      {
+        "item": "minecraft:rindo_berry",
+        "percentage": 2.5
+      }
+    ]
+  },
   "baseStats": {
     "hp": 76,
     "attack": 48,
@@ -30,14 +43,20 @@
     "1:watergun",
     "2:mudsport",
     "4:harden",
+    "5:harden",
     "7:waterpulse",
+    "10:recover",
     "11:mudbomb",
+    "15:waterpulse",
     "16:hiddenpower",
     "20:ancientpower",
     "22:raindance",
+    "25:bodyslam",
     "29:bodyslam",
+    "31:muddywater",
     "35:earthpower",
     "37:muddywater",
+    "40:raindance",
     "45:memento",
     "46:recover",
     "egg:acidarmor",

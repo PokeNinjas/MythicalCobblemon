@@ -8,6 +8,15 @@
     "minus",
     "h:clearbody"
   ],
+  "drops": {
+    "amount": 1,
+    "entries": [
+      {
+        "item": "minecraft:raw_iron",
+        "percentage": 50
+      }
+    ]
+  },
   "baseStats": {
     "hp": 40,
     "attack": 55,
@@ -33,31 +42,22 @@
   "eggGroups": [
     "mineral"
   ],
-  "drops": {
-    "amount": "1",
-    "entries": [
-      {
-        "item": "minecraft:raw_iron",
-        "percentage": 50
-      }
-    ]
-  },
   "moves": [
+    "1:thundershock",
     "1:visegrip",
-    "6:charge",
-    "11:thundershock",
-    "16:geargrind",
-    "21:bind",
-    "26:chargebeam",
-    "31:autotomize",
+    "4:bind",
+    "8:charge",
+    "12:chargebeam",
+    "16:metalsound",
+    "20:autotomize",
+    "24:discharge",
+    "28:screech",
+    "32:geargrind",
+    "36:lockon",
     "36:mirrorshot",
-    "39:screech",
-    "42:discharge",
-    "45:metalsound",
-    "48:shiftgear",
-    "51:lockon",
-    "54:zapcannon",
-    "57:hyperbeam",
+    "40:shiftgear",
+    "44:zapcannon",
+    "48:hyperbeam",
     "tm:assurance",
     "tm:chargebeam",
     "tm:confide",

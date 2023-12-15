@@ -1,4 +1,5 @@
 {
+  "implemented": true,
   "name": "Cetitan",
   "nationalPokedexNumber": 975,
   "primaryType": "ice",
@@ -7,6 +8,20 @@
     "slushrush",
     "h:sheerforce"
   ],
+  "drops": {
+    "amount": 2,
+    "entries": [
+      {
+        "item": "minecraft:bone_block",
+        "percentage": 66,
+        "quantityRange": "1-2"
+      },
+      {
+        "item": "cobblemon:aspear_berry",
+        "percentage": 5
+      }
+    ]
+  },
   "baseStats": {
     "hp": 170,
     "attack": 113,
@@ -32,6 +47,13 @@
   "eggGroups": [
     "field"
   ],
+  "behaviour": {
+    "moving" : {
+      "walk": {
+        "walkSpeed": 0.2
+      }
+    }
+  },
   "moves": [
     "1:powdersnow",
     "1:tackle",
@@ -90,6 +112,12 @@
   "weight": 7000,
   "preEvolution": "cetoddle",
   "evolutions": [],
+  "baseScale": 0.9,
+  "hitbox": {
+    "width": 2.8,
+    "height": 2.8,
+    "fixed": false
+  },
   "cannotDynamax": false,
   "pokedex": [
     "cobblemon.species.cetitan.desc"

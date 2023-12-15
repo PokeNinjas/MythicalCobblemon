@@ -1,4 +1,5 @@
 {
+  "implemented": true,
   "name": "Gardevoir",
   "nationalPokedexNumber": 282,
   "primaryType": "psychic",
@@ -8,6 +9,28 @@
     "trace",
     "h:telepathy"
   ],
+  "drops": {
+    "amount": 4,
+    "entries": [
+      {
+        "item": "minecraft:ender_pearl",
+        "percentage": 75,
+        "quantityRange": "1-3"
+      },
+      {
+        "item": "cobblemon:twisted_spoon",
+        "percentage": 10
+      },
+      {
+        "item": "cobblemon:dawn_stone",
+        "percentage": 10
+      },
+      {
+        "item": "cobblemon:kasib_berry",
+        "percentage": 10
+      }
+    ]
+  },
   "baseStats": {
     "hp": 68,
     "attack": 65,
@@ -37,7 +60,7 @@
       },
       "catchRate": 45,
       "maleRatio": 0.5,
-      "baseExperienceYield": 278,
+      "baseExperienceYield": 259,
       "baseFriendship": 35,
       "evYield": {
         "hp": 0,
@@ -52,7 +75,6 @@
       "eggGroups": [
         "amorphous"
       ],
-      "moves": [],
       "labels": [
         "gen6",
         "mega"
@@ -77,28 +99,28 @@
   "moves": [
     "1:charm",
     "1:confusion",
+    "1:disarmingvoice",
     "1:doubleteam",
     "1:growl",
     "1:healingwish",
+    "1:healpulse",
     "1:mistyterrain",
-    "1:moonblast",
     "1:mysticalfire",
-    "1:teleport",
-    "11:disarmingvoice",
-    "17:wish",
+    "1:storedpower",
+    "9:hypnosis",
+    "12:drainingkiss",
+    "15:teleport",
+    "17:magicalleaf",
     "18:psybeam",
-    "21:calmmind",
-    "22:magicalleaf",
-    "23:drainingkiss",
     "23:lifedew",
-    "25:healpulse",
-    "26:psychic",
-    "33:imprison",
-    "42:futuresight",
-    "51:hypnosis",
-    "53:captivate",
-    "60:dreameater",
-    "80:storedpower",
+    "28:wish",
+    "35:calmmind",
+    "35:imprison",
+    "42:psychic",
+    "44:captivate",
+    "49:moonblast",
+    "56:dreameater",
+    "63:futuresight",
     "tm:allyswitch",
     "tm:attract",
     "tm:aurasphere",
@@ -242,10 +264,10 @@
   ],
   "preEvolution": "kirlia",
   "evolutions": [],
-  "baseScale": 1,
+  "baseScale": 0.9,
   "hitbox": {
-    "width": 1,
-    "height": 1,
+    "width": 0.6,
+    "height": 2.2,
     "fixed": false
   },
   "baseFriendship": 35,

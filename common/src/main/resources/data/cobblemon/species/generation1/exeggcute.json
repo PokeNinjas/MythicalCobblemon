@@ -19,19 +19,105 @@
   "catchRate": 90,
   "maleRatio": 0.5,
   "shoulderMountable": false,
+  "forms": [
+    {
+      "name": "Alolan",
+      "maleRatio": 0.5,
+      "labels": [
+        "alola_regional"
+      ],
+      "aspects": [
+        "alolan"
+      ],
+      "evolutions": [
+        {
+          "id": "exeggcute_exeggutor_alolan",
+          "variant": "item_interact",
+          "result": "exeggutor alolan",
+          "consumeHeldItem": false,
+          "learnableMoves": [
+            "dragonhammer"
+          ],
+          "requirements": [],
+          "requiredContext": "cobblemon:leaf_stone"
+        },
+        {
+          "id": "exeggcute_exeggutor_alolan_kantonian",
+          "variant": "item_interact",
+          "result": "exeggutor",
+          "consumeHeldItem": false,
+          "requirements": [
+            {
+              "variant": "biome",
+              "biomeCondition": "#cobblemon:is_jungle"
+            }
+          ],
+          "requiredContext": "cobblemon:leaf_stone"
+        }
+      ]
+    },
+    {
+      "name": "base",
+      "evolutions": [
+        {
+          "id": "exeggcute_exeggutor_kantonian",
+          "variant": "item_interact",
+          "result": "exeggutor",
+          "consumeHeldItem": false,
+          "learnableMoves": [
+            "stomp"
+          ],
+          "requirements": [],
+          "requiredContext": "cobblemon:leaf_stone"
+        },
+        {
+          "id": "exeggcute_exeggutor_kantonian_alolan",
+          "variant": "item_interact",
+          "result": "exeggutor alolan",
+          "consumeHeldItem": false,
+          "learnableMoves": [
+            "dragonhammer"
+          ],
+          "requirements": [
+            {
+              "variant": "biome",
+              "biomeCondition": "#minecraft:is_beach"
+            }
+          ],
+          "requiredContext": "cobblemon:leaf_stone"
+        }
+      ]
+    }
+  ],
   "baseExperienceYield": 65,
   "experienceGroup": "slow",
   "eggCycles": 20,
   "eggGroups": [
     "grass"
   ],
+  "behaviour": {
+    "resting": {
+      "canSleep": true,
+      "willSleepOnBed": true,
+      "depth": "normal",
+      "light": "0-4"
+    }
+  },
   "drops": {
-    "amount": "1",
+    "amount": 3,
     "entries": [
       {
         "item": "minecraft:egg",
         "quantityRange": "1-3",
         "percentage": 75
+      },
+      {
+        "item": "cobblemon:oval_stone",
+        "percentage": 2.5
+      },
+      {
+        "item": "cobblemon:tanga_berry",
+        "percentage": 2.5
       }
     ]
   },
@@ -39,23 +125,23 @@
     "1:absorb",
     "1:barrage",
     "1:hypnosis",
-    "1:uproar",
-    "7:reflect",
-    "13:leechseed",
+    "5:reflect",
+    "10:leechseed",
     "15:megadrain",
-    "17:bulletseed",
-    "19:confusion",
-    "25:stunspore",
+    "19:stunspore",
+    "20:confusion",
+    "21:poisonpowder",
+    "23:sleeppowder",
     "25:synthesis",
-    "31:poisonpowder",
-    "33:worryseed",
+    "30:bulletseed",
     "35:gigadrain",
     "37:naturalgift",
-    "37:sleeppowder",
-    "43:solarbeam",
-    "47:extrasensory",
+    "40:extrasensory",
+    "45:uproar",
     "47:psychic",
-    "53:bestow",
+    "50:bestow",
+    "50:worryseed",
+    "55:solarbeam",
     "egg:ancientpower",
     "egg:block",
     "egg:curse",
@@ -196,7 +282,7 @@
   ],
   "evolutions": [
     {
-      "id": "exeggcute_exeggutor",
+      "id": "exeggcute_exeggutor_kantonian_alolan",
       "variant": "item_interact",
       "result": "exeggutor",
       "consumeHeldItem": false,
@@ -207,18 +293,23 @@
       "requiredContext": "cobblemon:leaf_stone"
     },
     {
-      "id": "exeggcute_exeggutor",
+      "id": "exeggcute_exeggutor_alolan",
       "variant": "item_interact",
-      "result": "exeggutor form=alola",
+      "result": "exeggutor alolan",
       "consumeHeldItem": false,
       "learnableMoves": [
         "dragonhammer"
       ],
-      "requirements": [],
+      "requirements": [
+        {
+          "variant": "biome",
+          "biomeCondition": "#minecraft:is_beach"
+        }
+      ],
       "requiredContext": "cobblemon:leaf_stone"
     }
   ],
-  "baseScale": 1,
+  "baseScale": 1.0,
   "hitbox": {
     "width": 1.1,
     "height": 0.5,

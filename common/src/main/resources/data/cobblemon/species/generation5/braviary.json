@@ -8,6 +8,27 @@
     "sheerforce",
     "h:defiant"
   ],
+  "drops": {
+    "amount": 4,
+    "entries": [
+      {
+        "item": "minecraft:feather",
+        "quantityRange": "1-2",
+        "percentage": 66
+      },
+      {
+        "item": "minecraft:chicken"
+      },
+      {
+        "item": "cobblemon:sharp_beak",
+        "percentage": 2.5
+      },
+      {
+        "item": "cobblemon:razz_berry",
+        "percentage": 5
+      }
+    ]
+  },
   "baseStats": {
     "hp": 100,
     "attack": 123,
@@ -39,6 +60,7 @@
       },
       "catchRate": 60,
       "maleRatio": 1,
+      "baseExperienceYield": 179,
       "baseFriendship": 50,
       "evYield": {
         "hp": 0,
@@ -142,23 +164,23 @@
   ],
   "moves": [
     "1:furyattack",
+    "1:honeclaws",
     "1:leer",
     "1:peck",
     "1:skyattack",
+    "1:superpower",
     "1:wingattack",
-    "14:honeclaws",
-    "19:scaryface",
-    "23:aerialace",
-    "28:slash",
-    "32:defog",
-    "37:tailwind",
-    "41:airslash",
-    "46:crushclaw",
+    "18:tailwind",
+    "24:scaryface",
+    "30:aerialace",
+    "36:slash",
+    "42:whirlwind",
+    "48:crushclaw",
     "50:skydrop",
-    "51:superpower",
-    "57:whirlwind",
-    "63:bravebird",
-    "70:thrash",
+    "57:airslash",
+    "64:defog",
+    "72:thrash",
+    "80:bravebird",
     "tm:acrobatics",
     "tm:aerialace",
     "tm:agility",

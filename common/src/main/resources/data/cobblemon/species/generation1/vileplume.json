@@ -8,6 +8,15 @@
     "chlorophyll",
     "h:effectspore"
   ],
+  "drops": {
+    "amount": 1,
+    "entries": [
+      {
+        "item": "cobblemon:bluk_berry",
+        "percentage": 10
+      }
+    ]
+  },
   "baseStats": {
     "hp": 75,
     "attack": 80,
@@ -46,14 +55,14 @@
     "1:megadrain",
     "1:moonblast",
     "1:moonlight",
+    "1:petaldance",
     "1:poisonpowder",
     "1:sleeppowder",
     "1:stunspore",
     "1:sweetscent",
     "1:toxic",
-    "44:petaldance",
     "49:petalblizzard",
-    "65:solarbeam",
+    "69:solarbeam",
     "tm:attract",
     "tm:bodyslam",
     "tm:bulletseed",

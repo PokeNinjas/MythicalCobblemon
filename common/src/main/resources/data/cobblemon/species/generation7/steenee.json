@@ -8,6 +8,15 @@
     "oblivious",
     "h:sweetveil"
   ],
+  "drops": {
+    "amount": 1,
+    "entries": [
+      {
+        "item": "cobblemon:cheri_berry",
+        "percentage": 5
+      }
+    ]
+  },
   "baseStats": {
     "hp": 52,
     "attack": 40,
@@ -32,14 +41,14 @@
     "1:rapidspin",
     "1:razorleaf",
     "1:splash",
-    "17:sweetscent",
-    "21:magicalleaf",
-    "25:teeterdance",
-    "29:stomp",
-    "33:aromaticmist",
+    "16:sweetscent",
+    "22:magicalleaf",
+    "28:stomp",
+    "34:teeterdance",
     "37:captivate",
-    "41:aromatherapy",
-    "45:leafstorm",
+    "40:aromaticmist",
+    "46:aromatherapy",
+    "46:leafstorm",
     "tm:attract",
     "tm:bounce",
     "tm:bulletseed",

@@ -39,7 +39,7 @@
     }
   },
   "drops": {
-    "amount": "2",
+    "amount": 3,
     "entries": [
       {
         "item": "minecraft:salmon"
@@ -47,13 +47,17 @@
       {
         "item": "minecraft:bone_meal",
         "percentage": 5
+      },
+      {
+        "item": "cobblemon:wacan_berry",
+        "percentage": 2.5
       }
     ]
   },
   "moves": [
     "1:splash",
     "15:tackle",
-    "30:flail",
+    "25:flail",
     "tm:bounce",
     "tm:hydropump",
     "tutor:bounce",

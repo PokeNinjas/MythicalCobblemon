@@ -9,8 +9,9 @@
 package com.cobblemon.mod.common.api.tags
 
 import com.cobblemon.mod.common.util.cobblemonResource
-import net.minecraft.tag.TagKey
-import net.minecraft.util.registry.Registry
+import net.minecraft.registry.Registry
+import net.minecraft.registry.RegistryKeys
+import net.minecraft.registry.tag.TagKey
 
 /**
  * A collection of the Cobblemon [TagKey]s related to the [Registry.BIOME_KEY].
@@ -21,7 +22,7 @@ import net.minecraft.util.registry.Registry
 object CobblemonBiomeTags {
 
     @JvmField
-    val IS_ABYSS = create("is_abyss")
+    val IS_DEEP_DARK = create("is_deep_dark")
     @JvmField
     val IS_ARID = create("is_arid")
     @JvmField
@@ -37,7 +38,7 @@ object CobblemonBiomeTags {
     @JvmField
     val IS_COLD = create("is_cold")
     @JvmField
-    val IS_DEEP = create("is_deep")
+    val IS_DEEP_OCEAN = create("is_deep_ocean")
     @JvmField
     val IS_DESERT = create("is_desert")
     @JvmField
@@ -51,9 +52,9 @@ object CobblemonBiomeTags {
     @JvmField
     val IS_FRESHWATER = create("is_freshwater")
     @JvmField
-    val IS_FRIGID = create("is_frigid")
+    val IS_COLD_OCEAN = create("is_cold_ocean")
     @JvmField
-    val IS_FROZEN = create("is_frozen")
+    val IS_FROZEN_OCEAN = create("is_frozen_ocean")
     @JvmField
     val IS_GLACIAL = create("is_glacial")
     @JvmField
@@ -67,7 +68,7 @@ object CobblemonBiomeTags {
     @JvmField
     val IS_JUNGLE = create("is_jungle")
     @JvmField
-    val IS_LUKEWARM = create("is_lukewarm")
+    val IS_LUKEWARM_OCEAN = create("is_lukewarm_ocean")
     @JvmField
     val IS_LUSH = create("is_lush")
     @JvmField
@@ -85,7 +86,7 @@ object CobblemonBiomeTags {
     @JvmField
     val IS_PLATEAU = create("is_plateau")
     @JvmField
-    val IS_REEF = create("is_reef")
+    val IS_WARM_OCEAN = create("is_warm_ocean")
     @JvmField
     val IS_RIVER = create("is_river")
     @JvmField
@@ -95,7 +96,7 @@ object CobblemonBiomeTags {
     @JvmField
     val IS_SKY = create("is_sky")
     @JvmField
-    val IS_SNOWY = create("is_snowy")
+    val IS_SNOWY_FOREST = create("is_snowy_forest")
     @JvmField
     val IS_SPOOKY = create("is_spooky")
     @JvmField
@@ -118,6 +119,10 @@ object CobblemonBiomeTags {
     val IS_VOlCANIC = create("is_volcanic")
     @JvmField
     val IS_WINTER = create("is_winter")
+    @JvmField
+    val IS_SPARSE = create("is_sparse")
+    @JvmField
+    val IS_DENSE = create("is_dense")
 
     // Has Feature tags
     @JvmField
@@ -126,6 +131,8 @@ object CobblemonBiomeTags {
     val HAS_APRICORNS_NORMAL = create("has_feature/apricorns_normal")
     @JvmField
     val HAS_APRICORNS_SPARSE = create("has_feature/apricorns_sparse")
+    @JvmField
+    val HAS_REVIVAL_HERBS = create("has_feature/revival_herbs")
 
     // Has Ore tags
     @JvmField
@@ -182,5 +189,5 @@ object CobblemonBiomeTags {
     @JvmField
     val IS_UNDERGROUND = create("is_underground")
 
-    private fun create(path: String) = TagKey.of(Registry.BIOME_KEY, cobblemonResource(path))
+    private fun create(path: String) = TagKey.of(RegistryKeys.BIOME, cobblemonResource(path))
 }

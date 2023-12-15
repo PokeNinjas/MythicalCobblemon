@@ -7,6 +7,16 @@
     "sturdy",
     "h:soundproof"
   ],
+  "drops": {
+    "amount": 1,
+    "entries": [
+      {
+        "item": "minecraft:bone",
+        "quantityRange": "1-2",
+        "percentage": 66
+      }
+    ]
+  },
   "baseStats": {
     "hp": 60,
     "attack": 52,
@@ -25,6 +35,7 @@
     "monster"
   ],
   "moves": [
+    "1:block",
     "1:metalsound",
     "1:protect",
     "1:tackle",
@@ -36,6 +47,7 @@
     "30:block",
     "36:endure",
     "43:metalburst",
+    "51:ironhead",
     "52:ironhead",
     "58:heavyslam",
     "tm:attract",

@@ -8,7 +8,6 @@
 
 package com.cobblemon.mod.common.api.spawning.spawner
 
-import com.cobblemon.mod.common.Cobblemon
 import com.cobblemon.mod.common.api.spawning.SpawnCause
 import com.cobblemon.mod.common.api.spawning.SpawnerManager
 import com.cobblemon.mod.common.api.spawning.context.SpawningContext
@@ -16,7 +15,7 @@ import com.cobblemon.mod.common.api.spawning.detail.SpawnAction
 import com.cobblemon.mod.common.api.spawning.detail.SpawnDetail
 import com.cobblemon.mod.common.api.spawning.detail.SpawnPool
 import com.cobblemon.mod.common.api.spawning.influence.SpawningInfluence
-import com.cobblemon.mod.common.api.spawning.selection.FlatContextWeightedSelector
+import com.cobblemon.mod.common.api.spawning.selection.FlatSelector
 import com.cobblemon.mod.common.api.spawning.selection.SpawningSelector
 import net.minecraft.entity.Entity
 
@@ -33,7 +32,7 @@ abstract class TickingSpawner(
     var spawns: SpawnPool,
     val manager: SpawnerManager
 ) : Spawner {
-    private var selector: SpawningSelector = FlatContextWeightedSelector()
+    private var selector: SpawningSelector = FlatSelector()
     override val influences = mutableListOf<SpawningInfluence>()
 
     override fun canSpawn() = active
@@ -49,7 +48,7 @@ abstract class TickingSpawner(
 
     var lastSpawnTime = 0L
     var ticksUntilNextSpawn = 100F
-    var ticksBetweenSpawns = 20F
+    abstract var ticksBetweenSpawns: Float
     var tickTimerMultiplier = 1F
 
     @Volatile

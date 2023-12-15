@@ -8,6 +8,19 @@
     "innerfocus",
     "h:pressure"
   ],
+  "drops": {
+    "amount": 2,
+    "entries": [
+      {
+        "item": "minecraft:iron_helmet",
+        "percentage": 2.5
+      },
+      {
+        "item": "cobblemon:chople_berry",
+        "percentage": 2.5
+      }
+    ]
+  },
   "baseStats": {
     "hp": 45,
     "attack": 85,
@@ -26,24 +39,24 @@
     "human_like"
   ],
   "moves": [
+    "1:leer",
     "1:scratch",
-    "6:leer",
-    "9:furycutter",
-    "14:torment",
+    "5:furycutter",
+    "10:metalclaw",
+    "15:torment",
     "17:feintattack",
-    "22:scaryface",
-    "25:metalclaw",
-    "30:slash",
-    "33:assurance",
-    "38:metalsound",
+    "20:scaryface",
+    "25:assurance",
+    "30:metalsound",
+    "35:slash",
+    "40:nightslash",
     "41:embargo",
-    "46:irondefense",
-    "49:nightslash",
+    "45:irondefense",
     "50:laserfocus",
     "50:retaliate",
-    "54:ironhead",
-    "57:swordsdance",
-    "62:guillotine",
+    "55:ironhead",
+    "60:swordsdance",
+    "65:guillotine",
     "egg:headbutt",
     "egg:meanlook",
     "egg:psychocut",

@@ -8,6 +8,29 @@
     "synchronize",
     "h:analytic"
   ],
+  "drops": {
+    "amount": 4,
+    "entries": [
+      {
+        "item": "minecraft:ender_pearl",
+        "quantityRange": "1-2",
+        "percentage": 66
+      },
+      {
+        "item": "minecraft:chorus_fruit",
+        "quantityRange": "1-2",
+        "percentage": 66
+      },
+      {
+        "item": "cobblemon:light_clay",
+        "percentage": 5
+      },
+      {
+        "item": "cobblemon:colbur_berry",
+        "percentage": 5
+      }
+    ]
+  },
   "baseStats": {
     "hp": 75,
     "attack": 75,
@@ -33,46 +56,27 @@
   "eggGroups": [
     "human_like"
   ],
-  "drops": {
-    "amount": "3",
-    "entries": [
-      {
-        "item": "minecraft:ender_pearl",
-        "quantityRange": "1-2",
-        "percentage": 66
-      },
-	  {
-        "item": "minecraft:chorus_fruit",
-        "quantityRange": "1-2",
-        "percentage": 66
-      },
-      {
-        "item": "cobblemon:light_clay",
-        "percentage": 5
-      }
-    ]
-  },
   "moves": [
     "1:confusion",
     "1:growl",
     "1:healblock",
+    "1:imprison",
     "1:miracleeye",
     "1:psychicterrain",
+    "1:synchronoise",
     "1:teleport",
-    "15:psybeam",
-    "18:headbutt",
+    "18:psybeam",
     "22:hiddenpower",
-    "25:imprison",
+    "24:guardsplit",
+    "24:powersplit",
     "29:simplebeam",
-    "32:zenheadbutt",
+    "30:headbutt",
     "36:psychup",
-    "39:psychic",
-    "45:calmmind",
-    "50:recover",
-    "56:guardsplit",
-    "58:powersplit",
-    "63:synchronoise",
-    "68:wonderroom",
+    "36:zenheadbutt",
+    "45:recover",
+    "52:calmmind",
+    "60:wonderroom",
+    "68:psychic",
     "tm:agility",
     "tm:allyswitch",
     "tm:attract",
