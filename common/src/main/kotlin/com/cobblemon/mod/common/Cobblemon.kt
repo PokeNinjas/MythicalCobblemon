@@ -9,6 +9,7 @@
 package com.cobblemon.mod.common
 
 import com.cobblemon.mod.common.advancement.CobblemonCriteria
+import com.cobblemon.mod.common.advancement.criterion.EvolvePokemonContext
 import com.cobblemon.mod.common.api.Priority
 import com.cobblemon.mod.common.api.SeasonResolver
 import com.cobblemon.mod.common.api.data.DataProvider
@@ -360,7 +361,7 @@ object Cobblemon {
             // Ensure the config option is enabled and that the result was a ninjask and that shedinja exists
             if (this.config.ninjaskCreatesShedinja && pokemon.species.resourceIdentifier == ninjaskIdentifier && PokemonSpecies.getByIdentifier(Pokemon.SHEDINJA) != null) {
                 val player = pokemon.getOwnerPlayer() ?: return@subscribe
-                if (player.inventory.containsAny { it.item is PokeBallItem }) {
+                if (player.isCreative || player.inventory.containsAny { it.item is PokeBallItem }) {
                     var pokeball = Items.AIR
                     player.inventory.combinedInventory.forEach {
                         it.forEach {
@@ -369,7 +370,12 @@ object Cobblemon {
                             }
                         }
                     }
-                    player.inventory.removeAmountIf(1) { it.item is PokeBallItem }
+                    if (!player.isCreative) {
+                        player.inventory.removeAmountIf(1) { it.item is PokeBallItem }
+                    }
+                    if (pokeball == Items.AIR) {
+                        pokeball = CobblemonItems.POKE_BALL
+                    }
                     val properties = event.evolution.result.copy()
                     properties.species = Pokemon.SHEDINJA.toString()
                     val product = pokemon.clone()
@@ -377,6 +383,7 @@ object Cobblemon {
                     properties.apply(product)
                     product.caughtBall = (pokeball as PokeBallItem).pokeBall
                     pokemon.storeCoordinates.get()?.store?.add(product)
+                    CobblemonCriteria.EVOLVE_POKEMON.trigger(player, EvolvePokemonContext(event.pokemon.preEvolution!!.species.resourceIdentifier, product.species.resourceIdentifier, playerData.get(player).advancementData.totalEvolvedCount))
                 }
             }
         }
@@ -388,8 +395,9 @@ object Cobblemon {
             battleRegistry.startBattle(
                 BattleFormat.GEN_9_SINGLES,
                 BattleSide(PokemonBattleActor(UUID.randomUUID(), BattlePokemon(Pokemon().initialize()), -1F)),
-                BattleSide(PokemonBattleActor(UUID.randomUUID(), BattlePokemon(Pokemon().initialize()), -1F))
-            ).apply { mute = true }
+                BattleSide(PokemonBattleActor(UUID.randomUUID(), BattlePokemon(Pokemon().initialize()), -1F)),
+                true
+            ).ifSuccessful { it.mute = true }
         }
     }
 

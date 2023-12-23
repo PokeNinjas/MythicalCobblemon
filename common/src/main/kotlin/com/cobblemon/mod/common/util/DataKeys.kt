@@ -63,6 +63,7 @@ object DataKeys {
     const val POKEMON_OWNER_ID = "PokemonOwnerId"
     const val POKEMON_HIDE_LABEL = "HideLabel"
     const val POKEMON_UNBATTLEABLE = "Unbattleable"
+    const val POKEMON_COUNTS_TOWARDS_SPAWN_CAP = "CountsTowardsSpawnCap"
 
     // Evolution stuff
     const val POKEMON_EVOLUTIONS = "Evolutions"
@@ -127,13 +128,15 @@ object DataKeys {
     // Delta Pokemon
     const val ALPHA_POKEMON = "alpha"
     const val ALPHA_DEFEATED = "alpha_defeated"
+	
+    // Variants
+    const val IS_MOOSHTANK = "mooshtank"
 
     // Persistent Data
     const val POKEMON_PERSISTENT_DATA = "PersistentData"
 
     // Item Tooltips
     const val HIDE_TOOLTIP = "HideTooltip"
-
 
     // Shoulder Mount
     const val SHOULDER_UUID = "shoulder_uuid"

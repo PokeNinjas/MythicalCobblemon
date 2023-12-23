@@ -34,6 +34,7 @@ import com.cobblemon.mod.common.api.events.pokemon.*
 import com.cobblemon.mod.common.api.events.pokemon.evolution.EvolutionAcceptedEvent
 import com.cobblemon.mod.common.api.events.pokemon.evolution.EvolutionCompleteEvent
 import com.cobblemon.mod.common.api.events.pokemon.evolution.EvolutionDisplayEvent
+import com.cobblemon.mod.common.api.events.pokemon.evolution.EvolutionTestedEvent
 import com.cobblemon.mod.common.api.events.pokemon.interaction.ExperienceCandyUseEvent
 import com.cobblemon.mod.common.api.events.starter.StarterChosenEvent
 import com.cobblemon.mod.common.api.events.storage.ReleasePokemonEvent
@@ -46,6 +47,7 @@ import com.cobblemon.mod.common.api.reactive.SimpleObservable
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity
 import net.minecraft.server.network.ServerPlayerEntity
 
+@Suppress("unused")
 object CobblemonEvents {
 
     @JvmField
@@ -60,6 +62,8 @@ object CobblemonEvents {
     val EVOLUTION_ACCEPTED = CancelableObservable<EvolutionAcceptedEvent>()
     @JvmField
     val EVOLUTION_DISPLAY = EventObservable<EvolutionDisplayEvent>()
+    @JvmField
+    val EVOLUTION_TESTED = EventObservable<EvolutionTestedEvent>()
     @JvmField
     val EVOLUTION_COMPLETE = EventObservable<EvolutionCompleteEvent>()
     @JvmField
@@ -124,7 +128,10 @@ object CobblemonEvents {
     val POKEMON_ENTITY_SPAWN = ENTITY_SPAWN
         .pipe(
             filter { it.entity is PokemonEntity },
-            map { it as SpawnEvent<PokemonEntity> }
+            map {
+                @Suppress("UNCHECKED_CAST")
+                it as SpawnEvent<PokemonEntity>
+            }
         )
     @JvmField
     val POKEMON_ENTITY_GOALS = EventObservable<PokemonEntityGoalsEvent>()
