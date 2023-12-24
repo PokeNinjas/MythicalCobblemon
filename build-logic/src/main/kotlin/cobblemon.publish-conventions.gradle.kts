@@ -31,7 +31,7 @@ publishing {
 
             groupId = "com.cobblemon"
             artifactId = project.findProperty("maven.artifactId")?.toString() ?: project.name
-            version = "MythicalCobblemon" + rootProject.version.toString()
+            version = "MythicalCobblemon-" + rootProject.version.toString()
         }
     }
 }
