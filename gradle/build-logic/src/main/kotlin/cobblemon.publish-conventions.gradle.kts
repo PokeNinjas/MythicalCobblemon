@@ -15,11 +15,11 @@ java {
 
 publishing {
     repositories {
-        maven("https://maven.impactdev.net/repository/development/") {
-            name = "ImpactDev-Public"
+        maven("https://repository.mythicalnetwork.live/repository/maven-releases/") {
+            name = "Mythical-Repo"
             credentials {
-                username = System.getenv("COBBLEMON_MAVEN_USER")
-                password = System.getenv("COBBLEMON_MAVEN_PASSWORD")
+                username = (project.findProperty("mythicalUsername") ?: System.getenv("MYTHICAL_USERNAME") ?: "") as String?
+                password = (project.findProperty("mythicalPassword") ?: System.getenv("MYTHICAL_PASSWORD") ?: "") as String?
             }
         }
     }
@@ -34,7 +34,7 @@ publishing {
 
             groupId = "com.cobblemon"
             artifactId = project.findProperty("maven.artifactId")?.toString() ?: project.name
-            version = project.writeVersion(VersionType.PUBLISHING)
+            version = "MythicalCobblemon" + project.writeVersion(VersionType.PUBLISHING)
         }
     }
 }
