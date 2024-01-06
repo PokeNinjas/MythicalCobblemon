@@ -75,6 +75,7 @@ import net.minecraft.util.math.Vec3d
 import net.minecraft.world.World
 import kotlin.properties.Delegates
 import java.util.*
+import java.util.concurrent.CompletableFuture
 
 class EmptyPokeBallEntity : ThrownItemEntity, Poseable, WaterDragModifier {
     enum class CaptureState {
