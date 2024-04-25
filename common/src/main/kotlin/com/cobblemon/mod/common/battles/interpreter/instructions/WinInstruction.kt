@@ -13,6 +13,7 @@ import com.cobblemon.mod.common.api.battles.model.PokemonBattle
 import com.cobblemon.mod.common.api.battles.model.actor.ActorType
 import com.cobblemon.mod.common.api.events.CobblemonEvents
 import com.cobblemon.mod.common.api.events.battles.BattleVictoryEvent
+import com.cobblemon.mod.common.api.events.battles.VictoryReason
 import com.cobblemon.mod.common.api.text.gold
 import com.cobblemon.mod.common.api.text.plus
 import com.cobblemon.mod.common.api.text.red
@@ -67,7 +68,18 @@ class WinInstruction(val message: BattleMessage): InterpreterInstruction {
         }
         battle.dispatchGo {
             battle.end()
-            CobblemonEvents.BATTLE_VICTORY.post(BattleVictoryEvent(battle, winners, losers, wasCaught))
+            var type: VictoryReason = VictoryReason.KO
+            if(battle.isPvW){
+                // get the non-player actor
+                val nonPlayerActor = battle.actors.first { it.type == ActorType.WILD }
+                val wildPokemon: BattlePokemon = nonPlayerActor.pokemonList.first()
+                if(wildPokemon.health > 0){
+                    type = VictoryReason.CAPTURE
+                } else {
+                    type = VictoryReason.KO
+                }
+            }
+            CobblemonEvents.BATTLE_VICTORY.post(BattleVictoryEvent(battle, winners, losers, wasCaught, type))
             ShowdownInterpreter.lastCauser.remove(battle.battleId)
         }
     }

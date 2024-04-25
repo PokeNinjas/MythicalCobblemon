@@ -21,10 +21,6 @@ import com.cobblemon.mod.common.api.net.serializers.StringSetDataSerializer
 import com.cobblemon.mod.common.api.net.serializers.Vec3DataSerializer
 import com.cobblemon.mod.common.api.pokeball.PokeBalls
 import com.cobblemon.mod.common.api.pokeball.catching.CaptureContext
-import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature
-import com.cobblemon.mod.common.api.pokemon.feature.SpeciesFeatureAssignment
-import com.cobblemon.mod.common.api.pokemon.feature.SpeciesFeatureAssignments
-import com.cobblemon.mod.common.api.pokemon.feature.SpeciesFeatures
 import com.cobblemon.mod.common.api.pokemon.status.Statuses
 import com.cobblemon.mod.common.api.reactive.SimpleObservable
 import com.cobblemon.mod.common.api.scheduling.Schedulable
@@ -63,7 +59,6 @@ import net.minecraft.particle.ParticleTypes
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.sound.SoundEvents
 import net.minecraft.text.MutableText
-import net.minecraft.text.Text
 import net.minecraft.util.hit.BlockHitResult
 import net.minecraft.util.hit.EntityHitResult
 import net.minecraft.util.hit.HitResult
@@ -72,7 +67,6 @@ import net.minecraft.util.math.MathHelper.PI
 import net.minecraft.util.math.Vec3d
 import net.minecraft.world.World
 import kotlin.properties.Delegates
-import java.util.*
 import java.util.concurrent.CompletableFuture
 
 class EmptyPokeBallEntity : ThrownItemEntity, Poseable, WaterDragModifier, Schedulable {
@@ -209,7 +203,7 @@ class EmptyPokeBallEntity : ThrownItemEntity, Poseable, WaterDragModifier, Sched
 
                 var eventTest by Delegates.notNull<Boolean>()
                 var failMessage by Delegates.notNull<MutableText>()
-                CobblemonEvents.CAPTURE_CONDITIONS.postThen(PokeballCaptureConditionsEvent(pokemonEntity, CaptureState.values()[captureState.get().toInt()], this), {
+                CobblemonEvents.CAPTURE_CONDITIONS.postThen(PokeballCaptureConditionsEvent(pokemonEntity, CaptureState.values()[captureState.ordinal], this), {
                     eventTest = false
                     failMessage = it.getFailMessageOrDefault()
                 }, {

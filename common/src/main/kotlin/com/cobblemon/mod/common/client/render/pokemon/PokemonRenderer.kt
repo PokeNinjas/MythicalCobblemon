@@ -54,7 +54,6 @@ import org.joml.Math
 import org.joml.Quaternionf
 import org.joml.Vector3f
 import org.joml.Vector4f
-import net.minecraft.util.math.Vec3d
 import kotlin.math.*
 
 class PokemonRenderer(
@@ -223,7 +222,6 @@ class PokemonRenderer(
      * @param partialTicks The partial ticks.
      * @param entity The Cobblemon.
      * @param beamTarget The target.
-     * @param colour The colour of the beam.
      * @param buffer The vertex consumer provider.
      */
     fun renderBeam(matrixStack: MatrixStack, partialTicks: Float, entity: PokemonEntity, beamTarget: Entity, buffer: VertexConsumerProvider, offset: Vec3d) {
@@ -236,17 +234,17 @@ class PokemonRenderer(
                 if (beamTarget.uuid == MinecraftClient.getInstance().player?.uuid) {
                     val lookVec = beamTarget.rotationVector.rotateY(PI / 2).multiply(1.0, 0.0, 1.0).normalize()
                     val targetVec = beamTarget.getCameraPosVec(partialTicks).subtract(0.0, 0.4, 0.0).subtract(lookVec.multiply(0.3))
-                    CobblemonEvents.BEAM_RENDER.post(RenderBeamEvent(matrixStack, partialTicks, entity, beamTarget, colour, buffer, targetVec))
+                    CobblemonEvents.BEAM_RENDER.post(RenderBeamEvent(matrixStack, partialTicks, entity, beamTarget, buffer, targetVec))
                     targetVec
                 } else {
                     val lookVec = beamTarget.rotationVector.rotateY(PI / 2 - (beamTarget.bodyYaw - beamTarget.pitch).toRadians()).multiply(1.0, 0.0, 1.0).normalize()
                     val targetVec = beamTarget.getCameraPosVec(partialTicks).subtract(0.0, 0.7, 0.0).subtract(lookVec.multiply(0.4))
-                    CobblemonEvents.BEAM_RENDER.post(RenderBeamEvent(matrixStack, partialTicks, entity, beamTarget, colour, buffer, targetVec))
+                    CobblemonEvents.BEAM_RENDER.post(RenderBeamEvent(matrixStack, partialTicks, entity, beamTarget, buffer, targetVec))
                     targetVec
                 }
             } else {
                 val targetVec = Vec3d(0.0,0.0,0.0)
-                CobblemonEvents.BEAM_RENDER.post(RenderBeamEvent(matrixStack, partialTicks, entity, beamTarget, colour, buffer, targetVec))
+                CobblemonEvents.BEAM_RENDER.post(RenderBeamEvent(matrixStack, partialTicks, entity, beamTarget, buffer, targetVec))
                 targetVec
             }
         }
