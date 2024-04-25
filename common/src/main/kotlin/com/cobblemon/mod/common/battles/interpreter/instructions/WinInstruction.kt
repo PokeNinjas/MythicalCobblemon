@@ -68,17 +68,7 @@ class WinInstruction(val message: BattleMessage): InterpreterInstruction {
         }
         battle.dispatchGo {
             battle.end()
-            var type: VictoryReason = VictoryReason.KO
-            if(battle.isPvW){
-                // get the non-player actor
-                val nonPlayerActor = battle.actors.first { it.type == ActorType.WILD }
-                val wildPokemon: BattlePokemon = nonPlayerActor.pokemonList.first()
-                if(wildPokemon.health > 0){
-                    type = VictoryReason.CAPTURE
-                } else {
-                    type = VictoryReason.KO
-                }
-            }
+            val type: VictoryReason = if (wasCaught) VictoryReason.CAPTURE else VictoryReason.KO
             CobblemonEvents.BATTLE_VICTORY.post(BattleVictoryEvent(battle, winners, losers, wasCaught, type))
             ShowdownInterpreter.lastCauser.remove(battle.battleId)
         }
