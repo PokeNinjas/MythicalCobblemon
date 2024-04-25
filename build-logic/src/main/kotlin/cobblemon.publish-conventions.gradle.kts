@@ -1,3 +1,6 @@
+import extensions.VersionType
+import extensions.writeVersion
+
 plugins {
     java
     `java-library`
