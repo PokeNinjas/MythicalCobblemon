@@ -275,12 +275,12 @@
 - Added particles to Lucario when in battle.
 
 ### Fixes
-- Resized Snorlax
+- Resized Drifloon
 - Re-added the recipe for the Iron Vitamin.
 - Cleaned up empty evolutions declaration in species files (no, I'm not listing all 169 by name).
 - Fixed Exeggcute and Pikachu not being able to evolve.
 - Fixed battle lang for Poison Touch Ability
-- Fixed Cubone not being able to evolve into Alolan Marowak.
+- Finally found Sudowoodo and Bonsly. They were missing spawn data. 
 - Fixed Squawkabilly forms not being recognized.
 - Fixed the bounce animation for Poké Balls being delayed by like, a full second.
 - Note blocks now play the correct sound on the Apricorn Plank based blocks.
