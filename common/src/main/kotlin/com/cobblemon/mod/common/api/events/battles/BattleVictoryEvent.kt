@@ -27,7 +27,5 @@ data class BattleVictoryEvent (
 
 enum class VictoryReason {
     KO,
-    FORFEIT,
-    CAPTURE,
-    ESCAPE
+    CAPTURE
 }

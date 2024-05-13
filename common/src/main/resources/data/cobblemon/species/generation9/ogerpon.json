@@ -91,15 +91,10 @@
     "tm:takedown",
     "tm:taunt",
     "tm:terablast",
+    "tm:throatchop",
     "tm:trailblaze",
     "tm:uturn",
-    "tm:zenheadbutt",
-    "tutor:grassyterrain",
-    "tutor:growth",
-    "tutor:ivycudgel",
-    "tutor:lowkick",
-    "tutor:slam",
-    "tutor:vinewhip"
+    "tm:zenheadbutt"
   ],
   "labels": [
     "gen9"
@@ -150,7 +145,6 @@
       ],
       "height": 12,
       "weight": 398,
-      "evolutions": [],
       "cannotDynamax": false,
       "battleOnly": false
     },
@@ -194,7 +188,6 @@
       ],
       "height": 12,
       "weight": 398,
-      "evolutions": [],
       "cannotDynamax": false,
       "battleOnly": false
     },
@@ -238,7 +231,6 @@
       ],
       "height": 12,
       "weight": 398,
-      "evolutions": [],
       "cannotDynamax": false,
       "battleOnly": false
     },
@@ -256,20 +248,20 @@
         "special_defence": 96,
         "speed": 110
       },
-      "catchRate": 0,
+      "catchRate": 5,
       "maleRatio": 0,
       "baseExperienceYield": 0,
       "baseFriendship": 0,
       "evYield": {
         "hp": 0,
-        "attack": 0,
+        "attack": 3,
         "defence": 0,
         "special_attack": 0,
         "special_defence": 0,
         "speed": 0
       },
       "experienceGroup": "slow",
-      "eggCycles": 0,
+      "eggCycles": 50,
       "eggGroups": [
         "undiscovered"
       ],
@@ -281,7 +273,6 @@
       ],
       "height": 12,
       "weight": 398,
-      "evolutions": [],
       "cannotDynamax": false,
       "battleOnly": true
     },
@@ -300,20 +291,20 @@
         "special_defence": 96,
         "speed": 110
       },
-      "catchRate": 0,
+      "catchRate": 5,
       "maleRatio": 0,
       "baseExperienceYield": 0,
       "baseFriendship": 0,
       "evYield": {
         "hp": 0,
-        "attack": 0,
+        "attack": 3,
         "defence": 0,
         "special_attack": 0,
         "special_defence": 0,
         "speed": 0
       },
       "experienceGroup": "slow",
-      "eggCycles": 0,
+      "eggCycles": 50,
       "eggGroups": [
         "undiscovered"
       ],
@@ -325,7 +316,6 @@
       ],
       "height": 12,
       "weight": 398,
-      "evolutions": [],
       "cannotDynamax": false,
       "battleOnly": true
     },
@@ -344,20 +334,20 @@
         "special_defence": 96,
         "speed": 110
       },
-      "catchRate": 0,
+      "catchRate": 5,
       "maleRatio": 0,
       "baseExperienceYield": 0,
       "baseFriendship": 0,
       "evYield": {
         "hp": 0,
-        "attack": 0,
+        "attack": 3,
         "defence": 0,
         "special_attack": 0,
         "special_defence": 0,
         "speed": 0
       },
       "experienceGroup": "slow",
-      "eggCycles": 0,
+      "eggCycles": 50,
       "eggGroups": [
         "undiscovered"
       ],
@@ -369,7 +359,6 @@
       ],
       "height": 12,
       "weight": 398,
-      "evolutions": [],
       "cannotDynamax": false,
       "battleOnly": true
     },
@@ -388,32 +377,32 @@
         "special_defence": 96,
         "speed": 110
       },
-      "catchRate": 0,
+      "catchRate": 5,
       "maleRatio": 0,
       "baseExperienceYield": 0,
       "baseFriendship": 0,
       "evYield": {
         "hp": 0,
-        "attack": 0,
+        "attack": 3,
         "defence": 0,
         "special_attack": 0,
         "special_defence": 0,
         "speed": 0
       },
       "experienceGroup": "slow",
-      "eggCycles": 0,
+      "eggCycles": 50,
       "eggGroups": [
         "undiscovered"
       ],
       "labels": [
-        "gen9"
+        "gen9",
+        "legendary"
       ],
       "aspects": [
         "cornerstone-tera"
       ],
       "height": 12,
       "weight": 398,
-      "evolutions": [],
       "cannotDynamax": false,
       "battleOnly": true
     }

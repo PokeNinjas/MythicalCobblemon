@@ -99,10 +99,18 @@ object BattleBuilder {
         fleeDistance: Float = Cobblemon.config.defaultFleeDistance,
         party: PartyStore = player.party()
     ): BattleStartResult {
-        val playerTeam = party.toBattleTeam(clone = cloneParties, checkHealth = !healFirst, leadingPokemon = leadingPokemon)
+        val playerTeam = party.toBattleTeam(clone = cloneParties, checkHealth = !healFirst, leadingPokemon = leadingPokemon).sortedBy { it.health <= 0 }
         val playerActor = PlayerBattleActor(player.uuid, playerTeam)
         val wildActor = PokemonBattleActor(pokemonEntity.pokemon.uuid, BattlePokemon(pokemonEntity.pokemon), fleeDistance)
         val errors = ErroredBattleStart()
+
+        if(playerTeam.isNotEmpty() && playerTeam[0].health <= 0){
+            errors.participantErrors[playerActor] += BattleStartError.insufficientPokemon(
+                    player = player,
+                    requiredCount = battleFormat.battleType.slotsPerActor,
+                    hadCount = playerActor.pokemonList.size
+            )
+        }
 
         if (playerActor.pokemonList.size < battleFormat.battleType.slotsPerActor) {
             errors.participantErrors[playerActor] += BattleStartError.insufficientPokemon(
@@ -116,7 +124,7 @@ object BattleBuilder {
             errors.participantErrors[playerActor] += BattleStartError.alreadyInBattle(playerActor)
         }
 
-        if (pokemonEntity.battleId.get().isPresent) {
+        if (pokemonEntity.battleId != null) {
             errors.participantErrors[wildActor] += BattleStartError.alreadyInBattle(wildActor)
         }
 
@@ -127,7 +135,7 @@ object BattleBuilder {
                 side2 = BattleSide(wildActor)
             ).ifSuccessful {
                 if (!cloneParties) {
-                    pokemonEntity.battleId.set(Optional.of(it.battleId))
+                    pokemonEntity.battleId = it.battleId
                 }
                 playerActor.battleTheme = pokemonEntity.getBattleTheme()
             }
