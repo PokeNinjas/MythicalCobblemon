@@ -104,7 +104,11 @@ object PartySendBinding : CobblemonBlockingKeyBinding(
             is PokemonEntity -> {
                 if (!entity.canBattle(player) || entity.position().distanceToSqr(player.position()) > Cobblemon.config.battleWildMaxDistance.pow(2)) return
                     sendToServer(BattleChallengePacket(entity.id,  pokemon.uuid, BattleFormat.GEN_9_SINGLES))
-                }
+            }
+            else -> {
+                // CUSTOM: MythicalNetwork - For MythicalNPCs
+                sendToServer(BattleChallengePacket(entity.id, pokemon.uuid, BattleFormat.GEN_9_SINGLES))
+            }
         }
     }
 

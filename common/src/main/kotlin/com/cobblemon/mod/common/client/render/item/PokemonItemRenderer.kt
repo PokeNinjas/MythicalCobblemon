@@ -59,6 +59,10 @@ class PokemonItemRenderer : CobblemonBuiltinItemRenderer {
         matrices.translate(model.profileTranslation.x, model.profileTranslation.y,  model.profileTranslation.z - 4.0)
         matrices.scale(model.profileScale, model.profileScale, 0.15F)
 
+        // CUSTOM: MythicalNetwork - Scale item models, for MythicalRaids
+        val scale = pokemonItem.scale(stack)
+        matrices.scale(scale, scale, scale)
+
         val rotation = Quaternionf().fromEulerXYZDegrees(Vector3f(transformations.rotation.x, transformations.rotation.y, transformations.rotation.z))
         matrices.mulPose(rotation)
         rotation.conjugate()

@@ -9,6 +9,9 @@
 package com.cobblemon.mod.common.net.serverhandling
 
 import com.cobblemon.mod.common.Cobblemon
+import com.cobblemon.mod.common.CobblemonNetwork.sendPacket
+import com.cobblemon.mod.common.api.events.CobblemonEvents
+import com.cobblemon.mod.common.api.events.entity.UnrecognizedChallengeTargetEvent
 import com.cobblemon.mod.common.api.net.ServerNetworkPacketHandler
 import com.cobblemon.mod.common.api.text.red
 import com.cobblemon.mod.common.battles.BattleBuilder
@@ -39,7 +42,7 @@ object ChallengeHandler : ServerNetworkPacketHandler<BattleChallengePacket> {
             when (it) {
                 is PokemonEntity -> it.owner ?: it
                 is ServerPlayer -> it
-                else -> null
+                else -> it // CUSTOM: MythicalNetwork - For MythicalNPCs
             }
         } ?: return
 
@@ -57,6 +60,10 @@ object ChallengeHandler : ServerNetworkPacketHandler<BattleChallengePacket> {
 
             // player interaction validation is done on sendRequest
             ChallengeManager.sendRequest(challenge)
+        }
+        else {
+            // CUSTOM: MythicalNetwork - For MythicalNPCs
+            CobblemonEvents.UNRECOGNIZED_TARGET.post(UnrecognizedChallengeTargetEvent(targetedEntity, player, leadingPokemon))
         }
     }
 }

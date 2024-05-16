@@ -18,7 +18,7 @@ rootProject.name = "cobblemon"
 listOf(
     "common",
     "fabric",
-    "neoforge"
+//    "neoforge" // CUSTOM: MythicalNetwork - Commented to disable NeoForge
 ).forEach { setupProject(it, file(it)) }
 
 fun setupProject(name: String, projectDirectory: File) = setupProject(name) {

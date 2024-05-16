@@ -16,6 +16,7 @@ import com.cobblemon.mod.common.CobblemonSounds
 import com.cobblemon.mod.common.api.events.CobblemonEvents
 import com.cobblemon.mod.common.api.events.pokeball.PokeBallCaptureCalculatedEvent
 import com.cobblemon.mod.common.api.events.pokeball.ThrownPokeballHitEvent
+import com.cobblemon.mod.common.api.events.pokemon.PokeballCaptureConditionsEvent
 import com.cobblemon.mod.common.api.events.pokemon.PokemonCapturedEvent
 import com.cobblemon.mod.common.api.net.serializers.StringSetDataSerializer
 import com.cobblemon.mod.common.api.net.serializers.Vec3DataSerializer
@@ -50,6 +51,7 @@ import com.cobblemon.mod.common.util.*
 import com.mojang.blaze3d.vertex.PoseStack
 import net.minecraft.client.Minecraft
 import net.minecraft.core.particles.ParticleTypes
+import net.minecraft.network.chat.MutableComponent
 import net.minecraft.network.protocol.Packet
 import net.minecraft.network.protocol.common.ClientboundCustomPayloadPacket
 import net.minecraft.network.protocol.game.ClientGamePacketListener
@@ -72,6 +74,7 @@ import net.minecraft.world.phys.HitResult
 import net.minecraft.world.phys.Vec3
 import java.util.concurrent.CompletableFuture
 import kotlin.compareTo
+import kotlin.properties.Delegates
 
 class EmptyPokeBallEntity : ThrowableItemProjectile, PosableEntity, WaterDragModifier, Schedulable {
     enum class CaptureState {
@@ -204,6 +207,20 @@ class EmptyPokeBallEntity : ThrowableItemProjectile, PosableEntity, WaterDragMod
                     owner?.sendSystemMessage(lang("capture.not_wild", pokemonEntity.exposedSpecies.translatedName).red())
                     return drop()
                 }
+
+                // CUSTOM: MythicalNetwork - For MythicalRadars/MythicalCobbled
+                var eventTest by Delegates.notNull<Boolean>()
+                var failMessage by Delegates.notNull<MutableComponent>()
+                CobblemonEvents.CAPTURE_CONDITIONS.postThen(PokeballCaptureConditionsEvent(pokemonEntity, CaptureState.values()[captureState.ordinal], this), {
+                    eventTest = false
+                    failMessage = it.getFailMessageOrDefault()
+                }, {
+                    eventTest = true
+                })
+                if(!eventTest) {
+                    owner?.sendSystemMessage(failMessage.red())
+                }
+                // END CUSTOM
 
                 if (!UncatchableProperty.isCatchable(pokemonEntity)) {
                     owner?.sendSystemMessage(lang("capture.cannot_be_caught").red())
