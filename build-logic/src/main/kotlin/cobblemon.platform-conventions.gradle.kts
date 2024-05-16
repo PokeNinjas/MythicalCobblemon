@@ -21,13 +21,13 @@ loom {
 tasks {
 
     jar {
-        archiveBaseName.set("Cobblemon-${project.name}")
+        archiveBaseName.set("MythicalCobblemon-${project.name}")
         archiveClassifier.set("dev-slim")
     }
 
     shadowJar {
         archiveClassifier.set("dev-shadow")
-        archiveBaseName.set("Cobblemon-${project.name}")
+        archiveBaseName.set("MythicalCobblemon-${project.name}")
         configurations = listOf(bundle)
         mergeServiceFiles()
     }
@@ -35,7 +35,7 @@ tasks {
     remapJar {
         dependsOn(shadowJar)
         inputFile.set(shadowJar.flatMap { it.archiveFile })
-        archiveBaseName.set("Cobblemon-${project.name}")
+        archiveBaseName.set("MythicalCobblemon-${project.name}")
         archiveVersion.set("${rootProject.version}")
     }
 
