@@ -422,7 +422,7 @@ open class Pokemon : ShowdownIdentifiable {
             }
         }
 
-    internal var isClient = false
+    var isClient = false // CUSTOM: MythicalNetwork - Removed internal keyword, for MythicalRadars
     val storeCoordinates = SettableObservable<StoreCoordinates<*>?>(null)
 
     // We want non-optional evolutions to trigger first to avoid unnecessary packets and any cost associate with an optional one that would just be lost

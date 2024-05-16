@@ -8,20 +8,13 @@
 
 package com.cobblemon.mod.common.api.events
 
-import com.cobblemon.mod.common.api.events.battles.BattleFaintedEvent
-import com.cobblemon.mod.common.api.events.battles.BattleFledEvent
-import com.cobblemon.mod.common.api.events.battles.BattleStartedPostEvent
-import com.cobblemon.mod.common.api.events.battles.BattleStartedPreEvent
-import com.cobblemon.mod.common.api.events.battles.BattleVictoryEvent
+import com.cobblemon.mod.common.api.events.battles.*
 import com.cobblemon.mod.common.api.events.berry.BerryHarvestEvent
 import com.cobblemon.mod.common.api.events.berry.BerryMutationOfferEvent
 import com.cobblemon.mod.common.api.events.berry.BerryMutationResultEvent
 import com.cobblemon.mod.common.api.events.berry.BerryYieldCalculationEvent
 import com.cobblemon.mod.common.api.events.drops.LootDroppedEvent
-import com.cobblemon.mod.common.api.events.entity.PokemonEntityLoadEvent
-import com.cobblemon.mod.common.api.events.entity.PokemonEntitySaveEvent
-import com.cobblemon.mod.common.api.events.entity.PokemonEntitySaveToWorldEvent
-import com.cobblemon.mod.common.api.events.entity.SpawnEvent
+import com.cobblemon.mod.common.api.events.entity.*
 import com.cobblemon.mod.common.api.events.farming.ApricornHarvestEvent
 import com.cobblemon.mod.common.api.events.item.LeftoversCreatedEvent
 import com.cobblemon.mod.common.api.events.pokeball.PokeBallCaptureCalculatedEvent
@@ -93,6 +86,10 @@ object CobblemonEvents {
     @JvmField
     val BATTLE_FAINTED = EventObservable<BattleFaintedEvent>()
 
+    // CUSTOM: MythicalNetwork - For MythicalNPCs
+    @JvmField
+    val BATTLE_END = EventObservable<BattleEndEvent>()
+
     @JvmField
     val POKEMON_SENT_PRE = CancelableObservable<PokemonSentPreEvent>()
     @JvmField
@@ -102,6 +99,14 @@ object CobblemonEvents {
 
     @JvmField
     val TRADE_COMPLETED = EventObservable<TradeCompletedEvent>()
+
+    // CUSTOM: MythicalNetwork - For MythicalNPCs
+    @JvmField
+    val UNRECOGNIZED_TARGET = CancelableObservable<UnrecognizedChallengeTargetEvent>()
+
+    // CUSTOM: MythicalNetwork - For MythicalRadars/MythicalCobbled
+    @JvmField
+    val CAPTURE_CONDITIONS = CancelableObservable<PokeballCaptureConditionsEvent>()
 
     @JvmField
     val LEVEL_UP_EVENT = EventObservable<LevelUpEvent>()
@@ -127,6 +132,7 @@ object CobblemonEvents {
                 it as SpawnEvent<PokemonEntity>
             }
         )
+
 
     @JvmField
     val EXPERIENCE_GAINED_EVENT_PRE = CancelableObservable<ExperienceGainedPreEvent>()
