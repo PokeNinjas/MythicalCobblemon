@@ -211,7 +211,7 @@ class EmptyPokeBallEntity : ThrowableItemProjectile, PosableEntity, WaterDragMod
                 // CUSTOM: MythicalNetwork - For MythicalRadars/MythicalCobbled
                 var eventTest by Delegates.notNull<Boolean>()
                 var failMessage by Delegates.notNull<MutableComponent>()
-                CobblemonEvents.CAPTURE_CONDITIONS.postThen(PokeballCaptureConditionsEvent(pokemonEntity, CaptureState.values()[captureState.ordinal], this), {
+                CobblemonEvents.CAPTURE_CONDITIONS.postThen(PokeballCaptureConditionsEvent(pokemonEntity, CaptureState.values()[captureState.ordinal], this, owner), {
                     eventTest = false
                     failMessage = it.getFailMessageOrDefault()
                 }, {
