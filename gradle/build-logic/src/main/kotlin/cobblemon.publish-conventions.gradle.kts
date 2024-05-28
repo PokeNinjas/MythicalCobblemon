@@ -33,8 +33,8 @@ publishing {
             loom.disableDeprecatedPomGeneration(this)
 
             groupId = "com.cobblemon"
-            artifactId = project.findProperty("maven.artifactId")?.toString() ?: project.name
-            version = "MythicalCobblemon" + project.writeVersion(VersionType.PUBLISHING)
+            artifactId = "MythicalCobblemon"
+            version = project.writeVersion(VersionType.PUBLISHING)
         }
     }
 }
