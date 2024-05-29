@@ -233,7 +233,8 @@ object CobblemonClient {
             CobblemonBlocks.POKE_DISPLAY_CASE,
             CobblemonBlocks.NEON_BLUE_DISPLAY_CASE,
             CobblemonBlocks.NEON_CYAN_DISPLAY_CASE,
-            CobblemonBlocks.NEON_GREEN_DISPLAY_CASE
+            CobblemonBlocks.NEON_GREEN_DISPLAY_CASE,
+            CobblemonBlocks.NEON_MAGENTA_DISPLAY_CASE
         )
 
         this.createBoatModelLayers()

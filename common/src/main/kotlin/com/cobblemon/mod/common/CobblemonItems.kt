@@ -280,6 +280,8 @@ object CobblemonItems : PlatformRegistry<Registry<Item>, RegistryKey<Registry<It
     val NEON_CYAN_DISPLAY_CASE = blockItem("neon_cyan_display_case", CobblemonBlocks.NEON_CYAN_DISPLAY_CASE)
     @JvmField
     val NEON_GREEN_DISPLAY_CASE = blockItem("neon_green_display_case", CobblemonBlocks.NEON_GREEN_DISPLAY_CASE)
+    @JvmField
+    val NEON_MAGENTA_DISPLAY_CASE = blockItem("neon_magenta_display_case", CobblemonBlocks.NEON_MAGENTA_DISPLAY_CASE)
 
 
     // Evolution items
