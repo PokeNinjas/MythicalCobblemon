@@ -84,6 +84,6 @@ object CobblemonBlockEntities : PlatformRegistry<Registry<BlockEntityType<*>>, R
         BlockEntityType.Builder.create(::DisplayCaseBlockEntity, CobblemonBlocks.DISPLAY_CASE, CobblemonBlocks.GREEN_DISPLAY_CASE, CobblemonBlocks.GOLD_DISPLAY_CASE,
             CobblemonBlocks.PURPLE_DISPLAY_CASE, CobblemonBlocks.WOODEN_DISPLAY_CASE, CobblemonBlocks.RAINBOW_DISPLAY_CASE, CobblemonBlocks.FUTURISTIC_DISPLAY_CASE,
             CobblemonBlocks.GLASS_DISPLAY_CASE, CobblemonBlocks.NETHERITE_DISPLAY_CASE, CobblemonBlocks.POKE_DISPLAY_CASE, CobblemonBlocks.NEON_BLUE_DISPLAY_CASE,
-            CobblemonBlocks.NEON_CYAN_DISPLAY_CASE, CobblemonBlocks.NEON_GREEN_DISPLAY_CASE, CobblemonBlocks.NEON_MAGENTA_DISPLAY_CASE).build(null)
+            CobblemonBlocks.NEON_CYAN_DISPLAY_CASE, CobblemonBlocks.NEON_GREEN_DISPLAY_CASE, CobblemonBlocks.NEON_MAGENTA_DISPLAY_CASE, CobblemonBlocks.NEON_ORANGE_DISPLAY_CASE).build(null)
     )
 }
