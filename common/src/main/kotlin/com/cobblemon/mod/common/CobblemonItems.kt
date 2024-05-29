@@ -274,6 +274,8 @@ object CobblemonItems : PlatformRegistry<Registry<Item>, RegistryKey<Registry<It
     val NETHERITE_DISPLAY_CASE = blockItem("netherite_display_case", CobblemonBlocks.NETHERITE_DISPLAY_CASE)
     @JvmField
     val POKE_DISPLAY_CASE = blockItem("poke_display_case", CobblemonBlocks.POKE_DISPLAY_CASE)
+    @JvmField
+    val NEON_BLUE_DISPLAY_CASE = blockItem("neon_blue_display_case", CobblemonBlocks.NEON_BLUE_DISPLAY_CASE)
 
 
     // Evolution items
