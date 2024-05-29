@@ -256,6 +256,43 @@ object CobblemonItems : PlatformRegistry<Registry<Item>, RegistryKey<Registry<It
     val PASTURE = blockItem("pasture", CobblemonBlocks.PASTURE)
     @JvmField
     val DISPLAY_CASE = blockItem("display_case", CobblemonBlocks.DISPLAY_CASE)
+    @JvmField
+    val GREEN_DISPLAY_CASE = blockItem("green_display_case", CobblemonBlocks.GREEN_DISPLAY_CASE)
+    @JvmField
+    val GOLD_DISPLAY_CASE = blockItem("gold_display_case", CobblemonBlocks.GOLD_DISPLAY_CASE)
+    @JvmField
+    val PURPLE_DISPLAY_CASE = blockItem("purple_display_case", CobblemonBlocks.PURPLE_DISPLAY_CASE)
+    @JvmField
+    val WOODEN_DISPLAY_CASE = blockItem("wooden_display_case", CobblemonBlocks.WOODEN_DISPLAY_CASE)
+    @JvmField
+    val RAINBOW_DISPLAY_CASE = blockItem("rainbow_display_case", CobblemonBlocks.RAINBOW_DISPLAY_CASE)
+    @JvmField
+    val FUTURISTIC_DISPLAY_CASE = blockItem("futuristic_display_case", CobblemonBlocks.FUTURISTIC_DISPLAY_CASE)
+    @JvmField
+    val GLASS_DISPLAY_CASE = blockItem("glass_display_case", CobblemonBlocks.GLASS_DISPLAY_CASE)
+    @JvmField
+    val NETHERITE_DISPLAY_CASE = blockItem("netherite_display_case", CobblemonBlocks.NETHERITE_DISPLAY_CASE)
+    @JvmField
+    val POKE_DISPLAY_CASE = blockItem("poke_display_case", CobblemonBlocks.POKE_DISPLAY_CASE)
+    @JvmField
+    val NEON_BLUE_DISPLAY_CASE = blockItem("neon_blue_display_case", CobblemonBlocks.NEON_BLUE_DISPLAY_CASE)
+    @JvmField
+    val NEON_CYAN_DISPLAY_CASE = blockItem("neon_cyan_display_case", CobblemonBlocks.NEON_CYAN_DISPLAY_CASE)
+    @JvmField
+    val NEON_GREEN_DISPLAY_CASE = blockItem("neon_green_display_case", CobblemonBlocks.NEON_GREEN_DISPLAY_CASE)
+    @JvmField
+    val NEON_MAGENTA_DISPLAY_CASE = blockItem("neon_magenta_display_case", CobblemonBlocks.NEON_MAGENTA_DISPLAY_CASE)
+    @JvmField
+    val NEON_ORANGE_DISPLAY_CASE = blockItem("neon_orange_display_case", CobblemonBlocks.NEON_ORANGE_DISPLAY_CASE)
+    @JvmField
+    val NEON_PINK_DISPLAY_CASE = blockItem("neon_pink_display_case", CobblemonBlocks.NEON_PINK_DISPLAY_CASE)
+    @JvmField
+    val NEON_PURPLE_DISPLAY_CASE = blockItem("neon_purple_display_case", CobblemonBlocks.NEON_PURPLE_DISPLAY_CASE)
+    @JvmField
+    val NEON_RED_DISPLAY_CASE = blockItem("neon_red_display_case", CobblemonBlocks.NEON_RED_DISPLAY_CASE)
+    @JvmField
+    val NEON_YELLOW_DISPLAY_CASE = blockItem("neon_yellow_display_case", CobblemonBlocks.NEON_YELLOW_DISPLAY_CASE)
+
 
     // Evolution items
     @JvmField val LINK_CABLE = create("link_cable", LinkCableItem())

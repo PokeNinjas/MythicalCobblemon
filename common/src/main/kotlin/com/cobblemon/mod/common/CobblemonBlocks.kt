@@ -401,6 +401,240 @@ object CobblemonBlocks : PlatformRegistry<Registry<Block>, RegistryKey<Registry<
         )
     )
 
+    @JvmField
+    val GREEN_DISPLAY_CASE = create(
+        "green_display_case",
+        DisplayCaseBlock(
+            AbstractBlock.Settings.create()
+                .sounds(CobblemonSounds.DISPLAY_CASE_SOUNDS)
+                .nonOpaque()
+                .pistonBehavior(PistonBehavior.BLOCK)
+                .mapColor(MapColor.GREEN)
+                .strength(0.3f)
+        )
+    )
+
+    @JvmField
+    val GOLD_DISPLAY_CASE = create(
+        "gold_display_case",
+        DisplayCaseBlock(
+            AbstractBlock.Settings.create()
+                .sounds(CobblemonSounds.DISPLAY_CASE_SOUNDS)
+                .nonOpaque()
+                .pistonBehavior(PistonBehavior.BLOCK)
+                .mapColor(MapColor.GOLD)
+                .strength(0.3f)
+        )
+    )
+
+    @JvmField
+    val PURPLE_DISPLAY_CASE = create(
+        "purple_display_case",
+        DisplayCaseBlock(
+            AbstractBlock.Settings.create()
+                .sounds(CobblemonSounds.DISPLAY_CASE_SOUNDS)
+                .nonOpaque()
+                .pistonBehavior(PistonBehavior.BLOCK)
+                .mapColor(MapColor.PURPLE)
+                .strength(0.3f)
+        )
+    )
+
+    @JvmField
+    val WOODEN_DISPLAY_CASE = create(
+        "wooden_display_case",
+        DisplayCaseBlock(
+            AbstractBlock.Settings.create()
+                .sounds(CobblemonSounds.DISPLAY_CASE_SOUNDS)
+                .nonOpaque()
+                .pistonBehavior(PistonBehavior.BLOCK)
+                .mapColor(MapColor.BROWN)
+                .strength(0.3f)
+        )
+    )
+
+    @JvmField
+    val RAINBOW_DISPLAY_CASE = create(
+        "rainbow_display_case",
+        DisplayCaseBlock(
+            AbstractBlock.Settings.create()
+                .sounds(CobblemonSounds.DISPLAY_CASE_SOUNDS)
+                .nonOpaque()
+                .pistonBehavior(PistonBehavior.BLOCK)
+                .mapColor(MapColor.STONE_GRAY)
+                .strength(0.3f)
+        )
+    )
+
+    @JvmField
+    val FUTURISTIC_DISPLAY_CASE = create(
+        "futuristic_display_case",
+        DisplayCaseBlock(
+            AbstractBlock.Settings.create()
+                .sounds(CobblemonSounds.DISPLAY_CASE_SOUNDS)
+                .nonOpaque()
+                .pistonBehavior(PistonBehavior.BLOCK)
+                .mapColor(MapColor.STONE_GRAY)
+                .strength(0.3f)
+        )
+    )
+
+    @JvmField
+    val GLASS_DISPLAY_CASE = create(
+        "glass_display_case",
+        DisplayCaseBlock(
+            AbstractBlock.Settings.create()
+                .sounds(CobblemonSounds.DISPLAY_CASE_SOUNDS)
+                .nonOpaque()
+                .pistonBehavior(PistonBehavior.BLOCK)
+                .mapColor(MapColor.STONE_GRAY)
+                .strength(0.3f)
+        )
+    )
+
+    @JvmField
+    val NETHERITE_DISPLAY_CASE = create(
+        "netherite_display_case",
+        DisplayCaseBlock(
+            AbstractBlock.Settings.create()
+                .sounds(CobblemonSounds.DISPLAY_CASE_SOUNDS)
+                .nonOpaque()
+                .pistonBehavior(PistonBehavior.BLOCK)
+                .mapColor(MapColor.BLACK)
+                .strength(0.3f)
+        )
+    )
+
+    @JvmField
+    val POKE_DISPLAY_CASE = create(
+        "poke_display_case",
+        DisplayCaseBlock(
+            AbstractBlock.Settings.create()
+                .sounds(CobblemonSounds.DISPLAY_CASE_SOUNDS)
+                .nonOpaque()
+                .pistonBehavior(PistonBehavior.BLOCK)
+                .mapColor(MapColor.RED)
+                .strength(0.3f)
+        )
+    )
+
+    @JvmField
+    val NEON_BLUE_DISPLAY_CASE = create(
+        "neon_blue_display_case",
+        DisplayCaseBlock(
+            AbstractBlock.Settings.create()
+                .sounds(CobblemonSounds.DISPLAY_CASE_SOUNDS)
+                .nonOpaque()
+                .pistonBehavior(PistonBehavior.BLOCK)
+                .mapColor(MapColor.BLUE)
+                .strength(0.3f)
+        )
+    )
+
+    @JvmField
+    val NEON_CYAN_DISPLAY_CASE = create(
+        "neon_cyan_display_case",
+        DisplayCaseBlock(
+            AbstractBlock.Settings.create()
+                .sounds(CobblemonSounds.DISPLAY_CASE_SOUNDS)
+                .nonOpaque()
+                .pistonBehavior(PistonBehavior.BLOCK)
+                .mapColor(MapColor.CYAN)
+                .strength(0.3f)
+        )
+    )
+
+    @JvmField
+    val NEON_GREEN_DISPLAY_CASE = create(
+        "neon_green_display_case",
+        DisplayCaseBlock(
+            AbstractBlock.Settings.create()
+                .sounds(CobblemonSounds.DISPLAY_CASE_SOUNDS)
+                .nonOpaque()
+                .pistonBehavior(PistonBehavior.BLOCK)
+                .mapColor(MapColor.GREEN)
+                .strength(0.3f)
+        )
+    )
+
+    @JvmField
+    val NEON_MAGENTA_DISPLAY_CASE = create(
+        "neon_magenta_display_case",
+        DisplayCaseBlock(
+            AbstractBlock.Settings.create()
+                .sounds(CobblemonSounds.DISPLAY_CASE_SOUNDS)
+                .nonOpaque()
+                .pistonBehavior(PistonBehavior.BLOCK)
+                .mapColor(MapColor.MAGENTA)
+                .strength(0.3f)
+        )
+    )
+
+    @JvmField
+    val NEON_ORANGE_DISPLAY_CASE = create(
+        "neon_orange_display_case",
+        DisplayCaseBlock(
+            AbstractBlock.Settings.create()
+                .sounds(CobblemonSounds.DISPLAY_CASE_SOUNDS)
+                .nonOpaque()
+                .pistonBehavior(PistonBehavior.BLOCK)
+                .mapColor(MapColor.ORANGE)
+                .strength(0.3f)
+        )
+    )
+
+    @JvmField
+    val NEON_PINK_DISPLAY_CASE = create(
+        "neon_pink_display_case",
+        DisplayCaseBlock(
+            AbstractBlock.Settings.create()
+                .sounds(CobblemonSounds.DISPLAY_CASE_SOUNDS)
+                .nonOpaque()
+                .pistonBehavior(PistonBehavior.BLOCK)
+                .mapColor(MapColor.PINK)
+                .strength(0.3f)
+        )
+    )
+
+    @JvmField
+    val NEON_PURPLE_DISPLAY_CASE = create(
+        "neon_purple_display_case",
+        DisplayCaseBlock(
+            AbstractBlock.Settings.create()
+                .sounds(CobblemonSounds.DISPLAY_CASE_SOUNDS)
+                .nonOpaque()
+                .pistonBehavior(PistonBehavior.BLOCK)
+                .mapColor(MapColor.PURPLE)
+                .strength(0.3f)
+        )
+    )
+
+    @JvmField
+    val NEON_RED_DISPLAY_CASE = create(
+        "neon_red_display_case",
+        DisplayCaseBlock(
+            AbstractBlock.Settings.create()
+                .sounds(CobblemonSounds.DISPLAY_CASE_SOUNDS)
+                .nonOpaque()
+                .pistonBehavior(PistonBehavior.BLOCK)
+                .mapColor(MapColor.RED)
+                .strength(0.3f)
+        )
+    )
+
+    @JvmField
+    val NEON_YELLOW_DISPLAY_CASE = create(
+        "neon_yellow_display_case",
+        DisplayCaseBlock(
+            AbstractBlock.Settings.create()
+                .sounds(CobblemonSounds.DISPLAY_CASE_SOUNDS)
+                .nonOpaque()
+                .pistonBehavior(PistonBehavior.BLOCK)
+                .mapColor(MapColor.YELLOW)
+                .strength(0.3f)
+        )
+    )
+
     val RED_MINT = create("red_mint", MintBlock(MintType.RED, AbstractBlock.Settings.create().mapColor(MapColor.RED).noCollision().ticksRandomly().breakInstantly().sounds(CobblemonSounds.MINT_SOUNDS)))
     @JvmField
     val BLUE_MINT = create("blue_mint", MintBlock(MintType.BLUE, AbstractBlock.Settings.create().mapColor(MapColor.BLUE).noCollision().ticksRandomly().breakInstantly().sounds(CobblemonSounds.MINT_SOUNDS)))
