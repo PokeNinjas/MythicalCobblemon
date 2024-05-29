@@ -266,6 +266,8 @@ object CobblemonItems : PlatformRegistry<Registry<Item>, RegistryKey<Registry<It
     val WOODEN_DISPLAY_CASE = blockItem("wooden_display_case", CobblemonBlocks.WOODEN_DISPLAY_CASE)
     @JvmField
     val RAINBOW_DISPLAY_CASE = blockItem("rainbow_display_case", CobblemonBlocks.RAINBOW_DISPLAY_CASE)
+    @JvmField
+    val FUTURISTIC_DISPLAY_CASE = blockItem("futuristic_display_case", CobblemonBlocks.FUTURISTIC_DISPLAY_CASE)
 
 
     // Evolution items
