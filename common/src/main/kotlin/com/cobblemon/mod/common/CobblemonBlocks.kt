@@ -440,6 +440,19 @@ object CobblemonBlocks : PlatformRegistry<Registry<Block>, RegistryKey<Registry<
         )
     )
 
+    @JvmField
+    val WOODEN_DISPLAY_CASE = create(
+        "wooden_display_case",
+        DisplayCaseBlock(
+            AbstractBlock.Settings.create()
+                .sounds(CobblemonSounds.DISPLAY_CASE_SOUNDS)
+                .nonOpaque()
+                .pistonBehavior(PistonBehavior.BLOCK)
+                .mapColor(MapColor.BROWN)
+                .strength(0.3f)
+        )
+    )
+
     val RED_MINT = create("red_mint", MintBlock(MintType.RED, AbstractBlock.Settings.create().mapColor(MapColor.RED).noCollision().ticksRandomly().breakInstantly().sounds(CobblemonSounds.MINT_SOUNDS)))
     @JvmField
     val BLUE_MINT = create("blue_mint", MintBlock(MintType.BLUE, AbstractBlock.Settings.create().mapColor(MapColor.BLUE).noCollision().ticksRandomly().breakInstantly().sounds(CobblemonSounds.MINT_SOUNDS)))
