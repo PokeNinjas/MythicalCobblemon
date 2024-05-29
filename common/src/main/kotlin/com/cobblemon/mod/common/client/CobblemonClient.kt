@@ -229,7 +229,8 @@ object CobblemonClient {
             CobblemonBlocks.RAINBOW_DISPLAY_CASE,
             CobblemonBlocks.FUTURISTIC_DISPLAY_CASE,
             CobblemonBlocks.GLASS_DISPLAY_CASE,
-            CobblemonBlocks.NETHERITE_DISPLAY_CASE
+            CobblemonBlocks.NETHERITE_DISPLAY_CASE,
+            CobblemonBlocks.POKE_DISPLAY_CASE
         )
 
         this.createBoatModelLayers()
