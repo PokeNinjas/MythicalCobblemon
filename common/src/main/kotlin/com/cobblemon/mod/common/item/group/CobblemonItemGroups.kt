@@ -236,6 +236,7 @@ object CobblemonItemGroups {
         entries.add(CobblemonItems.GOLD_DISPLAY_CASE)
         entries.add(CobblemonItems.PURPLE_DISPLAY_CASE)
         entries.add(CobblemonItems.WOODEN_DISPLAY_CASE)
+        entries.add(CobblemonItems.RAINBOW_DISPLAY_CASE)
         entries.add(CobblemonItems.APRICORN_LOG)
         entries.add(CobblemonItems.APRICORN_WOOD)
         entries.add(CobblemonItems.STRIPPED_APRICORN_LOG)
