@@ -209,6 +209,7 @@ class EmptyPokeBallEntity : ThrownItemEntity, Poseable, WaterDragModifier, Sched
                 })
                 if(!eventTest) {
                     owner?.sendMessage(failMessage.red())
+                    return drop()
                 }
                 // END CUSTOM
 
