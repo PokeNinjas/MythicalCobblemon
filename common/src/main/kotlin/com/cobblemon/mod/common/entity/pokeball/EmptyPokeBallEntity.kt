@@ -219,6 +219,7 @@ class EmptyPokeBallEntity : ThrowableItemProjectile, PosableEntity, WaterDragMod
                 })
                 if(!eventTest) {
                     owner?.sendSystemMessage(failMessage.red())
+                    return drop()
                 }
                 // END CUSTOM
 
