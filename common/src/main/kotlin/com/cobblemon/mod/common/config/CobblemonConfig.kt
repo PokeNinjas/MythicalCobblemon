@@ -77,6 +77,10 @@ class CobblemonConfig {
     @NodeCategory(Category.Spawning)
     var enableSpawning = true
 
+    // CUSTOM: MythcialNetwork - For Kanto, disables registering spawners for players
+    @NodeCategory(Category.Spawning)
+    var enablePlayerSpawning = true
+
     @NodeCategory(Category.Spawning)
     var minimumDistanceBetweenEntities = 8.0
 

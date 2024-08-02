@@ -36,7 +36,8 @@ object CobblemonWorldSpawnerManager : SpawnerManager() {
 
     fun onPlayerLogin(player: ServerPlayer) {
         // Disables spawning
-        if (!Cobblemon.config.enableSpawning || server()?.gameRules?.getBoolean(CobblemonGameRules.DO_POKEMON_SPAWNING) == false) {
+        // CUSTOM: MythcialNetwork - For Kanto, disables registering spawners for players
+        if (!Cobblemon.config.enableSpawning || !Cobblemon.config.enablePlayerSpawning || server()?.gameRules?.getBoolean(CobblemonGameRules.DO_POKEMON_SPAWNING) == false) {
             return;
         }
 
