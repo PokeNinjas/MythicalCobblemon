@@ -20,6 +20,7 @@ import com.mojang.brigadier.Command
 import com.mojang.brigadier.CommandDispatcher
 import com.mojang.brigadier.context.CommandContext
 import com.mojang.brigadier.exceptions.SimpleCommandExceptionType
+import net.minecraft.command.argument.EntityArgumentType
 import net.minecraft.command.argument.Vec3ArgumentType
 import net.minecraft.server.command.CommandManager.argument
 import net.minecraft.server.command.CommandManager.literal
@@ -33,9 +34,12 @@ object SpawnPokemon {
     private const val NAME = "spawnpokemon"
     private const val PROPERTIES = "properties"
     private const val POSITION = "pos"
+    private const val PLAYER = "player"
     private const val ALIAS = "pokespawn"
     private const val AT_NAME = "${NAME}at"
     private const val AT_ALIAS = "${ALIAS}at"
+    private const val ATPLAYER_NAME = "${NAME}atplayer"
+    private const val ATPLAYER_ALIAS = "${ALIAS}atplayer"
     private val NO_SPECIES_EXCEPTION = SimpleCommandExceptionType(commandLang("${NAME}.nospecies").red())
     // ToDo maybe dedicated lang down the line but the errors shouldn't really happen unless people are really messing up
     private val INVALID_POS_EXCEPTION = SimpleCommandExceptionType(Text.literal("Invalid position").red())
@@ -58,10 +62,21 @@ object SpawnPokemon {
             )
         )
         dispatcher.register(argumentPositionCommand.alias(AT_ALIAS))
+
+        val argumentPlayerPositionCommand = dispatcher.register(literal(ATPLAYER_NAME)
+            .permission(CobblemonPermissions.SPAWN_POKEMON)
+            .then(argument(PLAYER, EntityArgumentType.player())
+                .then(argument(PROPERTIES, PokemonPropertiesArgumentType.properties())
+                    .executes { context -> val player = EntityArgumentType.getPlayer(context, PLAYER)
+                        execute(context, player.pos, player.world)
+                    }
+                )
+            )
+        )
+        dispatcher.register(argumentPlayerPositionCommand.alias(ATPLAYER_ALIAS))
     }
 
-    private fun execute(context: CommandContext<ServerCommandSource>, pos: Vec3d): Int {
-        val world = context.source.world
+    private fun execute(context: CommandContext<ServerCommandSource>, pos: Vec3d, world: World = context.source.world): Int {
         val blockPos = pos.toBlockPos()
         if (!World.isValid(blockPos)) {
             throw INVALID_POS_EXCEPTION.create()
