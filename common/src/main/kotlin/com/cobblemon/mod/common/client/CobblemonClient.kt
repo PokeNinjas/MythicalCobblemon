@@ -80,9 +80,14 @@ object CobblemonClient {
 
 
     val overlay: PartyOverlay by lazy { PartyOverlay() }
-    val battleOverlay: BattleOverlay by lazy { BattleOverlay() }
+    private val battleOverlayDelegate = lazy { BattleOverlay() }
+    val battleOverlay: BattleOverlay by battleOverlayDelegate
 
     fun onLogin() {
+        // In case this was a server switch via the proxy (a situation in which logout event isn't called) need to clear the battle
+        battle = null
+        if (battleOverlayDelegate.isInitialized()) battleOverlay.onLogout()
+
         clientPlayerData = ClientPlayerData()
         requests = ClientPlayerActionRequests()
         storage.onLogin()
