@@ -23,7 +23,9 @@ import com.mojang.brigadier.exceptions.SimpleCommandExceptionType
 import net.minecraft.commands.CommandSourceStack
 import net.minecraft.commands.Commands.argument
 import net.minecraft.commands.Commands.literal
+import net.minecraft.commands.arguments.EntityArgument
 import net.minecraft.commands.arguments.coordinates.Vec3Argument
+import net.minecraft.core.Vec3i
 import net.minecraft.network.chat.Component
 import net.minecraft.world.phys.Vec3
 import net.minecraft.world.level.Level
@@ -64,10 +66,10 @@ object SpawnPokemon {
 
         val argumentPlayerPositionCommand = dispatcher.register(literal(ATPLAYER_NAME)
             .permission(CobblemonPermissions.SPAWN_POKEMON)
-            .then(argument(PLAYER, EntityArgumentType.player())
+            .then(argument(PLAYER, EntityArgument.player())
                 .then(argument(PROPERTIES, PokemonPropertiesArgumentType.properties())
-                    .executes { context -> val player = EntityArgumentType.getPlayer(context, PLAYER)
-                        execute(context, player.pos, player.world)
+                    .executes { context -> val player = EntityArgument.getPlayer(context, PLAYER)
+                        execute(context, player.position(), player.level())
                     }
                 )
             )
@@ -75,7 +77,7 @@ object SpawnPokemon {
         dispatcher.register(argumentPlayerPositionCommand.alias(ATPLAYER_ALIAS))
     }
 
-    private fun execute(context: CommandContext<ServerCommandSource>, pos: Vec3d, world: World = context.source.world): Int {
+    private fun execute(context: CommandContext<CommandSourceStack>, pos: Vec3, world: Level = context.source.level): Int {
         val blockPos = pos.toBlockPos()
         if (!Level.isInSpawnableBounds(blockPos)) {
             throw INVALID_POS_EXCEPTION.create()

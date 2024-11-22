@@ -53,30 +53,26 @@ class PokemonItem : CobblemonItem(Properties().stacksTo(1).component(CobblemonIt
 
     // CUSTOM: MythicalNetwork - Scale item models, for MythicalRaids
     fun scale(stack: ItemStack): Float {
-        val nbt = stack.nbt ?: return 1.0F
-
-        return if (nbt.contains(DataKeys.POKEMON_ITEM_SCALE))
-            nbt.getFloat(DataKeys.POKEMON_ITEM_SCALE)
-        else 1.0F
+        return stack.get(CobblemonItemComponents.POKEMON_ITEM)?.let { it.scale ?: 1.0F } ?: 1.0F
     }
 
     companion object {
         @JvmOverloads
         @JvmStatic
-        fun from(pokemon: Pokemon, count: Int = 1, tint: Vector4f? = null): ItemStack = from(pokemon.species, pokemon.aspects, count, tint)
+        fun from(pokemon: Pokemon, count: Int = 1, tint: Vector4f? = null, scale: Float? = null): ItemStack = from(pokemon.species, pokemon.aspects, count, tint, scale)
 
         @JvmOverloads
         @JvmStatic
-        fun from(properties: PokemonProperties, count: Int = 1, tint: Vector4f? = null): ItemStack = from(properties.create(), count, tint)
+        fun from(properties: PokemonProperties, count: Int = 1, tint: Vector4f? = null, scale: Float? = null): ItemStack = from(properties.create(), count, tint, scale)
 
         @JvmOverloads
         @JvmStatic
-        fun from(species: Species, vararg aspects: String, count: Int = 1, tint: Vector4f? = null): ItemStack = from(species, aspects.toSet(), count, tint)
+        fun from(species: Species, vararg aspects: String, count: Int = 1, tint: Vector4f? = null, scale: Float? = null): ItemStack = from(species, aspects.toSet(), count, tint, scale)
 
         @JvmStatic
-        fun from(species: Species, aspects: Set<String>, count: Int = 1, tint: Vector4f? = null): ItemStack {
+        fun from(species: Species, aspects: Set<String>, count: Int = 1, tint: Vector4f? = null, scale: Float? = null): ItemStack {
             val stack = ItemStack(CobblemonItems.POKEMON_MODEL, count)
-            stack.set(CobblemonItemComponents.POKEMON_ITEM, PokemonItemComponent(species.resourceIdentifier, aspects, tint))
+            stack.set(CobblemonItemComponents.POKEMON_ITEM, PokemonItemComponent(species.resourceIdentifier, aspects, tint, scale))
             return stack
         }
     }
