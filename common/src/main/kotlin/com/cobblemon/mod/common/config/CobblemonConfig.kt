@@ -182,7 +182,7 @@ class CobblemonConfig {
     var displayEntityNameLabel = true
 
     @NodeCategory(Category.Pokemon)
-    var diplayNameForUnknownPokemon = false
+    var displayNameForUnknownPokemon = false
 
     @NodeCategory(Category.Pokemon)
     var displayEntityLabelsWhenCrouchingOnly  = true

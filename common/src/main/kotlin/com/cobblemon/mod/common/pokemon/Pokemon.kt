@@ -8,14 +8,14 @@
 
 package com.cobblemon.mod.common.pokemon
 
-import com.bedrockk.molang.runtime.struct.VariableStruct
-import com.bedrockk.molang.runtime.value.DoubleValue
 import com.cobblemon.mod.common.Cobblemon
 import com.cobblemon.mod.common.CobblemonNetwork.sendPacketToPlayers
 import com.cobblemon.mod.common.CobblemonSounds
 import com.cobblemon.mod.common.api.abilities.Abilities
 import com.cobblemon.mod.common.api.abilities.Ability
 import com.cobblemon.mod.common.api.abilities.AbilityPool
+import com.cobblemon.mod.common.api.battles.model.actor.BattleActor
+import com.cobblemon.mod.common.api.battles.model.actor.EntityBackedBattleActor
 import com.cobblemon.mod.common.api.data.ShowdownIdentifiable
 import com.cobblemon.mod.common.api.entity.PokemonSender
 import com.cobblemon.mod.common.api.events.CobblemonEvents
@@ -23,14 +23,25 @@ import com.cobblemon.mod.common.api.events.CobblemonEvents.FRIENDSHIP_UPDATED
 import com.cobblemon.mod.common.api.events.CobblemonEvents.POKEMON_FAINTED
 import com.cobblemon.mod.common.api.events.pokemon.*
 import com.cobblemon.mod.common.api.events.pokemon.healing.PokemonHealedEvent
-import com.cobblemon.mod.common.api.moves.*
+import com.cobblemon.mod.common.api.molang.MoLangFunctions.addPokemonFunctions
+import com.cobblemon.mod.common.api.molang.ObjectValue
+import com.cobblemon.mod.common.api.moves.BenchedMove
+import com.cobblemon.mod.common.api.moves.BenchedMoves
+import com.cobblemon.mod.common.api.moves.Move
+import com.cobblemon.mod.common.api.moves.MoveSet
+import com.cobblemon.mod.common.api.moves.MoveTemplate
+import com.cobblemon.mod.common.api.moves.Moves
 import com.cobblemon.mod.common.api.pokeball.PokeBalls
 import com.cobblemon.mod.common.api.pokemon.Natures
 import com.cobblemon.mod.common.api.pokemon.PokemonProperties
 import com.cobblemon.mod.common.api.pokemon.PokemonPropertyExtractor
 import com.cobblemon.mod.common.api.pokemon.PokemonSpecies
 import com.cobblemon.mod.common.api.pokemon.aspect.AspectProvider
-import com.cobblemon.mod.common.api.pokemon.evolution.*
+import com.cobblemon.mod.common.api.pokemon.evolution.Evolution
+import com.cobblemon.mod.common.api.pokemon.evolution.EvolutionController
+import com.cobblemon.mod.common.api.pokemon.evolution.EvolutionDisplay
+import com.cobblemon.mod.common.api.pokemon.evolution.EvolutionProxy
+import com.cobblemon.mod.common.api.pokemon.evolution.PreEvolution
 import com.cobblemon.mod.common.api.pokemon.experience.ExperienceGroup
 import com.cobblemon.mod.common.api.pokemon.experience.ExperienceSource
 import com.cobblemon.mod.common.api.pokemon.feature.SpeciesFeature
@@ -55,10 +66,12 @@ import com.cobblemon.mod.common.api.types.ElementalType
 import com.cobblemon.mod.common.api.types.ElementalTypes
 import com.cobblemon.mod.common.api.types.tera.TeraType
 import com.cobblemon.mod.common.api.types.tera.TeraTypes
-import com.cobblemon.mod.common.client.entity.PokemonClientDelegate
+import com.cobblemon.mod.common.battles.ActiveBattlePokemon
+import com.cobblemon.mod.common.battles.ShowdownInterpreter
 import com.cobblemon.mod.common.config.CobblemonConfig
 import com.cobblemon.mod.common.datafixer.CobblemonSchemas
 import com.cobblemon.mod.common.datafixer.CobblemonTypeReferences
+import com.cobblemon.mod.common.entity.PlatformType
 import com.cobblemon.mod.common.entity.npc.NPCEntity
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity
 import com.cobblemon.mod.common.entity.pokemon.effects.IllusionEffect
@@ -68,7 +81,11 @@ import com.cobblemon.mod.common.net.messages.client.pokemon.update.*
 import com.cobblemon.mod.common.net.serverhandling.storage.SendOutPokemonHandler.SEND_OUT_DURATION
 import com.cobblemon.mod.common.net.serverhandling.storage.SendOutPokemonHandler.THROW_DURATION
 import com.cobblemon.mod.common.pokeball.PokeBall
-import com.cobblemon.mod.common.pokemon.activestate.*
+import com.cobblemon.mod.common.pokemon.activestate.ActivePokemonState
+import com.cobblemon.mod.common.pokemon.activestate.InactivePokemonState
+import com.cobblemon.mod.common.pokemon.activestate.PokemonState
+import com.cobblemon.mod.common.pokemon.activestate.SentOutState
+import com.cobblemon.mod.common.pokemon.activestate.ShoulderedState
 import com.cobblemon.mod.common.pokemon.evolution.CobblemonEvolutionProxy
 import com.cobblemon.mod.common.pokemon.evolution.controller.ClientEvolutionController
 import com.cobblemon.mod.common.pokemon.evolution.controller.ServerEvolutionController
@@ -80,12 +97,19 @@ import com.cobblemon.mod.common.pokemon.properties.BattleCloneProperty
 import com.cobblemon.mod.common.pokemon.properties.UncatchableProperty
 import com.cobblemon.mod.common.pokemon.status.PersistentStatus
 import com.cobblemon.mod.common.pokemon.status.PersistentStatusContainer
-import com.cobblemon.mod.common.util.*
-import com.cobblemon.mod.common.util.codec.internal.*
+import com.cobblemon.mod.common.util.DataKeys
+import com.cobblemon.mod.common.util.cobblemonResource
 import com.cobblemon.mod.common.util.codec.internal.ClientPokemonP1
+import com.cobblemon.mod.common.util.codec.internal.ClientPokemonP2
+import com.cobblemon.mod.common.util.codec.internal.ClientPokemonP3
 import com.cobblemon.mod.common.util.codec.internal.PokemonP1
 import com.cobblemon.mod.common.util.codec.internal.PokemonP2
 import com.cobblemon.mod.common.util.codec.internal.PokemonP3
+import com.cobblemon.mod.common.util.lang
+import com.cobblemon.mod.common.util.playSoundServer
+import com.cobblemon.mod.common.util.server
+import com.cobblemon.mod.common.util.setPositionSafely
+import com.cobblemon.mod.common.util.toBlockPos
 import com.google.gson.JsonObject
 import com.mojang.datafixers.util.Pair
 import com.mojang.serialization.Codec
@@ -102,7 +126,9 @@ import kotlin.math.roundToInt
 import kotlin.random.Random
 import net.minecraft.core.BlockPos
 import net.minecraft.core.RegistryAccess
-import net.minecraft.nbt.*
+import net.minecraft.nbt.CompoundTag
+import net.minecraft.nbt.NbtOps
+import net.minecraft.nbt.StringTag
 import net.minecraft.network.RegistryFriendlyByteBuf
 import net.minecraft.network.chat.MutableComponent
 import net.minecraft.network.chat.contents.PlainTextContents
@@ -117,11 +143,16 @@ import net.minecraft.util.StringRepresentable
 import net.minecraft.world.InteractionHand
 import net.minecraft.world.entity.LivingEntity
 import net.minecraft.world.entity.player.Player
-import net.minecraft.world.entity.vehicle.Boat
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.level.Level
-import net.minecraft.world.level.block.*
+import net.minecraft.world.level.block.CactusBlock
+import net.minecraft.world.level.block.CampfireBlock
+import net.minecraft.world.level.block.FireBlock
+import net.minecraft.world.level.block.MagmaBlock
+import net.minecraft.world.level.block.SweetBerryBushBlock
+import net.minecraft.world.level.block.WitherRoseBlock
 import net.minecraft.world.phys.Vec3
+import kotlin.math.*
 
 enum class OriginalTrainerType : StringRepresentable {
     NONE, PLAYER, NPC;
@@ -536,10 +567,11 @@ open class Pokemon : ShowdownIdentifiable {
             SeasonFeatureHandler.updateSeason(this, level, position.toBlockPos())
             val entity = PokemonEntity(level, this)
             illusion?.start(entity)
-            val sentOut = entity.setPositionSafely(position)
+            val adjustedPosition = entity.getAjustedSendoutPosition(position)
+            val sentOut = entity.setPositionSafely(adjustedPosition)
             //If sendout failed, fall back
             if (!sentOut) {
-                entity.setPos(position.x, position.y, position.z)
+                entity.setPos(adjustedPosition.x, adjustedPosition.y, adjustedPosition.z)
             }
             mutation(entity)
             level.addFreshEntity(entity)
@@ -559,18 +591,6 @@ open class Pokemon : ShowdownIdentifiable {
         mutation: (PokemonEntity) -> Unit = {},
     ): CompletableFuture<PokemonEntity> {
 
-        // send out raft if over water
-        if (position != null) {
-            // todo if send out position is over water then add a raft entity to stand on
-            if (level.isWaterAt(
-                    BlockPos(
-                        position.x.toInt(),
-                        position.y.toInt() - 1,
-                        position.z.toInt()
-                    )
-                ) && this.species.types.all { it != ElementalTypes.WATER && it != ElementalTypes.FLYING }) {
-            }
-        }
 
         // Handle special case of shouldered Cobblemon
         if (this.state is ShoulderedState) {
@@ -590,6 +610,44 @@ open class Pokemon : ShowdownIdentifiable {
                 val owner = getOwnerEntity()
                 if (owner is LivingEntity) {
                     owner.swing(InteractionHand.MAIN_HAND, true)
+                    val spawnDirection: Vec3
+                    var spawnYaw: Double
+                    if (battleId != null) {
+                        // Look for an opposing opponent to face
+                        val battle = Cobblemon.battleRegistry.getBattle(battleId)
+                        val activeBattlePokemon = battle?.activePokemon?.firstOrNull { activePokemon -> activePokemon.battlePokemon?.originalPokemon?.uuid == it.pokemon.uuid }
+                        val opposingActiveBattlePokemon = (activeBattlePokemon?.getOppositeOpponent() as ActiveBattlePokemon?)
+                        var opposingEntityPos = opposingActiveBattlePokemon?.battlePokemon?.entity?.position()
+                        if (opposingEntityPos == null) {
+                            // Can't find the opposing pokemon, it probably doesn't exist yet. Try to calculate the opponent's sendout position
+                            val opposingEntityBattleActor = battle?.actors?.first { battleActor ->
+                                battleActor is EntityBackedBattleActor<*> && battleActor.entity != null && battleActor.entity?.uuid !== owner.uuid
+                            } as EntityBackedBattleActor<*>
+                            if (activeBattlePokemon != null) {
+                                opposingEntityPos = ShowdownInterpreter.getSendoutPosition(battle, activeBattlePokemon, opposingEntityBattleActor as BattleActor)
+                            }
+                            if (opposingEntityPos == null) {
+                                // Sendout calculation failed, fallback to using the opposing actor's position
+                                opposingEntityPos = opposingEntityBattleActor.initialPos
+                            }
+                        }
+                        spawnDirection = opposingEntityPos?.subtract(it.position()) ?: position.subtract(owner.position())
+                        val battleYaw = (atan2(spawnDirection.z, spawnDirection.x) * 180.0 / PI) - 90.0
+                        spawnYaw = battleYaw
+                    } else {
+                        // Non-battle send out, face the trainer
+                        spawnDirection = position.subtract(owner.position())
+                        spawnYaw = atan2(spawnDirection.z, spawnDirection.x) * 180.0 / PI + 102.5
+                    }
+
+                    // In some edge cases, I suspect we are producing NaN's here. This actually leads into a really big problem.
+                    // Why? Because on tick, LivingEntity tries to bring rotations back within one loop around 0-360 using while loops.
+                    // NaN resists arithmetic, so the while loops run forever and the server thread will hang trying to normalize
+                    // this angle. Better to catch it here and correct it. Y'know. If this is actually the problem. I believe!
+                    if (!spawnYaw.isFinite()) {
+                        spawnYaw = 0.0
+                    }
+                    it.entityData.set(PokemonEntity.SPAWN_DIRECTION, spawnYaw.toFloat())
                 }
                 if (owner != null) {
                     level.playSoundServer(owner.position(), CobblemonSounds.POKE_BALL_THROW, volume = 0.6F)
@@ -598,6 +656,10 @@ open class Pokemon : ShowdownIdentifiable {
                 it.phasingTargetId = source.id
                 it.beamMode = 1
                 it.battleId = battleId
+
+                if (it.battleId == null) {
+                   it.platform = PlatformType.NONE
+                }
 
                 it.after(seconds = THROW_DURATION) {
                     it.phasingTargetId = -1
@@ -1496,6 +1558,9 @@ open class Pokemon : ShowdownIdentifiable {
     private val observables = mutableListOf<Observable<*>>()
     val anyChangeObservable = SimpleObservable<Pokemon>()
 
+    val struct = ObjectValue<Pokemon>(this)
+        .addPokemonFunctions(this)
+
     fun markFeatureDirty(feature: SpeciesFeature) {
         _features.emit(feature)
     }
@@ -1503,19 +1568,6 @@ open class Pokemon : ShowdownIdentifiable {
     fun getAllObservables() = observables.asIterable()
     /** Returns an [Observable] that emits Unit whenever any change is made to this Pokémon. The change itself is not included. */
     fun getChangeObservable(): Observable<Pokemon> = anyChangeObservable
-
-    fun writeVariables(struct: VariableStruct) {
-        struct.setDirectly("level", DoubleValue(level.toDouble()))
-        struct.setDirectly("max_hp", DoubleValue(maxHealth.toDouble()))
-        struct.setDirectly("current_hp", DoubleValue(currentHealth.toDouble()))
-        struct.setDirectly("friendship", DoubleValue(friendship.toDouble()))
-        struct.setDirectly("shiny", DoubleValue(shiny))
-        for (stat in Stats.PERMANENT) {
-            struct.setDirectly("ev_${stat.showdownId}", DoubleValue(evs.getOrDefault(stat).toDouble()))
-            struct.setDirectly("iv_${stat.showdownId}", DoubleValue(ivs.getOrDefault(stat).toDouble()))
-            struct.setDirectly("stat_${stat.showdownId}", DoubleValue(getStat(stat).toDouble()))
-        }
-    }
 
     /**
      * Used for when 'this' would be called in leaking context.
