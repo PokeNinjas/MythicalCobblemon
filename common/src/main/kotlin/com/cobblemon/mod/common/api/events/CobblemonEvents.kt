@@ -8,11 +8,7 @@
 
 package com.cobblemon.mod.common.api.events
 
-import com.cobblemon.mod.common.api.events.battles.BattleFaintedEvent
-import com.cobblemon.mod.common.api.events.battles.BattleFledEvent
-import com.cobblemon.mod.common.api.events.battles.BattleStartedPostEvent
-import com.cobblemon.mod.common.api.events.battles.BattleStartedPreEvent
-import com.cobblemon.mod.common.api.events.battles.BattleVictoryEvent
+import com.cobblemon.mod.common.api.events.battles.*
 import com.cobblemon.mod.common.api.events.battles.instruction.MegaEvolutionEvent
 import com.cobblemon.mod.common.api.events.battles.instruction.TerastallizationEvent
 import com.cobblemon.mod.common.api.events.battles.instruction.ZMoveUsedEvent
@@ -94,6 +90,9 @@ object CobblemonEvents {
     val BATTLE_VICTORY = EventObservable<BattleVictoryEvent>()
     @JvmField
     val BATTLE_FAINTED = EventObservable<BattleFaintedEvent>()
+    // CUSTOM: MythicalNetwork - For MythicalNPCs
+    @JvmField
+    val BATTLE_END = EventObservable<BattleEndEvent>()
 
     // instructions
     @JvmField

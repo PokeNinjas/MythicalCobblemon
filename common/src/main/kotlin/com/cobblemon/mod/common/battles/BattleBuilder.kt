@@ -295,6 +295,7 @@ object BattleBuilder {
             ).ifSuccessful {
                 if (!cloneParties) {
                     pokemonEntity.battleId = it.battleId
+                    wildActor.entity?.battleId = it.battleId
                 }
                 result = SuccessfulBattleStart(it)
             }

@@ -20,6 +20,7 @@ import com.cobblemon.mod.common.api.battles.model.actor.BattleActor
 import com.cobblemon.mod.common.api.battles.model.actor.EntityBackedBattleActor
 import com.cobblemon.mod.common.api.battles.model.actor.FleeableBattleActor
 import com.cobblemon.mod.common.api.events.CobblemonEvents
+import com.cobblemon.mod.common.api.events.battles.BattleEndEvent
 import com.cobblemon.mod.common.api.events.battles.BattleFledEvent
 import com.cobblemon.mod.common.api.molang.MoLangFunctions.asMoLangValue
 import com.cobblemon.mod.common.api.net.NetworkPacket
@@ -243,6 +244,9 @@ open class PokemonBattle(
     fun end() {
         ended = true
         this.actors.forEach { actor ->
+            // CUSTOM: MythicalNetwork - For MythicalNPCs
+            CobblemonEvents.BATTLE_END.post(BattleEndEvent(actor))
+
             val faintedPokemons = actor.pokemonList.filter { it.health <= 0 }
             actor.getSide().getOppositeSide().actors.forEach { opponent ->
                 val opponentNonFaintedPokemons = opponent.pokemonList.filter { it.health > 0 }
