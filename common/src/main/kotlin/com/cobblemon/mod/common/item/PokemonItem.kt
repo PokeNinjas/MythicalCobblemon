@@ -59,15 +59,19 @@ class PokemonItem : CobblemonItem(Properties().stacksTo(1).component(CobblemonIt
     companion object {
         @JvmOverloads
         @JvmStatic
-        fun from(pokemon: Pokemon, count: Int = 1, tint: Vector4f? = null): ItemStack = from(pokemon, count, tint, null)
+        fun from(pokemon: Pokemon, count: Int = 1, tint: Vector4f? = null): ItemStack = from(pokemon.species, pokemon.aspects, count, tint, null)
 
         @JvmOverloads
         @JvmStatic
-        fun from(pokemon: Pokemon, count: Int = 1, tint: Vector4f? = null, scale: Float? = null): ItemStack = from(pokemon.species, pokemon.aspects, count, tint, scale)
+        fun from(pokemon: Pokemon, count: Int = 1, tint: Vector4f? = null, scale: Float): ItemStack = from(pokemon.species, pokemon.aspects, count, tint, scale)
 
         @JvmOverloads
         @JvmStatic
-        fun from(properties: PokemonProperties, count: Int = 1, tint: Vector4f? = null, scale: Float? = null): ItemStack = from(properties.create(), count, tint, scale)
+        fun from(properties: PokemonProperties, count: Int = 1, tint: Vector4f? = null): ItemStack = from(properties.create(), count, tint)
+
+        @JvmOverloads
+        @JvmStatic
+        fun from(properties: PokemonProperties, count: Int = 1, tint: Vector4f? = null, scale: Float): ItemStack = from(properties.create(), count, tint, scale)
 
         @JvmOverloads
         @JvmStatic
