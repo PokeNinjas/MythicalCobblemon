@@ -102,10 +102,6 @@ object CobblemonEvents {
     @JvmField
     val ZPOWER_USED = EventObservable<ZMoveUsedEvent>()
 
-    // CUSTOM: MythicalNetwork - For MythicalNPCs
-    @JvmField
-    val BATTLE_END = EventObservable<BattleEndEvent>()
-
     @JvmField
     val POKEMON_SENT_PRE = CancelableObservable<PokemonSentPreEvent>()
     @JvmField

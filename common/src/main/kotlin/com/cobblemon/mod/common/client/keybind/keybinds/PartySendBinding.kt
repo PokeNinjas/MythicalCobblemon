@@ -110,10 +110,6 @@ object PartySendBinding : CobblemonBlockingKeyBinding(
                 // CUSTOM: MythicalNetwork - For MythicalNPCs
                 sendToServer(BattleChallengePacket(entity.id, pokemon.uuid, BattleFormat.GEN_9_SINGLES))
             }
-            else -> {
-                // CUSTOM: MythicalNetwork - For MythicalNPCs
-                sendPacketToServer(BattleChallengePacket(entity.id, pokemon.uuid))
-            }
         }
     }
 
