@@ -3,6 +3,7 @@
   "maxPokemonLevel": 100,
   "maxPokemonFriendship": 255,
   "announceDropItems": true,
+  "defaultDropItemMethod": "ON_ENTITY",
   "ambientPokemonCryTicks": 1080,
   "defaultBoxCount": 30,
   "pokemonSaveIntervalSeconds": 30,
@@ -72,7 +73,7 @@
   "walkingInBattleAnimations": false,
   "battleWildMaxDistance": 12.0,
   "tradeMaxDistance": 12.0,
-  "BattlePvPMaxDistance": 32.0,
+  "battlePvPMaxDistance": 32.0,
   "battleSpectateMaxDistance": 64.0,
   "entityInteractionMaxDistance": 64.0,
   "enableDebugKeys": false
