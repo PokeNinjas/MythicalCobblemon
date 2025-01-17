@@ -11,9 +11,9 @@ package com.cobblemon.mod.common.api.events.pokemon
 import com.cobblemon.mod.common.api.events.Cancelable
 import com.cobblemon.mod.common.entity.pokeball.EmptyPokeBallEntity
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity
-import net.minecraft.entity.Entity
-import net.minecraft.text.MutableText
-import net.minecraft.text.Text
+import net.minecraft.network.chat.Component
+import net.minecraft.network.chat.MutableComponent
+import net.minecraft.world.entity.Entity
 
 /**
  * CUSTOM: MythicalNetwork - For MythicalRadars/MythicalCobbled
@@ -28,17 +28,17 @@ data class PokeballCaptureConditionsEvent(
     val pokeBallEntity: EmptyPokeBallEntity,
     val owner: Entity?
 ) : Cancelable() {
-    private var failMessage: MutableText? = null
+    private var failMessage: MutableComponent? = null
 
-    fun setFailMessage(message: MutableText) {
+    fun setFailMessage(message: MutableComponent) {
         failMessage = message
     }
 
-    fun getFailMessage(): MutableText? {
+    fun getFailMessage(): MutableComponent? {
         return failMessage
     }
 
-    fun getFailMessageOrDefault(): MutableText {
-        return failMessage ?: Text.of("You can't catch this pokemon!") as MutableText
+    fun getFailMessageOrDefault(): MutableComponent {
+        return failMessage ?: Component.literal("You can't catch this pokemon!") as MutableComponent
     }
 }

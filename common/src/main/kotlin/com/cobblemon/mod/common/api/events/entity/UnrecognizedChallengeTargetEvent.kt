@@ -9,8 +9,8 @@
 package com.cobblemon.mod.common.api.events.entity
 
 import com.cobblemon.mod.common.api.events.Cancelable
-import net.minecraft.entity.Entity
-import net.minecraft.server.network.ServerPlayerEntity
+import net.minecraft.server.level.ServerPlayer
+import net.minecraft.world.entity.Entity
 import java.util.*
 
 /**
@@ -22,4 +22,4 @@ import java.util.*
  * @param player The player that attempted to challenge the entity.
  * @param leadingPokemon The UUID of the pokemon that the player was leading with.
  */
-class UnrecognizedChallengeTargetEvent(val targetedEntity: Entity, val player: ServerPlayerEntity, val leadingPokemon: UUID) : Cancelable()
+class UnrecognizedChallengeTargetEvent(val targetedEntity: Entity, val player: ServerPlayer, val leadingPokemon: UUID) : Cancelable()

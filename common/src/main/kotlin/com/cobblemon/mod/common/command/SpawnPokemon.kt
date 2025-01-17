@@ -20,14 +20,15 @@ import com.mojang.brigadier.Command
 import com.mojang.brigadier.CommandDispatcher
 import com.mojang.brigadier.context.CommandContext
 import com.mojang.brigadier.exceptions.SimpleCommandExceptionType
-import net.minecraft.command.argument.EntityArgumentType
-import net.minecraft.command.argument.Vec3ArgumentType
-import net.minecraft.server.command.CommandManager.argument
-import net.minecraft.server.command.CommandManager.literal
-import net.minecraft.server.command.ServerCommandSource
-import net.minecraft.text.Text
-import net.minecraft.util.math.Vec3d
-import net.minecraft.world.World
+import net.minecraft.commands.CommandSourceStack
+import net.minecraft.commands.Commands.argument
+import net.minecraft.commands.Commands.literal
+import net.minecraft.commands.arguments.EntityArgument
+import net.minecraft.commands.arguments.coordinates.Vec3Argument
+import net.minecraft.core.Vec3i
+import net.minecraft.network.chat.Component
+import net.minecraft.world.phys.Vec3
+import net.minecraft.world.level.Level
 
 object SpawnPokemon {
 
@@ -42,10 +43,10 @@ object SpawnPokemon {
     private const val ATPLAYER_ALIAS = "${ALIAS}atplayer"
     private val NO_SPECIES_EXCEPTION = SimpleCommandExceptionType(commandLang("${NAME}.nospecies").red())
     // ToDo maybe dedicated lang down the line but the errors shouldn't really happen unless people are really messing up
-    private val INVALID_POS_EXCEPTION = SimpleCommandExceptionType(Text.literal("Invalid position").red())
-    private val FAILED_SPAWN_EXCEPTION = SimpleCommandExceptionType(Text.literal("Unable to spawn at the given position").red())
+    private val INVALID_POS_EXCEPTION = SimpleCommandExceptionType(Component.literal("Invalid position").red())
+    private val FAILED_SPAWN_EXCEPTION = SimpleCommandExceptionType(Component.literal("Unable to spawn at the given position").red())
 
-    fun register(dispatcher : CommandDispatcher<ServerCommandSource>) {
+    fun register(dispatcher : CommandDispatcher<CommandSourceStack>) {
         val contextPositionCommand = dispatcher.register(literal(NAME)
             .permission(CobblemonPermissions.SPAWN_POKEMON)
             .then(argument(PROPERTIES, PokemonPropertiesArgumentType.properties())
@@ -55,9 +56,9 @@ object SpawnPokemon {
         dispatcher.register(contextPositionCommand.alias(ALIAS))
         val argumentPositionCommand = dispatcher.register(literal(AT_NAME)
             .permission(CobblemonPermissions.SPAWN_POKEMON)
-            .then(argument(POSITION, Vec3ArgumentType.vec3())
+            .then(argument(POSITION, Vec3Argument.vec3())
                 .then(argument(PROPERTIES, PokemonPropertiesArgumentType.properties())
-                    .executes { context -> execute(context, Vec3ArgumentType.getVec3(context, POSITION)) }
+                    .executes { context -> execute(context, Vec3Argument.getVec3(context, POSITION)) }
                 )
             )
         )
@@ -65,10 +66,10 @@ object SpawnPokemon {
 
         val argumentPlayerPositionCommand = dispatcher.register(literal(ATPLAYER_NAME)
             .permission(CobblemonPermissions.SPAWN_POKEMON)
-            .then(argument(PLAYER, EntityArgumentType.player())
+            .then(argument(PLAYER, EntityArgument.player())
                 .then(argument(PROPERTIES, PokemonPropertiesArgumentType.properties())
-                    .executes { context -> val player = EntityArgumentType.getPlayer(context, PLAYER)
-                        execute(context, player.pos, player.world)
+                    .executes { context -> val player = EntityArgument.getPlayer(context, PLAYER)
+                        execute(context, player.position(), player.level())
                     }
                 )
             )
@@ -76,9 +77,9 @@ object SpawnPokemon {
         dispatcher.register(argumentPlayerPositionCommand.alias(ATPLAYER_ALIAS))
     }
 
-    private fun execute(context: CommandContext<ServerCommandSource>, pos: Vec3d, world: World = context.source.world): Int {
+    private fun execute(context: CommandContext<CommandSourceStack>, pos: Vec3, world: Level = context.source.level): Int {
         val blockPos = pos.toBlockPos()
-        if (!World.isValid(blockPos)) {
+        if (!Level.isInSpawnableBounds(blockPos)) {
             throw INVALID_POS_EXCEPTION.create()
         }
         val properties = PokemonPropertiesArgumentType.getPokemonProperties(context, PROPERTIES)
@@ -86,9 +87,9 @@ object SpawnPokemon {
             throw NO_SPECIES_EXCEPTION.create()
         }
         val pokemonEntity = properties.createEntity(world)
-        pokemonEntity.refreshPositionAndAngles(pos.x, pos.y, pos.z, pokemonEntity.yaw, pokemonEntity.pitch)
-        pokemonEntity.dataTracker.set(PokemonEntity.SPAWN_DIRECTION, pokemonEntity.random.nextFloat() * 360F)
-        if (world.spawnEntity(pokemonEntity)) {
+        pokemonEntity.moveTo(pos.x, pos.y, pos.z, pokemonEntity.yRot, pokemonEntity.xRot)
+        pokemonEntity.entityData.set(PokemonEntity.SPAWN_DIRECTION, pokemonEntity.random.nextFloat() * 360F)
+        if (world.addFreshEntity(pokemonEntity)) {
             return Command.SINGLE_SUCCESS
         }
         throw FAILED_SPAWN_EXCEPTION.create()
