@@ -56,6 +56,15 @@ class PokemonItem : CobblemonItem(Properties().stacksTo(1).component(CobblemonIt
         return stack.get(CobblemonItemComponents.POKEMON_ITEM)?.let { it.scale ?: 1.0F } ?: 1.0F
     }
 
+    // CUSTOM: MythicalNetwork - Scale item models, for MythicalRaids
+    fun scale(stack: ItemStack): Float {
+        val nbt = stack.nbt ?: return 1.0F
+
+        return if (nbt.contains(DataKeys.POKEMON_ITEM_SCALE))
+            nbt.getFloat(DataKeys.POKEMON_ITEM_SCALE)
+        else 1.0F
+    }
+
     companion object {
         @JvmOverloads
         @JvmStatic

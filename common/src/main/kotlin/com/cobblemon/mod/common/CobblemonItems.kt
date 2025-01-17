@@ -312,6 +312,7 @@ object CobblemonItems : PlatformRegistry<Registry<Item>, ResourceKey<Registry<It
     val NEON_RED_DISPLAY_CASE = blockItem("neon_red_display_case", CobblemonBlocks.NEON_RED_DISPLAY_CASE)
     @JvmField
     val NEON_YELLOW_DISPLAY_CASE = blockItem("neon_yellow_display_case", CobblemonBlocks.NEON_YELLOW_DISPLAY_CASE)
+
     @JvmField
     val LECTERN = blockItem("lectern", CobblemonBlocks.LECTERN)
 
