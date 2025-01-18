@@ -1,9 +1,8 @@
 {
-  "lastSavedVersion": "1.6.0",
+  "lastSavedVersion": "1.6.0.1",
   "maxPokemonLevel": 100,
   "maxPokemonFriendship": 255,
   "announceDropItems": true,
-  "defaultDropItemMethod": "ON_ENTITY",
   "ambientPokemonCryTicks": 1080,
   "defaultBoxCount": 30,
   "pokemonSaveIntervalSeconds": 30,
