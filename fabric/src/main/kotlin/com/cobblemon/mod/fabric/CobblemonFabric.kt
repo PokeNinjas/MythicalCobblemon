@@ -89,6 +89,7 @@ import net.minecraft.world.level.ItemLike
 import net.minecraft.world.level.biome.Biome
 import net.minecraft.world.level.levelgen.GenerationStep
 import net.minecraft.world.level.levelgen.placement.PlacedFeature
+import java.util.concurrent.RejectedExecutionException
 
 object CobblemonFabric : CobblemonImplementation {
 
@@ -140,7 +141,13 @@ object CobblemonFabric : CobblemonImplementation {
         ServerTickEvents.START_SERVER_TICK.register { server -> PlatformEvents.SERVER_TICK_PRE.post(ServerTickEvent.Pre(server)) }
         ServerTickEvents.END_SERVER_TICK.register { server -> PlatformEvents.SERVER_TICK_POST.post(ServerTickEvent.Post(server)) }
         ServerPlayConnectionEvents.JOIN.register { handler, _, server -> server.executeIfPossible { PlatformEvents.SERVER_PLAYER_LOGIN.post(ServerPlayerEvent.Login(handler.player)) } }
-        ServerPlayConnectionEvents.DISCONNECT.register { handler, server -> server.executeIfPossible { PlatformEvents.SERVER_PLAYER_LOGOUT.post(ServerPlayerEvent.Logout(handler.player)) } }
+        ServerPlayConnectionEvents.DISCONNECT.register { handler, server ->
+            try {
+                server.executeIfPossible { PlatformEvents.SERVER_PLAYER_LOGOUT.post(ServerPlayerEvent.Logout(handler.player)) }
+            } catch (e: RejectedExecutionException) {
+                Cobblemon.LOGGER.error("Failed to handle player ${handler.player.name}'s disconnect event due to server shutdown! This doesn't seem right..?", e)
+            }
+        }
         ServerLivingEntityEvents.ALLOW_DEATH.register { entity, _, _ ->
             if (entity is ServerPlayer) {
                 PlatformEvents.PLAYER_DEATH.postThen(
