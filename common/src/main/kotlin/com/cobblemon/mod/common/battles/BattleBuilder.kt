@@ -113,16 +113,13 @@ object BattleBuilder {
         player2Actor.battleTheme = player1.getBattleTheme()
 
         return if (errors.isEmpty) {
-            var result: BattleStartResult = errors
             BattleRegistry.startBattle(
                 battleFormat = battleFormat,
                 side1 = BattleSide(player1Actor),
                 side2 = BattleSide(player2Actor)
             ).ifSuccessful {
                 it.battlePartyStores.addAll(battlePartyStores)
-                result = SuccessfulBattleStart(it)
             }
-            result
         } else {
             errors
         }
@@ -214,13 +211,12 @@ object BattleBuilder {
 
         return if (errors.isEmpty) {
             BattleRegistry.startBattle(
-                    battleFormat = battleFormat,
-                    side1 = BattleSide(playerActors[0], playerActors[1]),
-                    side2 = BattleSide(playerActors[2], playerActors[3])
+                battleFormat = battleFormat,
+                side1 = BattleSide(playerActors[0], playerActors[1]),
+                side2 = BattleSide(playerActors[2], playerActors[3])
             ).ifSuccessful {
                 it.battlePartyStores.addAll(battlePartyStores)
             }
-            errors
         } else {
             errors
         }
@@ -287,7 +283,6 @@ object BattleBuilder {
         playerActor.battleTheme = pokemonEntity.getBattleTheme()
 
         return if (errors.isEmpty) {
-            var result: BattleStartResult = errors
             BattleRegistry.startBattle(
                 battleFormat = battleFormat,
                 side1 = BattleSide(playerActor),
@@ -297,9 +292,7 @@ object BattleBuilder {
                     pokemonEntity.battleId = it.battleId
                     wildActor.entity?.battleId = it.battleId
                 }
-                result = SuccessfulBattleStart(it)
             }
-            result
         } else {
             errors
         }
@@ -368,16 +361,13 @@ object BattleBuilder {
         playerActor.battleTheme = npcEntity.getBattleTheme()
 
         return if (errors.isEmpty) {
-            var result: BattleStartResult = errors
             BattleRegistry.startBattle(
                 battleFormat = battleFormat,
                 side1 = BattleSide(playerActor),
                 side2 = BattleSide(npcActor)
             ).ifSuccessful { battle ->
                 npcEntity.entityData.update(NPCEntity.BATTLE_IDS) { it + battle.battleId }
-                result = SuccessfulBattleStart(battle)
             }
-            result
         } else {
             errors
         }

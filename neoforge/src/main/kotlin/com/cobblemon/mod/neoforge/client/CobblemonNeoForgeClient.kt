@@ -26,6 +26,8 @@ import com.cobblemon.mod.common.particle.SnowstormParticleType
 import com.cobblemon.mod.common.util.cobblemonResource
 import com.cobblemon.mod.common.util.isUsingPokedex
 import com.mojang.blaze3d.vertex.DefaultVertexFormat
+import java.util.concurrent.CompletableFuture
+import java.util.function.Supplier
 import net.minecraft.client.Minecraft
 import net.minecraft.client.color.block.BlockColor
 import net.minecraft.client.color.item.ItemColor
@@ -54,12 +56,17 @@ import net.minecraft.world.level.block.entity.BlockEntity
 import net.minecraft.world.level.block.entity.BlockEntityType
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent
 import net.neoforged.neoforge.client.ClientHooks
-import net.neoforged.neoforge.client.event.*
+import net.neoforged.neoforge.client.event.ClientTickEvent
+import net.neoforged.neoforge.client.event.ModelEvent
+import net.neoforged.neoforge.client.event.RegisterClientReloadListenersEvent
+import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent
+import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent
+import net.neoforged.neoforge.client.event.RegisterShadersEvent
+import net.neoforged.neoforge.client.event.RenderGuiEvent
+import net.neoforged.neoforge.client.event.RenderGuiLayerEvent
 import net.neoforged.neoforge.client.gui.VanillaGuiLayers
 import net.neoforged.neoforge.common.NeoForge
 import thedarkcolour.kotlinforforge.neoforge.forge.MOD_BUS
-import java.util.concurrent.CompletableFuture
-import java.util.function.Supplier
 
 object CobblemonNeoForgeClient : CobblemonClientImplementation {
 
@@ -192,9 +199,10 @@ object CobblemonNeoForgeClient : CobblemonClientImplementation {
         val client = Minecraft.getInstance()
         val player = client.player
         if (player != null) {
-            if (player.isUsingPokedex()) {
+            if (player.isUsingPokedex() || pokedexUsageContext.transitionIntervals > 0) {
+                if (!player.isUsingItem) pokedexUsageContext.resetState(false)
                 pokedexUsageContext.renderUpdate(event.guiGraphics, event.partialTick)
-            } else if (pokedexUsageContext.transitionIntervals > 0) {
+            } else {
                 pokedexUsageContext.resetState()
             }
         }
@@ -224,9 +232,9 @@ object CobblemonNeoForgeClient : CobblemonClientImplementation {
     private fun attemptModCompat() {
         // They have no Maven nor are they published on Modrinth :(
         // Good thing is they are a copy pasta adapted to Forge :D
-        if (Cobblemon.implementation.isModInstalled("dynamiclightsreforged")) {
+        if (Cobblemon.implementation.isModInstalled("dynamiclightsreforged") || Cobblemon.implementation.isModInstalled("sodiumdynamiclights")) {
             LambDynamicLightsCompat.hookCompat()
-            Cobblemon.LOGGER.info("Dynamic Lights Reforged compatibility enabled")
+            Cobblemon.LOGGER.info("Dynamic Lights compatibility enabled")
         }
     }
 }

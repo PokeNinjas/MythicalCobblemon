@@ -9,6 +9,7 @@
 package com.cobblemon.mod.common.api.events
 
 import com.cobblemon.mod.common.api.events.battles.*
+import com.cobblemon.mod.common.api.events.battles.instruction.FormeChangeEvent
 import com.cobblemon.mod.common.api.events.battles.instruction.MegaEvolutionEvent
 import com.cobblemon.mod.common.api.events.battles.instruction.TerastallizationEvent
 import com.cobblemon.mod.common.api.events.battles.instruction.ZMoveUsedEvent
@@ -101,6 +102,8 @@ object CobblemonEvents {
     val TERASTALLIZATION = EventObservable<TerastallizationEvent>()
     @JvmField
     val ZPOWER_USED = EventObservable<ZMoveUsedEvent>()
+    @JvmField
+    val FORME_CHANGE = EventObservable<FormeChangeEvent>()
 
     @JvmField
     val POKEMON_SENT_PRE = CancelableObservable<PokemonSentPreEvent>()
@@ -198,7 +201,11 @@ object CobblemonEvents {
     @JvmField
     val POKEMON_SEEN = EventObservable<PokemonSeenEvent>()
     @JvmField
-    val POKEDEX_DATA_CHANGED = EventObservable<PokedexDataChangedEvent>()
+    val POKEMON_ASPECTS_CHANGED = EventObservable<PokemonAspectsChangedEvent>()
+    @JvmField
+    val POKEDEX_DATA_CHANGED_PRE = CancelableObservable<PokedexDataChangedEvent.Pre>()
+    @JvmField
+    val POKEDEX_DATA_CHANGED_POST = EventObservable<PokedexDataChangedEvent.Post>()
 
     // Fishing
     @JvmField

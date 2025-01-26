@@ -78,9 +78,6 @@
         {
             "id": "floatzel-4",
             "pokemon": "floatzel",
-            "presets": [
-                "freshwater"
-            ],
             "type": "pokemon",
             "context": "fishing",
             "bucket": "common",
@@ -90,14 +87,14 @@
                 {
                     "multiplier": 3.0,
                     "condition": {
-                        "minLureLevel": "2",
-                        "maxLureLevel": "2"
+                        "minLureLevel": 2,
+                        "maxLureLevel": 2
                     }
                 },
                 {
                     "multiplier": 5.0,
                     "condition": {
-                        "minLureLevel": "3"
+                        "minLureLevel": 3
                     }
                 }
             ],
