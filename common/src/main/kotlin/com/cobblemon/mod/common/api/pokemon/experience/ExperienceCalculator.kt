@@ -34,10 +34,15 @@ object StandardExperienceCalculator : ExperienceCalculator {
         val nonOtBonus = if (battlePokemon.effectedPokemon.originalTrainerType == OriginalTrainerType.PLAYER &&
                 battlePokemon.effectedPokemon.originalTrainer.equals(battlePokemon.actor.uuid.toString())) 1.0 else 1.5
         val luckyEggMultiplier = if (battlePokemon.effectedPokemon.heldItemNoCopy().`is`(CobblemonItemTags.LUCKY_EGG)) Cobblemon.config.luckyEggMultiplier else 1.0
-        val evolutionMultiplier = if (battlePokemon.effectedPokemon.evolutionProxy.server().any { evolution ->
-            val requirements = evolution.requirements.asSequence()
-            requirements.any { it is LevelRequirement } && requirements.all { it.check(battlePokemon.effectedPokemon) }
-        }) 1.2 else 1.0
+        var evolutionMultiplier = 1.0
+        try {
+            evolutionMultiplier = if (battlePokemon.effectedPokemon.evolutionProxy.server().any { evolution ->
+                    val requirements = evolution.requirements.asSequence()
+                    requirements.any { it is LevelRequirement } && requirements.all { it.check(battlePokemon.effectedPokemon) }
+                }) 1.2 else 1.0
+        } catch (e: Exception) {
+            Cobblemon.LOGGER.error("Error calculating evolution multiplier", e)
+        }
         val affectionMultiplier = if (battlePokemon.effectedPokemon.friendship >= 220) 1.2 else 1.0
         // that's us!
         val gimmickBoost = Cobblemon.config.experienceMultiplier
