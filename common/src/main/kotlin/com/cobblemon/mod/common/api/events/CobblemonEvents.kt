@@ -17,6 +17,7 @@ import com.cobblemon.mod.common.api.events.berry.BerryHarvestEvent
 import com.cobblemon.mod.common.api.events.berry.BerryMutationOfferEvent
 import com.cobblemon.mod.common.api.events.berry.BerryMutationResultEvent
 import com.cobblemon.mod.common.api.events.berry.BerryYieldCalculationEvent
+import com.cobblemon.mod.common.api.events.drops.HeldItemDroppedEvent
 import com.cobblemon.mod.common.api.events.drops.LootDroppedEvent
 import com.cobblemon.mod.common.api.events.entity.*
 import com.cobblemon.mod.common.api.events.farming.ApricornHarvestEvent
@@ -170,6 +171,8 @@ object CobblemonEvents {
 
     @JvmField
     val LOOT_DROPPED = CancelableObservable<LootDroppedEvent>()
+    @JvmField
+    val HELD_ITEM_DROPPED = CancelableObservable<HeldItemDroppedEvent>()
     @JvmField
     val STARTER_CHOSEN = CancelableObservable<StarterChosenEvent>()
 

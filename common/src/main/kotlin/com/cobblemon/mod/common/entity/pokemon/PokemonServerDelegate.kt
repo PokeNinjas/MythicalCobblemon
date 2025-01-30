@@ -11,6 +11,10 @@ package com.cobblemon.mod.common.entity.pokemon
 import com.cobblemon.mod.common.CobblemonSounds
 import com.cobblemon.mod.common.api.entity.PokemonSender
 import com.cobblemon.mod.common.api.entity.PokemonSideDelegate
+import com.cobblemon.mod.common.api.events.CobblemonEvents.HELD_ITEM_DROPPED
+import com.cobblemon.mod.common.api.events.CobblemonEvents.LOOT_DROPPED
+import com.cobblemon.mod.common.api.events.drops.HeldItemDroppedEvent
+import com.cobblemon.mod.common.api.events.drops.LootDroppedEvent
 import com.cobblemon.mod.common.api.pokeball.PokeBalls
 import com.cobblemon.mod.common.api.pokemon.PokemonProperties
 import com.cobblemon.mod.common.api.pokemon.stats.Stats
@@ -260,7 +264,12 @@ class PokemonServerDelegate : PokemonSideDelegate {
                 entity.level().broadcastEntityEvent(entity, 60.toByte()) // Sends smoke effect
                 if(entity.level().gameRules.getBoolean(CobblemonGameRules.DO_POKEMON_LOOT)) {
                     val heldItem = (entity as PokemonEntity?)?.pokemon?.heldItemNoCopy() ?: ItemStack.EMPTY
-                    if (!heldItem.isEmpty) entity.spawnAtLocation(heldItem.item)
+                    if (!heldItem.isEmpty) {
+                        HELD_ITEM_DROPPED.postThen(
+                            event = HeldItemDroppedEvent(entity, heldItem),
+                            ifSucceeded = { entity.spawnAtLocation(heldItem.item) }
+                        )
+                    }
                     (entity.drops ?: entity.pokemon.form.drops).drop(entity, entity.level() as ServerLevel, entity.position(), entity.killer)
                 }
             }
