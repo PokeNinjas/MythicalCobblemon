@@ -314,6 +314,7 @@ class BerryBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(Cobblemon
         val sequenceIndices = growthPointSequence.toCharArray().filter { it.digitToInt(16) < baseBerry.growthPoints.size }
         for ((index, identifier) in this.growthPoints.withIndex()) {
             val berry = Berries.getByIdentifier(identifier) ?: continue
+            if (sequenceIndices.size <= index) continue
             val sequenceIndexHex = sequenceIndices[index].digitToInt(16)
             berryPoints.add(berry to baseBerry.growthPoints[sequenceIndexHex])
         }
