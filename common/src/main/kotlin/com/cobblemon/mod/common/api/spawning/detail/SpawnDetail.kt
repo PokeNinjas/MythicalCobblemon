@@ -9,6 +9,7 @@
 package com.cobblemon.mod.common.api.spawning.detail
 
 import com.bedrockk.molang.runtime.struct.ArrayStruct
+import com.bedrockk.molang.runtime.struct.QueryStruct
 import com.bedrockk.molang.runtime.struct.VariableStruct
 import com.bedrockk.molang.runtime.value.DoubleValue
 import com.bedrockk.molang.runtime.value.StringValue
@@ -66,29 +67,12 @@ abstract class SpawnDetail : ModDependant {
     val validBiomes = mutableSetOf<ResourceLocation>()
 
     @Transient
-    val struct: QueryStruct = queryStructOf(
-        "weight" to { DoubleValue(weight) },
-        "percentage" to { DoubleValue(percentage) },
-        "id" to { StringValue(id) },
-        "bucket" to { StringValue(bucket.name) },
-        "width" to { DoubleValue(width.toDouble()) },
-        "height" to { DoubleValue(height.toDouble()) },
-        "context" to { StringValue(context.name) },
-        "labels" to { labels.asArrayValue { StringValue(it) } }
-    )
+    val struct: QueryStruct = QueryStruct(hashMapOf())
 
     override var neededInstalledMods = listOf<String>()
     override var neededUninstalledMods = listOf<String>()
 
     open fun autoLabel() {
-        struct.setDirectly("weight", DoubleValue(weight.toDouble()))
-        struct.setDirectly("percentage", DoubleValue(percentage.toDouble()))
-        struct.setDirectly("id", StringValue(id))
-        struct.setDirectly("bucket", StringValue(bucket.name))
-        struct.setDirectly("width", DoubleValue(width.toDouble()))
-        struct.setDirectly("height", DoubleValue(height.toDouble()))
-        struct.setDirectly("context", StringValue(context.name))
-        struct.setDirectly("labels", ArrayStruct(labels.mapIndexed { index, s -> "$index" to StringValue(s) }.toMap()))
     }
 
     open fun getName() = displayName?.asTranslated() ?: id.text()
