@@ -14,6 +14,9 @@ import com.cobblemon.mod.common.pokemon.Pokemon
 import java.util.UUID
 class ClientPC(uuid: UUID, boxCount: Int) : ClientStorage<PCPosition>(uuid) {
     val boxes = MutableList(boxCount) { ClientBox() }
+
+    val lockedPositions: MutableSet<PCPosition> = hashSetOf()
+
     override fun findByUUID(uuid: UUID): Pokemon? {
         boxes.forEach {
             it.forEach {

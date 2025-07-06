@@ -109,6 +109,13 @@ class ClientStorageManager {
         pc.set(position, pokemon)
     }
 
+    fun setLockedPCSlots(storeID: UUID, lockedSlots: List<PCPosition>) {
+        val pc = pcStores[storeID]
+            ?: return LOGGER.error("Tried setting locked slots for PC store $storeID but no such store found.")
+        pc.lockedPositions.clear()
+        pc.lockedPositions.addAll(lockedSlots)
+    }
+
     fun setPartyStore(storeID: UUID) {
         myParty = partyStores[storeID] ?: throw IllegalArgumentException("Was told to set party store to $storeID but no such store is known!")
         checkSelectedPokemon()

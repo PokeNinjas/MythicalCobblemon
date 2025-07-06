@@ -20,6 +20,7 @@ import com.cobblemon.mod.common.pokemon.Pokemon
 import com.cobblemon.mod.common.util.cobblemonResource
 import com.cobblemon.mod.common.util.lang
 import com.cobblemon.mod.common.util.math.fromEulerXYZDegrees
+import com.mojang.blaze3d.vertex.PoseStack
 import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.GuiGraphics
 import net.minecraft.client.gui.components.Button
@@ -128,6 +129,8 @@ open class StorageSlot(
         matrices.pushPose()
         matrices.translate(0.0, 0.0, 500.0)
 
+        potentiallyRenderLockedIcon(matrices, posX, posY, SIZE)
+
         val config = parent.pcGui.configuration
         if (pokemon.tetheringId != null && !isSlotSelected) {
             if (isStationary()) {
@@ -216,4 +219,8 @@ open class StorageSlot(
     }
 
     fun isHovered(mouseX: Int, mouseY: Int) = mouseX.toFloat() in (x.toFloat()..(x.toFloat() + SIZE)) && mouseY.toFloat() in (y.toFloat()..(y.toFloat() + SIZE))
+
+    open fun potentiallyRenderLockedIcon(matrices: PoseStack, x: Number, y: Number, size: Number) {
+
+    }
 }
