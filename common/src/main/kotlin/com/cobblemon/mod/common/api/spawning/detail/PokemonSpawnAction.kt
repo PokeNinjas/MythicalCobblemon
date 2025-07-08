@@ -13,6 +13,7 @@ import com.cobblemon.mod.common.Cobblemon.LOGGER
 import com.cobblemon.mod.common.api.pokemon.PokemonProperties
 import com.cobblemon.mod.common.api.spawning.context.SpawningContext
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity
+import com.cobblemon.mod.common.pokemon.Growth
 import com.cobblemon.mod.common.pokemon.feature.SeasonFeatureHandler
 import com.cobblemon.mod.common.util.weightedSelection
 import net.minecraft.server.level.ServerPlayer
@@ -52,6 +53,7 @@ class PokemonSpawnAction(
         if (heldItem != null) {
             entity.pokemon.swapHeldItem(heldItem)
         }
+        Growth.getRandomSpawnGrowth().applyToPokemon(entity.pokemon)
         entity.drops = detail.drops
         // Useful debug code in situations where you want to find spawns
 //        val fireworkRocketEntity = FireworkRocketEntity(ctx.world, ctx.position.x.toDouble(), ctx.position.y.toDouble() + 2, ctx.position.z.toDouble(), ItemStack(Items.FIREWORK_ROCKET))

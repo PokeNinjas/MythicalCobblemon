@@ -24,6 +24,7 @@ import com.cobblemon.mod.common.client.storage.ClientPC
 import com.cobblemon.mod.common.client.storage.ClientParty
 import com.cobblemon.mod.common.net.messages.server.storage.pc.UnlinkPlayerFromPCPacket
 import com.cobblemon.mod.common.pokemon.Gender
+import com.cobblemon.mod.common.pokemon.Growth
 import com.cobblemon.mod.common.pokemon.Pokemon
 import com.cobblemon.mod.common.util.asTranslated
 import com.cobblemon.mod.common.util.cobblemonResource
@@ -134,6 +135,7 @@ class PCGUI(
             width = PORTRAIT_SIZE,
             height = PORTRAIT_SIZE
         )
+
 
         // Render Model Portrait
         modelWidget?.render(context, mouseX, mouseY, delta)
@@ -355,6 +357,27 @@ class PCGUI(
                 )
             }
 
+            val growth = Growth.getFromPokemon(pokemon)
+
+            val growthX = x + 8
+            val growthY = y + 85.5
+
+            drawScaledText(
+                context = context,
+                text = growth.displayName[0].toString().text().bold(),
+                x = growthX,
+                y = growthY,
+                scale = 1.0F
+            )
+
+            if (mouseX >= growthX - 2 && mouseY >= growthY - 2 && mouseX < (growthX + 10) && mouseY < (growthY + 10)) {
+                context.renderTooltip(
+                    Minecraft.getInstance().font,
+                    growth.displayName.text().bold(),
+                    mouseX,
+                    mouseY
+                )
+            }
         } else {
             blitk(
                 matrixStack = matrices,
@@ -514,7 +537,8 @@ class PCGUI(
                 pokemon = pokemon.asRenderablePokemon(),
                 baseScale = 2F,
                 rotationY = 325F,
-                offsetY = -10.0
+                offsetY = -10.0,
+                offsetZ = -800.0
             )
         } else {
             previewPokemon = null

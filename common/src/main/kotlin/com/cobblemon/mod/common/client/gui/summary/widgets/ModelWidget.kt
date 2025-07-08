@@ -24,6 +24,7 @@ class ModelWidget(
     val baseScale: Float = 2.7F,
     var rotationY: Float = 35F,
     var offsetY: Double = 0.0,
+    var offsetZ: Double = 0.0,
     val playCryOnClick: Boolean = false,
 ): SoundlessWidget(pX, pY, pWidth, pHeight, Component.literal("Summary - ModelWidget")) {
 
@@ -53,7 +54,7 @@ class ModelWidget(
             y +  height
         )
 
-        matrices.translate(x + width * 0.5, y.toDouble() + offsetY, 0.0)
+        matrices.translate(x + width * 0.5, y.toDouble() + offsetY, offsetZ)
         matrices.scale(baseScale, baseScale, baseScale)
         matrices.pushPose()
 

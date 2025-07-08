@@ -39,6 +39,7 @@ import com.cobblemon.mod.common.client.render.models.blockbench.repository.Pokem
 import com.cobblemon.mod.common.net.messages.server.storage.party.MovePartyPokemonPacket
 import com.cobblemon.mod.common.net.messages.server.storage.party.SwapPartyPokemonPacket
 import com.cobblemon.mod.common.pokemon.Gender
+import com.cobblemon.mod.common.pokemon.Growth
 import com.cobblemon.mod.common.pokemon.Pokemon
 import com.cobblemon.mod.common.util.cobblemonResource
 import com.cobblemon.mod.common.util.isInventoryKeyPressed
@@ -235,7 +236,8 @@ class Summary private constructor(party: Collection<Pokemon?>, private val edita
             pokemon = selectedPokemon.asRenderablePokemon(),
             baseScale = 2F,
             rotationY = 325F,
-            offsetY = -10.0
+            offsetY = -10.0,
+            offsetZ = -800.0
         )
         addRenderableOnly(this.modelWidget)
     }
@@ -575,6 +577,28 @@ class Summary private constructor(party: Collection<Pokemon?>, private val edita
 
         // Render all added Widgets
         super.render(context, mouseX, mouseY, delta)
+
+        val growth = Growth.getFromPokemon(selectedPokemon)
+
+        val growthX = x + 8
+        val growthY = y + 89.5
+
+        drawScaledText(
+            context = context,
+            text = growth.displayName[0].toString().text().bold(),
+            x = growthX,
+            y = growthY,
+            scale = 1.0F
+        )
+
+        if (mouseX >= growthX - 2 && mouseY >= growthY - 2 && mouseX < (growthX + 10) && mouseY < (growthY + 10)) {
+            context.renderTooltip(
+                Minecraft.getInstance().font,
+                growth.displayName.text().bold(),
+                mouseX,
+                mouseY
+            )
+        }
 
         // Render Item Tooltip
         if (!heldItem.isEmpty) {

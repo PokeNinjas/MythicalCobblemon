@@ -174,6 +174,7 @@ open class PokemonEntity(
         @JvmStatic val FREEZE_FRAME = SynchedEntityData.defineId(PokemonEntity::class.java, EntityDataSerializers.FLOAT)
         @JvmStatic val CAUGHT_BALL = SynchedEntityData.defineId(PokemonEntity::class.java, EntityDataSerializers.STRING)
         @JvmStatic val EVOLUTION_STARTED = SynchedEntityData.defineId(PokemonEntity::class.java, EntityDataSerializers.BOOLEAN)
+        @JvmStatic val SCALE_MODIFIER = SynchedEntityData.defineId(PokemonEntity::class.java, EntityDataSerializers.FLOAT)
 
         const val BATTLE_LOCK = "battle"
         const val EVOLUTION_LOCK = "evolving"
@@ -326,6 +327,7 @@ open class PokemonEntity(
         builder.define(FREEZE_FRAME, -1F)
         builder.define(CAUGHT_BALL, "")
         builder.define(EVOLUTION_STARTED, false)
+        builder.define(SCALE_MODIFIER, 1F)
     }
 
     override fun onSyncedDataUpdated(data: EntityDataAccessor<*>) {
@@ -364,6 +366,8 @@ open class PokemonEntity(
                     busyLocks.remove(EVOLUTION_LOCK)
                 }
             }
+
+            SCALE_MODIFIER -> refreshDimensions()
         }
     }
 
@@ -620,6 +624,10 @@ open class PokemonEntity(
             nbt.putBoolean(DataKeys.POKEMON_RECALCULATE_POSE, enablePoseTypeRecalculation)
         }
 
+        if (entityData.get(SCALE_MODIFIER) != 1F) {
+            nbt.putFloat(DataKeys.POKEMON_SCALE_MODIFIER, entityData.get(SCALE_MODIFIER))
+        }
+
         // save active effects
         nbt.put(DataKeys.ENTITY_EFFECTS, effects.saveToNbt(this.level().registryAccess()))
 
@@ -706,6 +714,10 @@ open class PokemonEntity(
 
         if (nbt.contains(DataKeys.POKEMON_PLATFORM_TYPE)) {
             entityData.set(PLATFORM_TYPE, PlatformType.valueOf(nbt.getString(DataKeys.POKEMON_PLATFORM_TYPE)))
+        }
+
+        if (nbt.contains(DataKeys.POKEMON_SCALE_MODIFIER)) {
+            entityData.set(SCALE_MODIFIER, nbt.getFloat(DataKeys.POKEMON_SCALE_MODIFIER))
         }
 
         CobblemonEvents.POKEMON_ENTITY_LOAD.postThen(
@@ -1598,4 +1610,3 @@ open class PokemonEntity(
         return this
     }
 }
-
