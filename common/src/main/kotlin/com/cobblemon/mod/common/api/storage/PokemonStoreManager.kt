@@ -33,6 +33,8 @@ import net.minecraft.server.level.ServerPlayer
 open class PokemonStoreManager {
     private val factories = PrioritizedList<PokemonStoreFactory>()
 
+    val scheduledActionsAfterSync = mutableMapOf<UUID, MutableList<() -> Unit>>()
+
     open fun registerFactory(priority: Priority, factory: PokemonStoreFactory) {
         factories.add(priority, factory)
     }
@@ -101,6 +103,9 @@ open class PokemonStoreManager {
         parties.forEach { party -> party.sendTo(player) }
         getPCs(player.uuid, player.registryAccess()).forEach { pc -> pc.sendTo(player) }
         player.sendPacket(SetPartyReferencePacket(parties.first().uuid))
+
+        val waitingActions = this.scheduledActionsAfterSync.remove(player.uuid) ?: return
+        waitingActions.forEach { it() }
     }
 
     open fun onPlayerDisconnect(player: ServerPlayer) {

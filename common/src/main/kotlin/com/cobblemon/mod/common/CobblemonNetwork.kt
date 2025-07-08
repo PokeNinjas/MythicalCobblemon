@@ -48,6 +48,7 @@ import com.cobblemon.mod.common.client.net.storage.pc.ClosePCHandler
 import com.cobblemon.mod.common.client.net.storage.pc.InitializePCHandler
 import com.cobblemon.mod.common.client.net.storage.pc.MoveClientPCPokemonHandler
 import com.cobblemon.mod.common.client.net.storage.pc.OpenPCHandler
+import com.cobblemon.mod.common.client.net.storage.pc.SetLockedPCSlotsHandler
 import com.cobblemon.mod.common.client.net.storage.pc.SetPCBoxPokemonHandler
 import com.cobblemon.mod.common.client.net.storage.pc.SetPCPokemonHandler
 import com.cobblemon.mod.common.client.net.toast.ToastPacketHandler
@@ -238,6 +239,7 @@ object CobblemonNetwork {
         list.add(PacketRegisterInfo(MoveClientPCPokemonPacket.ID, MoveClientPCPokemonPacket::decode, MoveClientPCPokemonHandler))
         list.add(PacketRegisterInfo(SetPCBoxPokemonPacket.ID, SetPCBoxPokemonPacket::decode, SetPCBoxPokemonHandler))
         list.add(PacketRegisterInfo(SetPCPokemonPacket.ID, SetPCPokemonPacket::decode, SetPCPokemonHandler))
+        list.add(PacketRegisterInfo(SetLockedPCSlotsPacket.ID, SetLockedPCSlotsPacket::decode, SetLockedPCSlotsHandler))
         list.add(PacketRegisterInfo(OpenPCPacket.ID, OpenPCPacket::decode, OpenPCHandler))
         list.add(PacketRegisterInfo(ClosePCPacket.ID, ClosePCPacket::decode, ClosePCHandler))
         list.add(PacketRegisterInfo(SwapClientPokemonPacket.ID, SwapClientPokemonPacket::decode, SwapClientPokemonHandler))

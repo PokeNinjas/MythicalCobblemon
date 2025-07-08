@@ -8,9 +8,12 @@
 
 package com.cobblemon.mod.common.client.gui.pc
 
+import com.cobblemon.mod.common.api.gui.blitk
 import com.cobblemon.mod.common.api.storage.pc.PCPosition
 import com.cobblemon.mod.common.client.storage.ClientPC
 import com.cobblemon.mod.common.pokemon.Pokemon
+import com.cobblemon.mod.common.util.cobblemonResource
+import com.mojang.blaze3d.vertex.PoseStack
 
 class BoxStorageSlot(
     x: Int, y: Int,
@@ -30,6 +33,25 @@ class BoxStorageSlot(
             true
         } else {
             grabbedSlot.getPokemon() != getPokemon()
+        }
+    }
+
+    override fun potentiallyRenderLockedIcon(
+        matrices: PoseStack,
+        x: Number,
+        y: Number,
+        size: Number
+    ) {
+        if (pc.lockedPositions.contains(position)) {
+            val slotLockedOverlay = cobblemonResource("textures/gui/pc/pc_slot_locked.png")
+            blitk(
+                matrixStack = matrices,
+                x = x,
+                y = y,
+                width = SIZE,
+                height = SIZE,
+                texture = slotLockedOverlay
+            )
         }
     }
 }

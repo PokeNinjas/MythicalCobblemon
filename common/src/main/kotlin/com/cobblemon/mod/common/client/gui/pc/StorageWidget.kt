@@ -324,6 +324,11 @@ class StorageWidget(
             else -> return
         }
 
+        if (clickedPosition is PCPosition && pc.lockedPositions.contains(clickedPosition)) {
+            // Slot is locked, can't touch it
+            return
+        }
+
         // Reset release confirmation
         displayConfirmRelease = false
 
