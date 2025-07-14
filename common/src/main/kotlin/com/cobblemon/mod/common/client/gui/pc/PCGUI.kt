@@ -356,28 +356,6 @@ class PCGUI(
                     scale = SCALE
                 )
             }
-
-            val growth = Growth.getFromPokemon(pokemon)
-
-            val growthX = x + 8
-            val growthY = y + 85.5
-
-            drawScaledText(
-                context = context,
-                text = growth.displayName[0].toString().text().bold(),
-                x = growthX,
-                y = growthY,
-                scale = 1.0F
-            )
-
-            if (mouseX >= growthX - 2 && mouseY >= growthY - 2 && mouseX < (growthX + 10) && mouseY < (growthY + 10)) {
-                context.renderTooltip(
-                    Minecraft.getInstance().font,
-                    growth.displayName.text().bold(),
-                    mouseX,
-                    mouseY
-                )
-            }
         } else {
             blitk(
                 matrixStack = matrices,
@@ -399,6 +377,30 @@ class PCGUI(
             y = y + 15,
             centered = true
         )
+
+        if (pokemon != null) {
+            val growth = Growth.getFromPokemon(pokemon)
+
+            val growthX = x + 8
+            val growthY = y + 85.5
+
+            drawScaledText(
+                context = context,
+                text = growth.displayName[0].toString().text().bold(),
+                x = growthX,
+                y = growthY,
+                scale = 1.0F
+            )
+
+            if (mouseX >= growthX - 2 && mouseY >= growthY - 2 && mouseX < (growthX + 10) && mouseY < (growthY + 10)) {
+                context.renderTooltip(
+                    Minecraft.getInstance().font,
+                    growth.displayName.text().bold(),
+                    mouseX,
+                    mouseY
+                )
+            }
+        }
 
         blitk(
             matrixStack = matrices,
