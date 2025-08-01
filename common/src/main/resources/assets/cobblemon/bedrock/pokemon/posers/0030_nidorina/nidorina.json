@@ -1,9 +1,10 @@
 {
-	"head": "head",
-	"portraitScale": 1.75,
-	"portraitTranslation": [0, 1.2, 0],
-	"profileScale": 0.6,
-	"profileTranslation": [0, 0.75, 0],
+	
+	"head": "torso",
+	"portraitScale": 1.9,
+	"portraitTranslation": [-0.02, -0.62, 0],
+	"profileScale": 1.0,
+	"profileTranslation": [0, 0.21, 0],
 	"poses": {
 		"standing": {
 			"poseName": "standing",
@@ -15,8 +16,7 @@
 				"PROFILE"
 			],
 			"animations": [
-				"look",
-				"bedrock(lucario, ground_idle)"
+				"bedrock(nidorina, idle)"
 			]
 		}
 	}
