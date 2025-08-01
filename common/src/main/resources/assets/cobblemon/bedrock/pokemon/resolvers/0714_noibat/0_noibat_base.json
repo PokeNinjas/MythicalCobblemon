@@ -1,0 +1,110 @@
+{
+  "species": "cobblemon:noibat",
+  "order": 0,
+  "variations": [
+    {
+      "aspects": [],
+      "poser": "cobblemon:noibat",
+      "model": "cobblemon:noibat.geo",
+      "texture": "cobblemon:textures/pokemon/0714_noibat/noibat.png",
+      "layers": []
+    },
+  {
+      "aspects": [
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/0714_noibat/noibat_shiny.png"
+    },
+    {
+      "aspects": [
+        "mythical_radiant"
+      ],
+      "texture": "cobblemon:textures/pokemon/0714_noibat/noibat_radiant.png"
+    },
+    {
+      "aspects": [
+        "mythical_radiant",
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/0714_noibat/noibat_shiny_radiant.png"
+    },
+    {
+      "aspects": [
+        "mythical_magma"
+      ],
+      "texture": "cobblemon:textures/pokemon/0714_noibat/noibat_magma.png"
+    },
+    {
+      "aspects": [
+        "mythical_magma",
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/0714_noibat/noibat_shiny_magma.png"
+    },
+    {
+      "aspects": [
+        "mythical_glitch"
+      ],
+      "texture": "cobblemon:textures/pokemon/0714_noibat/noibat_glitch.png"
+    },
+    {
+      "aspects": [
+        "mythical_glitch",
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/0714_noibat/noibat_shiny_glitch.png"
+    },
+    {
+      "aspects": [
+        "mythical_galaxy"
+      ],
+      "texture": "cobblemon:textures/pokemon/0714_noibat/noibat_galaxy.png"
+    },
+    {
+      "aspects": [
+        "mythical_galaxy",
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/0714_noibat/noibat_shiny_galaxy.png"
+    },
+    {
+      "aspects": [
+        "mythical_matrix"
+      ],
+      "texture": "cobblemon:textures/pokemon/0714_noibat/noibat_matrix.png"
+    },
+    {
+      "aspects": [
+        "mythical_matrix",
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/0714_noibat/noibat_shiny_matrix.png"
+    },
+    {
+      "aspects": [
+        "mythical_fireworks"
+      ],
+      "texture": "cobblemon:textures/pokemon/0714_noibat/noibat_fireworks.png"
+    },
+    {
+      "aspects": [
+        "mythical_fireworks",
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/0714_noibat/noibat_shiny_fireworks.png"
+    },
+    {
+      "aspects": [
+        "radar_spawned"
+      ],
+      "texture": "cobblemon:textures/pokemon/0714_noibat/noibat_holographic.png"
+    },
+    {
+      "aspects": [
+        "radar_spawned",
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/0714_noibat/noibat_shiny_holographic.png"
+    }
+  ]
+}

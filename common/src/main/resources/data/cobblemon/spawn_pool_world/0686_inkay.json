@@ -1,0 +1,24 @@
+{
+    "enabled": true,
+    "neededInstalledMods": [],
+    "neededUninstalledMods": [],
+    "spawns": [
+        {
+            "id": "inkay-1",
+            "pokemon": "inkay",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "context": "grounded",
+            "bucket": "common",
+            "level": "15-25",
+            "weight": 4.0,
+            "condition": {
+                "biomes": [
+                    "#cobblemon:is_coast"
+                ]
+            }
+        }
+    ]
+}

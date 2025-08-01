@@ -1,0 +1,110 @@
+{
+  "species": "cobblemon:simisear",
+  "order": 0,
+  "variations": [
+    {
+      "aspects": [],
+      "poser": "cobblemon:simisear",
+      "model": "cobblemon:simisear.geo",
+      "texture": "cobblemon:textures/pokemon/0514_simisear/simisear.png",
+      "layers": []
+    },
+  {
+      "aspects": [
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/0514_simisear/simisear_shiny.png"
+    },
+    {
+      "aspects": [
+        "mythical_radiant"
+      ],
+      "texture": "cobblemon:textures/pokemon/0514_simisear/simisear_radiant.png"
+    },
+    {
+      "aspects": [
+        "mythical_radiant",
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/0514_simisear/simisear_shiny_radiant.png"
+    },
+    {
+      "aspects": [
+        "mythical_magma"
+      ],
+      "texture": "cobblemon:textures/pokemon/0514_simisear/simisear_magma.png"
+    },
+    {
+      "aspects": [
+        "mythical_magma",
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/0514_simisear/simisear_shiny_magma.png"
+    },
+    {
+      "aspects": [
+        "mythical_glitch"
+      ],
+      "texture": "cobblemon:textures/pokemon/0514_simisear/simisear_glitch.png"
+    },
+    {
+      "aspects": [
+        "mythical_glitch",
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/0514_simisear/simisear_shiny_glitch.png"
+    },
+    {
+      "aspects": [
+        "mythical_galaxy"
+      ],
+      "texture": "cobblemon:textures/pokemon/0514_simisear/simisear_galaxy.png"
+    },
+    {
+      "aspects": [
+        "mythical_galaxy",
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/0514_simisear/simisear_shiny_galaxy.png"
+    },
+    {
+      "aspects": [
+        "mythical_matrix"
+      ],
+      "texture": "cobblemon:textures/pokemon/0514_simisear/simisear_matrix.png"
+    },
+    {
+      "aspects": [
+        "mythical_matrix",
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/0514_simisear/simisear_shiny_matrix.png"
+    },
+    {
+      "aspects": [
+        "mythical_fireworks"
+      ],
+      "texture": "cobblemon:textures/pokemon/0514_simisear/simisear_fireworks.png"
+    },
+    {
+      "aspects": [
+        "mythical_fireworks",
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/0514_simisear/simisear_shiny_fireworks.png"
+    },
+    {
+      "aspects": [
+        "radar_spawned"
+      ],
+      "texture": "cobblemon:textures/pokemon/0514_simisear/simisear_holographic.png"
+    },
+    {
+      "aspects": [
+        "radar_spawned",
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/0514_simisear/simisear_shiny_holographic.png"
+    }
+  ]
+}

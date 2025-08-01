@@ -1,0 +1,37 @@
+{
+    "enabled": true,
+    "neededInstalledMods": [],
+    "neededUninstalledMods": [],
+    "spawns": [
+        {
+            "id": "noibat-1",
+            "pokemon": "noibat",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "context": "grounded",
+            "bucket": "uncommon",
+            "level": "20-30",
+            "weight": 1.0,
+            "condition": {
+                "biomes": [
+                    "#cobblemon:is_swamp",
+                    "#cobblemon:is_spooky",
+                    "#cobblemon:is_mountain",
+                    "#cobblemon:is_cave",
+                    "#cobblemon:is_magical"
+                ],
+                "timeRange": "night",
+                "isRaining": false
+            },
+            "anticondition": {
+                "biomes": [
+                    "#cobblemon:is_beach",
+                    "#cobblemon:is_freezing",
+                    "#cobblemon:is_desert"
+                ]
+            }
+        }
+    ]
+}

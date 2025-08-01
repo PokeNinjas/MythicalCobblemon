@@ -1,0 +1,41 @@
+{
+    "enabled": true,
+    "neededInstalledMods": [],
+    "neededUninstalledMods": [],
+    "spawns": [
+        {
+            "id": "eelektrik-1",
+            "pokemon": "eelektrik",
+            "presets": [
+                "underwater"
+            ],
+            "type": "pokemon",
+            "context": "submerged",
+            "bucket": "uncommon",
+            "level": "20-30",
+            "weight": 0.2,
+            "condition": {
+                "biomes": [
+                    "#cobblemon:is_ocean"
+                ]
+            }
+        },
+        {
+            "id": "eelektrik-2",
+            "pokemon": "eelektrik",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "context": "grounded",
+            "bucket": "uncommon",
+            "level": "20-30",
+            "weight": 0.2,
+            "condition": {
+                "biomes": [
+                    "#cobblemon:is_cave"
+                ]
+            }
+        }
+    ]
+}

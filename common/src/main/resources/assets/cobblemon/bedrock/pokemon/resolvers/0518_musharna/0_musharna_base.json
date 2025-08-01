@@ -1,0 +1,110 @@
+{
+  "species": "cobblemon:musharna",
+  "order": 0,
+  "variations": [
+    {
+      "aspects": [],
+      "poser": "cobblemon:musharna",
+      "model": "cobblemon:musharna.geo",
+      "texture": "cobblemon:textures/pokemon/0518_musharna/musharna.png",
+      "layers": []
+    },
+  {
+      "aspects": [
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/0518_musharna/musharna_shiny.png"
+    },
+    {
+      "aspects": [
+        "mythical_radiant"
+      ],
+      "texture": "cobblemon:textures/pokemon/0518_musharna/musharna_radiant.png"
+    },
+    {
+      "aspects": [
+        "mythical_radiant",
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/0518_musharna/musharna_shiny_radiant.png"
+    },
+    {
+      "aspects": [
+        "mythical_magma"
+      ],
+      "texture": "cobblemon:textures/pokemon/0518_musharna/musharna_magma.png"
+    },
+    {
+      "aspects": [
+        "mythical_magma",
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/0518_musharna/musharna_shiny_magma.png"
+    },
+    {
+      "aspects": [
+        "mythical_glitch"
+      ],
+      "texture": "cobblemon:textures/pokemon/0518_musharna/musharna_glitch.png"
+    },
+    {
+      "aspects": [
+        "mythical_glitch",
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/0518_musharna/musharna_shiny_glitch.png"
+    },
+    {
+      "aspects": [
+        "mythical_galaxy"
+      ],
+      "texture": "cobblemon:textures/pokemon/0518_musharna/musharna_galaxy.png"
+    },
+    {
+      "aspects": [
+        "mythical_galaxy",
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/0518_musharna/musharna_shiny_galaxy.png"
+    },
+    {
+      "aspects": [
+        "mythical_matrix"
+      ],
+      "texture": "cobblemon:textures/pokemon/0518_musharna/musharna_matrix.png"
+    },
+    {
+      "aspects": [
+        "mythical_matrix",
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/0518_musharna/musharna_shiny_matrix.png"
+    },
+    {
+      "aspects": [
+        "mythical_fireworks"
+      ],
+      "texture": "cobblemon:textures/pokemon/0518_musharna/musharna_fireworks.png"
+    },
+    {
+      "aspects": [
+        "mythical_fireworks",
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/0518_musharna/musharna_shiny_fireworks.png"
+    },
+    {
+      "aspects": [
+        "radar_spawned"
+      ],
+      "texture": "cobblemon:textures/pokemon/0518_musharna/musharna_holographic.png"
+    },
+    {
+      "aspects": [
+        "radar_spawned",
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/0518_musharna/musharna_shiny_holographic.png"
+    }
+  ]
+}

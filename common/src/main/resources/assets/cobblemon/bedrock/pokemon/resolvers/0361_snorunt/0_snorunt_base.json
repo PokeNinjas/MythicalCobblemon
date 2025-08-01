@@ -1,0 +1,110 @@
+{
+  "species": "cobblemon:snorunt",
+  "order": 0,
+  "variations": [
+    {
+      "aspects": [],
+      "poser": "cobblemon:snorunt",
+      "model": "cobblemon:snorunt.geo",
+      "texture": "cobblemon:textures/pokemon/0361_snorunt/snorunt.png",
+      "layers": []
+    },
+   {
+      "aspects": [
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/0361_snorunt/snorunt_shiny.png"
+    },
+    {
+      "aspects": [
+        "mythical_radiant"
+      ],
+      "texture": "cobblemon:textures/pokemon/0361_snorunt/snorunt_radiant.png"
+    },
+    {
+      "aspects": [
+        "mythical_radiant",
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/0361_snorunt/snorunt_shiny_radiant.png"
+    },
+    {
+      "aspects": [
+        "mythical_magma"
+      ],
+      "texture": "cobblemon:textures/pokemon/0361_snorunt/snorunt_magma.png"
+    },
+    {
+      "aspects": [
+        "mythical_magma",
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/0361_snorunt/snorunt_shiny_magma.png"
+    },
+    {
+      "aspects": [
+        "mythical_glitch"
+      ],
+      "texture": "cobblemon:textures/pokemon/0361_snorunt/snorunt_glitch.png"
+    },
+    {
+      "aspects": [
+        "mythical_glitch",
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/0361_snorunt/snorunt_shiny_glitch.png"
+    },
+    {
+      "aspects": [
+        "mythical_galaxy"
+      ],
+      "texture": "cobblemon:textures/pokemon/0361_snorunt/snorunt_galaxy.png"
+    },
+    {
+      "aspects": [
+        "mythical_galaxy",
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/0361_snorunt/snorunt_shiny_galaxy.png"
+    },
+    {
+      "aspects": [
+        "mythical_matrix"
+      ],
+      "texture": "cobblemon:textures/pokemon/0361_snorunt/snorunt_matrix.png"
+    },
+    {
+      "aspects": [
+        "mythical_matrix",
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/0361_snorunt/snorunt_shiny_matrix.png"
+    },
+    {
+      "aspects": [
+        "mythical_fireworks"
+      ],
+      "texture": "cobblemon:textures/pokemon/0361_snorunt/snorunt_fireworks.png"
+    },
+    {
+      "aspects": [
+        "mythical_fireworks",
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/0361_snorunt/snorunt_shiny_fireworks.png"
+    },
+    {
+      "aspects": [
+        "radar_spawned"
+      ],
+      "texture": "cobblemon:textures/pokemon/0361_snorunt/snorunt_holographic.png"
+    },
+    {
+      "aspects": [
+        "radar_spawned",
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/0361_snorunt/snorunt_shiny_holographic.png"
+    }
+  ]
+}

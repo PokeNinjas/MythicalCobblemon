@@ -1,0 +1,110 @@
+{
+  "species": "cobblemon:pansear",
+  "order": 0,
+  "variations": [
+    {
+      "aspects": [],
+      "poser": "cobblemon:pansear",
+      "model": "cobblemon:pansear.geo",
+      "texture": "cobblemon:textures/pokemon/0513_pansear/pansear.png",
+      "layers": []
+    },
+  {
+      "aspects": [
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/0513_pansear/pansear_shiny.png"
+    },
+    {
+      "aspects": [
+        "mythical_radiant"
+      ],
+      "texture": "cobblemon:textures/pokemon/0513_pansear/pansear_radiant.png"
+    },
+    {
+      "aspects": [
+        "mythical_radiant",
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/0513_pansear/pansear_shiny_radiant.png"
+    },
+    {
+      "aspects": [
+        "mythical_magma"
+      ],
+      "texture": "cobblemon:textures/pokemon/0513_pansear/pansear_magma.png"
+    },
+    {
+      "aspects": [
+        "mythical_magma",
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/0513_pansear/pansear_shiny_magma.png"
+    },
+    {
+      "aspects": [
+        "mythical_glitch"
+      ],
+      "texture": "cobblemon:textures/pokemon/0513_pansear/pansear_glitch.png"
+    },
+    {
+      "aspects": [
+        "mythical_glitch",
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/0513_pansear/pansear_shiny_glitch.png"
+    },
+    {
+      "aspects": [
+        "mythical_galaxy"
+      ],
+      "texture": "cobblemon:textures/pokemon/0513_pansear/pansear_galaxy.png"
+    },
+    {
+      "aspects": [
+        "mythical_galaxy",
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/0513_pansear/pansear_shiny_galaxy.png"
+    },
+    {
+      "aspects": [
+        "mythical_matrix"
+      ],
+      "texture": "cobblemon:textures/pokemon/0513_pansear/pansear_matrix.png"
+    },
+    {
+      "aspects": [
+        "mythical_matrix",
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/0513_pansear/pansear_shiny_matrix.png"
+    },
+    {
+      "aspects": [
+        "mythical_fireworks"
+      ],
+      "texture": "cobblemon:textures/pokemon/0513_pansear/pansear_fireworks.png"
+    },
+    {
+      "aspects": [
+        "mythical_fireworks",
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/0513_pansear/pansear_shiny_fireworks.png"
+    },
+    {
+      "aspects": [
+        "radar_spawned"
+      ],
+      "texture": "cobblemon:textures/pokemon/0513_pansear/pansear_holographic.png"
+    },
+    {
+      "aspects": [
+        "radar_spawned",
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/0513_pansear/pansear_shiny_holographic.png"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+    "enabled": true,
+    "neededInstalledMods": [],
+    "neededUninstalledMods": [],
+    "spawns": [
+        {
+            "id": "bronzong-1",
+            "pokemon": "bronzong",
+            "presets": [
+                "ancient_city"
+            ],
+            "type": "pokemon",
+            "context": "grounded",
+            "bucket": "common",
+            "level": "25-40",
+            "weight": 0.8,
+            "condition": {}
+        },
+        {
+            "id": "bronzong-1",
+            "pokemon": "bronzong",
+            "presets": [
+                "end_city"
+            ],
+            "type": "pokemon",
+            "context": "grounded",
+            "bucket": "common",
+            "level": "25-40",
+            "weight": 0.8,
+            "condition": {}
+        }
+    ]
+}

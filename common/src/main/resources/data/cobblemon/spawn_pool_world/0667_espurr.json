@@ -1,0 +1,24 @@
+{
+    "enabled": true,
+    "neededInstalledMods": [],
+    "neededUninstalledMods": [],
+    "spawns": [
+        {
+            "id": "espurr-1",
+            "pokemon": "espurr",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "context": "grounded",
+            "bucket": "common",
+            "level": "8-18",
+            "weight": 6.0,
+            "condition": {
+                "biomes": [
+                    "#cobblemon:is_magical"
+                ]
+            }
+        }
+    ]
+}

@@ -1,0 +1,24 @@
+{
+    "enabled": true,
+    "neededInstalledMods": [],
+    "neededUninstalledMods": [],
+    "spawns": [
+        {
+            "id": "reuniclus-1",
+            "pokemon": "reuniclus",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "context": "grounded",
+            "bucket": "common",
+            "level": "40-50",
+            "weight": 0.01,
+            "condition": {
+                "biomes": [
+                    "#cobblemon:is_magical"
+                ]
+            }
+        }
+    ]
+}

@@ -1,0 +1,33 @@
+{
+    "enabled": true,
+    "neededInstalledMods": [],
+    "neededUninstalledMods": [],
+    "spawns": [
+        {
+            "id": "bronzor-1",
+            "pokemon": "bronzor",
+            "presets": [
+                "ancient_city"
+            ],
+            "type": "pokemon",
+            "context": "grounded",
+            "bucket": "common",
+            "level": "15-25",
+            "weight": 10.0,
+            "condition": {}
+        },
+        {
+            "id": "bronzor-1",
+            "pokemon": "bronzor",
+            "presets": [
+                "end_city"
+            ],
+            "type": "pokemon",
+            "context": "grounded",
+            "bucket": "common",
+            "level": "15-25",
+            "weight": 10.0,
+            "condition": {}
+        }
+    ]
+}

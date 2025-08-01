@@ -1,0 +1,24 @@
+{
+    "enabled": true,
+    "neededInstalledMods": [],
+    "neededUninstalledMods": [],
+    "spawns": [
+        {
+            "id": "skorupi-1",
+            "pokemon": "skorupi",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "context": "grounded",
+            "bucket": "uncommon",
+            "level": "20-30",
+            "weight": 6.0,
+            "condition": {
+                "biomes": [
+                    "#cobblemon:is_arid"
+                ]
+            }
+        }
+    ]
+}

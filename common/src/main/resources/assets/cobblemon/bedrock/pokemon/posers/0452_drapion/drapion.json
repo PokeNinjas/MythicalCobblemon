@@ -1,0 +1,22 @@
+{
+	"head": "head",
+	"portraitScale": 1.24,
+	"portraitTranslation": [-1.14, 1.34, 0],
+	"profileScale": 0.4,
+	"profileTranslation": [0, 0.8, 0],
+	"poses": {
+		"standing": {
+			"poseName": "standing",
+			"transformTicks": 10,
+			"poseTypes": [
+				"STAND",
+				"NONE",
+				"PORTRAIT",
+				"PROFILE"
+			],
+			"animations": [
+                "bedrock(drapion, ground_idle)"
+			]
+		}
+	}
+}
