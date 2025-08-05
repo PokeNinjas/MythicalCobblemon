@@ -32,6 +32,8 @@ import com.cobblemon.mod.common.client.net.pasture.ClosePastureHandler
 import com.cobblemon.mod.common.client.net.pasture.OpenPastureHandler
 import com.cobblemon.mod.common.client.net.pasture.PokemonPasturedHandler
 import com.cobblemon.mod.common.client.net.pasture.PokemonUnpasturedHandler
+import com.cobblemon.mod.common.client.net.pokedex.ClientsidePokedexSpawnInfoManager
+import com.cobblemon.mod.common.client.net.pokedex.PokedexTextureBlacklistHandler
 import com.cobblemon.mod.common.client.net.pokedex.ServerConfirmedRegisterHandler
 import com.cobblemon.mod.common.client.net.pokemon.update.PokemonUpdatePacketHandler
 import com.cobblemon.mod.common.client.net.settings.ServerSettingsPacketHandler
@@ -76,6 +78,8 @@ import com.cobblemon.mod.common.net.messages.client.pasture.ClosePasturePacket
 import com.cobblemon.mod.common.net.messages.client.pasture.OpenPasturePacket
 import com.cobblemon.mod.common.net.messages.client.pasture.PokemonPasturedPacket
 import com.cobblemon.mod.common.net.messages.client.pasture.PokemonUnpasturedPacket
+import com.cobblemon.mod.common.net.messages.client.pokedex.PokedexSpawnInfoPacket
+import com.cobblemon.mod.common.net.messages.client.pokedex.PokedexTextureBlacklistPacket
 import com.cobblemon.mod.common.net.messages.client.pokedex.ServerConfirmedRegisterPacket
 import com.cobblemon.mod.common.net.messages.client.pokemon.update.*
 import com.cobblemon.mod.common.net.messages.client.pokemon.update.evolution.AddEvolutionPacket
@@ -115,6 +119,7 @@ import com.cobblemon.mod.common.net.messages.server.npc.SaveNPCPacket
 import com.cobblemon.mod.common.net.messages.server.pasture.PasturePokemonPacket
 import com.cobblemon.mod.common.net.messages.server.pasture.UnpastureAllPokemonPacket
 import com.cobblemon.mod.common.net.messages.server.pasture.UnpasturePokemonPacket
+import com.cobblemon.mod.common.net.messages.server.pokedex.PokedexRequestSpawnInfoPacket
 import com.cobblemon.mod.common.net.messages.server.pokedex.scanner.FinishScanningPacket
 import com.cobblemon.mod.common.net.messages.server.pokedex.scanner.StartScanningPacket
 import com.cobblemon.mod.common.net.messages.server.pokemon.interact.InteractPokemonPacket
@@ -148,6 +153,7 @@ import com.cobblemon.mod.common.net.serverhandling.npc.SaveNPCHandler
 import com.cobblemon.mod.common.net.serverhandling.pasture.PasturePokemonHandler
 import com.cobblemon.mod.common.net.serverhandling.pasture.UnpastureAllPokemonHandler
 import com.cobblemon.mod.common.net.serverhandling.pasture.UnpasturePokemonHandler
+import com.cobblemon.mod.common.net.serverhandling.pokedex.RequestSpawnInfoHandler
 import com.cobblemon.mod.common.net.serverhandling.pokedex.scanner.FinishScanningHandler
 import com.cobblemon.mod.common.net.serverhandling.pokedex.scanner.StartScanningHandler
 import com.cobblemon.mod.common.net.serverhandling.pokemon.interact.InteractPokemonHandler
@@ -359,6 +365,10 @@ object CobblemonNetwork {
 
         // Pokédex scanning
         list.add(PacketRegisterInfo(ServerConfirmedRegisterPacket.ID, ServerConfirmedRegisterPacket::decode, ServerConfirmedRegisterHandler))
+
+        // Pokedex other stuff
+        list.add(PacketRegisterInfo(PokedexSpawnInfoPacket.ID, PokedexSpawnInfoPacket::decode, ClientsidePokedexSpawnInfoManager))
+        list.add(PacketRegisterInfo(PokedexTextureBlacklistPacket.ID, PokedexTextureBlacklistPacket::decode, PokedexTextureBlacklistHandler))
         return list
     }
 
@@ -418,6 +428,9 @@ object CobblemonNetwork {
         // Pokédex scanning
         list.add(PacketRegisterInfo(StartScanningPacket.ID, StartScanningPacket::decode, StartScanningHandler))
         list.add(PacketRegisterInfo(FinishScanningPacket.ID, FinishScanningPacket::decode, FinishScanningHandler))
+
+        // Pokedex locations info
+        list.add(PacketRegisterInfo(PokedexRequestSpawnInfoPacket.ID, PokedexRequestSpawnInfoPacket::decode, RequestSpawnInfoHandler))
 
         // Pasture
         list.add(PacketRegisterInfo(PasturePokemonPacket.ID, PasturePokemonPacket::decode, PasturePokemonHandler))

@@ -9,17 +9,11 @@
 package com.cobblemon.mod.common.util
 
 import com.cobblemon.mod.common.Cobblemon
-import com.cobblemon.mod.common.api.item.HealingSource
 import com.cobblemon.mod.common.client.render.models.blockbench.PosableState
 import com.cobblemon.mod.common.entity.npc.NPCEntity
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity
 import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.screens.Screen
-import java.util.UUID
-import java.util.concurrent.CompletableFuture
-import java.util.function.Consumer
-import kotlin.math.min
-import kotlin.random.Random
 import net.minecraft.client.resources.model.ModelResourceLocation
 import net.minecraft.core.BlockPos
 import net.minecraft.network.chat.Component
@@ -28,12 +22,18 @@ import net.minecraft.world.InteractionHand
 import net.minecraft.world.entity.EquipmentSlot
 import net.minecraft.world.phys.shapes.VoxelShape
 import org.joml.Vector4f
+import java.util.UUID
+import java.util.concurrent.CompletableFuture
+import java.util.function.Consumer
+import kotlin.math.min
+import kotlin.random.Random
 
 fun cobblemonResource(path: String) = ResourceLocation.fromNamespaceAndPath(Cobblemon.MODID, path)
 fun cobblemonModel(path: String, variant: String) =
     ModelResourceLocation(cobblemonResource(path), variant)
 
 fun String.asTranslated() = Component.translatable(this)
+fun String.asTranslatedWithFallback(fallback: String) = Component.translatableWithFallback(this, fallback)
 fun String.asResource() = ResourceLocation.parse(this)
 fun String.asTranslated(vararg data: Any) = Component.translatable(this, *data)
 fun String.isInt() = this.toIntOrNull() != null

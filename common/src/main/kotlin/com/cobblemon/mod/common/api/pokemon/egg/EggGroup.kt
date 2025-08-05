@@ -33,9 +33,12 @@ enum class EggGroup(val showdownID: String) {
     DRAGON("Dragon"),
     UNDISCOVERED("Undiscovered");
 
+    val identifier: String
+        get() = showdownID.lowercase().replace(" ", "_").replace("-", "_")
+
     companion object {
         private val identifierMap: Map<String, EggGroup> = entries.associateBy {
-            it.showdownID.lowercase().replace(" ", "_").replace("-", "_")
+            it.identifier
         }
 
         fun fromIdentifier(identifier: String): EggGroup? {

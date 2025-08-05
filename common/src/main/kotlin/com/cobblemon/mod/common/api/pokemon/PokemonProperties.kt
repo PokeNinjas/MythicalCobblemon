@@ -45,9 +45,6 @@ import com.google.gson.JsonArray
 import com.google.gson.JsonObject
 import com.mojang.brigadier.StringReader
 import com.mojang.serialization.Codec
-import java.util.UUID
-import kotlin.math.min
-import kotlin.random.Random
 import net.minecraft.ResourceLocationException
 import net.minecraft.commands.arguments.item.ItemParser
 import net.minecraft.core.HolderLookup
@@ -61,6 +58,9 @@ import net.minecraft.resources.ResourceLocation
 import net.minecraft.server.level.ServerPlayer
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.level.Level
+import java.util.UUID
+import kotlin.math.min
+import kotlin.random.Random
 
 /**
  * A grouping of typical, selectable properties for a Pokémon. This is serializable
@@ -679,7 +679,7 @@ open class PokemonProperties {
     }
 
     // TODO Codecs at some point
-    fun saveToJSON(): JsonObject {
+    fun saveToJSON(includeAspects: Boolean = false): JsonObject {
         val json = JsonObject()
         originalString.let { json.addProperty(DataKeys.POKEMON_PROPERTIES_ORIGINAL_TEXT, it) }
         level?.let { json.addProperty(DataKeys.POKEMON_LEVEL, it) }
@@ -708,11 +708,15 @@ open class PokemonProperties {
         customProperties.map { it.asString() }.forEach { custom.add(it) }
         json.add(DataKeys.POKEMON_PROPERTIES_CUSTOM, custom)
 
+        if (includeAspects) {
+            json.addProperty(DataKeys.POKEMON_FORCED_ASPECTS, aspects.joinToString(separator = ","))
+        }
+
         return json
     }
 
     // TODO Codecs at some point
-    fun loadFromJSON(json: JsonObject): PokemonProperties {
+    fun loadFromJSON(json: JsonObject, aspectsIncluded: Boolean = false): PokemonProperties {
         originalString = json.get(DataKeys.POKEMON_PROPERTIES_ORIGINAL_TEXT)?.asString ?: ""
         level = json.get(DataKeys.POKEMON_LEVEL)?.asInt
         shiny = json.get(DataKeys.POKEMON_SHINY)?.asBoolean
@@ -739,7 +743,10 @@ open class PokemonProperties {
         val custom = json.get(DataKeys.POKEMON_PROPERTIES_CUSTOM)?.asJsonArray
         // This is still kinda gross
         custom?.forEach { customProperties.addAll(parse(it.asString).customProperties) }
-        updateAspects()
+        if (aspectsIncluded) {
+            aspects = json.get(DataKeys.POKEMON_FORCED_ASPECTS)?.asString?.split(",")?.toSet() ?: emptySet()
+        }
+        if (!aspectsIncluded) updateAspects()
         return this
     }
 

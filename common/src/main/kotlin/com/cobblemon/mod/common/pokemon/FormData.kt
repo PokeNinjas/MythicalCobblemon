@@ -22,6 +22,7 @@ import com.cobblemon.mod.common.api.net.Encodable
 import com.cobblemon.mod.common.api.pokemon.PokemonSpecies
 import com.cobblemon.mod.common.api.pokemon.effect.ShoulderEffect
 import com.cobblemon.mod.common.api.pokemon.egg.EggGroup
+import com.cobblemon.mod.common.api.pokemon.evolution.ClientsidePokedexEvolutionInfo
 import com.cobblemon.mod.common.api.pokemon.evolution.Evolution
 import com.cobblemon.mod.common.api.pokemon.evolution.PreEvolution
 import com.cobblemon.mod.common.api.pokemon.experience.ExperienceGroup
@@ -39,8 +40,8 @@ import com.cobblemon.mod.common.pokemon.lighthing.LightingData
 import com.cobblemon.mod.common.util.*
 import com.google.gson.annotations.SerializedName
 import net.minecraft.network.RegistryFriendlyByteBuf
-import net.minecraft.world.entity.EntityDimensions
 import net.minecraft.resources.ResourceLocation
+import net.minecraft.world.entity.EntityDimensions
 
 class FormData(
     name: String = "Normal",
@@ -91,7 +92,7 @@ class FormData(
     @SerializedName("dynamaxBlocked")
     private var _dynamaxBlocked: Boolean? = null,
     @SerializedName("eggGroups")
-    private val _eggGroups: Set<EggGroup>? = null,
+    private var _eggGroups: Set<EggGroup>? = null,
     @SerializedName("height")
     private var _height: Float? = null,
     @SerializedName("weight")
@@ -196,6 +197,8 @@ class FormData(
     val evolutions: MutableSet<Evolution>
         get() = _evolutions ?: mutableSetOf()
 
+    var clientsidePokedexEvolutionsInfo: MutableList<ClientsidePokedexEvolutionInfo>? = null
+
     val battleTheme: ResourceLocation
         get() = _battleTheme ?: species.battleTheme
 
@@ -293,6 +296,16 @@ class FormData(
                 pb.writeString(ability.template.name)
             }
         }
+        buffer.writeNullable(_eggGroups) {_, eggGroups ->
+            buffer.writeCollection<EggGroup>(eggGroups.toList()) { pb, eggGroup ->
+                pb.writeString(eggGroup.identifier)
+            }
+        }
+        buffer.writeNullable(_evolutions) {_, evolutions ->
+            buffer.writeCollection<Evolution>(evolutions.toList()) { pb, evolution ->
+                ClientsidePokedexEvolutionInfo.from(evolution).encode(pb)
+            }
+        }
     }
 
     override fun decode(buffer: RegistryFriendlyByteBuf) {
@@ -327,6 +340,21 @@ class FormData(
                         HiddenAbility(Abilities.getOrException(template))
                     }
                 }.forEach { add(Priority.NORMAL, it) }
+            }
+        }
+        this._eggGroups = buffer.readNullable { pb ->
+            mutableSetOf<EggGroup>().apply {
+                pb.readList { _ ->
+                    val identifier = pb.readString()
+                    EggGroup.fromIdentifier(identifier)
+                }.forEach { it?.let { add(it) } }
+            }
+        }
+        this.clientsidePokedexEvolutionsInfo = buffer.readNullable { pb ->
+            mutableListOf<ClientsidePokedexEvolutionInfo>().apply {
+                pb.readList { _ ->
+                    ClientsidePokedexEvolutionInfo.decode(pb)
+                }.forEach {add(it)}
             }
         }
     }

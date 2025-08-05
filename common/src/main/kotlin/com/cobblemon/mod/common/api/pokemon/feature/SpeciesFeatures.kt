@@ -84,6 +84,14 @@ object SpeciesFeatures : JsonDataRegistry<SpeciesFeatureProvider<*>> {
         return (mentionedFeatures + globalFeatures + assignedFeatures).distinct()
     }
 
+    fun getFeatureNamesFor(species: Species) : List<String> {
+        val mentionedFeatures = species.features
+        val globalFeatures = GlobalSpeciesFeatures.getFeatureNames()
+        val assignedFeatures = SpeciesFeatureAssignments.getFeatures(species)
+
+        return (mentionedFeatures + globalFeatures + assignedFeatures).distinct()
+    }
+
     private fun register(name: String, provider: SpeciesFeatureProvider<*>, isCoded: Boolean) {
         val mapping = if (isCoded) codeFeatures else resourceFeatures
         if (provider is AspectProvider) {

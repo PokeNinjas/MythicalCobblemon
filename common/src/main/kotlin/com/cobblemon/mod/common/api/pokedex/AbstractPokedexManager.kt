@@ -13,8 +13,10 @@ import com.cobblemon.mod.common.api.molang.MoLangFunctions.addStandardFunctions
 import com.cobblemon.mod.common.api.molang.ObjectValue
 import com.cobblemon.mod.common.api.pokedex.entry.PokedexEntry
 import com.cobblemon.mod.common.api.pokedex.entry.PokedexForm
+import com.cobblemon.mod.common.api.pokemon.PokemonSpecies
 import com.cobblemon.mod.common.pokedex.scanner.PokedexEntityData
 import com.cobblemon.mod.common.pokemon.Gender
+import com.cobblemon.mod.common.util.cobblemonResource
 import net.minecraft.resources.ResourceLocation
 
 abstract class AbstractPokedexManager {
@@ -95,6 +97,10 @@ abstract class AbstractPokedexManager {
         }
     }
 
+    fun getAllPokedexForms(entry: PokedexEntry) : List<PokedexForm> {
+        return entry.forms.filter { form -> !form.displayForm.lowercase().contains("gmax") }
+    }
+
     fun getNewInformation(pokedexEntityData: PokedexEntityData): PokedexLearnedInformation {
         val speciesRecord = getSpeciesRecord(pokedexEntityData.getApparentSpecies().resourceIdentifier)
         if (speciesRecord == null || speciesRecord.getKnowledge() == PokedexEntryProgress.NONE) {
@@ -120,12 +126,30 @@ abstract class AbstractPokedexManager {
         return getSpeciesRecord(entry.speciesId)?.getFormRecord(form.displayForm)?.getSeenShinyStates() ?: return emptySet()
     }
 
+    fun getAllShinyStates() : Set<String> {
+        return setOf("shiny", "normal")
+    }
+
     fun getSeenGenders(entry: PokedexEntry, form: PokedexForm): Set<Gender> {
         return getSpeciesRecord(entry.speciesId)?.getFormRecord(form.displayForm)?.getGenders() ?: emptySet()
     }
 
+    fun getAllGenders(entry: PokedexEntry, form: PokedexForm) : Set<Gender> {
+        val form = PokemonSpecies.getByIdentifier(entry.id)?.getFormByName(form.displayForm)
+        return form?.possibleGenders?.toSet() ?: setOf(Gender.MALE, Gender.FEMALE)
+    }
+
     fun getSeenAspects(entry: PokedexEntry): Set<String> {
         return getSpeciesRecord(entry.speciesId)?.getAspects() ?: emptySet()
+    }
+
+    fun getAllAspects(entry: PokedexEntry): Set<String> {
+        val species = PokemonSpecies.getByIdentifier(entry.id)
+        if (species != null) {
+            val completeEntry = Dexes.dexEntryMap[cobblemonResource("national")]!!.getEntries().first { it.speciesId == species.resourceIdentifier }
+            return completeEntry.conditionAspects
+        }
+        return emptySet()
     }
 
     fun getKnowledgeForSpecies(speciesId: ResourceLocation): PokedexEntryProgress {

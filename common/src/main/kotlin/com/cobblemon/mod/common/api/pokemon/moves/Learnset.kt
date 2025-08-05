@@ -106,6 +106,10 @@ open class Learnset : ClientDataSynchronizer<Learnset> {
             }
             levelUpMoves[level] = moves
         }
+
+        decodeSimpleMoveList(buffer, eggMoves)
+        decodeSimpleMoveList(buffer, tutorMoves)
+        decodeSimpleMoveList(buffer, tmMoves)
     }
 
     override fun encode(buffer: RegistryFriendlyByteBuf) {
@@ -116,6 +120,22 @@ open class Learnset : ClientDataSynchronizer<Learnset> {
             for (move in moves) {
                 buffer.writeInt(move.num)
             }
+        }
+        encodeSimpleMoveList(buffer, eggMoves)
+        encodeSimpleMoveList(buffer, tutorMoves)
+        encodeSimpleMoveList(buffer, tmMoves)
+    }
+
+    fun encodeSimpleMoveList(buffer: RegistryFriendlyByteBuf, list: List<MoveTemplate>) {
+        buffer.writeSizedInt(IntSize.U_SHORT, list.size)
+        for (move in list) {
+            buffer.writeInt(move.num)
+        }
+    }
+
+    fun decodeSimpleMoveList(buffer: RegistryFriendlyByteBuf, list: MutableList<MoveTemplate>) {
+        repeat(times = buffer.readSizedInt(IntSize.U_SHORT)) {
+            Moves.getByNumericalId(buffer.readInt())?.let(list::add)
         }
     }
 }

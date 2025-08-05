@@ -25,6 +25,7 @@ import com.cobblemon.mod.common.api.pokemon.PokemonProperties
 import com.cobblemon.mod.common.api.pokemon.PokemonSpecies
 import com.cobblemon.mod.common.api.pokemon.effect.ShoulderEffect
 import com.cobblemon.mod.common.api.pokemon.egg.EggGroup
+import com.cobblemon.mod.common.api.pokemon.evolution.ClientsidePokedexEvolutionInfo
 import com.cobblemon.mod.common.api.pokemon.evolution.Evolution
 import com.cobblemon.mod.common.api.pokemon.evolution.PreEvolution
 import com.cobblemon.mod.common.api.pokemon.experience.ExperienceGroups
@@ -151,6 +152,8 @@ class Species : ClientDataSynchronizer<Species>, ShowdownIdentifiable {
     var evolutions: MutableSet<Evolution> = hashSetOf()
         private set
 
+    var defaultFormClientsidePokedexEvolutionsInfo: MutableList<ClientsidePokedexEvolutionInfo>? = null
+
     var preEvolution: PreEvolution? = null
         private set
 
@@ -249,6 +252,16 @@ class Species : ClientDataSynchronizer<Species>, ShowdownIdentifiable {
             pb.writeBoolean(ability is CommonAbility)
             pb.writeString(ability.template.name)
         }
+
+        buffer.writeCollection<EggGroup>(eggGroups.toList()) { pb, eggGroup ->
+            pb.writeString(eggGroup.identifier)
+        }
+
+        buffer.writeNullable(standardForm.evolutions) {_, evolutions ->
+            buffer.writeCollection<Evolution>(evolutions.toList()) { pb, evolution ->
+                ClientsidePokedexEvolutionInfo.from(evolution).encode(pb)
+            }
+        }
     }
 
     override fun decode(buffer: RegistryFriendlyByteBuf) {
@@ -288,6 +301,19 @@ class Species : ClientDataSynchronizer<Species>, ShowdownIdentifiable {
                 }
             }.forEach {
                 pool.add(Priority.NORMAL, it)
+            }
+        }
+        this.eggGroups = hashSetOf<EggGroup>().also { set ->
+                buffer.readList { pb ->
+                    val identifier = pb.readString()
+                    EggGroup.fromIdentifier(identifier)
+                }.forEach { it?.let { set.add(it) } }
+            }
+        this.defaultFormClientsidePokedexEvolutionsInfo = buffer.readNullable { pb ->
+            mutableListOf<ClientsidePokedexEvolutionInfo>().apply {
+                pb.readList { _ ->
+                    ClientsidePokedexEvolutionInfo.decode(pb)
+                }.forEach {add(it)}
             }
         }
         this.initialize()

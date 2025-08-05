@@ -38,13 +38,20 @@ import com.cobblemon.mod.common.client.gui.pokedex.PokedexGUIConstants.SCALE
 import com.cobblemon.mod.common.client.gui.pokedex.PokedexGUIConstants.TAB_ABILITIES
 import com.cobblemon.mod.common.client.gui.pokedex.PokedexGUIConstants.TAB_DESCRIPTION
 import com.cobblemon.mod.common.client.gui.pokedex.PokedexGUIConstants.TAB_DROPS
+import com.cobblemon.mod.common.client.gui.pokedex.PokedexGUIConstants.TAB_EGG_GROUPS
+import com.cobblemon.mod.common.client.gui.pokedex.PokedexGUIConstants.TAB_EVOLUTIONS
 import com.cobblemon.mod.common.client.gui.pokedex.PokedexGUIConstants.TAB_ICON_SIZE
+import com.cobblemon.mod.common.client.gui.pokedex.PokedexGUIConstants.TAB_LOCATIONS
+import com.cobblemon.mod.common.client.gui.pokedex.PokedexGUIConstants.TAB_MOVES
+import com.cobblemon.mod.common.client.gui.pokedex.PokedexGUIConstants.TAB_RESEARCH_TASKS
 import com.cobblemon.mod.common.client.gui.pokedex.PokedexGUIConstants.TAB_SIZE
 import com.cobblemon.mod.common.client.gui.pokedex.PokedexGUIConstants.TAB_STATS
 import com.cobblemon.mod.common.client.gui.pokedex.widgets.*
+import com.cobblemon.mod.common.client.net.pokedex.ClientsidePokedexSpawnInfoManager
 import com.cobblemon.mod.common.client.pokedex.PokedexType
 import com.cobblemon.mod.common.client.render.drawScaledText
 import com.cobblemon.mod.common.net.messages.server.block.AdjustBlockEntityViewerCountPacket
+import com.cobblemon.mod.common.net.messages.server.pokedex.PokedexRequestSpawnInfoPacket
 import com.cobblemon.mod.common.pokemon.abilities.HiddenAbility
 import com.cobblemon.mod.common.util.cobblemonResource
 import com.cobblemon.mod.common.util.isInventoryKeyPressed
@@ -61,6 +68,7 @@ import net.minecraft.core.BlockPos
 import net.minecraft.network.chat.Component
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.sounds.SoundEvent
+import net.minecraft.util.FormattedCharSequence
 
 /**
  * Pokedex GUI
@@ -88,10 +96,15 @@ class PokedexGUI private constructor(
         private val tabSelectArrow = cobblemonResource("textures/gui/pokedex/select_arrow.png")
         private val tabIcons = arrayOf(
             cobblemonResource("textures/gui/pokedex/tab_info.png"),
-            cobblemonResource("textures/gui/pokedex/tab_abilities.png"),
-            cobblemonResource("textures/gui/pokedex/tab_size.png"),
+            cobblemonResource("textures/gui/pokedex/tab_locations.png"),
+            cobblemonResource("textures/gui/pokedex/tab_drops.png"),
+            cobblemonResource("textures/gui/pokedex/tab_evolutions.png"),
             cobblemonResource("textures/gui/pokedex/tab_stats.png"),
-            cobblemonResource("textures/gui/pokedex/tab_drops.png")
+            cobblemonResource("textures/gui/pokedex/tab_abilities.png"),
+            cobblemonResource("textures/gui/pokedex/tab_moves.png"),
+            cobblemonResource("textures/gui/pokedex/tab_egg_groups.png"),
+            cobblemonResource("textures/gui/pokedex/tab_size.png"),
+            cobblemonResource("textures/gui/pokedex/tab_research_tasks.png")
         )
 
         /**
@@ -308,12 +321,12 @@ class PokedexGUI private constructor(
         )
 
         // Show selected tab pointer if selected Pokémon has tab info to be shown
-        if (selectedEntry?.let { selectedForm in CobblemonClient.clientPokedexData.getCaughtForms(it) } == true) {
+        if (selectedEntry != null) {
             // Tab arrow
             blitk(
                 matrixStack = matrices,
                 texture = tabSelectArrow,
-                x = (x + 198 + (25 * tabInfoIndex)) / SCALE,
+                x = (x + 184 + (14 * tabInfoIndex)) / SCALE,
                 // (x + 191.5 + (22 * tabInfoIndex)) / SCALE for 6 tabs
                 y = (y + 177) / SCALE,
                 width = 12,
@@ -459,7 +472,7 @@ class PokedexGUI private constructor(
 
         for (i in tabIcons.indices) {
             tabButtons.add(ScaledButton(
-                x + 197F + (i * 25F), // x + 190.5F + (i * 22F) for 6 tabs
+                x + 183F + (i * 14F), // x + 190.5F + (i * 22F) for 6 tabs
                 y + 181.5F,
                 TAB_ICON_SIZE,
                 TAB_ICON_SIZE,
@@ -505,6 +518,21 @@ class PokedexGUI private constructor(
             TAB_DROPS -> {
                 tabInfoElement = DropsScrollingWidget(x + 189, y + 135)
             }
+            TAB_MOVES -> {
+                tabInfoElement = MovesWidget(x + 180, y + 135)
+            }
+            TAB_EGG_GROUPS -> {
+                tabInfoElement = EggGroupsWidget(x + 180, y + 135)
+            }
+            TAB_EVOLUTIONS -> {
+                tabInfoElement = EvolutionsScrollingWidget(x + 182, y + 135)
+            }
+            TAB_LOCATIONS -> {
+                tabInfoElement = LocationsScrollingWidget(x + 182, y + 135)
+            }
+            TAB_RESEARCH_TASKS -> {
+                tabInfoElement = ResearchTasksScrollingWidget(x + 182, y + 135)
+            }
         }
         val element = tabInfoElement
         if (element is Renderable && element is NarratableEntry) {
@@ -513,17 +541,21 @@ class PokedexGUI private constructor(
         if (update) updateTabInfoElement()
     }
 
+    val widgetsToRemoveOnTabSwitch: MutableList<GuiEventListener> = mutableListOf()
+
     fun updateTabInfoElement() {
         val species = selectedEntry?.speciesId?.let { PokemonSpecies.getByIdentifier(it) }
         val formName = selectedForm?.displayForm
-        val canDisplay = selectedEntry?.let { selectedForm in CobblemonClient.clientPokedexData.getCaughtForms(it) } == true
         val textToShowInDescription = mutableListOf<String>()
 
-        if (canDisplay && species != null) {
+        if (species != null) {
+            widgetsToRemoveOnTabSwitch.forEach { removeWidget(it) }
+            widgetsToRemoveOnTabSwitch.clear()
+
             val form = species.forms.find { it.name.equals(formName, ignoreCase = true) } ?: species.standardForm
             when (tabInfoIndex) {
                 TAB_DESCRIPTION -> {
-                    textToShowInDescription.addAll(form.pokedex)
+                    textToShowInDescription.addAll(species.standardForm.pokedex) // Made description pull from stnadard form as it seems like none of the nonstandard forms actually have their desc set up.
                     (tabInfoElement as DescriptionWidget).showPlaceholder = false
                 }
                 TAB_ABILITIES -> {
@@ -533,8 +565,12 @@ class PokedexGUI private constructor(
                     (tabInfoElement as AbilitiesWidget).scrollAmount = 0.0
 
                     if ((tabInfoElement as AbilitiesWidget).abilitiesList.size > 1) {
-                        addRenderableWidget((tabInfoElement as AbilitiesWidget).leftButton)
-                        addRenderableWidget((tabInfoElement as AbilitiesWidget).rightButton)
+                        val leftButton = (tabInfoElement as AbilitiesWidget).leftButton
+                        val rightButton = (tabInfoElement as AbilitiesWidget).rightButton
+                        addRenderableWidget(leftButton)
+                        addRenderableWidget(rightButton)
+                        widgetsToRemoveOnTabSwitch.add(leftButton)
+                        widgetsToRemoveOnTabSwitch.add(rightButton)
                     }
                 }
                 TAB_SIZE -> {
@@ -552,9 +588,44 @@ class PokedexGUI private constructor(
                     (tabInfoElement as DropsScrollingWidget).dropTable = form.drops
                     (tabInfoElement as DropsScrollingWidget).setEntries()
                 }
-//                TAB_MOVES -> {
-//                    form.moves.getLevelUpMovesUpTo(100)
-//                }
+                TAB_MOVES -> {
+                    (tabInfoElement as MovesWidget).learnset = form.moves
+                    (tabInfoElement as MovesWidget).category = MovesWidget.MoveCategory.LEVEL_UP
+                    (tabInfoElement as MovesWidget).refreshMoves()
+                    (tabInfoElement as MovesWidget).scrollAmount = 0.0
+
+                    val leftButton = (tabInfoElement as MovesWidget).leftButton
+                    val rightButton = (tabInfoElement as MovesWidget).rightButton
+                    addRenderableWidget(leftButton)
+                    addRenderableWidget(rightButton)
+                    widgetsToRemoveOnTabSwitch.add(leftButton)
+                    widgetsToRemoveOnTabSwitch.add(rightButton)
+                }
+                TAB_EGG_GROUPS -> {
+                    (tabInfoElement as EggGroupsWidget).eggGroups = form.eggGroups
+                    (tabInfoElement as EggGroupsWidget).refresh()
+                    (tabInfoElement as EggGroupsWidget).scrollAmount = 0.0
+                }
+                TAB_EVOLUTIONS -> {
+                    (tabInfoElement as EvolutionsScrollingWidget).evolutions = form.clientsidePokedexEvolutionsInfo ?: species.defaultFormClientsidePokedexEvolutionsInfo ?: emptyList()
+                    (tabInfoElement as EvolutionsScrollingWidget).setEntries()
+                    (tabInfoElement as EvolutionsScrollingWidget).scrollAmount = 0.0
+                }
+                TAB_LOCATIONS -> {
+                    val speciesName = species.name.lowercase()
+                    if (ClientsidePokedexSpawnInfoManager.map.contains(speciesName)) {
+                        (tabInfoElement as LocationsScrollingWidget).locations = ClientsidePokedexSpawnInfoManager.map[speciesName]!!
+                        (tabInfoElement as LocationsScrollingWidget).setEntries()
+                    } else {
+                        // Request data from server
+                        PokedexRequestSpawnInfoPacket(speciesName).sendToServer()
+                    }
+
+                    (tabInfoElement as LocationsScrollingWidget).scrollAmount = 0.0
+                }
+                TAB_RESEARCH_TASKS -> {
+                    (tabInfoElement as ResearchTasksScrollingWidget).scrollAmount = 0.0
+                }
             }
         } else {
             if (tabInfoIndex != TAB_DESCRIPTION) displaytabInfoElement(TAB_DESCRIPTION)
@@ -569,16 +640,17 @@ class PokedexGUI private constructor(
         }
     }
 
+    override fun setTooltipForNextRenderPass(tooltip: List<FormattedCharSequence?>) {
+        super.setTooltipForNextRenderPass(tooltip)
+    }
+
     fun updateSelectedForm(newForm: PokedexForm) {
         selectedForm = newForm
         displaytabInfoElement(tabInfoIndex)
     }
 
     fun canSelectTab(tabIndex: Int): Boolean {
-        val selectedForm = this.selectedForm ?: return false
-        val selectedEntry = this.selectedEntry ?: return false
-        val encounteredForm = selectedForm in CobblemonClient.clientPokedexData.getEncounteredForms(selectedEntry)
-        return encounteredForm && (tabIndex != tabInfoIndex)
+        return tabIndex != tabInfoIndex
     }
 
     override fun isPauseScreen(): Boolean = false

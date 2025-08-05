@@ -31,10 +31,15 @@ object PokedexGUIConstants {
     const val PORTRAIT_POKE_BALL_HEIGHT = 68
     const val SCROLL_BAR_WIDTH = 5
     const val TAB_DESCRIPTION = 0
-    const val TAB_ABILITIES = 1
-    const val TAB_SIZE = 2
-    const val TAB_STATS = 3
-    const val TAB_DROPS = 4
+    const val TAB_ABILITIES = 5
+    const val TAB_SIZE = 8
+    const val TAB_STATS = 4
+    const val TAB_DROPS = 2
+    const val TAB_MOVES = 6
+    const val TAB_EGG_GROUPS = 7
+    const val TAB_EVOLUTIONS = 3
+    const val TAB_LOCATIONS = 1
+    const val TAB_RESEARCH_TASKS = 9
 
     // RowScrollingWidget
     const val SCROLL_BASE_HEIGHT = 141

@@ -8,7 +8,6 @@
 
 package com.cobblemon.mod.common.api.spawning
 
-import com.cobblemon.mod.common.api.spawning.TimeRange.Companion.timeRanges
 import com.cobblemon.mod.common.api.spawning.condition.SpawningCondition
 
 /**
@@ -42,6 +41,26 @@ class TimeRange : IntRanges {
             "afternoon" to TimeRange(7000..12999),
 			"predawn" to TimeRange(19000..22999),
             "evening" to TimeRange(13000..16999)
+        )
+
+        val timeRangeNames = mutableMapOf(
+            "0..23999" to "Any",
+            "23460..23999" to "Day",
+            "0..12541" to "Day",
+            "12542..23459" to "Night",
+            "5000..6999" to "Noon",
+            "17000..18999" to "Midnight",
+            "22300..23999" to "Dawn",
+            "0..999" to "Dawn",
+            "11834..13701" to "Dusk",
+            "11834..13701" to "Twilight",
+            "22300..23999" to "Twilight",
+            "0..166" to "Twilight",
+            "23000..23999" to "Morning",
+            "0..4999" to "Morning",
+            "7000..12999" to "Afternoon",
+            "19000..22999" to "Predawn",
+            "13000..16999" to "Evening",
         )
     }
 

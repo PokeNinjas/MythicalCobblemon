@@ -15,6 +15,8 @@ fun lang(
     vararg objects: Any
 ) = "cobblemon.$subKey".asTranslated(*objects)
 
+fun langWithFallback(subKey: String, fallback: String) = "cobblemon.$subKey".asTranslatedWithFallback(fallback)
+
 fun commandLang(subKey: String, vararg objects: Any ) = lang("command.$subKey", *objects)
 fun battleLang(key: String, vararg objects: Any) = lang("battle.$key", *objects)
 fun tooltipLang(modId: String = Cobblemon.MODID, key: String, vararg objects: Any) = "item.$modId.$key.tooltip".asTranslated(*objects)

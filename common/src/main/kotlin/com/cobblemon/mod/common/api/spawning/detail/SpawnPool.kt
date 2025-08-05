@@ -44,14 +44,24 @@ class SpawnPool(val name: String) : JsonDataRegistry<SpawnSet>, Iterable<SpawnDe
     override val resourcePath = id.path
     override fun sync(player: ServerPlayer) {}
     override fun reload(data: Map<ResourceLocation, SpawnSet>) {
+        pokemonSpawnsMapForPokedex.clear()
         details.clear()
         for (set in data.values) {
-            details.addAll(set.filter { it.isValid() })
+            val filtered = set.filter { it.isValid() }
+            details.addAll(filtered)
+            filtered.forEach { spawnDetail ->
+                if (spawnDetail is PokemonSpawnDetail) {
+                    spawnDetail.pokemon.species?.let {
+                        (pokemonSpawnsMapForPokedex.computeIfAbsent(it) {_ -> mutableListOf<PokemonSpawnDetail>()}).add(spawnDetail)
+                    }
+                }
+            }
         }
         precalculate()
     }
 
     val details = mutableListOf<SpawnDetail>()
+    val pokemonSpawnsMapForPokedex = hashMapOf<String, MutableList<PokemonSpawnDetail>>() // Species string -> spawn detail list
     var precalculation: PrecalculationResult<*> = RootPrecalculation.generate(details, emptyList())
     val precalculators = mutableListOf<SpawningPrecalculation<*>>()
 //    /** A set of all [RegisteredSpawningContext]s that are mentioned in this pool. */

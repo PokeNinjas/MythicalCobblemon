@@ -157,9 +157,12 @@ fun MutableComponent.onHover(string: String) = also { it.style = it.style.withHo
 fun MutableComponent.onHover(text: Component) = also { it.style = it.style.withHoverEvent(hover(text)) }
 fun MutableComponent.onHover(text: MutableComponent) = also { it.style = it.style.withHoverEvent(hover(text)) }
 fun MutableComponent.underline() = also { it.style = it.style.withUnderlined(true) }
+fun MutableComponent.notUnderline() = also { it.style = it.style.withUnderlined(false) }
 fun MutableComponent.bold() = also { it.style = it.style.withBold(true) }
+fun MutableComponent.notBold() = also { it.style = it.style.withBold(false) }
 fun MutableComponent.italicise() = also { it.style = it.style.withItalic(true) }
 fun MutableComponent.strikethrough() = also { it.style = it.style.withStrikethrough(true) }
+fun MutableComponent.notStrikethrough() = also { it.style = it.style.withStrikethrough(false) }
 fun MutableComponent.obfuscate() = also { it.style = it.style.withObfuscated(true) }
 fun MutableComponent.suggest(command: String) = also { it.style = it.style.withClickEvent(ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, command)) }
 

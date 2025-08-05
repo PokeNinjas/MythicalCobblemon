@@ -23,6 +23,8 @@
     "accessor.KeyBindingAccessor",
     "client.AbstractClientPlayerMixin",
     "client.EntryListWidgetMixin",
+    "client.GuiGraphicsMixin",
+    "client.TooltipRenderUtilMixin",
     "invoker.ClientPlayNetworkHandlerInvoker"
   ],
   "mixins": [

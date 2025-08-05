@@ -32,8 +32,6 @@ class SearchFilter(val pokedexManager: AbstractPokedexManager, val searchString:
         if (searchString == "") return true
 
         val species = PokemonSpecies.getByIdentifier(entry.speciesId) ?: return false
-        val highestKnowledgeForEntry = pokedexManager.getHighestKnowledgeFor(entry)
-        if (highestKnowledgeForEntry == PokedexEntryProgress.NONE) return false
 
         when (searchByType) {
             SearchByType.ABILITIES -> {
