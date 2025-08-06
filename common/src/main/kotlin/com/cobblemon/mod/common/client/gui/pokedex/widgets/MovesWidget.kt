@@ -62,8 +62,10 @@ class MovesWidget(x: Int, y: Int): InfoTextScrollWidget(pX = x, pY = y) {
         category = if (newIndex < 0) MoveCategory.entries.last() else if (newIndex > MoveCategory.entries.lastIndex) MoveCategory.entries.first() else MoveCategory.entries[newIndex]
         if (recursionCount < 10) { // To handle case of all categories being empty
             learnset?.let {
-                if (isThisCategoryEmpty(it)) switchCategory(forwards, recursionCount + 1) // Skip over empty categories
-                return
+                if (isThisCategoryEmpty(it)) {
+                    switchCategory(forwards, recursionCount + 1) // Skip over empty categories
+                    return
+                }
             }
         }
         refreshMoves()
@@ -76,9 +78,9 @@ class MovesWidget(x: Int, y: Int): InfoTextScrollWidget(pX = x, pY = y) {
     fun isThisCategoryEmpty(learnset: Learnset) : Boolean {
         if (category == MoveCategory.LEVEL_UP) {
             for ((_, moves) in learnset.levelUpMoves) {
-                if (moves.isNotEmpty()) return true
+                if (moves.isNotEmpty()) return false
             }
-            return false
+            return true
         } else {
             val moves = when (category) {
                 MoveCategory.EGG -> learnset.eggMoves
