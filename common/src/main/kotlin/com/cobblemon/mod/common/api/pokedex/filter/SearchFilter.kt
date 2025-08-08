@@ -35,7 +35,6 @@ class SearchFilter(val pokedexManager: AbstractPokedexManager, val searchString:
 
         when (searchByType) {
             SearchByType.ABILITIES -> {
-                if (pokedexManager.getHighestKnowledgeFor(entry) !== PokedexEntryProgress.CAUGHT) return false
                 val abilityList = mutableListOf<String>()
                 val formsList = if (species.forms.isEmpty()) mutableListOf(species.standardForm) else species.forms
                 formsList.forEach {
@@ -46,7 +45,6 @@ class SearchFilter(val pokedexManager: AbstractPokedexManager, val searchString:
                 return abilityList.any { it.contains(searchString.trim().lowercase()) }
             }
             SearchByType.DROPS -> {
-                if (pokedexManager.getHighestKnowledgeFor(entry) !== PokedexEntryProgress.CAUGHT) return false
                 val dropsList = mutableListOf<String>()
                 val formsList = if (species.forms.isEmpty()) mutableListOf(species.standardForm) else species.forms
                 formsList.forEach {

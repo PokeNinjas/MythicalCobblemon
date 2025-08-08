@@ -67,6 +67,7 @@ import com.cobblemon.mod.common.net.messages.client.spawn.SpawnPokemonPacket
 import com.cobblemon.mod.common.net.messages.client.ui.InteractPokemonUIPacket
 import com.cobblemon.mod.common.net.serverhandling.storage.SendOutPokemonHandler.SEND_OUT_DURATION
 import com.cobblemon.mod.common.pokeball.PokeBall
+import com.cobblemon.mod.common.pokedex.research_tasks.ResearchTasksEvents
 import com.cobblemon.mod.common.pokedex.scanner.PokedexEntityData
 import com.cobblemon.mod.common.pokedex.scanner.ScannableEntity
 import com.cobblemon.mod.common.pokemon.FormData
@@ -833,12 +834,14 @@ open class PokemonEntity(
                 this.shear(SoundSource.PLAYERS)
                 this.gameEvent(GameEvent.SHEAR, player)
                 itemStack.hurtAndBreak(1, player, EquipmentSlot.MAINHAND)
+                if (player is ServerPlayer) ResearchTasksEvents.pokemonSheared(player, this)
                 return InteractionResult.SUCCESS
             } else if (itemStack.`is`(Items.BUCKET)) {
                 if (pokemon.aspects.any { it.contains(DataKeys.CAN_BE_MILKED) }) {
                     player.playSound(SoundEvents.GOAT_MILK, 1.0f, 1.0f)
                     val milkBucket = ItemUtils.createFilledResult(itemStack, player, Items.MILK_BUCKET.defaultInstance)
                     player.setItemInHand(hand, milkBucket)
+                    if (player is ServerPlayer) ResearchTasksEvents.pokemonMilked(player, this)
                     return InteractionResult.sidedSuccess(level().isClientSide)
                 }
             } else if (itemStack.`is`(Items.BOWL)) {

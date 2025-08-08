@@ -8,13 +8,12 @@
 
 package com.cobblemon.mod.common.api.battles.model.actor
 
-import com.bedrockk.molang.runtime.struct.QueryStruct
-import com.bedrockk.molang.runtime.value.StringValue
 import com.cobblemon.mod.common.api.battles.model.PokemonBattle
 import com.cobblemon.mod.common.api.molang.MoLangFunctions.asMoLangValue
 import com.cobblemon.mod.common.api.net.NetworkPacket
 import com.cobblemon.mod.common.battles.ActiveBattlePokemon
 import com.cobblemon.mod.common.battles.ForcePassActionResponse
+import com.cobblemon.mod.common.battles.MoveActionResponse
 import com.cobblemon.mod.common.battles.ShowdownActionRequest
 import com.cobblemon.mod.common.battles.ShowdownActionResponse
 import com.cobblemon.mod.common.battles.pokemon.BattlePokemon
@@ -24,10 +23,11 @@ import com.cobblemon.mod.common.item.battle.BagItem
 import com.cobblemon.mod.common.net.messages.client.battle.BattleApplyPassResponsePacket
 import com.cobblemon.mod.common.net.messages.client.battle.BattleMakeChoicePacket
 import com.cobblemon.mod.common.net.messages.client.battle.BattleMessagePacket
+import com.cobblemon.mod.common.pokedex.research_tasks.ResearchTasksEvents
 import net.minecraft.network.chat.Component
 import net.minecraft.network.chat.MutableComponent
-import java.util.UUID
 import net.minecraft.server.level.ServerPlayer
+import java.util.UUID
 
 abstract class BattleActor(
     val uuid: UUID,
@@ -116,6 +116,10 @@ abstract class BattleActor(
                 this.responses.add(expectingPassActions.removeAt(0))
             } else {
                 this.responses.add(response)
+            }
+
+            if (response is MoveActionResponse) {
+                ResearchTasksEvents.moveUsed(this, activeBattlePokemon, response.moveName)
             }
         }
         if (expectingPassActions.size > 0) {

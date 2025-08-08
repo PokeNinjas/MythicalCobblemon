@@ -74,6 +74,7 @@ import com.cobblemon.mod.common.command.argument.*
 import com.cobblemon.mod.common.config.CobblemonConfig
 import com.cobblemon.mod.common.config.LastChangedVersion
 import com.cobblemon.mod.common.config.constraint.IntConstraint
+import com.cobblemon.mod.common.config.research_tasks.ResearchTasksConfig
 import com.cobblemon.mod.common.config.starter.StarterConfig
 import com.cobblemon.mod.common.data.CobblemonDataProvider
 import com.cobblemon.mod.common.events.AdvancementHandler
@@ -112,6 +113,15 @@ import com.mongodb.ConnectionString
 import com.mongodb.MongoClientSettings
 import com.mongodb.client.MongoClient
 import com.mongodb.client.MongoClients
+import net.minecraft.client.Minecraft
+import net.minecraft.commands.synchronization.SingletonArgumentInfo
+import net.minecraft.resources.ResourceKey
+import net.minecraft.server.packs.PackType
+import net.minecraft.world.item.NameTagItem
+import net.minecraft.world.level.Level
+import net.minecraft.world.level.storage.LevelResource
+import org.apache.logging.log4j.LogManager
+import org.apache.logging.log4j.Logger
 import java.io.File
 import java.io.FileReader
 import java.io.FileWriter
@@ -122,15 +132,6 @@ import kotlin.properties.Delegates
 import kotlin.reflect.full.memberProperties
 import kotlin.reflect.jvm.isAccessible
 import kotlin.reflect.jvm.javaField
-import net.minecraft.client.Minecraft
-import net.minecraft.commands.synchronization.SingletonArgumentInfo
-import net.minecraft.resources.ResourceKey
-import net.minecraft.server.packs.PackType
-import net.minecraft.world.item.NameTagItem
-import net.minecraft.world.level.Level
-import net.minecraft.world.level.storage.LevelResource
-import org.apache.logging.log4j.LogManager
-import org.apache.logging.log4j.Logger
 
 object Cobblemon {
     const val MODID = CobblemonBuildDetails.MOD_ID
@@ -160,6 +161,7 @@ object Cobblemon {
     var molangData = NbtMoLangDataStoreFactory
     lateinit var playerDataManager: PlayerInstancedDataStoreManager
     lateinit var starterConfig: StarterConfig
+    lateinit var researchTasksConfig: ResearchTasksConfig
     val dataProvider: DataProvider = CobblemonDataProvider
     var permissionValidator: PermissionValidator by Delegates.observable(LaxPermissionValidator().also { it.initialize() }) { _, _, newValue -> newValue.initialize() }
     var statProvider: StatProvider = CobblemonStatProvider
@@ -478,6 +480,8 @@ object Cobblemon {
 
         bestSpawner.loadConfig()
         PokemonSpecies.observable.subscribe { starterConfig = this.loadStarterConfig() }
+
+        researchTasksConfig = loadResearchTasksConfig()
     }
 
     fun loadStarterConfig(): StarterConfig {
@@ -498,6 +502,22 @@ object Cobblemon {
         } else {
             return StarterConfig()
         }
+    }
+
+    fun loadResearchTasksConfig(): ResearchTasksConfig {
+        val file = File("config/cobblemon/research_tasks.json")
+        file.parentFile.mkdirs()
+        if (!file.exists()) {
+            val config = ResearchTasksConfig()
+            val pw = PrintWriter(file)
+            ResearchTasksConfig.GSON.toJson(config, pw)
+            pw.close()
+            return config
+        }
+        val reader = FileReader(file)
+        val config = ResearchTasksConfig.GSON.fromJson(reader, ResearchTasksConfig::class.java)
+        reader.close()
+        return config
     }
 
     fun saveConfig() {

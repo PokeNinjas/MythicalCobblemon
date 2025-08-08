@@ -1,8 +1,8 @@
+import utilities.isSnapshot
+import utilities.version
 import java.time.OffsetDateTime
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
-import utilities.isSnapshot
-import utilities.version
 
 /*
  *
@@ -31,6 +31,7 @@ repositories {
     maven(url = "${rootProject.projectDir}/deps")
     maven(url = "https://api.modrinth.com/maven")
     maven(url = "https://maven.neoforged.net/releases")
+    maven(url = "https://maven.ladysnake.org/releases")
     mavenLocal()
 }
 
@@ -55,6 +56,14 @@ dependencies {
 
     // Unit Testing
     testImplementation(libs.bundles.unitTesting)
+
+    // Cardinal Components API
+    include("org.ladysnake.cardinal-components-api:cardinal-components-base:6.1.1")?.let {
+        modImplementation(it)
+    }
+    include("org.ladysnake.cardinal-components-api:cardinal-components-entity:6.1.1")?.let {
+        modImplementation(it)
+    }
 }
 
 tasks.withType<Test> {

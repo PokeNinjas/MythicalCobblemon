@@ -84,6 +84,8 @@ object CobblemonPermissions {
 
     val RUN_MOLANG_SCRIPT = this.create("${COMMAND_PREFIX}runmolangscript", PermissionLevel.CHEAT_COMMANDS_AND_COMMAND_BLOCKS)
 
+    val RESEARCH_TASKS_RELOAD = this.create("${COMMAND_PREFIX}research_tasks_reload", PermissionLevel.CHEAT_COMMANDS_AND_COMMAND_BLOCKS)
+
     fun all(): Iterable<Permission> = this.permissions
 
     private fun create(node: String, level: PermissionLevel): Permission {

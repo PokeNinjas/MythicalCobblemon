@@ -80,6 +80,8 @@ import com.cobblemon.mod.common.net.messages.client.pasture.PokemonPasturedPacke
 import com.cobblemon.mod.common.net.messages.client.pasture.PokemonUnpasturedPacket
 import com.cobblemon.mod.common.net.messages.client.pokedex.PokedexSpawnInfoPacket
 import com.cobblemon.mod.common.net.messages.client.pokedex.PokedexTextureBlacklistPacket
+import com.cobblemon.mod.common.net.messages.client.pokedex.ResearchTasksAllCompletedPacket
+import com.cobblemon.mod.common.net.messages.client.pokedex.ResearchTasksInfoPacket
 import com.cobblemon.mod.common.net.messages.client.pokedex.ServerConfirmedRegisterPacket
 import com.cobblemon.mod.common.net.messages.client.pokemon.update.*
 import com.cobblemon.mod.common.net.messages.client.pokemon.update.evolution.AddEvolutionPacket
@@ -120,6 +122,8 @@ import com.cobblemon.mod.common.net.messages.server.pasture.PasturePokemonPacket
 import com.cobblemon.mod.common.net.messages.server.pasture.UnpastureAllPokemonPacket
 import com.cobblemon.mod.common.net.messages.server.pasture.UnpasturePokemonPacket
 import com.cobblemon.mod.common.net.messages.server.pokedex.PokedexRequestSpawnInfoPacket
+import com.cobblemon.mod.common.net.messages.server.pokedex.RequestResearchTasksAllCompletedPacket
+import com.cobblemon.mod.common.net.messages.server.pokedex.RequestResearchTasksInfoPacket
 import com.cobblemon.mod.common.net.messages.server.pokedex.scanner.FinishScanningPacket
 import com.cobblemon.mod.common.net.messages.server.pokedex.scanner.StartScanningPacket
 import com.cobblemon.mod.common.net.messages.server.pokemon.interact.InteractPokemonPacket
@@ -153,8 +157,10 @@ import com.cobblemon.mod.common.net.serverhandling.npc.SaveNPCHandler
 import com.cobblemon.mod.common.net.serverhandling.pasture.PasturePokemonHandler
 import com.cobblemon.mod.common.net.serverhandling.pasture.UnpastureAllPokemonHandler
 import com.cobblemon.mod.common.net.serverhandling.pasture.UnpasturePokemonHandler
+import com.cobblemon.mod.common.net.serverhandling.pokedex.RequestResearchTasksAllCompletedHandler
 import com.cobblemon.mod.common.net.serverhandling.pokedex.RequestSpawnInfoHandler
 import com.cobblemon.mod.common.net.serverhandling.pokedex.scanner.FinishScanningHandler
+import com.cobblemon.mod.common.net.serverhandling.pokedex.RequestResearchTasksInfoHandler
 import com.cobblemon.mod.common.net.serverhandling.pokedex.scanner.StartScanningHandler
 import com.cobblemon.mod.common.net.serverhandling.pokemon.interact.InteractPokemonHandler
 import com.cobblemon.mod.common.net.serverhandling.pokemon.update.SetNicknameHandler
@@ -174,6 +180,8 @@ import com.cobblemon.mod.common.net.serverhandling.storage.pc.ReleasePartyPokemo
 import com.cobblemon.mod.common.net.serverhandling.storage.pc.SwapPCPokemonHandler
 import com.cobblemon.mod.common.net.serverhandling.storage.pc.UnlinkPlayerFromPCHandler
 import com.cobblemon.mod.common.net.serverhandling.trade.*
+import com.cobblemon.mod.common.pokedex.research_tasks.ClientsideResearchTasksAllCompletedManager
+import com.cobblemon.mod.common.pokedex.research_tasks.ClientsideResearchTasksManager
 import com.cobblemon.mod.common.util.server
 import net.minecraft.server.level.ServerPlayer
 
@@ -369,6 +377,8 @@ object CobblemonNetwork {
         // Pokedex other stuff
         list.add(PacketRegisterInfo(PokedexSpawnInfoPacket.ID, PokedexSpawnInfoPacket::decode, ClientsidePokedexSpawnInfoManager))
         list.add(PacketRegisterInfo(PokedexTextureBlacklistPacket.ID, PokedexTextureBlacklistPacket::decode, PokedexTextureBlacklistHandler))
+        list.add(PacketRegisterInfo(ResearchTasksInfoPacket.ID, ResearchTasksInfoPacket::decode, ClientsideResearchTasksManager))
+        list.add(PacketRegisterInfo(ResearchTasksAllCompletedPacket.ID, ResearchTasksAllCompletedPacket::decode, ClientsideResearchTasksAllCompletedManager))
         return list
     }
 
@@ -429,8 +439,10 @@ object CobblemonNetwork {
         list.add(PacketRegisterInfo(StartScanningPacket.ID, StartScanningPacket::decode, StartScanningHandler))
         list.add(PacketRegisterInfo(FinishScanningPacket.ID, FinishScanningPacket::decode, FinishScanningHandler))
 
-        // Pokedex locations info
+        // Pokedex other info
         list.add(PacketRegisterInfo(PokedexRequestSpawnInfoPacket.ID, PokedexRequestSpawnInfoPacket::decode, RequestSpawnInfoHandler))
+        list.add(PacketRegisterInfo(RequestResearchTasksInfoPacket.ID, RequestResearchTasksInfoPacket::decode, RequestResearchTasksInfoHandler))
+        list.add(PacketRegisterInfo(RequestResearchTasksAllCompletedPacket.ID, RequestResearchTasksAllCompletedPacket::decode, RequestResearchTasksAllCompletedHandler))
 
         // Pasture
         list.add(PacketRegisterInfo(PasturePokemonPacket.ID, PasturePokemonPacket::decode, PasturePokemonHandler))

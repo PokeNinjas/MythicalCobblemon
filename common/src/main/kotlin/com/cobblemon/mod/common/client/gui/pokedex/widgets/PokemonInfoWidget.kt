@@ -40,6 +40,7 @@ import com.cobblemon.mod.common.client.render.drawScaledTextJustifiedRight
 import com.cobblemon.mod.common.client.render.models.blockbench.FloatingState
 import com.cobblemon.mod.common.client.render.models.blockbench.repository.PokemonModelRepository
 import com.cobblemon.mod.common.entity.PoseType
+import com.cobblemon.mod.common.pokedex.research_tasks.ClientsideResearchTasksAllCompletedManager
 import com.cobblemon.mod.common.pokemon.FormData
 import com.cobblemon.mod.common.pokemon.Gender
 import com.cobblemon.mod.common.pokemon.RenderablePokemon
@@ -84,6 +85,7 @@ class PokemonInfoWidget(val pX: Int, val pY: Int, val updateForm: (PokedexForm) 
         private val arrowFormRight = cobblemonResource("textures/gui/pokedex/forms_arrow_right.png")
 
         private val caughtIcon = cobblemonResource("textures/gui/pokedex/caught_icon.png")
+        private val goldenPokeballIcon = cobblemonResource("textures/gui/pokedex/golden_pokeball_icon.png")
         private val typeBar = cobblemonResource("textures/gui/pokedex/type_bar.png")
         private val typeBarDouble = cobblemonResource("textures/gui/pokedex/type_bar_double.png")
 
@@ -327,9 +329,15 @@ class PokemonInfoWidget(val pX: Int, val pY: Int, val updateForm: (PokedexForm) 
 
         // Caught icon
         if (isSelectedPokemonOwned()) {
+            val pokeballTexture: ResourceLocation
+            if (ClientsideResearchTasksAllCompletedManager.speciesWithAllTasksCompleted.contains(species.resourceIdentifier.path)) {
+                pokeballTexture = goldenPokeballIcon
+            } else {
+                pokeballTexture = caughtIcon
+            }
             blitk(
                 matrixStack = matrices,
-                texture = caughtIcon,
+                texture = pokeballTexture,
                 x = (pX + 129) / SCALE,
                 y = (pY + 2) / SCALE,
                 width = 14,

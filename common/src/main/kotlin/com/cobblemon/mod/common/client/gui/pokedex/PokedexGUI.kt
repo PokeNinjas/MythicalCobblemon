@@ -52,6 +52,11 @@ import com.cobblemon.mod.common.client.pokedex.PokedexType
 import com.cobblemon.mod.common.client.render.drawScaledText
 import com.cobblemon.mod.common.net.messages.server.block.AdjustBlockEntityViewerCountPacket
 import com.cobblemon.mod.common.net.messages.server.pokedex.PokedexRequestSpawnInfoPacket
+import com.cobblemon.mod.common.net.messages.server.pokedex.RequestResearchTasksAllCompletedPacket
+import com.cobblemon.mod.common.net.messages.server.pokedex.RequestResearchTasksInfoPacket
+import com.cobblemon.mod.common.pokedex.research_tasks.ClientsideResearchTasksAllCompletedManager
+import com.cobblemon.mod.common.pokedex.research_tasks.ClientsideResearchTasksManager
+import com.cobblemon.mod.common.pokedex.research_tasks.ResearchTask
 import com.cobblemon.mod.common.pokemon.abilities.HiddenAbility
 import com.cobblemon.mod.common.util.cobblemonResource
 import com.cobblemon.mod.common.util.isInventoryKeyPressed
@@ -152,6 +157,10 @@ class PokedexGUI private constructor(
 
     public override fun init() {
         super.init()
+
+        ClientsideResearchTasksManager.clearStoredData() // Want latest data each time player open pokedex
+        RequestResearchTasksAllCompletedPacket().sendToServer()
+
         clearWidgets()
 
         val pokedex = CobblemonClient.clientPokedexData
@@ -531,7 +540,7 @@ class PokedexGUI private constructor(
                 tabInfoElement = LocationsScrollingWidget(x + 182, y + 135)
             }
             TAB_RESEARCH_TASKS -> {
-                tabInfoElement = ResearchTasksScrollingWidget(x + 182, y + 135)
+                tabInfoElement = ResearchTasksScrollingWidget(x + 189, y + 135)
             }
         }
         val element = tabInfoElement
@@ -624,6 +633,17 @@ class PokedexGUI private constructor(
                     (tabInfoElement as LocationsScrollingWidget).scrollAmount = 0.0
                 }
                 TAB_RESEARCH_TASKS -> {
+                    val species = species.resourceIdentifier.path
+                    if (ClientsideResearchTasksManager.progress.contains(species)) {
+                        val map = (ClientsideResearchTasksManager.tasks[species] ?: emptyList()).associateWith { ClientsideResearchTasksManager.progress[species]!![ResearchTask(it.task, it.target).getFullIdentifier()] ?: 0 }
+
+                        (tabInfoElement as ResearchTasksScrollingWidget).tasksAndProgress = map
+                        (tabInfoElement as ResearchTasksScrollingWidget).setEntries()
+                    } else {
+                        // Request data from server
+                        RequestResearchTasksInfoPacket(species).sendToServer()
+                    }
+
                     (tabInfoElement as ResearchTasksScrollingWidget).scrollAmount = 0.0
                 }
             }

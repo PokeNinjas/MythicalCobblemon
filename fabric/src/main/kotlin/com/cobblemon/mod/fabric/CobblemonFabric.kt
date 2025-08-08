@@ -26,6 +26,7 @@ import com.cobblemon.mod.common.platform.events.PlatformEvents
 import com.cobblemon.mod.common.platform.events.ServerEvent
 import com.cobblemon.mod.common.platform.events.ServerPlayerEvent
 import com.cobblemon.mod.common.platform.events.ServerTickEvent
+import com.cobblemon.mod.common.pokedex.research_tasks.ResearchTasksEvents
 import com.cobblemon.mod.common.sherds.CobblemonSherds
 import com.cobblemon.mod.common.util.cobblemonResource
 import com.cobblemon.mod.common.util.didSleep
@@ -163,7 +164,10 @@ object CobblemonFabric : CobblemonImplementation {
             CobblemonStructures.registerJigsaws(server)
             CobblemonStructureProcessorListOverrides.register(server)
         }
-        ServerLifecycleEvents.SERVER_STARTED.register { server -> PlatformEvents.SERVER_STARTED.post(ServerEvent.Started(server)) }
+        ServerLifecycleEvents.SERVER_STARTED.register { server ->
+            PlatformEvents.SERVER_STARTED.post(ServerEvent.Started(server))
+            ResearchTasksEvents.init()
+        }
         ServerLifecycleEvents.SERVER_STOPPING.register { server -> PlatformEvents.SERVER_STOPPING.post(ServerEvent.Stopping(server)) }
         ServerLifecycleEvents.SERVER_STOPPED.register { server -> PlatformEvents.SERVER_STOPPED.post(ServerEvent.Stopped(server)) }
         ServerTickEvents.START_SERVER_TICK.register { server -> PlatformEvents.SERVER_TICK_PRE.post(ServerTickEvent.Pre(server)) }

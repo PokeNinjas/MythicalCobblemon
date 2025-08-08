@@ -28,6 +28,7 @@ import com.cobblemon.mod.common.client.gui.pokedex.PokedexGUIConstants.SCROLL_SL
 import com.cobblemon.mod.common.client.gui.pokedex.widgets.EntriesScrollingWidget.PokemonScrollSlotRow
 import com.cobblemon.mod.common.client.render.drawScaledText
 import com.cobblemon.mod.common.client.render.models.blockbench.FloatingState
+import com.cobblemon.mod.common.pokedex.research_tasks.ClientsideResearchTasksAllCompletedManager
 import com.cobblemon.mod.common.pokemon.Gender
 import com.cobblemon.mod.common.pokemon.RenderablePokemon
 import com.cobblemon.mod.common.util.cobblemonResource
@@ -36,6 +37,7 @@ import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.GuiGraphics
 import net.minecraft.client.resources.sounds.SimpleSoundInstance
 import net.minecraft.network.chat.Component
+import net.minecraft.resources.ResourceLocation
 import net.minecraft.util.FastColor
 import net.minecraft.util.Mth
 import org.joml.Quaternionf
@@ -119,6 +121,7 @@ class EntriesScrollingWidget(val pX: Int, val pY: Int, val setPokedexEntry: (Pok
             private val slotResource = cobblemonResource("textures/gui/pokedex/pokedex_slot.png")
             private val slotHighlight = cobblemonResource("textures/gui/pokedex/slot_select.png")
             private val caughtIcon = cobblemonResource("textures/gui/pokedex/caught_icon_small.png")
+            private val goldenPokeballIcon = cobblemonResource("textures/gui/pokedex/golden_pokeball_icon_small.png")
             private val unknownIcon = cobblemonResource("textures/gui/pokedex/pokedex_slot_unknown.png")
             private val unimplementedIcon = cobblemonResource("textures/gui/pokedex/pokedex_slot_unimplemented.png")
         }
@@ -250,9 +253,15 @@ class EntriesScrollingWidget(val pX: Int, val pY: Int, val setPokedexEntry: (Pok
                 )
 
                 if (discoveryLevel == PokedexEntryProgress.CAUGHT) {
+                    val pokeballTexture: ResourceLocation
+                    if (ClientsideResearchTasksAllCompletedManager.speciesWithAllTasksCompleted.contains(species.resourceIdentifier.path)) {
+                        pokeballTexture = goldenPokeballIcon
+                    } else {
+                        pokeballTexture = caughtIcon
+                    }
                     blitk(
                         matrixStack = matrices,
-                        texture = caughtIcon,
+                        texture = pokeballTexture,
                         x = (startPosX + 18) / SCALE,
                         y = (startPosY + 1.5) / SCALE,
                         width = 11,
