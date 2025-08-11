@@ -13,11 +13,15 @@ import com.cobblemon.mod.common.api.pokedex.AbstractPokedexManager
 import com.cobblemon.mod.common.api.pokedex.PokedexEntryProgress
 import com.cobblemon.mod.common.api.pokedex.entry.PokedexEntry
 import com.cobblemon.mod.common.api.pokemon.PokemonSpecies
+import com.cobblemon.mod.common.api.pokemon.feature.SpeciesFeatures
+import com.cobblemon.mod.common.client.gui.pokedex.widgets.PokemonInfoWidget.Companion.textureBlacklist
 import com.cobblemon.mod.common.pokemon.abilities.HiddenAbility
 import com.cobblemon.mod.common.util.asTranslated
 import com.cobblemon.mod.common.util.itemRegistry
 import net.minecraft.client.Minecraft
 import net.minecraft.world.item.ItemStack
+import kotlin.text.contains
+import kotlin.text.startsWith
 
 /**
  * A Pokedex [EntryFilter] that filters out entries that do not contain the current search.
@@ -56,6 +60,10 @@ class SearchFilter(val pokedexManager: AbstractPokedexManager, val searchString:
                     }
                 }
                 return dropsList.any { it.contains(searchString.trim().lowercase()) }
+            }
+            SearchByType.TEXTURE -> {
+                val textureList = SpeciesFeatures.getFeatureNamesFor(species).filter { it.startsWith("mythical_") && !it.contains("raid") && !textureBlacklist.contains(species.name.lowercase() + " " + it) }
+                return textureList.any {it.contains(searchString.trim().lowercase())}
             }
             // Search by species name
             else -> {

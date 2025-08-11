@@ -350,7 +350,7 @@ class PokedexGUI private constructor(
         if (searchByTypeButton.isButtonHovered(mouseX, mouseY)) {
             matrices.pushPose()
             matrices.translate(0.0, 0.0, 1000.0)
-            val searchTypeText = lang("ui.pokedex.search.search_by", lang("ui.pokedex.search.type.${selectedSearchByType.name.lowercase()}")).bold()
+            val searchTypeText = lang("ui.pokedex.search.search_by", if (selectedSearchByType == SearchByType.TEXTURE) Component.literal("Custom Texture") else lang("ui.pokedex.search.type.${selectedSearchByType.name.lowercase()}")).bold()
             val searchTypeTextWidth = Minecraft.getInstance().font.width(searchTypeText.font(CobblemonResources.DEFAULT_LARGE))
             val tooltipWidth = searchTypeTextWidth + 6
 
@@ -638,6 +638,7 @@ class PokedexGUI private constructor(
                         val map = (ClientsideResearchTasksManager.tasks[species] ?: emptyList()).associateWith { ClientsideResearchTasksManager.progress[species]!![ResearchTask(it.task, it.target).getFullIdentifier()] ?: 0 }
 
                         (tabInfoElement as ResearchTasksScrollingWidget).tasksAndProgress = map
+                        (tabInfoElement as ResearchTasksScrollingWidget).completedAll = ClientsideResearchTasksAllCompletedManager.speciesWithAllTasksCompleted.contains(species)
                         (tabInfoElement as ResearchTasksScrollingWidget).setEntries()
                     } else {
                         // Request data from server

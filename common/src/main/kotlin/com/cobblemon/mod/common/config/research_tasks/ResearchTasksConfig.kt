@@ -91,4 +91,11 @@ class ResearchTasksConfig {
             ResearchTaskConfig("use_move", "tackle", 15),
             ResearchTaskConfig("use_move", "growl", 10)),
     )
+
+    @NodeCategory(Category.Pokedex)
+    var goldenPokeballShinyRates = mapOf(
+        "default" to 10000f,
+        "bulbasaur" to 5000f,
+        "ivysaur" to 5000f,
+    )
 }

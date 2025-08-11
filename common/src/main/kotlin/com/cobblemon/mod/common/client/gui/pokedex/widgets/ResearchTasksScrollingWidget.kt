@@ -38,6 +38,7 @@ class ResearchTasksScrollingWidget(val pX: Int, val pY: Int): ScrollingWidget<Re
     }
 
     var tasksAndProgress: Map<ResearchTaskConfig, Int> = emptyMap()
+    var completedAll: Boolean = false
 
     override fun getX() = pX
     override fun getY() = pY
@@ -47,6 +48,7 @@ class ResearchTasksScrollingWidget(val pX: Int, val pY: Int): ScrollingWidget<Re
         tasksAndProgress.forEach {
             addEntry(ResearchTaskWidgetEntry(it.key, it.value))
         }
+        addEntry(ResearchTaskWidgetEntry(completedAll))
     }
 
     override fun getScrollbarPosition(): Int {
@@ -104,6 +106,14 @@ class ResearchTasksScrollingWidget(val pX: Int, val pY: Int): ScrollingWidget<Re
     }
 
     class ResearchTaskWidgetEntry(val task: ResearchTaskConfig, val progress: Int): Slot<ResearchTaskWidgetEntry>() {
+        var infoOneAtBottom = false
+        var allCompleted = false
+
+        constructor(allCompleted: Boolean) : this(ResearchTaskConfig("none"), 0) {
+            this.infoOneAtBottom = true
+            this.allCompleted = allCompleted
+        }
+
         override fun render(
             context: GuiGraphics,
             index: Int,
@@ -116,6 +126,21 @@ class ResearchTasksScrollingWidget(val pX: Int, val pY: Int): ScrollingWidget<Re
             hovered: Boolean,
             tickDelta: Float
         ) {
+            if (infoOneAtBottom) {
+
+                val text = Component.literal(if (allCompleted) "Shiny chance boosted for natural spawns!" else "Complete all tasks for boosted shiny chance!")
+
+                drawScaledText(
+                    context = context,
+                    text = text,
+                    x = x + 5,
+                    y = y + 7,
+                    colour = 0x606B6E,
+                    scale = PokedexGUIConstants.SCALE
+                )
+                return
+            }
+
             val completed = progress >= task.amount
 
             context.blit(if (completed) done else not_done, x, y+5, 0, 0.0f, 0.0f, 8, 8, 8, 8)

@@ -18,6 +18,7 @@ import com.cobblemon.mod.common.client.gui.pokedex.PokedexGUIConstants.HALF_OVER
 import com.cobblemon.mod.common.client.gui.pokedex.PokedexGUIConstants.HALF_OVERLAY_WIDTH
 import com.cobblemon.mod.common.client.gui.pokedex.PokedexGUIConstants.SCALE
 import com.cobblemon.mod.common.client.render.drawScaledText
+import com.cobblemon.mod.common.client.render.drawScaledTextJustifiedRight
 import com.cobblemon.mod.common.util.cobblemonResource
 import com.cobblemon.mod.common.util.lang
 import net.minecraft.Util
@@ -93,6 +94,17 @@ class SearchWidget(
             y = startY,
             shadow = true
         )
+
+        if (value.isEmpty()) {
+            drawScaledTextJustifiedRight(
+                context = context,
+                font = CobblemonResources.DEFAULT_LARGE,
+                text = Component.literal("Filter ->").bold(),
+                x = startX+114,
+                y = startY,
+                shadow = true
+            )
+        }
 
         if (showCursor && !value.isEmpty() && cursorPosition != value.length) {
             val startToCursorWidth = Minecraft.getInstance().font.width((input.getString(cursorPosition).text().bold()).font(CobblemonResources.DEFAULT_LARGE))

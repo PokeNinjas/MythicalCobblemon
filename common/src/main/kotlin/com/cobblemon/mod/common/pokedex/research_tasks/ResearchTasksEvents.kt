@@ -1,5 +1,6 @@
 package com.cobblemon.mod.common.pokedex.research_tasks
 
+import com.cobblemon.mod.common.Cobblemon
 import com.cobblemon.mod.common.api.battles.model.actor.BattleActor
 import com.cobblemon.mod.common.api.events.CobblemonEvents
 import com.cobblemon.mod.common.api.spawning.TimeRange
@@ -53,6 +54,21 @@ object ResearchTasksEvents {
             event.bobber.playerOwner?.let {
                 val data = ComponentRegistry.RESEARCH_TASKS_DATA.get(it)
                 data.incrementProgress(event.pokemon.pokemon.species.resourceIdentifier.path, FishResearchTask())
+            }
+        }
+
+
+        // Golden pokeball affecting shiny chance
+        CobblemonEvents.SHINY_CHANCE_CALCULATION.subscribe {event ->
+            event.addModificationFunction { baseChance, player, pokemon ->
+                if (player != null) {
+                    val data = ComponentRegistry.RESEARCH_TASKS_DATA.get(player)
+                    val species = pokemon.species.resourceIdentifier.path
+                    if (data.speciesWithAllTasksCompleted.contains(species)) {
+                        return@addModificationFunction Cobblemon.researchTasksConfig.goldenPokeballShinyRates[species] ?: Cobblemon.researchTasksConfig.goldenPokeballShinyRates["default"] ?: baseChance
+                    }
+                }
+                return@addModificationFunction baseChance
             }
         }
     }
