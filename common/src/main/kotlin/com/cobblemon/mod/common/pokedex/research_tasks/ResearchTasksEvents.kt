@@ -59,7 +59,7 @@ object ResearchTasksEvents {
 
 
         // Golden pokeball affecting shiny chance
-        CobblemonEvents.SHINY_CHANCE_CALCULATION.subscribe {event ->
+        CobblemonEvents.SHINY_CHANCE_CALCULATION.subscribe { event ->
             event.addModificationFunction { baseChance, player, pokemon ->
                 if (player != null) {
                     val data = ComponentRegistry.RESEARCH_TASKS_DATA.get(player)
@@ -71,6 +71,28 @@ object ResearchTasksEvents {
                 return@addModificationFunction baseChance
             }
         }
+
+        CobblemonEvents.FOSSIL_REVIVED.subscribe { event ->
+            event.player?.let {
+                val data = ComponentRegistry.RESEARCH_TASKS_DATA.get(it)
+                data.incrementProgress(event.pokemon.species.resourceIdentifier.path, ReviveResearchTask())
+            }
+        }
+
+        CobblemonEvents.MEGA_EVOLUTION.subscribe { event ->
+            if (event.pokemon.actor is PlayerBattleActor) {
+                (event.pokemon.actor as PlayerBattleActor).entity?.let {
+                    val data = ComponentRegistry.RESEARCH_TASKS_DATA.get(it)
+                    data.incrementProgress(event.pokemon.originalPokemon.species.resourceIdentifier.path, MegaEvolveResearchTask())
+                }
+            }
+        }
+    }
+
+    // Called from MythicalRaids
+    fun raidDefeated(player: ServerPlayer, pokemon: Pokemon) {
+        val data = ComponentRegistry.RESEARCH_TASKS_DATA.get(player)
+        data.incrementProgress(pokemon.species.resourceIdentifier.path, RaidDefeatResearchTask())
     }
 
     fun moveUsed(actor: BattleActor, pokemon: ActiveBattlePokemon, move: String) {

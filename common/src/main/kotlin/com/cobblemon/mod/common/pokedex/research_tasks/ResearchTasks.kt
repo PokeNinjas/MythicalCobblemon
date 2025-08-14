@@ -18,6 +18,9 @@ object ResearchTasks {
             "shear" -> ShearResearchTask()
             "hatch" -> HatchResearchTask()
             "milk" -> MilkResearchTask()
+            "revive" -> ReviveResearchTask()
+            "mega_evolve" -> MegaEvolveResearchTask()
+            "raid_defeat" -> RaidDefeatResearchTask()
             else -> {
                 val split = fullIdentifier.split("!")
                 if (split.size != 2) throw IllegalArgumentException("Invalid research task identifier $fullIdentifier!")
@@ -54,6 +57,9 @@ class FishResearchTask : SimpleResearchTask("fish", "Fish")
 class ShearResearchTask : SimpleResearchTask("shear", "Shear")
 class HatchResearchTask : SimpleResearchTask("hatch", "Hatch")
 class MilkResearchTask : SimpleResearchTask("milk", "Milk")
+class ReviveResearchTask : SimpleResearchTask("revive", "Revive From Fossil")
+class MegaEvolveResearchTask : SimpleResearchTask("mega_evolve", "Mega Evolve")
+class RaidDefeatResearchTask : SimpleResearchTask("raid_defeat", "Defeat in Raid Battle")
 
 class UseMoveResearchTask(move: String) : ResearchTask("use_move", move) {
     override fun getDisplayName(): MutableComponent {
