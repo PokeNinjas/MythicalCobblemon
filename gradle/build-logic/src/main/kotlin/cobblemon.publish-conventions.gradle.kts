@@ -15,11 +15,11 @@ java {
 
 publishing {
     repositories {
-        maven("https://repository.mythicalnetwork.live/repository/maven-releases/") {
+        maven("https://maven.mythicalnetwork.com/releases/") {
             name = "Mythical-Repo"
             credentials {
-                username = (project.findProperty("mythicalUsername") ?: System.getenv("MYTHICAL_USERNAME") ?: "") as String?
-                password = (project.findProperty("mythicalPassword") ?: System.getenv("MYTHICAL_PASSWORD") ?: "") as String?
+                username = (project.findProperty("mythical.auth.username") ?: project.findProperty("mythicalUsername") ?: System.getenv("MYTHICAL_USERNAME") ?: "") as String?
+                password = (project.findProperty("mythical.auth.password") ?: project.findProperty("mythicalPassword") ?: System.getenv("MYTHICAL_PASSWORD") ?: "") as String?
             }
         }
     }
