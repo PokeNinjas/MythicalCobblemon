@@ -26,6 +26,7 @@ object ResearchTasksEvents {
             event.pokemon.status?.status?.name?.path?.let { data.incrementProgress(pokemon, CatchWithStatusResearchTask(it)) }
             data.incrementProgress(pokemon, CatchGenderResearchTask(event.pokemon.gender.name))
             data.incrementProgress(pokemon, CatchWithAbilityResearchTask(event.pokemon.ability.name))
+            event.pokemon.aspects.forEach { data.incrementProgress(pokemon, CatchAspectResearchTask(it)) }
 
             val time = (event.player.level().dayTime % 24000).toInt()
             TimeRange.timeRanges.forEach {
@@ -35,19 +36,15 @@ object ResearchTasksEvents {
             }
         }
 
-        CobblemonEvents.HATCH_EGG_POST.subscribe { event ->
-            val player = event.player
-            val data = ComponentRegistry.RESEARCH_TASKS_DATA.get(player)
-
-            event.egg.species?.let {data.incrementProgress(it, HatchResearchTask()) }
-        }
-
         CobblemonEvents.EVOLUTION_ACCEPTED.subscribe { event ->
             event.pokemon.getOwnerPlayer()?.let { player ->
                 val data = ComponentRegistry.RESEARCH_TASKS_DATA.get(player)
 
                 data.incrementProgress(event.pokemon.species.resourceIdentifier.path, EvolveResearchTask())
-                event.evolution.result.species?.let { data.incrementProgress(event.pokemon.species.resourceIdentifier.path, EvolveIntoResearchTask(it)) }
+                event.evolution.result.species?.let { species ->
+                    data.incrementProgress(event.pokemon.species.resourceIdentifier.path, EvolveIntoResearchTask(species))
+                    event.evolution.result.form?.let { form -> data.incrementProgress(event.pokemon.species.resourceIdentifier.path, EvolveIntoResearchTask("$species!$form")) }
+                }
             }
         }
 
@@ -79,21 +76,24 @@ object ResearchTasksEvents {
                 data.incrementProgress(event.pokemon.species.resourceIdentifier.path, ReviveResearchTask())
             }
         }
-
-        CobblemonEvents.MEGA_EVOLUTION.subscribe { event ->
-            if (event.pokemon.actor is PlayerBattleActor) {
-                (event.pokemon.actor as PlayerBattleActor).entity?.let {
-                    val data = ComponentRegistry.RESEARCH_TASKS_DATA.get(it)
-                    data.incrementProgress(event.pokemon.originalPokemon.species.resourceIdentifier.path, MegaEvolveResearchTask())
-                }
-            }
-        }
     }
 
     // Called from MythicalRaids
     fun raidDefeated(player: ServerPlayer, pokemon: Pokemon) {
         val data = ComponentRegistry.RESEARCH_TASKS_DATA.get(player)
         data.incrementProgress(pokemon.species.resourceIdentifier.path, RaidDefeatResearchTask())
+    }
+
+    // Called from MythicalDaycare
+    fun pokemonHatched(player: ServerPlayer, pokemon: Pokemon) {
+        val data = ComponentRegistry.RESEARCH_TASKS_DATA.get(player)
+        data.incrementProgress(pokemon.species.resourceIdentifier.path, HatchResearchTask())
+    }
+
+    // Called from MythicalCobbled
+    fun megaEvolved(player: ServerPlayer, pokemon: Pokemon) {
+        val data = ComponentRegistry.RESEARCH_TASKS_DATA.get(player)
+        data.incrementProgress(pokemon.species.resourceIdentifier.path, MegaEvolveResearchTask())
     }
 
     fun moveUsed(actor: BattleActor, pokemon: ActiveBattlePokemon, move: String) {

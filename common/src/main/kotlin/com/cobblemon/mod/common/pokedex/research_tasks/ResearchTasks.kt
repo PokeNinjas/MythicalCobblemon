@@ -33,6 +33,7 @@ object ResearchTasks {
                     "catch_time" -> CatchAtTimeResearchTask(split[1])
                     "catch_gender" -> CatchGenderResearchTask(split[1])
                     "catch_ability" -> CatchWithAbilityResearchTask(split[1])
+                    "catch_aspect" -> CatchAspectResearchTask(split[1])
                     else -> throw IllegalArgumentException("Invalid research task identifier $fullIdentifier!")
                 }
             }
@@ -70,7 +71,14 @@ class UseMoveResearchTask(move: String) : ResearchTask("use_move", move) {
 
 class EvolveIntoResearchTask(pokemon: String) : ResearchTask("evolve_into", pokemon) {
     override fun getDisplayName(): MutableComponent {
-        return Component.literal("Evolve Into ").append(PokemonSpecies.getByName(target?.lowercase()!!)?.translatedName ?: Component.literal("Invalid Pokemon Configured"))
+        if (target?.contains("!") == true) {
+            // Includes form
+            val split = target.split("!")
+            return Component.literal("Evolve Into ").append(PokemonSpecies.getByName(split[0].lowercase())?.translatedName ?: Component.literal("Invalid Pokemon Configured")).append(" " + split[1].lowercase().split("_").joinToString(" ") { it.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() } })
+        } else {
+            // Doesn't include form
+            return Component.literal("Evolve Into ").append(PokemonSpecies.getByName(target?.lowercase()!!)?.translatedName ?: Component.literal("Invalid Pokemon Configured"))
+        }
     }
 }
 
@@ -108,5 +116,11 @@ class CatchGenderResearchTask(gender: String) : ResearchTask("catch_gender", gen
 class CatchWithAbilityResearchTask(ability: String) : ResearchTask("catch_ability", ability) {
     override fun getDisplayName(): MutableComponent {
         return Component.literal("Catch With Ability: ${target!!.lowercase().replaceFirstChar {it.titlecase(Locale.getDefault())}}")
+    }
+}
+
+class CatchAspectResearchTask(aspect: String) : ResearchTask("catch_aspect", aspect) {
+    override fun getDisplayName(): MutableComponent {
+        return Component.literal("Catch: ${target!!.lowercase().split("-").map { it.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() } }.joinToString(" ")}")
     }
 }

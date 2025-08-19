@@ -74,6 +74,8 @@ class ResearchTasksConfig {
         ResearchTaskConfig("catch_gender", "female", 20),
         ResearchTaskConfig("catch_ability", "flashfire"),
         ResearchTaskConfig("catch_ability", "flashfire", 20),
+        ResearchTaskConfig("catch_aspect", "magikarp-jump-purple-diamonds"),
+        ResearchTaskConfig("catch_aspect", "magikarp-jump-purple-diamonds", 20),
     )
 
     @NodeCategory(Category.Pokedex)
