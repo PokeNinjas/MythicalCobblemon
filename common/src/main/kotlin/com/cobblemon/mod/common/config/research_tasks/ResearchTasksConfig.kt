@@ -72,6 +72,8 @@ class ResearchTasksConfig {
         ResearchTaskConfig("catch_time", "evening"),
         ResearchTaskConfig("catch_gender", "male"),
         ResearchTaskConfig("catch_gender", "female", 20),
+        ResearchTaskConfig("catch_ability", "flashfire"),
+        ResearchTaskConfig("catch_ability", "flashfire", 20),
     )
 
     @NodeCategory(Category.Pokedex)

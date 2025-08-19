@@ -22,6 +22,7 @@ object ResearchTasksEvents {
             data.incrementProgress(pokemon, CatchFormResearchTask(event.pokemon.form.name))
             event.pokemon.status?.status?.name?.path?.let { data.incrementProgress(pokemon, CatchWithStatusResearchTask(it)) }
             data.incrementProgress(pokemon, CatchGenderResearchTask(event.pokemon.gender.name))
+            data.incrementProgress(pokemon, CatchWithAbilityResearchTask(event.pokemon.ability.name))
 
             val time = (event.player.level().dayTime % 24000).toInt()
             TimeRange.timeRanges.forEach {

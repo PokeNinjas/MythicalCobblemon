@@ -32,6 +32,7 @@ object ResearchTasks {
                     "catch_status" -> CatchWithStatusResearchTask(split[1])
                     "catch_time" -> CatchAtTimeResearchTask(split[1])
                     "catch_gender" -> CatchGenderResearchTask(split[1])
+                    "catch_ability" -> CatchWithAbilityResearchTask(split[1])
                     else -> throw IllegalArgumentException("Invalid research task identifier $fullIdentifier!")
                 }
             }
@@ -101,5 +102,11 @@ class CatchAtTimeResearchTask(time: String) : ResearchTask("catch_time", time) {
 class CatchGenderResearchTask(gender: String) : ResearchTask("catch_gender", gender) {
     override fun getDisplayName(): MutableComponent {
         return Component.literal("Catch Gender: ${target!!.lowercase().replaceFirstChar {it.titlecase(Locale.getDefault())}}")
+    }
+}
+
+class CatchWithAbilityResearchTask(ability: String) : ResearchTask("catch_ability", ability) {
+    override fun getDisplayName(): MutableComponent {
+        return Component.literal("Catch With Ability: ${target!!.lowercase().replaceFirstChar {it.titlecase(Locale.getDefault())}}")
     }
 }
