@@ -8,11 +8,8 @@ import com.cobblemon.mod.common.battles.ActiveBattlePokemon
 import com.cobblemon.mod.common.battles.actor.PlayerBattleActor
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity
 import com.cobblemon.mod.common.pokemon.Pokemon
-import net.fabricmc.api.EnvType
-import net.fabricmc.api.Environment
 import net.minecraft.server.level.ServerPlayer
 
-@Environment(EnvType.SERVER)
 object ResearchTasksEvents {
     fun init() {
         CobblemonEvents.POKEMON_CAPTURED.subscribe { event ->
