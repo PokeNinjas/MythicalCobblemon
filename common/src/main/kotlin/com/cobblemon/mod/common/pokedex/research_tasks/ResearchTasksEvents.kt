@@ -17,6 +17,9 @@ object ResearchTasksEvents {
             val data = ComponentRegistry.RESEARCH_TASKS_DATA.get(player)
 
             val pokemon = event.pokemon.species.resourceIdentifier.path
+
+            if (event.pokemon.aspects.contains("radar_spawned")) return@subscribe // Don't count radar mons
+
             data.incrementProgress(pokemon, CatchResearchTask())
             data.incrementProgress(pokemon, CatchWithBallResearchTask(event.pokeBallEntity.pokeBall.name.toString()))
             data.incrementProgress(pokemon, CatchFormResearchTask(event.pokemon.form.name))
@@ -115,6 +118,7 @@ object ResearchTasksEvents {
     }
 
     fun pokemonDefeated(winnerBattleActor: BattleActor, looser: Pokemon) {
+        if (looser.aspects.contains("radar_spawned")) return // Don't count radar mons
         if (winnerBattleActor is PlayerBattleActor) {
             winnerBattleActor.entity?.let {
                 val data = ComponentRegistry.RESEARCH_TASKS_DATA.get(it)
