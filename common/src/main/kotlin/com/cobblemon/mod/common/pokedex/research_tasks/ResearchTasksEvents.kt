@@ -18,7 +18,9 @@ object ResearchTasksEvents {
 
             val pokemon = event.pokemon.species.resourceIdentifier.path
 
-            if (event.pokemon.aspects.contains("radar_spawned")) return@subscribe // Don't count radar mons
+            // Don't count radar mons, check in two different ways
+            if (event.pokeBallEntity.capturingPokemon?.aspects?.contains("radar_spawned") == true) return@subscribe
+            if (event.pokemon.aspects.contains("radar_spawned")) return@subscribe
 
             data.incrementProgress(pokemon, CatchResearchTask())
             data.incrementProgress(pokemon, CatchWithBallResearchTask(event.pokeBallEntity.pokeBall.name.toString()))

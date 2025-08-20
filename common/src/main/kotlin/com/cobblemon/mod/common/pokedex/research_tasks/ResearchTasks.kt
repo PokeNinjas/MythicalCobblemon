@@ -71,9 +71,9 @@ class UseMoveResearchTask(move: String) : ResearchTask("use_move", move) {
 
 class EvolveIntoResearchTask(pokemon: String) : ResearchTask("evolve_into", pokemon) {
     override fun getDisplayName(): MutableComponent {
-        if (target?.contains("!") == true) {
+        if (target?.contains("/") == true) {
             // Includes form
-            val split = target.split("!")
+            val split = target.split("/")
             return Component.literal("Evolve Into ").append(PokemonSpecies.getByName(split[0].lowercase())?.translatedName ?: Component.literal("Invalid Pokemon Configured")).append(" " + split[1].lowercase().split("_").joinToString(" ") { it.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() } })
         } else {
             // Doesn't include form
