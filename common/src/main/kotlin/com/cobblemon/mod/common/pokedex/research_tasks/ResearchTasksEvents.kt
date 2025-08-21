@@ -45,7 +45,7 @@ object ResearchTasksEvents {
                 data.incrementProgress(event.pokemon.species.resourceIdentifier.path, EvolveResearchTask())
                 event.evolution.result.species?.let { species ->
                     data.incrementProgress(event.pokemon.species.resourceIdentifier.path, EvolveIntoResearchTask(species))
-                    event.evolution.result.form?.let { form -> data.incrementProgress(event.pokemon.species.resourceIdentifier.path, EvolveIntoResearchTask("$species!$form")) }
+                    event.evolution.result.customProperties.forEach { data.incrementProgress(event.pokemon.species.resourceIdentifier.path, EvolveIntoResearchTask("$species/${it.asString().split("=")[0]}")) }
                 }
             }
         }
