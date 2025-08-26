@@ -106,6 +106,24 @@
                 ],
                 "minLureLevel": 1
             }
+        },
+        {
+            "id": "corsola-galarian-6",
+            "pokemon": "corsola galarian",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "context": "grounded",
+            "bucket": "uncommon",
+            "level": "16-30",
+            "weight": 3.0,
+            "condition": {
+                "timeRange": "night",
+                "biomes": [
+                    "#cobblemon:is_hill"
+                ]
+            }
         }
     ]
 }

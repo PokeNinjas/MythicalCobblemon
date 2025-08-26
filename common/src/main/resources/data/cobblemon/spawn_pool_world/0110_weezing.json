@@ -73,6 +73,21 @@
                     "#cobblemon:nether/is_toxic"
                 ]
             }
+        },
+        {
+            "id": "weezing-galarian-4",
+            "pokemon": "weezing galarian",
+            "presets": [
+                "wild"
+            ],
+            "type": "pokemon",
+            "context": "grounded",
+            "bucket": "uncommon",
+            "level": "25-35",
+            "weight": 3.0,
+            "condition": {
+                "timeRange": "night"
+            }
         }
     ]
 }
