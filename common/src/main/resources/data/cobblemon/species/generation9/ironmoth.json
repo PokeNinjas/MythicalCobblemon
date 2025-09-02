@@ -123,5 +123,10 @@
     "tutor:spikes",
     "tutor:swift"
   ],
-  "evolutions": []
+  "evolutions": [],
+  "hitbox": {
+    "width": 2,
+    "height": 3,
+    "fixed": false
+  }
 }

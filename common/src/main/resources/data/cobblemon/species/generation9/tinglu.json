@@ -42,6 +42,11 @@
   "catchRate": 6,
   "eggCycles": 50,
   "baseFriendship": 0,
+  "hitbox": {
+    "width": 2,
+    "height": 3,
+    "fixed": false
+  },
   "moves": [
     "1:meanlook",
     "1:sandtomb",
