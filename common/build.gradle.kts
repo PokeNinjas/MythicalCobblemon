@@ -74,6 +74,10 @@ tasks.withType<Test> {
     }
 }
 
+tasks.matching { it.name == "remapJar" }.configureEach {
+    enabled = false
+}
+
 sourceSets {
     main {
         blossom {
