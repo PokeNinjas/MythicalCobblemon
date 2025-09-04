@@ -394,12 +394,14 @@ open class Pokemon : ShowdownIdentifiable {
     var faintedTimer: Int = -1
         set(value) {
             field = value
+            onChange()
             anyChangeObservable.emit(this)
         }
 
     var healTimer: Int = -1
         set(value) {
             field = value
+            onChange()
             anyChangeObservable.emit(this)
         }
 
@@ -1569,6 +1571,7 @@ open class Pokemon : ShowdownIdentifiable {
                     notify(packet)
                 }
             }
+            onChange()
             anyChangeObservable.emit(this)
         }
         return observable
@@ -1576,6 +1579,13 @@ open class Pokemon : ShowdownIdentifiable {
 
     private val observables = mutableListOf<Observable<*>>()
     val anyChangeObservable = SimpleObservable<Pokemon>()
+
+    fun onChange() {
+        val store = storeCoordinates.get()?.store
+        if (store != null) {
+            store.onPokemonChange(this)
+        }
+    }
 
     val struct = ObjectValue<Pokemon>(this)
         .addPokemonFunctions(this)
