@@ -6,28 +6,28 @@
         "aspects":[],
         "poser": "cobblemon:meowstic_male",
         "model": "cobblemon:meowstic_male.geo",
-        "texture": "cobblemon:textures/pokemon/0668_meowstic/meowstic_male.png",
+        "texture": "cobblemon:textures/pokemon/0678_meowstic/meowstic_male.png",
         "layers": [
           {
           "name": "male",
-          "texture": "cobblemon:textures/pokemon/0668_meowstic/meowstic_male_emissive.png",
+          "texture": "cobblemon:textures/pokemon/0678_meowstic/meowstic_male_emissive.png",
           "emissive": "true"
         }
         ]
       },
       {
         "aspects": ["shiny"],
-        "texture": "cobblemon:textures/pokemon/0668_meowstic/meowstic_male_shiny.png"
+        "texture": "cobblemon:textures/pokemon/0678_meowstic/meowstic_male_shiny.png"
       },
       {
         "aspects": ["male"],
         "poser": "cobblemon:meowstic_male",
         "model": "cobblemon:meowstic_male.geo",
-        "texture": "cobblemon:textures/pokemon/0668_meowstic/meowstic_male.png",
+        "texture": "cobblemon:textures/pokemon/0678_meowstic/meowstic_male.png",
         "layers": [
           {
           "name": "male",
-          "texture": "cobblemon:textures/pokemon/0668_meowstic/meowstic_male_emissive.png",
+          "texture": "cobblemon:textures/pokemon/0678_meowstic/meowstic_male_emissive.png",
           "emissive": "true"
         }
         ]
@@ -37,7 +37,7 @@
           "shiny",
           "male"
         ],
-        "texture": "cobblemon:textures/pokemon/0668_meowstic/meowstic_male_shiny.png"
+        "texture": "cobblemon:textures/pokemon/0678_meowstic/meowstic_male_shiny.png"
       }
     ]
   }
