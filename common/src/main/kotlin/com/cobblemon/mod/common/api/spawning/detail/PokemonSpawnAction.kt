@@ -53,7 +53,9 @@ class PokemonSpawnAction(
         if (heldItem != null) {
             entity.pokemon.swapHeldItem(heldItem)
         }
-        Growth.getRandomSpawnGrowth().applyToPokemon(entity.pokemon)
+        if (props.size == null) {
+            Growth.getRandomSpawnGrowth().applyToPokemon(entity.pokemon)
+        }
         entity.drops = detail.drops
         // Useful debug code in situations where you want to find spawns
 //        val fireworkRocketEntity = FireworkRocketEntity(ctx.world, ctx.position.x.toDouble(), ctx.position.y.toDouble() + 2, ctx.position.z.toDouble(), ItemStack(Items.FIREWORK_ROCKET))

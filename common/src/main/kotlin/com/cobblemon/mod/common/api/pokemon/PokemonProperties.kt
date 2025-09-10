@@ -34,6 +34,7 @@ import com.cobblemon.mod.common.pokemon.OriginalTrainerType
 import com.cobblemon.mod.common.pokemon.Pokemon
 import com.cobblemon.mod.common.pokemon.RenderablePokemon
 import com.cobblemon.mod.common.pokemon.status.PersistentStatus
+import com.cobblemon.mod.common.pokemon.Growth
 import com.cobblemon.mod.common.util.DataKeys
 import com.cobblemon.mod.common.util.asIdentifierDefaultingNamespace
 import com.cobblemon.mod.common.util.isDouble
@@ -144,6 +145,7 @@ open class PokemonProperties {
             props.originalTrainer = parsePlayerProperty(keyPairs, listOf("originaltrainer", "ot"))
             props.moves = parseString(keyPairs, listOf("moves"))?.split(",")
             props.heldItem = parseString(keyPairs, listOf("helditem", "held_item"))
+            props.size = Growth.entries.toList().parsePropertyOfCollection(keyPairs, listOf("size", "growth"), labelsOptional = true) { it.name.lowercase() }
 
             val maybeIVs = IVs()
             val maybeEVs = EVs()
@@ -154,7 +156,6 @@ open class PokemonProperties {
             }
             props.ivs = maybeIVs
             props.evs = maybeEVs
-
             props.updateAspects()
             return props
         }
@@ -339,6 +340,7 @@ open class PokemonProperties {
     var originalTrainer: String? = null // Original Trainer by Username or UUID
     var moves: List<String>? = null
     var heldItem: String? = null
+    var size: Growth? = null
 
     var ivs: IVs? = null
     var evs: EVs? = null
@@ -455,6 +457,7 @@ open class PokemonProperties {
             if (stack.isEmpty) return@let
             pokemon.heldItem = stack
         }
+        size?.let { it.applyToPokemon(pokemon) }
         pokemon.updateAspects()
     }
 
@@ -527,6 +530,7 @@ open class PokemonProperties {
 
             return@takeIf false
         }?.let { return false }
+        size?.let { if (Growth.getFromPokemon(pokemon) != it) return false }
         return true
     }
 
@@ -640,6 +644,7 @@ open class PokemonProperties {
         originalTrainer?.let { nbt.putString(DataKeys.POKEMON_ORIGINAL_TRAINER, it) }
         moves?.let { nbt.putString(DataKeys.POKEMON_PROPERTIES_MOVES, it.joinToString(separator = ",")) }
         heldItem?.let {nbt.putString(DataKeys.POKEMON_PROPERTIES_HELDITEM, it)}
+        size?.let { nbt.putString(DataKeys.POKEMON_PROPERTIES_SIZE, it.name) }
         val custom = ListTag()
         customProperties.map { StringTag.valueOf(it.asString()) }.forEach { custom.add(it) }
         nbt.put(DataKeys.POKEMON_PROPERTIES_CUSTOM, custom)
@@ -671,6 +676,8 @@ open class PokemonProperties {
         originalTrainer = if (tag.contains(DataKeys.POKEMON_ORIGINAL_TRAINER)) tag.getString(DataKeys.POKEMON_ORIGINAL_TRAINER) else null
         moves = if (tag.contains(DataKeys.POKEMON_PROPERTIES_MOVES)) tag.getString(DataKeys.POKEMON_PROPERTIES_MOVES).split(",") else null
         heldItem = if (tag.contains(DataKeys.POKEMON_PROPERTIES_HELDITEM)) tag.getString(DataKeys.POKEMON_PROPERTIES_HELDITEM) else null
+        size = if (tag.contains(DataKeys.POKEMON_PROPERTIES_SIZE)) runCatching { Growth.valueOf(tag.getString(DataKeys.POKEMON_PROPERTIES_SIZE)) }.getOrNull()
+        else null
         val custom = tag.getList(DataKeys.POKEMON_PROPERTIES_CUSTOM, Tag.TAG_STRING.toInt())
         // This is kinda gross
         custom.forEach { customProperties.addAll(parse(it.asString).customProperties) }
@@ -704,6 +711,7 @@ open class PokemonProperties {
         originalTrainer?.let { json.addProperty(DataKeys.POKEMON_ORIGINAL_TRAINER, it) }
         moves?.let { json.addProperty(DataKeys.POKEMON_PROPERTIES_MOVES, it.joinToString(separator = ",")) }
         heldItem?.let {json.addProperty(DataKeys.POKEMON_PROPERTIES_HELDITEM, it)}
+        size?.let { json.addProperty(DataKeys.POKEMON_PROPERTIES_SIZE, it.name) }
         val custom = JsonArray()
         customProperties.map { it.asString() }.forEach { custom.add(it) }
         json.add(DataKeys.POKEMON_PROPERTIES_CUSTOM, custom)
@@ -740,6 +748,7 @@ open class PokemonProperties {
         originalTrainer = json.get(DataKeys.POKEMON_ORIGINAL_TRAINER)?.asString
         moves = json.get(DataKeys.POKEMON_PROPERTIES_MOVES)?.asString?.split(",")
         heldItem = json.get(DataKeys.POKEMON_PROPERTIES_HELDITEM)?.asString
+        size = json.get(DataKeys.POKEMON_PROPERTIES_SIZE)?.asString?.let { runCatching { Growth.valueOf(it) }.getOrNull() }
         val custom = json.get(DataKeys.POKEMON_PROPERTIES_CUSTOM)?.asJsonArray
         // This is still kinda gross
         custom?.forEach { customProperties.addAll(parse(it.asString).customProperties) }
@@ -779,6 +788,7 @@ open class PokemonProperties {
         customProperties.forEach { pieces.add(it.asString()) }
         moves?.let { pieces.add("moves=${it.joinToString(separator = ",")}") }
         heldItem?.let {pieces.add("helditem=$it")}
+        size?.let { pieces.add("size=${it.name.lowercase()}") }
         return pieces.joinToString(separator)
     }
 

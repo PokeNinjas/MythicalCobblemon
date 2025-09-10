@@ -73,6 +73,7 @@ object DataKeys {
 
     const val POKEMON_PROPERTIES_MOVES = "Moves"
     const val POKEMON_PROPERTIES_HELDITEM = "HeldItem"
+    const val POKEMON_PROPERTIES_SIZE = "Size"
 
     // Entity effects
     const val ENTITY_EFFECTS = "EntityEffects"

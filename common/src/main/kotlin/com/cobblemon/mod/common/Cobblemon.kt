@@ -95,6 +95,7 @@ import com.cobblemon.mod.common.pokemon.properties.BattleCloneProperty
 import com.cobblemon.mod.common.pokemon.properties.FreezeFrameProperty
 import com.cobblemon.mod.common.pokemon.properties.HiddenAbilityPropertyType
 import com.cobblemon.mod.common.pokemon.properties.NoAIProperty
+import com.cobblemon.mod.common.pokemon.properties.SizeProperty
 import com.cobblemon.mod.common.pokemon.properties.UnaspectPropertyType
 import com.cobblemon.mod.common.pokemon.properties.UncatchableProperty
 import com.cobblemon.mod.common.pokemon.properties.tags.PokemonFlagProperty
@@ -302,6 +303,7 @@ object Cobblemon {
         CustomPokemonProperty.register(UnaspectPropertyType)
         CustomPokemonProperty.register(FreezeFrameProperty)
         CustomPokemonProperty.register(NoAIProperty)
+        CustomPokemonProperty.register(SizeProperty)
 
         CobblemonEvents.POKEMON_PROPERTY_INITIALISED.emit(Unit)
 
