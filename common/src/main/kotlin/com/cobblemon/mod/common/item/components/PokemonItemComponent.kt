@@ -18,7 +18,7 @@ import net.minecraft.network.codec.StreamCodec
 import net.minecraft.resources.ResourceLocation
 import org.joml.Vector4f
 
-data class PokemonItemComponent(
+data class PokemonItemComponent @JvmOverloads constructor(
     val species: ResourceLocation,
     val aspects: Set<String>,
     val tint: Vector4f? = null,
