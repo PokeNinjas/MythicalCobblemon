@@ -95,8 +95,11 @@ fun drawProfilePokemon(
         context.put(RenderContext.DO_QUIRKS, false)
 
         state.currentModel = model
+        val resolver = PokemonModelRepository.variations[species]
+        val ghost = resolver?.isGhost(state) == true
 
-        val renderType = RenderType.entityCutout(texture)
+        val renderType = if (ghost) RenderType.entityTranslucentCull(texture)
+        else RenderType.entityCutout(texture)
 
         state.setPoseToFirstSuitable(poseType)
         state.updatePartialTicks(partialTicks)

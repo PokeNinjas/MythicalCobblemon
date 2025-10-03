@@ -17,7 +17,6 @@ import com.cobblemon.mod.common.client.render.models.blockbench.repository.Rende
 import com.cobblemon.mod.common.client.render.models.blockbench.repository.VaryingModelRepository
 import com.cobblemon.mod.common.entity.PoseType
 import com.cobblemon.mod.common.util.toHex
-import com.mojang.authlib.minecraft.client.MinecraftClient
 import com.mojang.blaze3d.platform.GlStateManager
 import com.mojang.blaze3d.platform.Lighting
 import com.mojang.blaze3d.systems.RenderSystem
@@ -242,7 +241,11 @@ fun drawPosablePortrait(
         context.put(RenderContext.ASPECTS, state.currentAspects)
         context.put(RenderContext.POSABLE_STATE, state)
 
-        val renderType = RenderType.entityCutout(texture)
+        val resolver = PokemonModelRepository.variations[identifier]
+        val ghost = resolver?.isGhost(state) == true
+
+        val renderType = if (ghost) RenderType.entityTranslucentCull(texture)
+        else RenderType.entityCutout(texture)
 
         val quaternion1 = Axis.YP.rotationDegrees(-32F * if (reversed) -1F else 1F)
         val quaternion2 = Axis.XP.rotationDegrees(5F)

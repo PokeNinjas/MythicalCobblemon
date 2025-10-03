@@ -1,0 +1,6 @@
+{
+  "keys": ["two_segment_form"],
+  "type": "flag",
+  "isAspect": true,
+  "default": false
+}

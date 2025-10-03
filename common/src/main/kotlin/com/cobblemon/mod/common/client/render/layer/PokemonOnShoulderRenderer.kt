@@ -144,7 +144,14 @@ class PokemonOnShoulderRenderer<T : Player>(renderLayerParent: RenderLayerParent
             state.updatePartialTicks(partialTicks)
             context.put(RenderContext.POSABLE_STATE, state)
             state.currentModel = model
-            val vertexConsumer = buffer.getBuffer(RenderType.entityCutout(PokemonModelRepository.getTexture(shoulderData.species.resourceIdentifier, state)))
+
+            val resolver = PokemonModelRepository.variations[shoulderData.species.resourceIdentifier]
+            val ghost = resolver?.isGhost(state) == true
+
+            val renderType = if (ghost) RenderType.entityTranslucentCull(PokemonModelRepository.getTexture(shoulderData.species.resourceIdentifier, state))
+            else RenderType.entityCutout(PokemonModelRepository.getTexture(shoulderData.species.resourceIdentifier, state))
+
+            val vertexConsumer = buffer.getBuffer(renderType)
             val i = LivingEntityRenderer.getOverlayCoords(livingEntity, 0.0f)
 
             model.applyAnimations(

@@ -57,6 +57,9 @@ class VaryingRenderableResolver<T : PosableModel>(
         return getVariationValue(state) { sprites }?.get(type)
     }
 
+    fun isGhost(state: PosableState): Boolean =
+        getVariationValue(state) { ghost } == true
+
     private fun <T> getVariationValue(state: PosableState, selector: ModelAssetVariation.() -> T?): T? {
         return variations.lastOrNull { it.fits(state) && selector(it) != null }?.let(selector)
     }
@@ -169,7 +172,8 @@ class ModelAssetVariation(
     val model: ResourceLocation? = null,
     val texture: ModelTextureSupplier? = null,
     val layers: List<ModelLayer>? = null,
-    val sprites: Map<SpriteType, ResourceLocation>? = null
+    val sprites: Map<SpriteType, ResourceLocation>? = null,
+    val ghost: Boolean? = null,
 ) {
     fun fits(state: PosableState): Boolean {
         return aspects.all { it in state.currentAspects } && (condition == null || state.runtime.resolveBoolean(condition))

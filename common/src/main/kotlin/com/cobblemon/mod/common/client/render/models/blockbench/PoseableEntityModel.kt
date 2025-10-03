@@ -8,6 +8,7 @@
 
 package com.cobblemon.mod.common.client.render.models.blockbench
 
+import com.cobblemon.mod.common.client.render.models.blockbench.repository.PokemonModelRepository
 import com.cobblemon.mod.common.client.render.models.blockbench.repository.RenderContext
 import com.cobblemon.mod.common.entity.PosableEntity
 import net.minecraft.client.renderer.texture.OverlayTexture
@@ -29,7 +30,7 @@ import net.minecraft.resources.ResourceLocation
  * @since January 5th, 2024
  */
 abstract class PosableEntityModel<T : Entity>(
-    renderTypeFunc: (ResourceLocation) -> RenderType = RenderType::entityCutout
+    renderTypeFunc: (ResourceLocation) -> RenderType = RenderTypeSelectorBridge.choose
 ) : EntityModel<T>(renderTypeFunc) {
     val context: RenderContext = RenderContext().also {
         it.put(RenderContext.RENDER_STATE, RenderContext.RenderState.WORLD)
@@ -47,6 +48,7 @@ abstract class PosableEntityModel<T : Entity>(
         val entity = context.request(RenderContext.ENTITY)
         val overlay = getOverlayTexture(entity) ?: packedOverlay
         posableModel.render(context, stack, buffer, packedLight, overlay, color)
+        RenderTypeSelectorBridge.currentModel.remove()
     }
 
     open fun getOverlayTexture(entity: Entity?): Int? {
@@ -71,6 +73,7 @@ abstract class PosableEntityModel<T : Entity>(
         headYaw: Float,
         headPitch: Float
     ) {
+        RenderTypeSelectorBridge.currentModel.set(this)
         setupEntityTypeContext(entity)
         if (entity is PosableEntity) {
             val state = entity.delegate as PosableState
@@ -83,6 +86,25 @@ abstract class PosableEntityModel<T : Entity>(
             context.put(RenderContext.ENTITY, entity)
             if (it is PosableEntity) {
                 context.put(RenderContext.POSABLE_STATE, it.delegate as PosableState)
+            }
+        }
+    }
+
+    object RenderTypeSelectorBridge {
+        val currentModel = ThreadLocal<PosableEntityModel<*>?>()
+
+        val choose: (ResourceLocation) -> RenderType = { texture: ResourceLocation ->
+            val model = currentModel.get()
+            if (model == null) {
+                RenderType.entityCutout(texture)
+            } else {
+                val ctx = model.context
+                val state = ctx.request(RenderContext.POSABLE_STATE)
+                val species = ctx.request<ResourceLocation>(RenderContext.SPECIES)
+                val resolver = species?.let { PokemonModelRepository.variations[it] }
+
+                val ghost = state != null && resolver?.isGhost(state) == true
+                if (ghost) RenderType.entityTranslucentCull(texture) else RenderType.entityCutout(texture)
             }
         }
     }
