@@ -14,6 +14,7 @@ import com.cobblemon.mod.common.client.render.SpriteType
 import com.cobblemon.mod.common.client.render.models.blockbench.PosableState
 import com.cobblemon.mod.common.client.render.models.blockbench.repository.PokemonModelRepository
 import com.cobblemon.mod.common.client.render.models.blockbench.repository.RenderContext
+import com.cobblemon.mod.common.client.render.pokemon.CustomRenderType
 import com.cobblemon.mod.common.entity.PoseType
 import com.cobblemon.mod.common.pokemon.RenderablePokemon
 import com.cobblemon.mod.common.util.toHex
@@ -98,8 +99,11 @@ fun drawProfilePokemon(
         val resolver = PokemonModelRepository.variations[species]
         val ghost = resolver?.isGhost(state) == true
 
-        val renderType = if (ghost) RenderType.entityTranslucentCull(texture)
-        else RenderType.entityCutout(texture)
+        val effectId = CustomRenderType.getEffectId(model.context)
+        val renderType = if(effectId != 0)
+            if (ghost) CustomRenderType.translucentCull(texture, effectId) else CustomRenderType.cutout(texture, effectId)
+       else
+            if (ghost) RenderType.entityTranslucentCull(texture) else RenderType.entityCutout(texture)
 
         state.setPoseToFirstSuitable(poseType)
         state.updatePartialTicks(partialTicks)

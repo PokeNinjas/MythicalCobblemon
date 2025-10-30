@@ -10,6 +10,8 @@ package com.cobblemon.mod.common.client.render.models.blockbench
 
 import com.cobblemon.mod.common.client.render.models.blockbench.repository.PokemonModelRepository
 import com.cobblemon.mod.common.client.render.models.blockbench.repository.RenderContext
+import com.cobblemon.mod.common.client.render.pokemon.CurrentDraw
+import com.cobblemon.mod.common.client.render.pokemon.CustomRenderType
 import com.cobblemon.mod.common.entity.PosableEntity
 import net.minecraft.client.renderer.texture.OverlayTexture
 import net.minecraft.client.renderer.RenderType
@@ -75,6 +77,10 @@ abstract class PosableEntityModel<T : Entity>(
     ) {
         RenderTypeSelectorBridge.currentModel.set(this)
         setupEntityTypeContext(entity)
+        CurrentDraw.setEntityId((entity as Entity).id)
+        //val effectId = CustomRenderType.getEffectId(context)
+        //IrisLink.setEffectForEntity(entity.id, effectId)
+
         if (entity is PosableEntity) {
             val state = entity.delegate as PosableState
             posableModel.applyAnimations(entity, state, limbSwing, limbSwingAmount, ageInTicks, headYaw, headPitch)
@@ -99,12 +105,17 @@ abstract class PosableEntityModel<T : Entity>(
                 RenderType.entityCutout(texture)
             } else {
                 val ctx = model.context
+                val effectId = CustomRenderType.getEffectId(ctx)
                 val state = ctx.request(RenderContext.POSABLE_STATE)
                 val species = ctx.request<ResourceLocation>(RenderContext.SPECIES)
                 val resolver = species?.let { PokemonModelRepository.variations[it] }
 
                 val ghost = state != null && resolver?.isGhost(state) == true
-                if (ghost) RenderType.entityTranslucentCull(texture) else RenderType.entityCutout(texture)
+                if(effectId != 0)
+                    if (ghost) CustomRenderType.translucentCull(texture, effectId) else CustomRenderType.cutout(texture, effectId)
+                else
+                    if (ghost) RenderType.entityTranslucentCull(texture) else RenderType.entityCutout(texture)
+
             }
         }
     }
