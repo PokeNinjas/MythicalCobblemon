@@ -1,17 +1,55 @@
 {
-    "species": "cobblemon:foongus",
-    "order": 0,
-    "variations": [
-      {
-        "aspects": [],
-        "poser": "cobblemon:foongus",
-        "model": "cobblemon:foongus.geo",
-        "texture": "cobblemon:textures/pokemon/0590_foongus/foongus.png",
-        "layers": []
-        },
-      {
-        "aspects": ["shiny"],
-        "texture": "cobblemon:textures/pokemon/0590_foongus/foongus_shiny.png"
-      }
-    ]
-  }
+  "species": "cobblemon:foongus",
+  "order": 0,
+  "variations": [
+    {
+      "aspects": [],
+      "poser": "cobblemon:foongus",
+      "model": "cobblemon:foongus.geo",
+      "texture": "cobblemon:textures/pokemon/0590_foongus/foongus.png",
+      "layers": []
+    },
+    {
+      "aspects": [
+        "mythical_radiant"
+      ],
+      "effectname": "RADIANT"
+    },
+    {
+      "aspects": [
+        "mythical_glitch"
+      ],
+      "effectname": "GLITCH"
+    },
+    {
+      "aspects": [
+        "mythical_galaxy"
+      ],
+      "effectname": "GALAXY"
+    },
+    {
+      "aspects": [
+        "mythical_matrix"
+      ],
+      "effectname": "MATRIX"
+    },
+    {
+      "aspects": [
+        "mythical_firework"
+      ],
+      "effectname": "FIREWORK"
+    },
+    {
+      "aspects": [
+        "radar_spawned"
+      ],
+      "effectname": "HOLOGRAPHIC"
+    },
+    {
+      "aspects": [
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/0590_foongus/foongus_shiny.png"
+    }
+  ]
+}

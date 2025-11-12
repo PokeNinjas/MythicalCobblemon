@@ -11,10 +11,10 @@ package com.cobblemon.mod.common.client.render.pokemon
 object IrisLink {
     private val method = runCatching {
         val cls = Class.forName("net.irisshaders.iris.uniforms.CobblemonBridge")
-        cls.getMethod("setEffectForEntity", Int::class.javaPrimitiveType, Int::class.javaPrimitiveType)
+        cls.getMethod("setEffectForEntity", Int::class.javaPrimitiveType)
     }.getOrNull()
 
-    fun setEffectForEntity(entityId: Int, effectId: Int) {
-        try { method?.invoke(null, entityId, effectId) } catch (_: Throwable) {}
+    fun setEffectForEntity(effectId: Int) {
+        try { method?.invoke(null, effectId) } catch (_: Throwable) {}
     }
 }

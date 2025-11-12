@@ -9,7 +9,13 @@
       "texture": "cobblemon:textures/pokemon/0518_musharna/musharna.png",
       "layers": []
     },
-  {
+    {
+      "aspects": [
+        "mythical_firework"
+      ],
+      "effectname": "FIREWORK"
+    },
+    {
       "aspects": [
         "shiny"
       ],
@@ -19,7 +25,8 @@
       "aspects": [
         "mythical_radiant"
       ],
-      "texture": "cobblemon:textures/pokemon/0518_musharna/musharna_radiant.png"
+      "texture": "cobblemon:textures/pokemon/0518_musharna/musharna_radiant.png",
+      "effectname": "RADIANT"
     },
     {
       "aspects": [
@@ -45,7 +52,8 @@
       "aspects": [
         "mythical_glitch"
       ],
-      "texture": "cobblemon:textures/pokemon/0518_musharna/musharna_glitch.png"
+      "texture": "cobblemon:textures/pokemon/0518_musharna/musharna_glitch.png",
+      "effectname": "GLITCH"
     },
     {
       "aspects": [
@@ -58,7 +66,8 @@
       "aspects": [
         "mythical_galaxy"
       ],
-      "texture": "cobblemon:textures/pokemon/0518_musharna/musharna_galaxy.png"
+      "texture": "cobblemon:textures/pokemon/0518_musharna/musharna_galaxy.png",
+      "effectname": "GALAXY"
     },
     {
       "aspects": [
@@ -71,7 +80,8 @@
       "aspects": [
         "mythical_matrix"
       ],
-      "texture": "cobblemon:textures/pokemon/0518_musharna/musharna_matrix.png"
+      "texture": "cobblemon:textures/pokemon/0518_musharna/musharna_matrix.png",
+      "effectname": "MATRIX"
     },
     {
       "aspects": [
@@ -97,7 +107,8 @@
       "aspects": [
         "radar_spawned"
       ],
-      "texture": "cobblemon:textures/pokemon/0518_musharna/musharna_holographic.png"
+      "texture": "cobblemon:textures/pokemon/0518_musharna/musharna_holographic.png",
+      "effectname": "HOLOGRAPHIC"
     },
     {
       "aspects": [

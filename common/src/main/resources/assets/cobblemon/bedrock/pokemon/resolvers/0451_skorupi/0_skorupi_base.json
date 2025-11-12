@@ -1,19 +1,55 @@
 {
-    "species": "cobblemon:skorupi",
-    "order": 0,
-    "variations": [
-      {
-        "aspects": [],
-        "poser": "cobblemon:skorupi",
-        "model": "cobblemon:skorupi.geo",
-        "texture": "cobblemon:textures/pokemon/0451_skorupi/skorupi.png",
-        "layers": []
-      },
-      {
-        "aspects": [
-            "shiny"
-        ],
-        "texture": "cobblemon:textures/pokemon/0451_skorupi/skorupi_shiny.png"
-      }
-    ]
-  }
+  "species": "cobblemon:skorupi",
+  "order": 0,
+  "variations": [
+    {
+      "aspects": [],
+      "poser": "cobblemon:skorupi",
+      "model": "cobblemon:skorupi.geo",
+      "texture": "cobblemon:textures/pokemon/0451_skorupi/skorupi.png",
+      "layers": []
+    },
+    {
+      "aspects": [
+        "mythical_radiant"
+      ],
+      "effectname": "RADIANT"
+    },
+    {
+      "aspects": [
+        "mythical_glitch"
+      ],
+      "effectname": "GLITCH"
+    },
+    {
+      "aspects": [
+        "mythical_galaxy"
+      ],
+      "effectname": "GALAXY"
+    },
+    {
+      "aspects": [
+        "mythical_matrix"
+      ],
+      "effectname": "MATRIX"
+    },
+    {
+      "aspects": [
+        "mythical_firework"
+      ],
+      "effectname": "FIREWORK"
+    },
+    {
+      "aspects": [
+        "radar_spawned"
+      ],
+      "effectname": "HOLOGRAPHIC"
+    },
+    {
+      "aspects": [
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/0451_skorupi/skorupi_shiny.png"
+    }
+  ]
+}

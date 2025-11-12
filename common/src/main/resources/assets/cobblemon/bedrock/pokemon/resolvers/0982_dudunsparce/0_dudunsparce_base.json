@@ -3,26 +3,72 @@
   "order": 0,
   "variations": [
     {
-      "aspects": ["two-segment-form"],
+      "aspects": [
+        "two-segment-form"
+      ],
       "poser": "cobblemon:dudunsparce_two_segment",
       "model": "cobblemon:dudunsparce_two_segment.geo",
       "texture": "cobblemon:textures/pokemon/0982_dudunsparce/dudunsparce_two_segment.png",
       "layers": []
     },
     {
-      "aspects": ["two-segment-form","shiny"],
+      "aspects": [
+        "two-segment-form",
+        "shiny"
+      ],
       "texture": "cobblemon:textures/pokemon/0982_dudunsparce/dudunsparce_two_segment_shiny.png"
     },
     {
-      "aspects": ["three-segment-form"],
+      "aspects": [
+        "three-segment-form"
+      ],
       "poser": "cobblemon:dudunsparce_three_segment",
       "model": "cobblemon:dudunsparce_three_segment.geo",
       "texture": "cobblemon:textures/pokemon/0982_dudunsparce/dudunsparce_three_segment.png",
       "layers": []
     },
     {
-      "aspects": ["three-segment-form","shiny"],
+      "aspects": [
+        "three-segment-form",
+        "shiny"
+      ],
       "texture": "cobblemon:textures/pokemon/0982_dudunsparce/dudunsparce_three_segment_shiny.png"
+    },
+    {
+      "aspects": [
+        "mythical_radiant"
+      ],
+      "effectname": "RADIANT"
+    },
+    {
+      "aspects": [
+        "mythical_glitch"
+      ],
+      "effectname": "GLITCH"
+    },
+    {
+      "aspects": [
+        "mythical_galaxy"
+      ],
+      "effectname": "GALAXY"
+    },
+    {
+      "aspects": [
+        "mythical_matrix"
+      ],
+      "effectname": "MATRIX"
+    },
+    {
+      "aspects": [
+        "mythical_firework"
+      ],
+      "effectname": "FIREWORK"
+    },
+    {
+      "aspects": [
+        "radar_spawned"
+      ],
+      "effectname": "HOLOGRAPHIC"
     }
   ]
 }

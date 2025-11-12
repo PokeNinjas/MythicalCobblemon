@@ -13,6 +13,7 @@ import com.cobblemon.mod.common.client.render.models.blockbench.FloatingState
 import com.cobblemon.mod.common.client.render.models.blockbench.PosableModel
 import com.cobblemon.mod.common.client.render.models.blockbench.repository.PokemonModelRepository
 import com.cobblemon.mod.common.client.render.models.blockbench.repository.RenderContext
+import com.cobblemon.mod.common.client.render.pokemon.CustomRenderType
 import com.cobblemon.mod.common.entity.PoseType
 import com.cobblemon.mod.common.pokemon.FormData
 import com.cobblemon.mod.common.pokemon.Pokemon
@@ -148,8 +149,12 @@ class PokemonOnShoulderRenderer<T : Player>(renderLayerParent: RenderLayerParent
             val resolver = PokemonModelRepository.variations[shoulderData.species.resourceIdentifier]
             val ghost = resolver?.isGhost(state) == true
 
-            val renderType = if (ghost) RenderType.entityTranslucentCull(PokemonModelRepository.getTexture(shoulderData.species.resourceIdentifier, state))
-            else RenderType.entityCutout(PokemonModelRepository.getTexture(shoulderData.species.resourceIdentifier, state))
+            val effectId = CustomRenderType.getEffectId(model.context)
+            val renderType = if(effectId != 0)
+                if (ghost) CustomRenderType.translucentCull(PokemonModelRepository.getTexture(shoulderData.species.resourceIdentifier, state), effectId) else CustomRenderType.cutout(PokemonModelRepository.getTexture(shoulderData.species.resourceIdentifier, state), effectId)
+            else
+                if (ghost) RenderType.entityTranslucentCull(PokemonModelRepository.getTexture(shoulderData.species.resourceIdentifier, state)) else RenderType.entityCutout(PokemonModelRepository.getTexture(shoulderData.species.resourceIdentifier, state))
+
 
             val vertexConsumer = buffer.getBuffer(renderType)
             val i = LivingEntityRenderer.getOverlayCoords(livingEntity, 0.0f)

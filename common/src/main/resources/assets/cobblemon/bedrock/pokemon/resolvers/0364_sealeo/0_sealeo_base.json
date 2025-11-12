@@ -10,7 +10,45 @@
       "layers": []
     },
     {
-      "aspects": ["shiny"],
+      "aspects": [
+        "mythical_radiant"
+      ],
+      "effectname": "RADIANT"
+    },
+    {
+      "aspects": [
+        "mythical_glitch"
+      ],
+      "effectname": "GLITCH"
+    },
+    {
+      "aspects": [
+        "mythical_galaxy"
+      ],
+      "effectname": "GALAXY"
+    },
+    {
+      "aspects": [
+        "mythical_matrix"
+      ],
+      "effectname": "MATRIX"
+    },
+    {
+      "aspects": [
+        "mythical_firework"
+      ],
+      "effectname": "FIREWORK"
+    },
+    {
+      "aspects": [
+        "radar_spawned"
+      ],
+      "effectname": "HOLOGRAPHIC"
+    },
+    {
+      "aspects": [
+        "shiny"
+      ],
       "texture": "cobblemon:textures/pokemon/0364_sealeo/sealeo_shiny.png"
     }
   ]

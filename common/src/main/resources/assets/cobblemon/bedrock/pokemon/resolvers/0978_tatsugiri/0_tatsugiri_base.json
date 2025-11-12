@@ -10,31 +10,84 @@
       "layers": []
     },
     {
-      "aspects": ["tatsugiri-texture-curly"],
+      "aspects": [
+        "mythical_radiant"
+      ],
+      "effectname": "RADIANT"
+    },
+    {
+      "aspects": [
+        "mythical_glitch"
+      ],
+      "effectname": "GLITCH"
+    },
+    {
+      "aspects": [
+        "mythical_galaxy"
+      ],
+      "effectname": "GALAXY"
+    },
+    {
+      "aspects": [
+        "mythical_matrix"
+      ],
+      "effectname": "MATRIX"
+    },
+    {
+      "aspects": [
+        "mythical_firework"
+      ],
+      "effectname": "FIREWORK"
+    },
+    {
+      "aspects": [
+        "radar_spawned"
+      ],
+      "effectname": "HOLOGRAPHIC"
+    },
+    {
+      "aspects": [
+        "tatsugiri-texture-curly"
+      ],
       "texture": "cobblemon:textures/pokemon/0978_tatsugiri/tatsugiri_curly.png"
     },
     {
-      "aspects": ["tatsugiri-texture-droopy"],
+      "aspects": [
+        "tatsugiri-texture-droopy"
+      ],
       "texture": "cobblemon:textures/pokemon/0978_tatsugiri/tatsugiri_droopy.png"
     },
     {
-      "aspects": ["tatsugiri-texture-stretchy"],
+      "aspects": [
+        "tatsugiri-texture-stretchy"
+      ],
       "texture": "cobblemon:textures/pokemon/0978_tatsugiri/tatsugiri_stretchy.png"
     },
     {
-      "aspects": ["shiny"],
+      "aspects": [
+        "shiny"
+      ],
       "texture": "cobblemon:textures/pokemon/0978_tatsugiri/tatsugiri_curly_shiny.png"
     },
     {
-      "aspects": ["shiny", "tatsugiri-texture-curly"],
+      "aspects": [
+        "shiny",
+        "tatsugiri-texture-curly"
+      ],
       "texture": "cobblemon:textures/pokemon/0978_tatsugiri/tatsugiri_curly_shiny.png"
     },
     {
-      "aspects": ["shiny", "tatsugiri-texture-droopy"],
+      "aspects": [
+        "shiny",
+        "tatsugiri-texture-droopy"
+      ],
       "texture": "cobblemon:textures/pokemon/0978_tatsugiri/tatsugiri_droopy_shiny.png"
     },
     {
-      "aspects": ["shiny", "tatsugiri-texture-stretchy"],
+      "aspects": [
+        "shiny",
+        "tatsugiri-texture-stretchy"
+      ],
       "texture": "cobblemon:textures/pokemon/0978_tatsugiri/tatsugiri_stretchy_shiny.png"
     }
   ]

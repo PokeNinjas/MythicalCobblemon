@@ -10,7 +10,6 @@ package com.cobblemon.mod.common.client.render.models.blockbench
 
 import com.cobblemon.mod.common.client.render.models.blockbench.repository.PokemonModelRepository
 import com.cobblemon.mod.common.client.render.models.blockbench.repository.RenderContext
-import com.cobblemon.mod.common.client.render.pokemon.CurrentDraw
 import com.cobblemon.mod.common.client.render.pokemon.CustomRenderType
 import com.cobblemon.mod.common.entity.PosableEntity
 import net.minecraft.client.renderer.texture.OverlayTexture
@@ -77,9 +76,6 @@ abstract class PosableEntityModel<T : Entity>(
     ) {
         RenderTypeSelectorBridge.currentModel.set(this)
         setupEntityTypeContext(entity)
-        CurrentDraw.setEntityId((entity as Entity).id)
-        //val effectId = CustomRenderType.getEffectId(context)
-        //IrisLink.setEffectForEntity(entity.id, effectId)
 
         if (entity is PosableEntity) {
             val state = entity.delegate as PosableState

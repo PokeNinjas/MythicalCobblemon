@@ -10,18 +10,61 @@
       "layers": []
     },
     {
-      "aspects": ["shiny"],
+      "aspects": [
+        "mythical_radiant"
+      ],
+      "effectname": "RADIANT"
+    },
+    {
+      "aspects": [
+        "mythical_glitch"
+      ],
+      "effectname": "GLITCH"
+    },
+    {
+      "aspects": [
+        "mythical_galaxy"
+      ],
+      "effectname": "GALAXY"
+    },
+    {
+      "aspects": [
+        "mythical_matrix"
+      ],
+      "effectname": "MATRIX"
+    },
+    {
+      "aspects": [
+        "mythical_firework"
+      ],
+      "effectname": "FIREWORK"
+    },
+    {
+      "aspects": [
+        "radar_spawned"
+      ],
+      "effectname": "HOLOGRAPHIC"
+    },
+    {
+      "aspects": [
+        "shiny"
+      ],
       "texture": "cobblemon:textures/pokemon/0422_shellos/shellos_west_shiny.png"
     },
     {
-      "aspects": ["west-sea"],
+      "aspects": [
+        "west-sea"
+      ],
       "poser": "cobblemon:shellos_west",
       "model": "cobblemon:shellos_west.geo",
       "texture": "cobblemon:textures/pokemon/0422_shellos/shellos_west.png",
       "layers": []
     },
     {
-      "aspects": ["shiny", "west-sea"],
+      "aspects": [
+        "shiny",
+        "west-sea"
+      ],
       "texture": "cobblemon:textures/pokemon/0422_shellos/shellos_west_shiny.png"
     }
   ]

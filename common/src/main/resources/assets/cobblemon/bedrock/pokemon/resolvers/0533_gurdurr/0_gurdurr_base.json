@@ -10,11 +10,51 @@
       "layers": []
     },
     {
-      "aspects": ["shiny"],
+      "aspects": [
+        "mythical_radiant"
+      ],
+      "effectname": "RADIANT"
+    },
+    {
+      "aspects": [
+        "mythical_glitch"
+      ],
+      "effectname": "GLITCH"
+    },
+    {
+      "aspects": [
+        "mythical_galaxy"
+      ],
+      "effectname": "GALAXY"
+    },
+    {
+      "aspects": [
+        "mythical_matrix"
+      ],
+      "effectname": "MATRIX"
+    },
+    {
+      "aspects": [
+        "mythical_firework"
+      ],
+      "effectname": "FIREWORK"
+    },
+    {
+      "aspects": [
+        "radar_spawned"
+      ],
+      "effectname": "HOLOGRAPHIC"
+    },
+    {
+      "aspects": [
+        "shiny"
+      ],
       "texture": "cobblemon:textures/pokemon/0533_gurdurr/gurdurr_shiny.png"
     },
     {
-      "aspects": ["metals-copper"],
+      "aspects": [
+        "metals-copper"
+      ],
       "layers": [
         {
           "texture": "cobblemon:textures/pokemon/0533_gurdurr/gurdurr_copper.png"
@@ -22,7 +62,9 @@
       ]
     },
     {
-      "aspects": ["metals-iron"],
+      "aspects": [
+        "metals-iron"
+      ],
       "layers": [
         {
           "texture": "cobblemon:textures/pokemon/0533_gurdurr/gurdurr_iron.png"
@@ -30,7 +72,9 @@
       ]
     },
     {
-      "aspects": ["metals-gold"],
+      "aspects": [
+        "metals-gold"
+      ],
       "layers": [
         {
           "texture": "cobblemon:textures/pokemon/0533_gurdurr/gurdurr_gold.png"
@@ -38,7 +82,9 @@
       ]
     },
     {
-      "aspects": ["metals-netherite"],
+      "aspects": [
+        "metals-netherite"
+      ],
       "layers": [
         {
           "texture": "cobblemon:textures/pokemon/0533_gurdurr/gurdurr_netherite.png"

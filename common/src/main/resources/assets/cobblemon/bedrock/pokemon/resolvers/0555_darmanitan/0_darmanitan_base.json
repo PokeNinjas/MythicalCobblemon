@@ -16,7 +16,45 @@
       ]
     },
     {
-      "aspects": ["shiny"],
+      "aspects": [
+        "mythical_radiant"
+      ],
+      "effectname": "RADIANT"
+    },
+    {
+      "aspects": [
+        "mythical_glitch"
+      ],
+      "effectname": "GLITCH"
+    },
+    {
+      "aspects": [
+        "mythical_galaxy"
+      ],
+      "effectname": "GALAXY"
+    },
+    {
+      "aspects": [
+        "mythical_matrix"
+      ],
+      "effectname": "MATRIX"
+    },
+    {
+      "aspects": [
+        "mythical_firework"
+      ],
+      "effectname": "FIREWORK"
+    },
+    {
+      "aspects": [
+        "radar_spawned"
+      ],
+      "effectname": "HOLOGRAPHIC"
+    },
+    {
+      "aspects": [
+        "shiny"
+      ],
       "texture": "cobblemon:textures/pokemon/0555_darmanitan/darmanitan_shiny.png",
       "layers": [
         {
@@ -27,7 +65,9 @@
       ]
     },
     {
-      "aspects": ["zen-mode"],
+      "aspects": [
+        "zen-mode"
+      ],
       "poser": "cobblemon:darmanitan_zen",
       "model": "cobblemon:darmanitan_zen.geo",
       "texture": "cobblemon:textures/pokemon/0555_darmanitan/darmanitan_zen.png",
@@ -40,7 +80,10 @@
       ]
     },
     {
-      "aspects": ["shiny", "zen-mode"],
+      "aspects": [
+        "shiny",
+        "zen-mode"
+      ],
       "texture": "cobblemon:textures/pokemon/0555_darmanitan/darmanitan_zen_shiny.png"
     }
   ]

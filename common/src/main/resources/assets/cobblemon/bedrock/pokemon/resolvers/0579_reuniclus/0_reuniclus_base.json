@@ -1,32 +1,70 @@
 {
-    "species": "cobblemon:reuniclus",
-    "order": 0,
-    "variations": [
-      {
-        "aspects": [],
-        "poser": "cobblemon:reuniclus",
-        "model": "cobblemon:reuniclus.geo",
-        "texture": "cobblemon:textures/pokemon/0579_reuniclus/reuniclus.png",
-        "layers": [      
-          {
+  "species": "cobblemon:reuniclus",
+  "order": 0,
+  "variations": [
+    {
+      "aspects": [],
+      "poser": "cobblemon:reuniclus",
+      "model": "cobblemon:reuniclus.geo",
+      "texture": "cobblemon:textures/pokemon/0579_reuniclus/reuniclus.png",
+      "layers": [
+        {
           "name": "liquid",
           "texture": "cobblemon:textures/pokemon/0579_reuniclus/reuniclus_liquid.png",
           "translucent": true,
           "translucent_cull": true
-        }]
-      },
-      {
-        "aspects": [
-          "shiny"
-        ],
-        "texture": "cobblemon:textures/pokemon/0579_reuniclus/reuniclus_shiny.png",
-        "layers": [
-          {
-            "name": "liquid",
-            "texture": "cobblemon:textures/pokemon/0579_reuniclus/reuniclus_liquid_shiny.png",
-            "translucent": true,
-            "translucent_cull": true
-          }]
-      }
-    ]
-  }
+        }
+      ]
+    },
+    {
+      "aspects": [
+        "mythical_radiant"
+      ],
+      "effectname": "RADIANT"
+    },
+    {
+      "aspects": [
+        "mythical_glitch"
+      ],
+      "effectname": "GLITCH"
+    },
+    {
+      "aspects": [
+        "mythical_galaxy"
+      ],
+      "effectname": "GALAXY"
+    },
+    {
+      "aspects": [
+        "mythical_matrix"
+      ],
+      "effectname": "MATRIX"
+    },
+    {
+      "aspects": [
+        "mythical_firework"
+      ],
+      "effectname": "FIREWORK"
+    },
+    {
+      "aspects": [
+        "radar_spawned"
+      ],
+      "effectname": "HOLOGRAPHIC"
+    },
+    {
+      "aspects": [
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/0579_reuniclus/reuniclus_shiny.png",
+      "layers": [
+        {
+          "name": "liquid",
+          "texture": "cobblemon:textures/pokemon/0579_reuniclus/reuniclus_liquid_shiny.png",
+          "translucent": true,
+          "translucent_cull": true
+        }
+      ]
+    }
+  ]
+}

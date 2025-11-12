@@ -15,6 +15,7 @@ import com.cobblemon.mod.common.client.render.models.blockbench.PosableState
 import com.cobblemon.mod.common.client.render.models.blockbench.repository.PokemonModelRepository
 import com.cobblemon.mod.common.client.render.models.blockbench.repository.RenderContext
 import com.cobblemon.mod.common.client.render.models.blockbench.repository.VaryingModelRepository
+import com.cobblemon.mod.common.client.render.pokemon.CustomRenderType
 import com.cobblemon.mod.common.entity.PoseType
 import com.cobblemon.mod.common.util.toHex
 import com.mojang.blaze3d.platform.GlStateManager
@@ -226,7 +227,7 @@ fun drawPosablePortrait(
     matrixStack.scale(scale, scale, -scale)
     matrixStack.translate(0.0, -PORTRAIT_DIAMETER / 18.0, 0.0)
 
-    val sprite = repository.getSprite(identifier, state, SpriteType.PORTRAIT);
+    val sprite = repository.getSprite(identifier, state, SpriteType.PORTRAIT)
 
     if (sprite == null) {
         val model = repository.getPoser(identifier, state)
@@ -244,8 +245,12 @@ fun drawPosablePortrait(
         val resolver = PokemonModelRepository.variations[identifier]
         val ghost = resolver?.isGhost(state) == true
 
-        val renderType = if (ghost) RenderType.entityTranslucentCull(texture)
-        else RenderType.entityCutout(texture)
+        val effectId = CustomRenderType.getEffectId(model.context)
+        val renderType = if(effectId != 0)
+            if (ghost) CustomRenderType.translucentCull(texture, effectId) else CustomRenderType.cutout(texture, effectId)
+        else
+            if (ghost) RenderType.entityTranslucentCull(texture) else RenderType.entityCutout(texture)
+
 
         val quaternion1 = Axis.YP.rotationDegrees(-32F * if (reversed) -1F else 1F)
         val quaternion2 = Axis.XP.rotationDegrees(5F)
@@ -356,7 +361,7 @@ fun renderSprite(matrixStack: PoseStack, sprite: ResourceLocation) {
     val matrix: PoseStack.Pose = matrixStack.last()
     matrix.pose().translate(-1f, 0f, 0f)
 
-    RenderSystem.setShaderTexture(0, sprite);
+    RenderSystem.setShaderTexture(0, sprite)
     RenderSystem.setShader(GameRenderer::getPositionTexShader)
 
     var buffer = Tesselator.getInstance().begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX)

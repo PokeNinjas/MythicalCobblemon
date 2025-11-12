@@ -7,13 +7,50 @@
       "poser": "cobblemon:solosis",
       "model": "cobblemon:solosis.geo",
       "texture": "cobblemon:textures/pokemon/0577_solosis/solosis.png",
-      "layers": [      
+      "layers": [
         {
-        "name": "liquid",
-        "texture": "cobblemon:textures/pokemon/0577_solosis/solosis_liquid.png",
-        "translucent": true,
-        "translucent_cull": true
-      }]
+          "name": "liquid",
+          "texture": "cobblemon:textures/pokemon/0577_solosis/solosis_liquid.png",
+          "translucent": true,
+          "translucent_cull": true
+        }
+      ]
+    },
+    {
+      "aspects": [
+        "mythical_radiant"
+      ],
+      "effectname": "RADIANT"
+    },
+    {
+      "aspects": [
+        "mythical_glitch"
+      ],
+      "effectname": "GLITCH"
+    },
+    {
+      "aspects": [
+        "mythical_galaxy"
+      ],
+      "effectname": "GALAXY"
+    },
+    {
+      "aspects": [
+        "mythical_matrix"
+      ],
+      "effectname": "MATRIX"
+    },
+    {
+      "aspects": [
+        "mythical_firework"
+      ],
+      "effectname": "FIREWORK"
+    },
+    {
+      "aspects": [
+        "radar_spawned"
+      ],
+      "effectname": "HOLOGRAPHIC"
     },
     {
       "aspects": [
@@ -26,7 +63,8 @@
           "texture": "cobblemon:textures/pokemon/0577_solosis/solosis_liquid_shiny.png",
           "translucent": true,
           "translucent_cull": true
-        }]
+        }
+      ]
     }
   ]
 }

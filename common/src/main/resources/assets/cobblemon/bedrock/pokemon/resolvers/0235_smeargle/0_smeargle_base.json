@@ -16,7 +16,45 @@
       ]
     },
     {
-      "aspects": ["shiny"],
+      "aspects": [
+        "mythical_radiant"
+      ],
+      "effectname": "RADIANT"
+    },
+    {
+      "aspects": [
+        "mythical_glitch"
+      ],
+      "effectname": "GLITCH"
+    },
+    {
+      "aspects": [
+        "mythical_galaxy"
+      ],
+      "effectname": "GALAXY"
+    },
+    {
+      "aspects": [
+        "mythical_matrix"
+      ],
+      "effectname": "MATRIX"
+    },
+    {
+      "aspects": [
+        "mythical_firework"
+      ],
+      "effectname": "FIREWORK"
+    },
+    {
+      "aspects": [
+        "radar_spawned"
+      ],
+      "effectname": "HOLOGRAPHIC"
+    },
+    {
+      "aspects": [
+        "shiny"
+      ],
       "texture": "cobblemon:textures/pokemon/0235_smeargle/smeargle_shiny.png",
       "layers": [
         {
@@ -27,7 +65,9 @@
       ]
     },
     {
-      "aspects": ["color-black"],
+      "aspects": [
+        "color-black"
+      ],
       "layers": [
         {
           "name": "paint",
@@ -37,7 +77,9 @@
       ]
     },
     {
-      "aspects": ["color-blue"],
+      "aspects": [
+        "color-blue"
+      ],
       "layers": [
         {
           "name": "paint",
@@ -47,7 +89,9 @@
       ]
     },
     {
-      "aspects": ["color-brown"],
+      "aspects": [
+        "color-brown"
+      ],
       "layers": [
         {
           "name": "paint",
@@ -57,7 +101,9 @@
       ]
     },
     {
-      "aspects": ["color-cyan"],
+      "aspects": [
+        "color-cyan"
+      ],
       "layers": [
         {
           "name": "paint",
@@ -67,7 +113,9 @@
       ]
     },
     {
-      "aspects": ["color-gray"],
+      "aspects": [
+        "color-gray"
+      ],
       "layers": [
         {
           "name": "paint",
@@ -77,7 +125,9 @@
       ]
     },
     {
-      "aspects": ["color-green"],
+      "aspects": [
+        "color-green"
+      ],
       "layers": [
         {
           "name": "paint",
@@ -87,7 +137,9 @@
       ]
     },
     {
-      "aspects": ["color-light_blue"],
+      "aspects": [
+        "color-light_blue"
+      ],
       "layers": [
         {
           "name": "paint",
@@ -97,7 +149,9 @@
       ]
     },
     {
-      "aspects": ["color-light_gray"],
+      "aspects": [
+        "color-light_gray"
+      ],
       "layers": [
         {
           "name": "paint",
@@ -107,7 +161,9 @@
       ]
     },
     {
-      "aspects": ["color-lime"],
+      "aspects": [
+        "color-lime"
+      ],
       "layers": [
         {
           "name": "paint",
@@ -117,7 +173,9 @@
       ]
     },
     {
-      "aspects": ["color-magenta"],
+      "aspects": [
+        "color-magenta"
+      ],
       "layers": [
         {
           "name": "paint",
@@ -127,7 +185,9 @@
       ]
     },
     {
-      "aspects": ["color-orange"],
+      "aspects": [
+        "color-orange"
+      ],
       "layers": [
         {
           "name": "paint",
@@ -137,7 +197,9 @@
       ]
     },
     {
-      "aspects": ["color-pink"],
+      "aspects": [
+        "color-pink"
+      ],
       "layers": [
         {
           "name": "paint",
@@ -147,7 +209,9 @@
       ]
     },
     {
-      "aspects": ["color-purple"],
+      "aspects": [
+        "color-purple"
+      ],
       "layers": [
         {
           "name": "paint",
@@ -157,7 +221,9 @@
       ]
     },
     {
-      "aspects": ["color-red"],
+      "aspects": [
+        "color-red"
+      ],
       "layers": [
         {
           "name": "paint",
@@ -167,7 +233,9 @@
       ]
     },
     {
-      "aspects": ["color-white"],
+      "aspects": [
+        "color-white"
+      ],
       "layers": [
         {
           "name": "paint",
@@ -177,7 +245,9 @@
       ]
     },
     {
-      "aspects": ["color-yellow"],
+      "aspects": [
+        "color-yellow"
+      ],
       "layers": [
         {
           "name": "paint",

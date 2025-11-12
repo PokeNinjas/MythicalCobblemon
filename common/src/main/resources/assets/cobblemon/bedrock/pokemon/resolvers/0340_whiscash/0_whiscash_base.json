@@ -10,16 +10,59 @@
       "layers": []
     },
     {
-      "aspects": ["whiscash_nero"],
+      "aspects": [
+        "mythical_radiant"
+      ],
+      "effectname": "RADIANT"
+    },
+    {
+      "aspects": [
+        "mythical_glitch"
+      ],
+      "effectname": "GLITCH"
+    },
+    {
+      "aspects": [
+        "mythical_galaxy"
+      ],
+      "effectname": "GALAXY"
+    },
+    {
+      "aspects": [
+        "mythical_matrix"
+      ],
+      "effectname": "MATRIX"
+    },
+    {
+      "aspects": [
+        "mythical_firework"
+      ],
+      "effectname": "FIREWORK"
+    },
+    {
+      "aspects": [
+        "radar_spawned"
+      ],
+      "effectname": "HOLOGRAPHIC"
+    },
+    {
+      "aspects": [
+        "whiscash_nero"
+      ],
       "model": "cobblemon:whiscash_nero.geo",
       "texture": "cobblemon:textures/pokemon/0340_whiscash/whiscash_nero.png"
     },
     {
-      "aspects": ["shiny"],
+      "aspects": [
+        "shiny"
+      ],
       "texture": "cobblemon:textures/pokemon/0340_whiscash/whiscash_shiny.png"
     },
     {
-      "aspects": ["whiscash_nero", "shiny"],
+      "aspects": [
+        "whiscash_nero",
+        "shiny"
+      ],
       "model": "cobblemon:whiscash_nero.geo",
       "texture": "cobblemon:textures/pokemon/0340_whiscash/whiscash_nero_shiny.png"
     }

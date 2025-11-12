@@ -1,43 +1,83 @@
 {
-    "species": "cobblemon:meowstic",
-    "order": 0,
-    "variations": [
-      {
-        "aspects":[],
-        "poser": "cobblemon:meowstic_male",
-        "model": "cobblemon:meowstic_male.geo",
-        "texture": "cobblemon:textures/pokemon/0678_meowstic/meowstic_male.png",
-        "layers": [
-          {
+  "species": "cobblemon:meowstic",
+  "order": 0,
+  "variations": [
+    {
+      "aspects": [],
+      "poser": "cobblemon:meowstic_male",
+      "model": "cobblemon:meowstic_male.geo",
+      "texture": "cobblemon:textures/pokemon/0678_meowstic/meowstic_male.png",
+      "layers": [
+        {
           "name": "male",
           "texture": "cobblemon:textures/pokemon/0678_meowstic/meowstic_male_emissive.png",
           "emissive": "true"
         }
-        ]
-      },
-      {
-        "aspects": ["shiny"],
-        "texture": "cobblemon:textures/pokemon/0678_meowstic/meowstic_male_shiny.png"
-      },
-      {
-        "aspects": ["male"],
-        "poser": "cobblemon:meowstic_male",
-        "model": "cobblemon:meowstic_male.geo",
-        "texture": "cobblemon:textures/pokemon/0678_meowstic/meowstic_male.png",
-        "layers": [
-          {
+      ]
+    },
+    {
+      "aspects": [
+        "mythical_radiant"
+      ],
+      "effectname": "RADIANT"
+    },
+    {
+      "aspects": [
+        "mythical_glitch"
+      ],
+      "effectname": "GLITCH"
+    },
+    {
+      "aspects": [
+        "mythical_galaxy"
+      ],
+      "effectname": "GALAXY"
+    },
+    {
+      "aspects": [
+        "mythical_matrix"
+      ],
+      "effectname": "MATRIX"
+    },
+    {
+      "aspects": [
+        "mythical_firework"
+      ],
+      "effectname": "FIREWORK"
+    },
+    {
+      "aspects": [
+        "radar_spawned"
+      ],
+      "effectname": "HOLOGRAPHIC"
+    },
+    {
+      "aspects": [
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/0678_meowstic/meowstic_male_shiny.png"
+    },
+    {
+      "aspects": [
+        "male"
+      ],
+      "poser": "cobblemon:meowstic_male",
+      "model": "cobblemon:meowstic_male.geo",
+      "texture": "cobblemon:textures/pokemon/0678_meowstic/meowstic_male.png",
+      "layers": [
+        {
           "name": "male",
           "texture": "cobblemon:textures/pokemon/0678_meowstic/meowstic_male_emissive.png",
           "emissive": "true"
         }
-        ]
-      },
-      {
-        "aspects": [
-          "shiny",
-          "male"
-        ],
-        "texture": "cobblemon:textures/pokemon/0678_meowstic/meowstic_male_shiny.png"
-      }
-    ]
-  }
+      ]
+    },
+    {
+      "aspects": [
+        "shiny",
+        "male"
+      ],
+      "texture": "cobblemon:textures/pokemon/0678_meowstic/meowstic_male_shiny.png"
+    }
+  ]
+}

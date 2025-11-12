@@ -10,20 +10,63 @@
       "layers": []
     },
     {
-      "aspects": ["minecraft"],
+      "aspects": [
+        "mythical_radiant"
+      ],
+      "effectname": "RADIANT"
+    },
+    {
+      "aspects": [
+        "mythical_glitch"
+      ],
+      "effectname": "GLITCH"
+    },
+    {
+      "aspects": [
+        "mythical_galaxy"
+      ],
+      "effectname": "GALAXY"
+    },
+    {
+      "aspects": [
+        "mythical_matrix"
+      ],
+      "effectname": "MATRIX"
+    },
+    {
+      "aspects": [
+        "mythical_firework"
+      ],
+      "effectname": "FIREWORK"
+    },
+    {
+      "aspects": [
+        "radar_spawned"
+      ],
+      "effectname": "HOLOGRAPHIC"
+    },
+    {
+      "aspects": [
+        "minecraft"
+      ],
       "poser": "cobblemon:gimmighoulchest",
       "model": "cobblemon:gimmighoul_chest_minecraft.geo",
       "texture": "cobblemon:textures/pokemon/0999_gimmighoul/gimmighoul_chest_minecraft.png",
       "layers": []
     },
     {
-      "aspects": ["shiny"],
+      "aspects": [
+        "shiny"
+      ],
       "poser": "cobblemon:gimmighoulchest",
       "model": "cobblemon:gimmighoul_chest.geo",
       "texture": "cobblemon:textures/pokemon/0999_gimmighoul/gimmighoul_chest_shiny.png"
     },
     {
-      "aspects": ["shiny", "minecraft"],
+      "aspects": [
+        "shiny",
+        "minecraft"
+      ],
       "poser": "cobblemon:gimmighoulchest",
       "model": "cobblemon:gimmighoul_chest_minecraft.geo",
       "texture": "cobblemon:textures/pokemon/0999_gimmighoul/gimmighoul_chest_minecraft_shiny.png"

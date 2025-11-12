@@ -6,16 +6,16 @@
       "aspects": [],
       "poser": "cobblemon:charcadet",
       "model": "cobblemon:charcadet.geo",
-        "texture": {
-          "frames": [
-            "cobblemon:textures/pokemon/0935_charcadet/charcadet_1.png",
-            "cobblemon:textures/pokemon/0935_charcadet/charcadet_2.png",
-            "cobblemon:textures/pokemon/0935_charcadet/charcadet_3.png",
-            "cobblemon:textures/pokemon/0935_charcadet/charcadet_4.png"
-          ],
-          "fps": 8,
-          "loop": true
-        },
+      "texture": {
+        "frames": [
+          "cobblemon:textures/pokemon/0935_charcadet/charcadet_1.png",
+          "cobblemon:textures/pokemon/0935_charcadet/charcadet_2.png",
+          "cobblemon:textures/pokemon/0935_charcadet/charcadet_3.png",
+          "cobblemon:textures/pokemon/0935_charcadet/charcadet_4.png"
+        ],
+        "fps": 8,
+        "loop": true
+      },
       "layers": [
         {
           "name": "flame",
@@ -35,17 +35,55 @@
       ]
     },
     {
-      "aspects": ["shiny"],
-        "texture": {
-          "frames": [
-            "cobblemon:textures/pokemon/0935_charcadet/charcadet_shiny_1.png",
-            "cobblemon:textures/pokemon/0935_charcadet/charcadet_shiny_2.png",
-            "cobblemon:textures/pokemon/0935_charcadet/charcadet_shiny_3.png",
-            "cobblemon:textures/pokemon/0935_charcadet/charcadet_shiny_4.png"
-          ],
-          "fps": 8,
-          "loop": true
-        },
+      "aspects": [
+        "mythical_radiant"
+      ],
+      "effectname": "RADIANT"
+    },
+    {
+      "aspects": [
+        "mythical_glitch"
+      ],
+      "effectname": "GLITCH"
+    },
+    {
+      "aspects": [
+        "mythical_galaxy"
+      ],
+      "effectname": "GALAXY"
+    },
+    {
+      "aspects": [
+        "mythical_matrix"
+      ],
+      "effectname": "MATRIX"
+    },
+    {
+      "aspects": [
+        "mythical_firework"
+      ],
+      "effectname": "FIREWORK"
+    },
+    {
+      "aspects": [
+        "radar_spawned"
+      ],
+      "effectname": "HOLOGRAPHIC"
+    },
+    {
+      "aspects": [
+        "shiny"
+      ],
+      "texture": {
+        "frames": [
+          "cobblemon:textures/pokemon/0935_charcadet/charcadet_shiny_1.png",
+          "cobblemon:textures/pokemon/0935_charcadet/charcadet_shiny_2.png",
+          "cobblemon:textures/pokemon/0935_charcadet/charcadet_shiny_3.png",
+          "cobblemon:textures/pokemon/0935_charcadet/charcadet_shiny_4.png"
+        ],
+        "fps": 8,
+        "loop": true
+      },
       "layers": [
         {
           "name": "flame",

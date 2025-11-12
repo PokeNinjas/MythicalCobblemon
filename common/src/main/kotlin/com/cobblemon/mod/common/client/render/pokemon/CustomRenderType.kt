@@ -8,7 +8,6 @@
 
 package com.cobblemon.mod.common.client.render.pokemon
 
-import com.cobblemon.mod.common.Cobblemon
 import com.cobblemon.mod.common.client.render.models.blockbench.repository.PokemonModelRepository
 import com.cobblemon.mod.common.client.render.models.blockbench.repository.RenderContext
 import com.mojang.blaze3d.systems.RenderSystem
@@ -20,7 +19,6 @@ import net.minecraft.client.renderer.RenderType
 import net.minecraft.resources.ResourceLocation
 import java.util.concurrent.ConcurrentHashMap
 import java.util.function.Supplier
-import org.lwjgl.opengl.GL20
 
 object CustomRenderType {
     private val cutout = ConcurrentHashMap<Pair<ResourceLocation, Int>, RenderType>()
@@ -32,13 +30,12 @@ object CustomRenderType {
             Runnable {
                 val s = RenderSystem.getShader() ?: return@Runnable
                 s.safeGetUniform("cobblemon_effectType")?.set(effectId)
-
-                val eid = CurrentDraw.getEntityId()
-                if (eid >= 0) IrisLink.setEffectForEntity(eid, effectId)
+                IrisLink.setEffectForEntity(effectId)
             },
             Runnable {
                 val s = RenderSystem.getShader() ?: return@Runnable
                 s.safeGetUniform("cobblemon_effectType")?.set(0)
+                IrisLink.setEffectForEntity(0)
             }
         )
 
@@ -47,8 +44,6 @@ object CustomRenderType {
             val shaderState = RenderStateShard.ShaderStateShard(Supplier {
                 val s = GameRenderer.getRendertypeEntityCutoutShader()
                 val u = s?.safeGetUniform("cobblemon_effectType")
-                Cobblemon.LOGGER.info("[Cobb RT] cutout binding '{}' hasUniform?={} effectId={}",
-                    s?.name, u != null, effectId)
                 u?.set(effectId)
                 s
             })
@@ -74,8 +69,6 @@ object CustomRenderType {
             val shaderState = RenderStateShard.ShaderStateShard(Supplier {
                 val s = GameRenderer.getRendertypeEntityCutoutShader()
                 val u = s?.safeGetUniform("cobblemon_effectType")
-                Cobblemon.LOGGER.info("[Cobb RT] cutout binding '{}' hasUniform?={} effectId={}",
-                    s?.name, u != null, effectId)
                 u?.set(effectId)
                 s
             })
@@ -111,21 +104,6 @@ object CustomRenderType {
             "fireworks" -> 6
             "holographic" -> 7
             else -> 0
-        }
-    }
-
-    fun setCobblemonEffectType(effectId: Int) {
-        RenderSystem.recordRenderCall {
-            val program = GL20.glGetInteger(GL20.GL_CURRENT_PROGRAM)
-            Cobblemon.LOGGER.info("[Uniform Debug setCobblemonEffectType] program=$program")
-            if (program == 0) return@recordRenderCall
-
-            val uniformLoc = GL20.glGetUniformLocation(program, "cobblemon_effectType")
-            if (uniformLoc >= 0) {
-                GL20.glUniform1i(uniformLoc, effectId)
-            }
-            val name = GL20.glGetProgramInfoLog(program)
-            Cobblemon.LOGGER.info("[Uniform Debug] program=$program location=$uniformLoc name=${name}")
         }
     }
 }
