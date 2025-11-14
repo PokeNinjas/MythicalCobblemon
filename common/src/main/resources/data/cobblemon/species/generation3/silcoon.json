@@ -55,10 +55,14 @@
       },
       "swim": {
         "canSwimInWater": false,
-        "canSwimInLava": false
+        "avoidsWater": true
       },
       "canLook": false
-    }
+    },
+    "combat": {
+      "willFlee": false
+    },
+    "fireImmune": true
   },
   "drops": {
     "amount": 3,
@@ -87,7 +91,8 @@
     "tutor:electroweb",
     "tutor:irondefense",
     "tutor:skittersmack",
-    "tutor:stringshot"
+    "tutor:stringshot",
+    "legacy:snore"
   ],
   "preEvolution": "wurmple",
   "evolutions": [

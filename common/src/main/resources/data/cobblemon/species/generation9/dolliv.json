@@ -42,6 +42,13 @@
   "catchRate": 120,
   "eggCycles": 20,
   "baseFriendship": 50,
+  "standingEyeHeight": 0.57,
+  "baseScale": 0.45,
+  "hitbox": {
+    "width": 0.7,
+    "height": 1.73,
+    "fixed": false
+  },
   "drops": {
     "amount": 2,
     "entries": [
@@ -126,5 +133,29 @@
         }
       ]
     }
-  ]
+  ],
+  "behaviour": {
+    "herd": {
+      "maxSize": "5",
+      "toleratedLeaders": [
+        {
+          "pokemon": "arboliva",
+          "tier": 1
+        }
+      ]
+    },
+    "resting": {
+      "willSleepOnBed": true
+    },
+    "moving": {
+      "swim": {
+        "avoidsWater": true
+      }
+    },
+    "combat": {
+      "willDefendOwner": true,
+      "willFlee": false
+    },
+    "fireImmune": true
+  }
 }

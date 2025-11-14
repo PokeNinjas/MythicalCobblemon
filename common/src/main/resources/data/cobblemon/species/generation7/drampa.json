@@ -1,4 +1,5 @@
 {
+  "implemented": true,
   "nationalPokedexNumber": 780,
   "name": "Drampa",
   "primaryType": "normal",
@@ -43,18 +44,37 @@
   "catchRate": 70,
   "eggCycles": 20,
   "baseFriendship": 50,
-  "baseScale": 1,
+  "standingEyeHeight": 0.7,
+  "baseScale": 1.1,
   "hitbox": {
-    "width": 1,
-    "height": 1,
+    "width": 3,
+    "height": 2.85,
     "fixed": false
   },
   "behaviour": {
     "moving": {
       "swim": {
-        "canSwimInLava": true
+        "avoidsWater": true
+      },
+      "fly": {
+        "canFly": true
       }
-    }
+    },
+    "herd": {
+      "maxSize": "4",
+      "toleratedLeaders": [
+        {
+          "pokemon": "drampa",
+          "tier": 1
+        }
+      ]
+    },
+    "combat": {
+      "willDefendSelf": true,
+      "willDefendOwner": true,
+      "willFlee": false
+    },
+    "fireImmune": true
   },
   "drops": {
     "amount": 2,
@@ -196,7 +216,16 @@
     "tutor:thunderbolt",
     "tutor:twister",
     "tutor:uproar",
-    "tutor:waterpulse"
+    "tutor:waterpulse",
+    "legacy:attract",
+    "legacy:confide",
+    "legacy:doubleteam",
+    "legacy:frustration",
+    "legacy:hiddenpower",
+    "legacy:return",
+    "legacy:round",
+    "legacy:snore",
+    "legacy:toxic"
   ],
   "evolutions": []
 }

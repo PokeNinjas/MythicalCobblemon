@@ -49,10 +49,27 @@
     "fixed": false
   },
   "behaviour": {
+    "moving": {
+      "walk": {
+        "walkSpeed": 0.18
+      },
+      "swim": {
+        "avoidsWater": true
+      }
+    },
     "resting": {
       "canSleep": true,
-      "light": "0-4"
-    }
+      "light": "0-4",
+      "times": [
+        "167-11833,13702-22299"
+      ]
+    },
+    "combat": {
+      "willDefendSelf": true,
+      "willDefendOwner": true,
+      "willFlee": false
+    },
+    "fireImmune": true
   },
   "drops": {
     "amount": 5,
@@ -203,7 +220,36 @@
     "tutor:thunderpunch",
     "tutor:trick",
     "tutor:wonderroom",
-    "tutor:zenheadbutt"
+    "tutor:zenheadbutt",
+    "legacy:attract",
+    "legacy:bide",
+    "legacy:captivate",
+    "legacy:confide",
+    "legacy:counter",
+    "legacy:curse",
+    "legacy:dig",
+    "legacy:doubleedge",
+    "legacy:doubleteam",
+    "legacy:dynamicpunch",
+    "legacy:frustration",
+    "legacy:hiddenpower",
+    "legacy:mimic",
+    "legacy:naturalgift",
+    "legacy:nightmare",
+    "legacy:nightshade",
+    "legacy:psywave",
+    "legacy:rage",
+    "legacy:return",
+    "legacy:round",
+    "legacy:secretpower",
+    "legacy:seismictoss",
+    "legacy:skullbash",
+    "legacy:snore",
+    "legacy:submission",
+    "legacy:swagger",
+    "legacy:takedown",
+    "legacy:toxic",
+    "legacy:zapcannon"
   ],
   "preEvolution": "kadabra",
   "evolutions": [],
@@ -239,7 +285,75 @@
       "baseExperienceYield": 300,
       "dynamaxBlocked": true,
       "evolutions": [],
-      "battleOnly": true
+      "battleOnly": true,
+      "riding": {
+        "stats": {
+          "SPEED": {
+            "ranges": "45-90"
+          },
+          "ACCELERATION": {
+            "ranges": "15-30"
+          },
+          "SKILL": {
+            "ranges": "5-10"
+          },
+          "JUMP": {
+            "ranges": "15-30"
+          },
+          "STAMINA": {
+            "ranges": "30-60"
+          }
+        },
+        "seats": [],
+        "behaviour": {
+          "key": "cobblemon:land/horse"
+        }
+      },
+      "behaviour": {
+        "resting": {
+          "times": [
+            "167-11833,13702-22299"
+          ]
+        },
+        "moving": {
+          "swim": {
+            "avoidsWater": true,
+            "canWalkOnWater": true
+          },
+          "fly": {
+            "canFly": true
+          }
+        },
+        "combat": {
+          "willDefendSelf": true,
+          "willDefendOwner": true,
+          "willFlee": false
+        },
+        "fireImmune": true
+      }
     }
-  ]
+  ],
+  "riding": {
+    "stats": {
+      "SPEED": {
+        "ranges": "40-80"
+      },
+      "ACCELERATION": {
+        "ranges": "15-30"
+      },
+      "SKILL": {
+        "ranges": "5-10"
+      },
+      "JUMP": {
+        "ranges": "15-30"
+      },
+      "STAMINA": {
+        "ranges": "25-50"
+      }
+    },
+    "seats": [],
+    "behaviour": {
+      "key": "cobblemon:land/horse"
+    }
+  }
 }

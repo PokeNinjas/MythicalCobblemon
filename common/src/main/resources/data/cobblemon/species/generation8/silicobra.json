@@ -43,9 +43,9 @@
   "catchRate": 255,
   "eggCycles": 20,
   "baseFriendship": 50,
-  "baseScale": 1,
+  "baseScale": 0.8,
   "hitbox": {
-    "width": 1,
+    "width": 0.85,
     "height": 1,
     "fixed": false
   },
@@ -120,7 +120,10 @@
     "tutor:skittersmack",
     "tutor:sleeptalk",
     "tutor:stealthrock",
-    "tutor:stoneedge"
+    "tutor:stoneedge",
+    "legacy:attract",
+    "legacy:round",
+    "legacy:snore"
   ],
   "evolutions": [
     {
@@ -136,5 +139,17 @@
         }
       ]
     }
-  ]
+  ],
+  "behaviour": {
+    "moving": {
+      "swim": {
+        "avoidsWater": true
+      }
+    },
+    "combat": {
+      "willDefendOwner": true,
+      "willFlee": false
+    },
+    "fireImmune": true
+  }
 }

@@ -55,15 +55,34 @@
     "moving": {
       "swim": {
         "swimSpeed": 0.1,
-        "canBreatheUnderwater": true,
-        "canWalkOnWater": true,
-        "canSwimInWater": true,
-        "canSwimInLava": false
-      },
-      "walk": {
-        "avoidsLand": false
+        "canBreatheUnderwater": true
       }
-    }
+    },
+    "herd": {
+      "maxSize": "9",
+      "toleratedLeaders": [
+        {
+          "pokemon": "tatsugiri",
+          "tier": 1
+        },
+        {
+          "pokemon": "dondozo",
+          "tier": 2
+        },
+        {
+          "pokemon": "manaphy",
+          "tier": 3
+        }
+      ]
+    },
+    "resting": {
+      "willSleepOnBed": true
+    },
+    "combat": {
+      "willDefendOwner": true,
+      "willFlee": false
+    },
+    "fireImmune": true
   },
   "drops": {
     "amount": 3,

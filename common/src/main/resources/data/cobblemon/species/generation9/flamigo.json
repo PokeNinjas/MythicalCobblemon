@@ -58,14 +58,27 @@
         "canFly": true
       },
       "swim": {
-        "swimSpeed": 0.16,
-        "canBreatheUnderwater": true,
-        "canWalkOnWater": true
+        "swimSpeed": 0.16
       }
     },
     "resting": {
       "canSleep": true
-    }
+    },
+    "herd": {
+      "maxSize": "9",
+      "toleratedLeaders": [
+        {
+          "pokemon": "flamigo",
+          "tier": 1
+        }
+      ]
+    },
+    "combat": {
+      "willDefendSelf": true,
+      "willDefendOwner": true,
+      "willFlee": false
+    },
+    "fireImmune": true
   },
   "drops": {
     "amount": 5,

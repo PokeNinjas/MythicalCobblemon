@@ -44,17 +44,34 @@
   "baseFriendship": 50,
   "baseScale": 0.8,
   "hitbox": {
-    "width": 1.4,
-    "height": 1.8,
+    "width": 1.2,
+    "height": 2,
     "fixed": false
   },
   "behaviour": {
     "moving": {
       "swim": {
         "avoidsWater": true,
-        "canSwimInWater": false
+        "canWalkOnWater": true
+      },
+      "fly": {
+        "canFly": true
+      },
+      "walk": {
+        "walkSpeed": 0.4
       }
-    }
+    },
+    "resting": {
+      "times": [
+        "any"
+      ]
+    },
+    "combat": {
+      "willDefendSelf": true,
+      "willDefendOwner": true,
+      "willFlee": false
+    },
+    "fireImmune": true
   },
   "drops": {
     "amount": 4,
@@ -148,7 +165,17 @@
     "tutor:sleeptalk",
     "tutor:spite",
     "tutor:steelbeam",
-    "tutor:trick"
+    "legacy:attract",
+    "legacy:confide",
+    "legacy:doubleteam",
+    "legacy:frustration",
+    "legacy:hiddenpower",
+    "legacy:return",
+    "legacy:round",
+    "legacy:secretpower",
+    "legacy:snore",
+    "legacy:swagger",
+    "legacy:toxic"
   ],
   "preEvolution": "honedge",
   "evolutions": [
@@ -156,7 +183,7 @@
       "id": "doublade_aegislash",
       "variant": "item_interact",
       "result": "aegislash stance_forme=shield",
-      "consumeHeldItem": true,
+      "consumeHeldItem": false,
       "learnableMoves": [
         "kingsshield"
       ],

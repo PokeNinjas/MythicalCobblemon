@@ -50,16 +50,24 @@
   "behaviour": {
     "moving": {
       "walk": {
+        "canWalk": false,
         "walkSpeed": 0.175
       },
       "swim": {
         "swimSpeed": 0.1,
-        "canSwimInWater": true,
-        "canBreatheUnderwater": true,
-        "canSwimInLava": false
+        "canSwimInWater": false,
+        "canBreatheUnderwater": true
       },
-      "wanderChance": 360
-    }
+      "wanderChance": 360,
+      "canLook": false
+    },
+    "resting": {
+      "willSleepOnBed": true
+    },
+    "combat": {
+      "willFlee": false
+    },
+    "fireImmune": true
   },
   "drops": {
     "amount": 2,
@@ -125,7 +133,10 @@
     "tutor:recycle",
     "tutor:rest",
     "tutor:sleeptalk",
-    "tutor:spite"
+    "tutor:spite",
+    "legacy:attract",
+    "legacy:confide",
+    "legacy:doubleteam"
   ],
   "evolutions": []
 }

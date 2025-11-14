@@ -51,7 +51,10 @@
   "behaviour": {
     "resting": {
       "canSleep": true,
-      "light": "0-4"
+      "light": "0-4",
+      "times": [
+        "any"
+      ]
     },
     "moving": {
       "walk": {
@@ -61,6 +64,11 @@
         "avoidsWater": true,
         "canSwimInWater": false
       }
+    },
+    "combat": {
+      "willDefendSelf": true,
+      "willDefendOwner": true,
+      "willFlee": false
     }
   },
   "drops": {
@@ -156,7 +164,18 @@
     "tutor:sleeptalk",
     "tutor:stealthrock",
     "tutor:stompingtantrum",
-    "tutor:stoneedge"
+    "tutor:stoneedge",
+    "legacy:attract",
+    "legacy:confide",
+    "legacy:doubleteam",
+    "legacy:frustration",
+    "legacy:hiddenpower",
+    "legacy:return",
+    "legacy:round",
+    "legacy:secretpower",
+    "legacy:snore",
+    "legacy:swagger",
+    "legacy:toxic"
   ],
   "preEvolution": "roggenrola",
   "evolutions": [

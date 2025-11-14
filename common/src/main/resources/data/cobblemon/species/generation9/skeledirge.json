@@ -52,6 +52,20 @@
     "resting": {
       "canSleep": true,
       "light": "0-4"
+    },
+    "herd": {
+      "maxSize": "7"
+    },
+    "moving": {
+      "swim": {
+        "avoidsWater": true,
+        "canSwimInLava": true
+      }
+    },
+    "combat": {
+      "willDefendSelf": true,
+      "willDefendOwner": true,
+      "willFlee": false
     }
   },
   "drops": {
@@ -167,5 +181,9 @@
     "tutor:zenheadbutt"
   ],
   "preEvolution": "crocalor",
-  "evolutions": []
+  "evolutions": [],
+  "lightingData": {
+    "lightLevel": 15,
+    "liquidGlowMode": "LAND"
+  }
 }

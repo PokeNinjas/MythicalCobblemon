@@ -42,7 +42,10 @@
   "catchRate": 45,
   "eggCycles": 20,
   "baseFriendship": 50,
-  "baseScale": 0.8,
+  "standingEyeHeight": 0.75,
+  "swimmingEyeHeight": 0.75,
+  "flyingEyeHeight": 0.75,
+  "baseScale": 0.65,
   "hitbox": {
     "width": 0.7,
     "height": 1,
@@ -53,7 +56,34 @@
       "canSleep": true,
       "willSleepOnBed": true,
       "light": "0-4"
-    }
+    },
+    "herd": {
+      "maxSize": "4",
+      "toleratedLeaders": [
+        {
+          "pokemon": "chespin",
+          "tier": 1
+        },
+        {
+          "pokemon": "quilladin",
+          "tier": 2
+        },
+        {
+          "pokemon": "chesnaught",
+          "tier": 3
+        }
+      ]
+    },
+    "moving": {
+      "swim": {
+        "avoidsWater": true
+      }
+    },
+    "combat": {
+      "willDefendOwner": true,
+      "willFlee": false
+    },
+    "fireImmune": true
   },
   "drops": {
     "amount": 1,
@@ -184,7 +214,27 @@
     "tutor:synthesis",
     "tutor:thunderpunch",
     "tutor:worryseed",
-    "tutor:zenheadbutt"
+    "tutor:zenheadbutt",
+    "legacy:attract",
+    "legacy:bulkup",
+    "legacy:confide",
+    "legacy:doubleteam",
+    "legacy:frustration",
+    "legacy:gyroball",
+    "legacy:hiddenpower",
+    "legacy:irondefense",
+    "legacy:lowsweep",
+    "legacy:return",
+    "legacy:round",
+    "legacy:secretpower",
+    "legacy:sludgebomb",
+    "legacy:smackdown",
+    "legacy:snore",
+    "legacy:stoneedge",
+    "legacy:swagger",
+    "legacy:swordsdance",
+    "legacy:taunt",
+    "legacy:toxic"
   ],
   "evolutions": [
     {

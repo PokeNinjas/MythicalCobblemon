@@ -1,22 +1,34 @@
 {
-	"head": "head",
-	"portraitScale": 1.77,
-	"portraitTranslation": [-0.12, 0.39, 0],
-	"profileScale": 0.7,
-	"profileTranslation": [0, 0.6, 0],
-	"poses": {
-		"standing": {
-			"poseName": "standing",
-			"transformTicks": 10,
-			"poseTypes": [
-				"STAND",
-				"NONE",
-				"PORTRAIT",
-				"PROFILE"
-			],
-			"animations": [
-                "bedrock(eelektrik, ground_idle)"
-			]
-		}
-	}
+  "portraitScale": 2.36,
+  "portraitTranslation": [-0.63, -0.02, 0],
+  "profileScale": 0.67,
+  "profileTranslation": [0, 0.8, 0],
+  "rootBone": "eelektrik",
+  "animations": {},
+  "poses": {
+    "standing": {
+      "poseTypes": ["STAND", "NONE", "PORTRAIT", "PROFILE"],
+      "isBattle": true,
+      "animations": ["q.look('head')", "q.bedrock('eelektrik', 'ground_idle')"],
+      "quirks": ["q.bedrock_quirk('eelektrik', 'blink')"]
+    },
+    "walking": {
+      "poseTypes": ["WALK"],
+      "animations": [
+        "q.look('head')",
+        "q.bedrock('eelektrik', 'ground_idle')"
+      ],
+      "quirks": ["q.bedrock_quirk('eelektrik', 'blink')"]
+    },
+    "float": {
+      "poseTypes": ["FLOAT"],
+      "animations": ["q.bedrock('eelektrik', 'ground_idle')"],
+      "quirks": ["q.bedrock_quirk('eelektrik', 'blink')"]
+    },
+    "swim": {
+      "poseTypes": ["SWIM"],
+      "animations": ["q.bedrock('eelektrik', 'ground_idle')"],
+      "quirks": ["q.bedrock_quirk('eelektrik', 'blink')"]
+    }
+  }
 }

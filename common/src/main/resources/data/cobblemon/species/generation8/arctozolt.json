@@ -53,8 +53,7 @@
     "moving": {
       "swim": {
         "swimSpeed": 0.3,
-        "canBreatheUnderwater": true,
-        "canWalkOnWater": true
+        "avoidsWater": true
       },
       "walk": {
         "walkSpeed": 0.18
@@ -63,7 +62,26 @@
     "resting": {
       "canSleep": true,
       "light": "0-4"
-    }
+    },
+    "herd": {
+      "maxSize": "2",
+      "toleratedLeaders": [
+        {
+          "pokemon": "dracozolt",
+          "tier": 1
+        },
+        {
+          "pokemon": "arctozolt",
+          "tier": 2
+        }
+      ]
+    },
+    "combat": {
+      "willDefendSelf": true,
+      "willDefendOwner": true,
+      "willFlee": false
+    },
+    "fireImmune": true
   },
   "moves": [
     "1:powdersnow",
@@ -145,7 +163,9 @@
     "tutor:thunderbolt",
     "tutor:thunderfang",
     "tutor:thunderpunch",
-    "tutor:wildcharge"
+    "tutor:wildcharge",
+    "legacy:round",
+    "legacy:snore"
   ],
   "evolutions": [],
   "drops": {

@@ -52,10 +52,35 @@
     "resting": {
       "canSleep": true,
       "light": "0-4"
-    }
+    },
+    "entityInteract": {
+      "avoidedBySkeleton": true
+    },
+    "characteristicRainbow": true,
+    "moving": {
+      "swim": {
+        "avoidsWater": true
+      }
+    },
+    "combat": {
+      "willDefendOwner": true,
+      "willFlee": false
+    },
+    "fireImmune": true
   },
   "moves": [
-    "1:sketch"
+    "1:sketch",
+    "tutor:falseswipe",
+    "tutor:flamethrower",
+    "legacy:captivate",
+    "legacy:sleeptalk",
+    "special:falseswipe",
+    "special:flamethrower",
+    "special:furyswipes",
+    "special:meanlook",
+    "special:odorsleuth",
+    "special:seismictoss",
+    "special:spore"
   ],
   "evolutions": []
 }

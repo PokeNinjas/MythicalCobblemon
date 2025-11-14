@@ -14,6 +14,7 @@ import com.cobblemon.mod.common.api.abilities.Abilities
 import com.cobblemon.mod.common.api.abilities.AbilityPool
 import com.cobblemon.mod.common.api.abilities.CommonAbility
 import com.cobblemon.mod.common.api.abilities.PotentialAbility
+import com.cobblemon.mod.common.api.ai.config.BehaviourConfig
 import com.cobblemon.mod.common.api.data.ShowdownIdentifiable
 import com.cobblemon.mod.common.api.drop.DropTable
 import com.cobblemon.mod.common.api.moves.MoveTemplate
@@ -29,6 +30,7 @@ import com.cobblemon.mod.common.api.pokemon.experience.ExperienceGroup
 import com.cobblemon.mod.common.api.pokemon.experience.ExperienceGroups
 import com.cobblemon.mod.common.api.pokemon.moves.Learnset
 import com.cobblemon.mod.common.api.pokemon.stats.Stat
+import com.cobblemon.mod.common.api.riding.RidingProperties
 import com.cobblemon.mod.common.api.types.ElementalType
 import com.cobblemon.mod.common.api.types.ElementalTypes
 import com.cobblemon.mod.common.entity.PoseType
@@ -40,8 +42,8 @@ import com.cobblemon.mod.common.pokemon.lighthing.LightingData
 import com.cobblemon.mod.common.util.*
 import com.google.gson.annotations.SerializedName
 import net.minecraft.network.RegistryFriendlyByteBuf
-import net.minecraft.resources.ResourceLocation
 import net.minecraft.world.entity.EntityDimensions
+import net.minecraft.resources.ResourceLocation
 
 class FormData(
     name: String = "Normal",
@@ -97,6 +99,12 @@ class FormData(
     private var _height: Float? = null,
     @SerializedName("weight")
     private var _weight: Float? = null,
+    @SerializedName("riding")
+    private var _riding: RidingProperties? = null,
+    @SerializedName("baseAI")
+    private var _baseAI: MutableList<BehaviourConfig>? = null,
+    @SerializedName("ai")
+    private var _ai: MutableList<BehaviourConfig>? = null,
     val requiredMove: String? = null,
     val requiredItem: String? = null,
     /** For forms that can accept different items (e.g. Arceus-Grass: Meadow Plate or Grassium-Z). */
@@ -173,6 +181,8 @@ class FormData(
 
     val eggGroups: Set<EggGroup>
         get() = _eggGroups ?: species.eggGroups
+    val riding: RidingProperties
+        get() = _riding ?: species.riding
 
     /**
      * The height in decimeters
@@ -224,6 +234,11 @@ class FormData(
             }
         }
 
+    val baseAI: List<BehaviourConfig>?
+        get() = _baseAI ?: species.baseAI
+    val ai: List<BehaviourConfig>
+        get() = _ai ?: species.ai
+
     fun eyeHeight(entity: PokemonEntity): Float {
         return this.resolveEyeHeight(entity) ?: return this.species.eyeHeight(entity)
     }
@@ -246,6 +261,7 @@ class FormData(
         this.preEvolution?.form
         this.evolutions.size
         this._lightingData?.let { this._lightingData = it.copy(lightLevel = it.lightLevel.coerceIn(0, 15)) }
+        behaviour.herd.initialize()
         return this
     }
 
@@ -271,8 +287,8 @@ class FormData(
                 { _, value -> buffer.writeSizedInt(IntSize.U_SHORT, value) }
             )
         }
-        buffer.writeNullable(this._primaryType) { pb, type -> pb.writeString(type.name) }
-        buffer.writeNullable(this._secondaryType) { pb, type -> pb.writeString(type.name) }
+        buffer.writeNullable(this._primaryType) { pb, type -> pb.writeString(type.showdownId) }
+        buffer.writeNullable(this._secondaryType) { pb, type -> pb.writeString(type.showdownId) }
         buffer.writeNullable(this._experienceGroup) { pb, value -> pb.writeString(value.name) }
         buffer.writeNullable(this._height) { pb, height -> pb.writeFloat(height) }
         buffer.writeNullable(this._weight) { pb, weight -> pb.writeFloat(weight) }
@@ -306,6 +322,7 @@ class FormData(
                 ClientsidePokedexEvolutionInfo.from(evolution).encode(pb)
             }
         }
+        buffer.writeNullable(_riding) { pb, riding -> riding.encode(buffer) }
     }
 
     override fun decode(buffer: RegistryFriendlyByteBuf) {
@@ -357,6 +374,7 @@ class FormData(
                 }.forEach {add(it)}
             }
         }
+        this._riding = buffer.readNullable { pb -> RidingProperties.decode(buffer) }
     }
 
     /**

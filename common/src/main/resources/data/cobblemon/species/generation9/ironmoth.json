@@ -120,13 +120,36 @@
     "tutor:psychic",
     "tutor:rest",
     "tutor:sleeptalk",
-    "tutor:spikes",
     "tutor:swift"
   ],
   "evolutions": [],
-  "hitbox": {
-    "width": 2,
-    "height": 3,
-    "fixed": false
+  "behaviour": {
+    "herd": {
+      "maxSize": "4"
+    },
+    "resting": {
+      "times": [
+        "any"
+      ]
+    },
+    "moving": {
+      "swim": {
+        "avoidsWater": true,
+        "canWalkOnWater": true,
+        "canBreatheUnderwater": true
+      },
+      "fly": {
+        "canFly": true
+      }
+    },
+    "combat": {
+      "willDefendSelf": true,
+      "willDefendOwner": true,
+      "willFlee": false
+    }
+  },
+  "lightingData": {
+    "lightLevel": 8,
+    "liquidGlowMode": "BOTH"
   }
 }

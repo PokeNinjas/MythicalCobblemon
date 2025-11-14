@@ -53,6 +53,32 @@
       "canSleep": true,
       "willSleepOnBed": true,
       "light": "0-4"
+    },
+    "herd": {
+      "maxSize": "4",
+      "toleratedLeaders": [
+        {
+          "pokemon": "fuecoco",
+          "tier": 1
+        },
+        {
+          "pokemon": "crocalor",
+          "tier": 2
+        },
+        {
+          "pokemon": "skeledirge",
+          "tier": 3
+        }
+      ]
+    },
+    "moving": {
+      "swim": {
+        "avoidsWater": true
+      }
+    },
+    "combat": {
+      "willDefendOwner": true,
+      "willFlee": false
     }
   },
   "drops": {
@@ -149,5 +175,9 @@
         }
       ]
     }
-  ]
+  ],
+  "lightingData": {
+    "lightLevel": 9,
+    "liquidGlowMode": "LAND"
+  }
 }

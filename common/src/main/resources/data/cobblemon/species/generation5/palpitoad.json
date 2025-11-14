@@ -51,12 +51,37 @@
   "behaviour": {
     "moving": {
       "swim": {
-        "canSwimInWater": true,
-        "canSwimInLava": false,
         "canBreatheUnderwater": true,
         "swimSpeed": "0.2"
       }
-    }
+    },
+    "herd": {
+      "maxSize": "7",
+      "toleratedLeaders": [
+        {
+          "pokemon": "poliwrath",
+          "tier": 1
+        },
+        {
+          "pokemon": "politoed",
+          "tier": 2
+        },
+        {
+          "pokemon": "seismitoad",
+          "tier": 3
+        }
+      ]
+    },
+    "resting": {
+      "times": [
+        "day"
+      ]
+    },
+    "combat": {
+      "willDefendOwner": true,
+      "willFlee": false
+    },
+    "fireImmune": true
   },
   "drops": {
     "amount": 3,
@@ -151,7 +176,15 @@
     "tutor:snore",
     "tutor:stealthrock",
     "tutor:uproar",
-    "tutor:waterpulse"
+    "tutor:waterpulse",
+    "legacy:attract",
+    "legacy:confide",
+    "legacy:doubleteam",
+    "legacy:frustration",
+    "legacy:hiddenpower",
+    "legacy:return",
+    "legacy:secretpower",
+    "legacy:swagger"
   ],
   "preEvolution": "tympole",
   "evolutions": [

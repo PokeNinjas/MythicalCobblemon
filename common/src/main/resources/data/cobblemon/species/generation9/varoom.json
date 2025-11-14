@@ -56,9 +56,30 @@
     "moving": {
       "swim": {
         "avoidsWater": true,
-        "canSwimInWater": false
+        "canWalkOnWater": true
+      },
+      "fly": {
+        "canFly": true
       }
-    }
+    },
+    "herd": {
+      "maxSize": "4",
+      "toleratedLeaders": [
+        {
+          "pokemon": "varoom",
+          "tier": 1
+        },
+        {
+          "pokemon": "revavroom",
+          "tier": 2
+        }
+      ]
+    },
+    "combat": {
+      "willDefendOwner": true,
+      "willFlee": false
+    },
+    "fireImmune": true
   },
   "drops": {
     "amount": 3,
@@ -148,7 +169,6 @@
     "tutor:rest",
     "tutor:sleeptalk",
     "tutor:sludgebomb",
-    "tutor:spikes",
     "tutor:steelbeam",
     "tutor:uproar",
     "tutor:zenheadbutt"

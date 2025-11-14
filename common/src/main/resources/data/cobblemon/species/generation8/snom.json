@@ -50,9 +50,25 @@
   "behaviour": {
     "moving": {
       "swim": {
-        "canBreatheUnderwater": true
+        "avoidsWater": true
       }
-    }
+    },
+    "herd": {
+      "maxSize": "6",
+      "toleratedLeaders": [
+        {
+          "pokemon": "snom",
+          "tier": 1
+        }
+      ]
+    },
+    "resting": {
+      "willSleepOnBed": true,
+      "times": [
+        "day"
+      ]
+    },
+    "fireImmune": true
   },
   "drops": {
     "amount": 3,
@@ -95,14 +111,18 @@
     "tutor:icywind",
     "tutor:rest",
     "tutor:skittersmack",
-    "tutor:sleeptalk"
+    "tutor:sleeptalk",
+    "legacy:attract",
+    "legacy:endure",
+    "legacy:round",
+    "legacy:snore"
   ],
   "evolutions": [
     {
       "id": "snom_frosmoth",
       "variant": "level_up",
       "result": "frosmoth",
-      "consumeHeldItem": true,
+      "consumeHeldItem": false,
       "learnableMoves": [
         "icywind"
       ],

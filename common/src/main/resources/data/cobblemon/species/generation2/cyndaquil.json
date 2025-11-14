@@ -56,12 +56,39 @@
     "resting": {
       "canSleep": true,
       "willSleepOnBed": true,
-      "light": "0-4"
+      "light": "0-4",
+      "times": [
+        "day"
+      ]
     },
     "moving": {
       "walk": {
         "walkSpeed": 0.2
+      },
+      "swim": {
+        "avoidsWater": true
       }
+    },
+    "herd": {
+      "maxSize": "4",
+      "toleratedLeaders": [
+        {
+          "pokemon": "cyndaquil",
+          "tier": 1
+        },
+        {
+          "pokemon": "quilava",
+          "tier": 2
+        },
+        {
+          "pokemon": "typhlosion",
+          "tier": 3
+        }
+      ]
+    },
+    "combat": {
+      "willDefendOwner": true,
+      "willFlee": false
     }
   },
   "drops": {
@@ -143,6 +170,7 @@
     "tm:workup",
     "tm:zenheadbutt",
     "tutor:aerialace",
+    "tutor:blastburn",
     "tutor:burningjealousy",
     "tutor:covet",
     "tutor:firefang",
@@ -156,7 +184,26 @@
     "tutor:sleeptalk",
     "tutor:swift",
     "tutor:wildcharge",
-    "tutor:zenheadbutt"
+    "tutor:zenheadbutt",
+    "legacy:attract",
+    "legacy:captivate",
+    "legacy:confide",
+    "legacy:detect",
+    "legacy:doubleteam",
+    "legacy:frustration",
+    "legacy:hiddenpower",
+    "legacy:irontail",
+    "legacy:mimic",
+    "legacy:mudslap",
+    "legacy:naturalgift",
+    "legacy:return",
+    "legacy:round",
+    "legacy:secretpower",
+    "legacy:snore",
+    "legacy:submission",
+    "legacy:swagger",
+    "legacy:toxic",
+    "special:blastburn"
   ],
   "evolutions": [
     {

@@ -43,21 +43,51 @@
   "eggCycles": 15,
   "baseFriendship": 50,
   "shoulderMountable": true,
-  "baseScale": 0.6,
+  "standingEyeHeight": 0.7,
+  "swimmingEyeHeight": 0.7,
+  "flyingEyeHeight": 0.7,
+  "baseScale": 0.5,
   "hitbox": {
     "width": 0.7,
-    "height": 0.9,
+    "height": 1.15,
     "fixed": false
   },
   "behaviour": {
     "moving": {
       "walk": {
         "walkSpeed": 0.13
+      },
+      "swim": {
+        "avoidsWater": true
       }
     },
     "resting": {
       "canSleep": true,
-      "willSleepOnBed": true
+      "willSleepOnBed": true,
+      "times": [
+        "167-11833,13702-22299"
+      ]
+    },
+    "entityInteract": {
+      "avoidedByCreeper": true,
+      "avoidedByPhantom": true
+    },
+    "herd": {
+      "maxSize": "2",
+      "toleratedLeaders": [
+        {
+          "pokemon": "litten",
+          "tier": 1
+        },
+        {
+          "pokemon": "torracat",
+          "tier": 2
+        }
+      ]
+    },
+    "combat": {
+      "willDefendOwner": true,
+      "willFlee": false
     }
   },
   "drops": {
@@ -147,7 +177,16 @@
     "tutor:outrage",
     "tutor:rest",
     "tutor:shadowclaw",
-    "tutor:sleeptalk"
+    "tutor:sleeptalk",
+    "legacy:attract",
+    "legacy:confide",
+    "legacy:doubleteam",
+    "legacy:frustration",
+    "legacy:hiddenpower",
+    "legacy:return",
+    "legacy:round",
+    "legacy:snore",
+    "legacy:toxic"
   ],
   "evolutions": [
     {

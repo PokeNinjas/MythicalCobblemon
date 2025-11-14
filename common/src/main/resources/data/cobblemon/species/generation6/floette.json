@@ -53,12 +53,43 @@
     "moving": {
       "fly": {
         "canFly": true
+      },
+      "swim": {
+        "avoidsWater": true,
+        "canWalkOnWater": true
       }
     },
     "resting": {
       "canSleep": true,
-      "light": "0-4"
-    }
+      "light": "0-4",
+      "willSleepOnBed": true
+    },
+    "herd": {
+      "maxSize": "5",
+      "toleratedLeaders": [
+        {
+          "pokemon": "floette eternal=false",
+          "tier": 1
+        },
+        {
+          "pokemon": "comfey",
+          "tier": 1
+        },
+        {
+          "pokemon": "floette eternal",
+          "tier": 2
+        },
+        {
+          "pokemon": "florges",
+          "tier": 3
+        }
+      ]
+    },
+    "combat": {
+      "willDefendOwner": true,
+      "willFlee": false
+    },
+    "fireImmune": true
   },
   "drops": {
     "amount": 2,
@@ -162,7 +193,18 @@
     "tutor:swift",
     "tutor:synthesis",
     "tutor:trick",
-    "tutor:worryseed"
+    "tutor:worryseed",
+    "legacy:attract",
+    "legacy:confide",
+    "legacy:doubleteam",
+    "legacy:frustration",
+    "legacy:hiddenpower",
+    "legacy:return",
+    "legacy:round",
+    "legacy:secretpower",
+    "legacy:snore",
+    "legacy:swagger",
+    "legacy:toxic"
   ],
   "preEvolution": "flabebe",
   "evolutions": [
@@ -170,7 +212,7 @@
       "id": "floette_florges",
       "variant": "item_interact",
       "result": "florges",
-      "consumeHeldItem": true,
+      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [],
       "requiredContext": "cobblemon:shiny_stone"
@@ -198,7 +240,7 @@
           "id": "floette_florges",
           "variant": "item_interact",
           "result": "florges",
-          "consumeHeldItem": true,
+          "consumeHeldItem": false,
           "learnableMoves": [],
           "requirements": [],
           "requiredContext": "cobblemon:shiny_stone"
@@ -227,7 +269,7 @@
           "id": "floette_florges",
           "variant": "item_interact",
           "result": "florges",
-          "consumeHeldItem": true,
+          "consumeHeldItem": false,
           "learnableMoves": [],
           "requirements": [],
           "requiredContext": "cobblemon:shiny_stone"
@@ -256,7 +298,7 @@
           "id": "floette_florges",
           "variant": "item_interact",
           "result": "florges",
-          "consumeHeldItem": true,
+          "consumeHeldItem": false,
           "learnableMoves": [],
           "requirements": [],
           "requiredContext": "cobblemon:shiny_stone"
@@ -285,7 +327,7 @@
           "id": "floette_florges",
           "variant": "item_interact",
           "result": "florges",
-          "consumeHeldItem": true,
+          "consumeHeldItem": false,
           "learnableMoves": [],
           "requirements": [],
           "requiredContext": "cobblemon:shiny_stone"
@@ -423,10 +465,49 @@
         "tutor:swift",
         "tutor:synthesis",
         "tutor:trick",
-        "tutor:worryseed"
+        "tutor:worryseed",
+        "legacy:attract",
+        "legacy:confide",
+        "legacy:doubleteam",
+        "legacy:frustration",
+        "legacy:hiddenpower",
+        "legacy:return",
+        "legacy:round",
+        "legacy:secretpower",
+        "legacy:snore",
+        "legacy:swagger",
+        "legacy:toxic"
       ],
       "evolutions": [],
-      "battleOnly": false
+      "battleOnly": false,
+      "behaviour": {
+        "herd": {
+          "maxSize": "6",
+          "toleratedLeaders": [
+            {
+              "pokemon": "floette eternal",
+              "tier": 1
+            }
+          ]
+        },
+        "resting": {
+          "willSleepOnBed": true
+        },
+        "moving": {
+          "swim": {
+            "avoidsWater": true
+          },
+          "fly": {
+            "canFly": true
+          }
+        },
+        "combat": {
+          "willDefendSelf": true,
+          "willDefendOwner": true,
+          "willFlee": false
+        },
+        "fireImmune": true
+      }
     }
   ]
 }

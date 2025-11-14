@@ -196,7 +196,7 @@
 			}
 		},
 		"animation.bronzor.sleep": {
-			"animation_length": 22.5833,
+          "loop": true,
 			"bones": {
 				"body": {
 					"rotation": [

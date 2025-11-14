@@ -51,12 +51,25 @@
   "behaviour": {
     "moving": {
       "swim": {
-        "canSwimInWater": true,
-        "canBreatheUnderwater": true,
-        "canSwimInLava": false,
+        "canSwimInWater": false,
         "swimSpeed": "0.2"
       }
-    }
+    },
+    "herd": {
+      "maxSize": "5",
+      "toleratedLeaders": [
+        {
+          "pokemon": "wugtrio",
+          "tier": 1
+        }
+      ]
+    },
+    "combat": {
+      "willDefendSelf": true,
+      "willDefendOwner": true,
+      "willFlee": false
+    },
+    "fireImmune": true
   },
   "moves": [
     "1:sandattack",
@@ -110,7 +123,6 @@
     "tm:waterpulse",
     "tm:whirlpool",
     "tutor:bulldoze",
-    "tutor:dive",
     "tutor:earthpower",
     "tutor:foulplay",
     "tutor:gigaimpact",

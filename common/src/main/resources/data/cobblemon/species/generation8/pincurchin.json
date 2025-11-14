@@ -51,16 +51,26 @@
   "behaviour": {
     "moving": {
       "walk": {
+        "canWalk": false,
+        "avoidsLand": true,
         "walkSpeed": 0.175
       },
       "swim": {
         "swimSpeed": 0.1,
-        "canSwimInWater": true,
-        "canBreatheUnderwater": true,
-        "canSwimInLava": false
+        "canSwimInWater": false,
+        "canBreatheUnderwater": true
       },
       "wanderChance": 360
-    }
+    },
+    "resting": {
+      "willSleepOnBed": true
+    },
+    "combat": {
+      "willDefendSelf": true,
+      "willDefendOwner": true,
+      "willFlee": false
+    },
+    "fireImmune": true
   },
   "moves": [
     "1:peck",
@@ -140,7 +150,10 @@
     "tutor:swift",
     "tutor:throatchop",
     "tutor:thunderbolt",
-    "tutor:wildcharge"
+    "tutor:wildcharge",
+    "legacy:attract",
+    "legacy:round",
+    "legacy:snore"
   ],
   "evolutions": []
 }

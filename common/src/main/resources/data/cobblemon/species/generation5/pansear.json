@@ -41,10 +41,10 @@
   "catchRate": 190,
   "eggCycles": 20,
   "baseFriendship": 50,
-  "baseScale": 1,
+  "baseScale": 0.6,
   "hitbox": {
     "width": 1,
-    "height": 1,
+    "height": 1.4,
     "fixed": false
   },
   "drops": {
@@ -169,17 +169,91 @@
     "tutor:shadowclaw",
     "tutor:sleeptalk",
     "tutor:swift",
-    "tutor:uproar"
+    "tutor:uproar",
+    "legacy:attract",
+    "legacy:confide",
+    "legacy:doubleteam",
+    "legacy:frustration",
+    "legacy:hiddenpower",
+    "legacy:return",
+    "legacy:round",
+    "legacy:secretpower",
+    "legacy:snore",
+    "legacy:swagger",
+    "legacy:toxic"
   ],
   "evolutions": [
     {
       "id": "pansear_simisear",
       "variant": "item_interact",
       "result": "simisear",
-      "consumeHeldItem": true,
+      "consumeHeldItem": false,
       "learnableMoves": [],
       "requirements": [],
       "requiredContext": "cobblemon:fire_stone"
     }
-  ]
+  ],
+  "behaviour": {
+    "herd": {
+      "maxSize": "4",
+      "toleratedLeaders": [
+        {
+          "pokemon": "aipom",
+          "tier": 1
+        },
+        {
+          "pokemon": "chimchar",
+          "tier": 1
+        },
+        {
+          "pokemon": "pansage",
+          "tier": 1
+        },
+        {
+          "pokemon": "pansear",
+          "tier": 1
+        },
+        {
+          "pokemon": "panpour",
+          "tier": 1
+        },
+        {
+          "pokemon": "ambipom",
+          "tier": 2
+        },
+        {
+          "pokemon": "monferno",
+          "tier": 2
+        },
+        {
+          "pokemon": "simisage",
+          "tier": 2
+        },
+        {
+          "pokemon": "simisear",
+          "tier": 2
+        },
+        {
+          "pokemon": "simipour",
+          "tier": 2
+        },
+        {
+          "pokemon": "infernape",
+          "tier": 3
+        }
+      ]
+    },
+    "resting": {
+      "willSleepOnBed": true
+    },
+    "moving": {
+      "swim": {
+        "avoidsWater": true
+      }
+    },
+    "combat": {
+      "willDefendOwner": true,
+      "willFlee": false
+    }
+  }
 }

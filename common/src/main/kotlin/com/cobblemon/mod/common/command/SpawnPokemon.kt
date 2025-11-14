@@ -27,6 +27,7 @@ import net.minecraft.commands.arguments.EntityArgument
 import net.minecraft.commands.arguments.coordinates.Vec3Argument
 import net.minecraft.core.Vec3i
 import net.minecraft.network.chat.Component
+import net.minecraft.world.entity.MobSpawnType
 import net.minecraft.world.phys.Vec3
 import net.minecraft.world.level.Level
 
@@ -86,13 +87,18 @@ object SpawnPokemon {
         if (properties.species == null) {
             throw NO_SPECIES_EXCEPTION.create()
         }
-        val pokemonEntity = properties.createEntity(world)
-        pokemonEntity.moveTo(pos.x, pos.y, pos.z, pokemonEntity.yRot, pokemonEntity.xRot)
-        pokemonEntity.entityData.set(PokemonEntity.SPAWN_DIRECTION, pokemonEntity.random.nextFloat() * 360F)
-        if (world.addFreshEntity(pokemonEntity)) {
-            return Command.SINGLE_SUCCESS
+        try {
+            val pokemonEntity = properties.createEntity(world)
+            pokemonEntity.moveTo(pos.x, pos.y, pos.z, pokemonEntity.yRot, pokemonEntity.xRot)
+            pokemonEntity.entityData.set(PokemonEntity.SPAWN_DIRECTION, pokemonEntity.random.nextFloat() * 360F)
+            pokemonEntity.finalizeSpawn(world, world.getCurrentDifficultyAt(blockPos), MobSpawnType.COMMAND, null)
+            if (world.addFreshEntity(pokemonEntity)) {
+                return Command.SINGLE_SUCCESS
+            }
+            throw FAILED_SPAWN_EXCEPTION.create()
+        } catch (e: Exception) {
+            e.printStackTrace()
+            throw FAILED_SPAWN_EXCEPTION.create()
         }
-        throw FAILED_SPAWN_EXCEPTION.create()
     }
-
 }

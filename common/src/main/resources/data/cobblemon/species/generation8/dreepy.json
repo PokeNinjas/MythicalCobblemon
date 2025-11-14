@@ -45,7 +45,7 @@
   "eggCycles": 40,
   "baseFriendship": 50,
   "shoulderMountable": true,
-  "baseScale": 0.75,
+  "baseScale": 0.55,
   "hitbox": {
     "width": 0.75,
     "height": 0.5,
@@ -64,8 +64,34 @@
     },
     "resting": {
       "canSleep": true,
-      "light": "0-4"
-    }
+      "light": "0-4",
+      "willSleepOnBed": true,
+      "times": [
+        "167-11833,13702-22299"
+      ]
+    },
+    "herd": {
+      "maxSize": "4",
+      "toleratedLeaders": [
+        {
+          "pokemon": "dreepy",
+          "tier": 1
+        },
+        {
+          "pokemon": "drakloak",
+          "tier": 2
+        },
+        {
+          "pokemon": "dragapult",
+          "tier": 3
+        }
+      ]
+    },
+    "combat": {
+      "willDefendOwner": true,
+      "willFlee": false
+    },
+    "fireImmune": true
   },
   "drops": {
     "amount": 2,
@@ -115,7 +141,10 @@
     "tutor:rest",
     "tutor:sleeptalk",
     "tutor:suckerpunch",
-    "tutor:swift"
+    "tutor:swift",
+    "legacy:attract",
+    "legacy:round",
+    "legacy:snore"
   ],
   "evolutions": [
     {

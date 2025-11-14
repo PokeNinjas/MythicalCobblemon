@@ -50,12 +50,57 @@
   "behaviour": {
     "moving": {
       "swim": {
-        "canSwimInWater": true,
-        "canSwimInLava": false,
         "canBreatheUnderwater": true,
         "swimSpeed": "0.2"
+      },
+      "walk": {
+        "avoidsLand": true
       }
-    }
+    },
+    "herd": {
+      "maxSize": "6",
+      "toleratedLeaders": [
+        {
+          "pokemon": "poliwag",
+          "tier": 1
+        },
+        {
+          "pokemon": "tympole",
+          "tier": 2
+        },
+        {
+          "pokemon": "poliwhirl",
+          "tier": 3
+        },
+        {
+          "pokemon": "palpitoad",
+          "tier": 4
+        },
+        {
+          "pokemon": "poliwrath",
+          "tier": 5
+        },
+        {
+          "pokemon": "politoed",
+          "tier": 6
+        },
+        {
+          "pokemon": "seismitoad",
+          "tier": 7
+        }
+      ]
+    },
+    "resting": {
+      "willSleepOnBed": true,
+      "times": [
+        "day"
+      ]
+    },
+    "combat": {
+      "willDefendOwner": true,
+      "willFlee": false
+    },
+    "fireImmune": true
   },
   "drops": {
     "amount": 2,
@@ -139,7 +184,15 @@
     "tutor:sludgebomb",
     "tutor:snore",
     "tutor:uproar",
-    "tutor:waterpulse"
+    "tutor:waterpulse",
+    "legacy:attract",
+    "legacy:confide",
+    "legacy:doubleteam",
+    "legacy:frustration",
+    "legacy:hiddenpower",
+    "legacy:return",
+    "legacy:secretpower",
+    "legacy:swagger"
   ],
   "evolutions": [
     {

@@ -60,6 +60,20 @@
         "avoidsWater": true,
         "canSwimInWater": false
       }
+    },
+    "herd": {
+      "maxSize": "4",
+      "toleratedLeaders": [
+        {
+          "pokemon": "stonjourner",
+          "tier": 1
+        }
+      ]
+    },
+    "combat": {
+      "willDefendSelf": true,
+      "willDefendOwner": true,
+      "willFlee": false
     }
   },
   "moves": [
@@ -146,15 +160,22 @@
     "tutor:stompingtantrum",
     "tutor:stoneedge",
     "tutor:superpower",
-    "tutor:wonderroom"
+    "tutor:wonderroom",
+    "legacy:attract",
+    "legacy:round",
+    "legacy:snore"
   ],
   "evolutions": [],
   "drops": {
-    "amount": 2,
+    "amount": 3,
     "entries": [
       {
         "item": "minecraft:stone",
         "quantityRange": "2"
+      },
+      {
+        "item": "cobblemon:luminous_moss",
+        "percentage": 5.0
       }
     ]
   }

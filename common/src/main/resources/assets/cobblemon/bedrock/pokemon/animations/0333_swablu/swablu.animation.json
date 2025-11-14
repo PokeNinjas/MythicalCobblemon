@@ -627,7 +627,7 @@
 					"position": [0, "math.cos(q.anim_time*90*1-20)*0.5+math.clamp(math.cos(q.anim_time*90*1+20)*0.5,0,0.5)", 0]
 				},
 				"head": {
-					"rotation": [0, 0, "math.cos(q.anim_time*90*2/3-24)*6.5"]
+					"rotation": ["4", 0, "math.cos(q.anim_time*90*2/3-24)*6.5"]
 				},
 				"leg_left": {
 					"rotation": ["10+math.sin(q.anim_time*90*2/3+0)*-10", 0, "10+math.sin(q.anim_time*90*2/3+10-10)*-15+math.sin(q.anim_time*90*1-30)*-5"],

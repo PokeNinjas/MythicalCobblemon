@@ -53,8 +53,39 @@
   "behaviour": {
     "resting": {
       "canSleep": true,
-      "light": "0-4"
-    }
+      "light": "0-4",
+      "willSleepOnBed": true,
+      "times": [
+        "day"
+      ]
+    },
+    "herd": {
+      "maxSize": "4",
+      "toleratedLeaders": [
+        {
+          "pokemon": "impidimp",
+          "tier": 1
+        },
+        {
+          "pokemon": "morgrem",
+          "tier": 2
+        },
+        {
+          "pokemon": "grimmsnarl",
+          "tier": 3
+        }
+      ]
+    },
+    "moving": {
+      "swim": {
+        "avoidsWater": true
+      }
+    },
+    "combat": {
+      "willDefendOwner": true,
+      "willFlee": false
+    },
+    "fireImmune": true
   },
   "drops": {
     "amount": 1,
@@ -135,7 +166,11 @@
     "tutor:sleeptalk",
     "tutor:suckerpunch",
     "tutor:throatchop",
-    "tutor:trick"
+    "tutor:trick",
+    "legacy:attract",
+    "legacy:round",
+    "legacy:snore",
+    "legacy:uproar"
   ],
   "evolutions": [
     {

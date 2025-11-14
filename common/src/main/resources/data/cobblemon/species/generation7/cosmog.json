@@ -68,5 +68,41 @@
         }
       ]
     }
-  ]
+  ],
+  "behaviour": {
+    "herd": {
+      "maxSize": "4",
+      "toleratedLeaders": [
+        {
+          "pokemon": "cosmog",
+          "tier": 1
+        },
+        {
+          "pokemon": "cosmoem",
+          "tier": 2
+        },
+        {
+          "pokemon": "solgaleo",
+          "tier": 3
+        },
+        {
+          "pokemon": "lunala",
+          "tier": 3
+        }
+      ]
+    },
+    "resting": {
+      "willSleepOnBed": true,
+      "times": [
+        "any"
+      ]
+    },
+    "moving": {
+      "swim": {
+        "avoidsWater": true,
+        "canWalkOnWater": true
+      }
+    },
+    "fireImmune": true
+  }
 }

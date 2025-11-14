@@ -49,14 +49,24 @@
   },
   "behaviour": {
     "moving": {
-      "walk": {
-        "canWalk": false
-      },
       "swim": {
-        "canSwimInWater": false
+        "avoidsWater": true
       },
       "canLook": false
-    }
+    },
+    "entityInteract": {
+      "avoidedByPhantom": true
+    },
+    "resting": {
+      "depth": "comatose",
+      "times": [
+        "any"
+      ]
+    },
+    "combat": {
+      "willFlee": false
+    },
+    "fireImmune": true
   },
   "drops": {
     "amount": 2,
@@ -161,7 +171,17 @@
     "tutor:suckerpunch",
     "tutor:superfang",
     "tutor:superpower",
-    "tutor:zenheadbutt"
+    "tutor:zenheadbutt",
+    "legacy:attract",
+    "legacy:confide",
+    "legacy:doubleteam",
+    "legacy:frustration",
+    "legacy:hiddenpower",
+    "legacy:return",
+    "legacy:round",
+    "legacy:snore",
+    "legacy:swagger",
+    "legacy:toxic"
   ],
   "evolutions": []
 }

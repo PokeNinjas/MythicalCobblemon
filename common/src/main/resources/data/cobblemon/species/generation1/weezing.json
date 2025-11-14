@@ -56,8 +56,32 @@
     "moving": {
       "fly": {
         "canFly": true
+      },
+      "swim": {
+        "avoidsWater": true,
+        "canWalkOnWater": true
       }
-    }
+    },
+    "herd": {
+      "maxSize": "5",
+      "toleratedLeaders": [
+        {
+          "pokemon": "weezing",
+          "tier": 1
+        }
+      ]
+    },
+    "resting": {
+      "times": [
+        "day"
+      ]
+    },
+    "combat": {
+      "willDefendSelf": true,
+      "willDefendOwner": true,
+      "willFlee": false
+    },
+    "fireImmune": true
   },
   "drops": {
     "amount": 2,
@@ -162,9 +186,26 @@
     "tutor:shockwave",
     "tutor:sleeptalk",
     "tutor:sludgebomb",
-    "tutor:spikes",
     "tutor:spite",
-    "tutor:thunderbolt"
+    "tutor:thunderbolt",
+    "legacy:attract",
+    "legacy:bide",
+    "legacy:captivate",
+    "legacy:confide",
+    "legacy:doubleteam",
+    "legacy:frustration",
+    "legacy:headbutt",
+    "legacy:hiddenpower",
+    "legacy:mimic",
+    "legacy:naturalgift",
+    "legacy:rage",
+    "legacy:return",
+    "legacy:round",
+    "legacy:secretpower",
+    "legacy:snore",
+    "legacy:swagger",
+    "legacy:uproar",
+    "legacy:zapcannon"
   ],
   "preEvolution": "koffing",
   "evolutions": [],
@@ -209,6 +250,7 @@
         ]
       },
       "moves": [
+        "1:aromatherapy",
         "1:doublehit",
         "1:strangesteam",
         "1:defog",
@@ -231,7 +273,6 @@
         "56:memento",
         "62:destinybond",
         "68:mistyterrain",
-        "egg:aromatherapy",
         "egg:curse",
         "egg:grudge",
         "egg:painsplit",
@@ -309,14 +350,52 @@
         "tutor:shadowball",
         "tutor:sleeptalk",
         "tutor:sludgebomb",
-        "tutor:spikes",
         "tutor:spite",
         "tutor:thunderbolt",
-        "tutor:wonderroom"
+        "tutor:wonderroom",
+        "legacy:attract",
+        "legacy:bide",
+        "legacy:captivate",
+        "legacy:confide",
+        "legacy:doubleteam",
+        "legacy:frustration",
+        "legacy:headbutt",
+        "legacy:hiddenpower",
+        "legacy:mimic",
+        "legacy:naturalgift",
+        "legacy:rage",
+        "legacy:return",
+        "legacy:round",
+        "legacy:secretpower",
+        "legacy:snore",
+        "legacy:swagger",
+        "legacy:uproar",
+        "legacy:zapcannon"
       ],
       "preEvolution": "koffing",
       "evolutions": [],
       "battleOnly": false
     }
-  ]
+  ],
+  "riding": {
+    "stats": {
+      "SPEED": {
+        "ranges": "5-10"
+      },
+      "ACCELERATION": {
+        "ranges": "50-100"
+      },
+      "SKILL": {
+        "ranges": "30-60"
+      },
+      "JUMP": {
+        "ranges": "10-20"
+      },
+      "STAMINA": {
+        "ranges": "20-40"
+      }
+    },
+    "seats": [],
+    "behaviour": null
+  }
 }

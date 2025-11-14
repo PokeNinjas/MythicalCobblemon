@@ -52,19 +52,33 @@
   "behaviour": {
     "resting": {
       "canSleep": true,
-      "light": "0-4"
+      "light": "0-4",
+      "times": [
+        "any"
+      ]
     },
     "moving": {
       "swim": {
-        "canWalkOnLava": true,
         "canBreatheUnderlava": true,
         "avoidsWater": true,
-        "canSwimInWater": false,
         "canSwimInLava": true
       },
       "walk": {
         "walkSpeed": 0.2
       }
+    },
+    "herd": {
+      "maxSize": "3",
+      "toleratedLeaders": [
+        {
+          "pokemon": "magcargo",
+          "tier": 1
+        }
+      ]
+    },
+    "combat": {
+      "willDefendOwner": true,
+      "willFlee": false
     }
   },
   "drops": {
@@ -190,8 +204,29 @@
     "tutor:sleeptalk",
     "tutor:stealthrock",
     "tutor:stompingtantrum",
-    "tutor:stoneedge"
+    "tutor:stoneedge",
+    "legacy:attract",
+    "legacy:captivate",
+    "legacy:confide",
+    "legacy:defensecurl",
+    "legacy:doubleedge",
+    "legacy:doubleteam",
+    "legacy:frustration",
+    "legacy:hiddenpower",
+    "legacy:mimic",
+    "legacy:naturalgift",
+    "legacy:return",
+    "legacy:round",
+    "legacy:secretpower",
+    "legacy:snore",
+    "legacy:swagger",
+    "legacy:toxic",
+    "special:refresh"
   ],
   "preEvolution": "slugma",
-  "evolutions": []
+  "evolutions": [],
+  "lightingData": {
+    "lightLevel": 15,
+    "liquidGlowMode": "LAND"
+  }
 }

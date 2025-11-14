@@ -51,9 +51,21 @@
   "behaviour": {
     "moving": {
       "swim": {
-        "avoidsWater": true,
-        "canSwimInWater": false
+        "avoidsWater": true
       }
+    },
+    "herd": {
+      "maxSize": "7"
+    },
+    "combat": {
+      "willDefendSelf": true,
+      "willDefendOwner": true,
+      "willFlee": false
+    },
+    "resting": {
+      "times": [
+        "any"
+      ]
     }
   },
   "drops": {
@@ -157,7 +169,6 @@
     "tutor:flamethrower",
     "tutor:gigaimpact",
     "tutor:heatwave",
-    "tutor:highhorsepower",
     "tutor:hyperbeam",
     "tutor:irondefense",
     "tutor:ironhead",
@@ -169,7 +180,10 @@
     "tutor:sleeptalk",
     "tutor:spikes",
     "tutor:stealthrock",
-    "tutor:stoneedge"
+    "tutor:stoneedge",
+    "legacy:attract",
+    "legacy:round",
+    "legacy:snore"
   ],
   "preEvolution": "carkol",
   "evolutions": [],
@@ -195,5 +209,9 @@
       "evolutions": [],
       "battleOnly": true
     }
-  ]
+  ],
+  "lightingData": {
+    "lightLevel": 6,
+    "liquidGlowMode": "LAND"
+  }
 }

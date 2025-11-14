@@ -49,6 +49,22 @@
     "height": 1,
     "fixed": false
   },
+  "behaviour": {
+    "fireImmune": true,
+    "moving": {
+      "swim": {
+        "avoidsWater": true
+      },
+      "fly": {
+        "canFly": true
+      }
+    },
+    "combat": {
+      "willDefendSelf": true,
+      "willDefendOwner": true,
+      "willFlee": false
+    }
+  },
   "moves": [
     "1:thunderfang",
     "1:dragonrage",
@@ -184,7 +200,26 @@
     "tutor:thunderfang",
     "tutor:thunderpunch",
     "tutor:wildcharge",
-    "tutor:zenheadbutt"
+    "tutor:zenheadbutt",
+    "legacy:confide",
+    "legacy:doubleteam",
+    "legacy:frustration",
+    "legacy:hiddenpower",
+    "legacy:return",
+    "legacy:round",
+    "legacy:secretpower",
+    "legacy:snore",
+    "legacy:swagger",
+    "legacy:toxic"
   ],
-  "evolutions": []
+  "evolutions": [],
+  "drops": {
+    "amount": 3,
+    "entries": [
+      {
+        "item": "minecraft:dragon_breath",
+        "quantityRange": "2-3"
+      }
+    ]
+  }
 }

@@ -8,10 +8,12 @@
 
 package com.cobblemon.mod.common.client.gui.pc
 
+import com.cobblemon.mod.common.Cobblemon
 import com.cobblemon.mod.common.api.gui.blitk
 import com.cobblemon.mod.common.client.gui.CobblemonRenderable
 import com.cobblemon.mod.common.client.gui.drawProfilePokemon
 import com.cobblemon.mod.common.client.gui.pasture.PasturePCGUIConfiguration
+import com.cobblemon.mod.common.client.gui.PokemonGUIAnimationStyle
 import com.cobblemon.mod.common.client.render.drawScaledText
 import com.cobblemon.mod.common.client.render.models.blockbench.FloatingState
 import com.cobblemon.mod.common.client.render.renderScaledGuiItemIcon
@@ -73,12 +75,19 @@ open class StorageSlot(
         matrices.translate(posX + (SIZE / 2.0), posY + 1.0, 0.0)
         matrices.scale(2.5F, 2.5F, 1F)
 
+        val animationConfig = if (this is PartyStorageSlot) Cobblemon.config.summaryProfileAnimations else Cobblemon.config.pcProfileAnimations
+        val shouldAnimate = when (animationConfig) {
+            PokemonGUIAnimationStyle.ALWAYS_ANIMATE -> true
+            PokemonGUIAnimationStyle.NEVER_ANIMATE -> false
+            PokemonGUIAnimationStyle.ANIMATE_SELECTED -> isHoveredOrFocused
+        }
+
         drawProfilePokemon(
             renderablePokemon = pokemon.asRenderablePokemon(),
             matrixStack = matrices,
             rotation = Quaternionf().fromEulerXYZDegrees(Vector3f(13F, 35F, 0F)),
             state = state,
-            partialTicks = partialTicks,
+            partialTicks = if (shouldAnimate) partialTicks else 0F,
             scale = 4.5F
         )
         matrices.popPose()
@@ -215,7 +224,15 @@ open class StorageSlot(
     }
 
     open fun shouldRender(): Boolean {
-        return true
+        return parent.pcGui.search.passes(getPokemon())
+    }
+
+    open fun clickable(): Boolean {
+        return getPokemon() == null || parent.pcGui.search.passes(getPokemon())
+    }
+
+    override fun mouseClicked(mouseX: Double, mouseY: Double, button: Int): Boolean {
+        return if (clickable()) super.mouseClicked(mouseX, mouseY, button) else false
     }
 
     fun isHovered(mouseX: Int, mouseY: Int) = mouseX.toFloat() in (x.toFloat()..(x.toFloat() + SIZE)) && mouseY.toFloat() in (y.toFloat()..(y.toFloat() + SIZE))

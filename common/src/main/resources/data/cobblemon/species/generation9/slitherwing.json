@@ -42,6 +42,24 @@
   "catchRate": 30,
   "eggCycles": 50,
   "baseFriendship": 0,
+  "behaviour": {
+    "fireImmune": true,
+    "moving": {
+      "swim": {
+        "avoidsWater": true
+      }
+    },
+    "combat": {
+      "willDefendSelf": true,
+      "willDefendOwner": true,
+      "willFlee": false
+    },
+    "resting": {
+      "times": [
+        "day"
+      ]
+    }
+  },
   "moves": [
     "1:gust",
     "1:ember",

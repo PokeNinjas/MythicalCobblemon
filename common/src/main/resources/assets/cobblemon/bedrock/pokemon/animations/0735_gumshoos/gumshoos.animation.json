@@ -242,6 +242,10 @@
 				},
 				"foot_right": {
 					"rotation": [17.5, 0, 0]
+				},
+				"arms": {
+					"rotation": [7.5, 0, 0],
+					"position": [0, 2.75, 0]
 				}
 			}
 		},
@@ -308,6 +312,37 @@
 					"position": [0.5, 0.5, 0]
 				}
 			}
+		},
+		"animation.gumshoos.angry": {
+			"loop": true,
+			"bones": {
+				"mouth_closed": {
+					"scale": 0.1
+				},
+				"mouth_open": {
+					"scale": [1.01, 1.03, 1.02]
+				},
+				"pupil_left": {
+					"rotation": [0, 0, -15]
+				},
+				"pupil_right": {
+					"rotation": [0, 0, 15]
+				}
+			}
+		},
+		"animation.gumshoos.sad": {
+			"loop": true,
+			"bones": {
+				"pupil_left": {
+					"rotation": [0, 0, 15]
+				},
+				"pupil_right": {
+					"rotation": [0, 0, -15]
+				}
+			}
+		},
+		"animation.gumshoos.blink": {
+			"loop": true
 		}
 	}
 }

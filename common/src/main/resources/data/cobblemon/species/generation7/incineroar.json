@@ -53,11 +53,28 @@
     "moving": {
       "walk": {
         "walkSpeed": 0.28
+      },
+      "swim": {
+        "avoidsWater": true
       }
     },
     "resting": {
       "canSleep": true,
-      "willSleepOnBed": true
+      "times": [
+        "167-11833,13702-22299"
+      ]
+    },
+    "entityInteract": {
+      "avoidedByCreeper": true,
+      "avoidedByPhantom": true
+    },
+    "herd": {
+      "maxSize": "5"
+    },
+    "combat": {
+      "willDefendSelf": true,
+      "willDefendOwner": true,
+      "willFlee": false
     }
   },
   "drops": {
@@ -216,8 +233,21 @@
     "tutor:stompingtantrum",
     "tutor:superpower",
     "tutor:throatchop",
-    "tutor:thunderpunch"
+    "tutor:thunderpunch",
+    "legacy:attract",
+    "legacy:confide",
+    "legacy:doubleteam",
+    "legacy:frustration",
+    "legacy:hiddenpower",
+    "legacy:return",
+    "legacy:round",
+    "legacy:snore",
+    "legacy:toxic"
   ],
   "preEvolution": "torracat",
-  "evolutions": []
+  "evolutions": [],
+  "lightingData": {
+    "lightLevel": 13,
+    "liquidGlowMode": "LAND"
+  }
 }

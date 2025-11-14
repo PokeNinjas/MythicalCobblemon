@@ -53,14 +53,19 @@
     "moving": {
       "swim": {
         "canBreatheUnderwater": true,
-        "canSwimInWater": true,
-        "canSwimInLava": false,
+        "canSwimInWater": false,
         "swimSpeed": "0.2"
       }
     },
     "resting": {
-      "light": "0-4"
-    }
+      "light": "0-4",
+      "willSleepOnBed": true
+    },
+    "combat": {
+      "willDefendOwner": true,
+      "willFlee": false
+    },
+    "fireImmune": true
   },
   "drops": {
     "amount": 2,
@@ -152,7 +157,18 @@
     "tutor:sleeptalk",
     "tutor:waterpulse",
     "tutor:wonderroom",
-    "tutor:xscissor"
+    "tutor:xscissor",
+    "legacy:attract",
+    "legacy:confide",
+    "legacy:doubleteam",
+    "legacy:frustration",
+    "legacy:hiddenpower",
+    "legacy:return",
+    "legacy:round",
+    "legacy:scald",
+    "legacy:snore",
+    "legacy:swagger",
+    "legacy:toxic"
   ],
   "evolutions": [
     {

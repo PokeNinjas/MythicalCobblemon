@@ -44,21 +44,46 @@
   "catchRate": 30,
   "eggCycles": 20,
   "baseFriendship": 50,
-  "baseScale": 1,
+  "baseScale": 0.9,
   "hitbox": {
     "width": 1,
-    "height": 1,
+    "height": 2,
     "fixed": false
   },
   "behaviour": {
     "moving": {
+      "walk": {
+        "walkSpeed": 0.125,
+        "avoidsLand": true
+      },
       "swim": {
-        "canSwimInWater": true,
-        "canSwimInLava": false,
+        "canSwimInWater": false,
         "canBreatheUnderwater": true,
-        "swimSpeed": "0.2"
+        "swimSpeed": 0.125
       }
-    }
+    },
+    "resting": {
+      "canSleep": true,
+      "light": "0-4",
+      "times": [
+        "day"
+      ]
+    },
+    "herd": {
+      "maxSize": "9",
+      "toleratedLeaders": [
+        {
+          "pokemon": "cursola",
+          "tier": 1
+        }
+      ]
+    },
+    "combat": {
+      "willDefendSelf": true,
+      "willDefendOwner": true,
+      "willFlee": false
+    },
+    "fireImmune": true
   },
   "drops": {
     "amount": 1,
@@ -178,7 +203,10 @@
     "tutor:stompingtantrum",
     "tutor:stoneedge",
     "tutor:throatchop",
-    "tutor:waterpulse"
+    "tutor:waterpulse",
+    "legacy:attract",
+    "legacy:round",
+    "legacy:snore"
   ],
   "preEvolution": "corsola galarian",
   "evolutions": []

@@ -51,15 +51,30 @@
   "behaviour": {
     "resting": {
       "canSleep": true,
-      "light": "0-4"
+      "light": "0-4",
+      "times": [
+        "any"
+      ]
     },
     "moving": {
+      "walk": {
+        "walkSpeed": 0.25
+      },
       "swim": {
         "canWalkOnWater": true,
-        "canBreatheUnderwater": true,
-        "swimSpeed": 0.35
+        "swimSpeed": 0.35,
+        "avoidsWater": true
+      },
+      "fly": {
+        "canFly": true
       }
-    }
+    },
+    "combat": {
+      "willDefendSelf": true,
+      "willDefendOwner": true,
+      "willFlee": false
+    },
+    "fireImmune": true
   },
   "drops": {
     "amount": 48,

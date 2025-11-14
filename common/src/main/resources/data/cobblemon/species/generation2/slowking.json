@@ -58,20 +58,33 @@
     "moving": {
       "swim": {
         "canBreatheUnderwater": true,
-        "canSwimInWater": true,
-        "canSwimInLava": false,
         "swimSpeed": "0.2"
       },
       "walk": {
         "walkSpeed": 0.2
       }
-    }
+    },
+    "resting": {
+      "times": [
+        "any"
+      ]
+    },
+    "combat": {
+      "willDefendSelf": true,
+      "willDefendOwner": true,
+      "willFlee": false
+    },
+    "fireImmune": true
   },
   "drops": {
-    "amount": 2,
+    "amount": 3,
     "entries": [
       {
         "item": "cobblemon:kings_rock",
+        "percentage": 10.0
+      },
+      {
+        "item": "cobblemon:lagging_tail",
         "percentage": 10.0
       },
       {
@@ -255,7 +268,35 @@
     "tutor:trick",
     "tutor:waterpulse",
     "tutor:wonderroom",
-    "tutor:zenheadbutt"
+    "tutor:zenheadbutt",
+    "legacy:allyswitch",
+    "legacy:attract",
+    "legacy:bide",
+    "legacy:bubblebeam",
+    "legacy:captivate",
+    "legacy:confide",
+    "legacy:counter",
+    "legacy:doubleedge",
+    "legacy:doubleteam",
+    "legacy:dragontail",
+    "legacy:dynamicpunch",
+    "legacy:fissure",
+    "legacy:frustration",
+    "legacy:hiddenpower",
+    "legacy:mimic",
+    "legacy:mudslap",
+    "legacy:naturalgift",
+    "legacy:nightmare",
+    "legacy:psywave",
+    "legacy:rage",
+    "legacy:return",
+    "legacy:round",
+    "legacy:secretpower",
+    "legacy:seismictoss",
+    "legacy:skullbash",
+    "legacy:teleport",
+    "legacy:toxic",
+    "legacy:zapcannon"
   ],
   "preEvolution": "slowpoke",
   "evolutions": [],
@@ -294,14 +335,23 @@
         "moving": {
           "swim": {
             "canBreatheUnderwater": true,
-            "canSwimInWater": true,
-            "canSwimInLava": false,
             "swimSpeed": "0.2"
           },
           "walk": {
             "walkSpeed": 0.23
           }
-        }
+        },
+        "resting": {
+          "times": [
+            "any"
+          ]
+        },
+        "combat": {
+          "willDefendSelf": true,
+          "willDefendOwner": true,
+          "willFlee": false
+        },
+        "fireImmune": true
       },
       "drops": {
         "amount": 4,
@@ -467,14 +517,18 @@
         "tutor:sleeptalk",
         "tutor:sludgebomb",
         "tutor:snarl",
-        "tutor:spikes",
         "tutor:stompingtantrum",
         "tutor:swift",
         "tutor:thunderpunch",
         "tutor:trick",
         "tutor:waterpulse",
         "tutor:wonderroom",
-        "tutor:zenheadbutt"
+        "tutor:zenheadbutt",
+        "legacy:attract",
+        "legacy:icepunch",
+        "legacy:round",
+        "legacy:scald",
+        "legacy:snore"
       ],
       "preEvolution": "slowpoke galarian",
       "evolutions": [],

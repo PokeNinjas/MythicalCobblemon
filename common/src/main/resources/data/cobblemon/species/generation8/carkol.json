@@ -51,9 +51,30 @@
   "behaviour": {
     "moving": {
       "swim": {
-        "avoidsWater": true,
-        "canSwimInWater": false
+        "avoidsWater": true
       }
+    },
+    "herd": {
+      "maxSize": "5",
+      "toleratedLeaders": [
+        {
+          "pokemon": "carkol",
+          "tier": 1
+        },
+        {
+          "pokemon": "coalossal",
+          "tier": 2
+        }
+      ]
+    },
+    "combat": {
+      "willDefendOwner": true,
+      "willFlee": false
+    },
+    "resting": {
+      "times": [
+        "any"
+      ]
     }
   },
   "drops": {
@@ -154,7 +175,11 @@
     "tutor:sleeptalk",
     "tutor:spikes",
     "tutor:stealthrock",
-    "tutor:stoneedge"
+    "tutor:stoneedge",
+    "legacy:attract",
+    "legacy:highhorsepower",
+    "legacy:round",
+    "legacy:snore"
   ],
   "preEvolution": "rolycoly",
   "evolutions": [
@@ -173,5 +198,9 @@
         }
       ]
     }
-  ]
+  ],
+  "lightingData": {
+    "lightLevel": 7,
+    "liquidGlowMode": "LAND"
+  }
 }

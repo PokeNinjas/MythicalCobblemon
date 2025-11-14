@@ -16,7 +16,6 @@ import net.minecraft.network.RegistryFriendlyByteBuf
 import net.minecraft.server.level.ServerLevel
 import net.minecraft.server.level.ServerPlayer
 import net.minecraft.world.entity.LivingEntity
-import net.minecraft.world.item.ItemStack
 import net.minecraft.world.phys.Vec3
 
 /**
@@ -93,7 +92,17 @@ class DropTable {
         amount: IntRange = this.amount,
         pokemon: Pokemon? = null,
     ) {
-        val drops = getDrops(amount).toMutableList()
+        val drops = getDrops(amount, pokemon).toMutableList()
+        postLootDroppedEvent(drops, entity, world, pos, player)
+    }
+
+    fun postLootDroppedEvent(
+        drops: MutableList<DropEntry>,
+        entity: LivingEntity?,
+        world: ServerLevel,
+        pos: Vec3,
+        player: ServerPlayer?,
+    ) {
         LOOT_DROPPED.postThen(
             event = LootDroppedEvent(this, player, entity, drops),
             ifSucceeded = { it.drops.forEach { it.drop(entity, world, pos, player) } }
