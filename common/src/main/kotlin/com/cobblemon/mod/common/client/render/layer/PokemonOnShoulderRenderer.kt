@@ -153,14 +153,14 @@ class PokemonOnShoulderRenderer<T : Player>(renderLayerParent: RenderLayerParent
             context.put(RenderContext.POSABLE_STATE, state)
             state.currentModel = model
 
-            val resolver = PokemonModelRepository.variations[shoulderData.species.resourceIdentifier]
+            val resolver = VaryingModelRepository.variations[shoulderData.species.resourceIdentifier]
             val ghost = resolver?.isGhost(state) == true
 
             val effectId = CustomRenderType.getEffectId(model.context)
             val renderType = if(effectId != 0)
-                if (ghost) CustomRenderType.translucentCull(PokemonModelRepository.getTexture(shoulderData.species.resourceIdentifier, state), effectId) else CustomRenderType.cutout(PokemonModelRepository.getTexture(shoulderData.species.resourceIdentifier, state), effectId)
+                if (ghost) CustomRenderType.translucentCull(VaryingModelRepository.getTexture(shoulderData.species.resourceIdentifier, state), effectId) else CustomRenderType.cutout(VaryingModelRepository.getTexture(shoulderData.species.resourceIdentifier, state), effectId)
             else
-                if (ghost) RenderType.entityTranslucentCull(PokemonModelRepository.getTexture(shoulderData.species.resourceIdentifier, state)) else RenderType.entityCutout(PokemonModelRepository.getTexture(shoulderData.species.resourceIdentifier, state))
+                if (ghost) RenderType.entityTranslucentCull(VaryingModelRepository.getTexture(shoulderData.species.resourceIdentifier, state)) else RenderType.entityCutout(VaryingModelRepository.getTexture(shoulderData.species.resourceIdentifier, state))
 
 
             val vertexConsumer = buffer.getBuffer(renderType)

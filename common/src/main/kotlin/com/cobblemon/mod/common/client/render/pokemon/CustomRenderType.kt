@@ -8,7 +8,7 @@
 
 package com.cobblemon.mod.common.client.render.pokemon
 
-import com.cobblemon.mod.common.client.render.models.blockbench.repository.PokemonModelRepository
+import com.cobblemon.mod.common.client.render.models.blockbench.repository.VaryingModelRepository
 import com.cobblemon.mod.common.client.render.models.blockbench.repository.RenderContext
 import com.mojang.blaze3d.systems.RenderSystem
 import com.mojang.blaze3d.vertex.DefaultVertexFormat
@@ -93,7 +93,7 @@ object CustomRenderType {
     fun getEffectId(ctx: RenderContext): Int {
         val state = ctx.request(RenderContext.POSABLE_STATE)
         val species = ctx.request<ResourceLocation>(RenderContext.SPECIES)
-        val resolver = species?.let { PokemonModelRepository.variations[it] }
+        val resolver = species?.let { VaryingModelRepository.variations[it] }
         val name = if (state != null) resolver?.getEffect(state) else null
         return when (name?.lowercase()) {
             "radiant" -> 1

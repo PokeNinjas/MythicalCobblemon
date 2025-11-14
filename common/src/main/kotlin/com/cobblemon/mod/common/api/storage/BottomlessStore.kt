@@ -102,10 +102,6 @@ open class BottomlessStore(override val uuid: UUID) : PokemonStore<BottomlessPos
 
     override fun getAnyChangeObservable() = storeChangeObservable
 
-    override fun onPokemonChange(pokemon: Pokemon) {
-        this.storeChangeObservable.emit(Unit)
-    }
-
     override fun setAtPosition(position: BottomlessPosition, pokemon: Pokemon?) {
         if (position.currentIndex == this.pokemon.size && pokemon != null) {
             this.pokemon.add(pokemon)

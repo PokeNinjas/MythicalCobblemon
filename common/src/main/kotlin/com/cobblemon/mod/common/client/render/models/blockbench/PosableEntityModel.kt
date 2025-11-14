@@ -9,6 +9,7 @@
 package com.cobblemon.mod.common.client.render.models.blockbench
 
 import com.cobblemon.mod.common.client.render.models.blockbench.repository.RenderContext
+import com.cobblemon.mod.common.client.render.models.blockbench.repository.VaryingModelRepository
 import com.cobblemon.mod.common.client.render.pokemon.CustomRenderType
 import com.cobblemon.mod.common.entity.PosableEntity
 import net.minecraft.client.renderer.texture.OverlayTexture
@@ -121,7 +122,7 @@ abstract class PosableEntityModel<T : Entity>(
                 val effectId = CustomRenderType.getEffectId(ctx)
                 val state = ctx.request(RenderContext.POSABLE_STATE)
                 val species = ctx.request<ResourceLocation>(RenderContext.SPECIES)
-                val resolver = species?.let { PokemonModelRepository.variations[it] }
+                val resolver = species?.let { VaryingModelRepository.variations[it] }
 
                 val ghost = state != null && resolver?.isGhost(state) == true
                 if(effectId != 0)

@@ -125,6 +125,7 @@ import com.cobblemon.mod.common.net.messages.client.storage.pc.InitializePCPacke
 import com.cobblemon.mod.common.net.messages.client.storage.pc.MoveClientPCPokemonPacket
 import com.cobblemon.mod.common.net.messages.client.storage.pc.OpenPCPacket
 import com.cobblemon.mod.common.net.messages.client.storage.pc.RenamePCBoxPacket
+import com.cobblemon.mod.common.net.messages.client.storage.pc.SetLockedPCSlotsPacket
 import com.cobblemon.mod.common.net.messages.client.storage.pc.SetPCBoxPacket
 import com.cobblemon.mod.common.net.messages.client.storage.pc.SetPCPokemonPacket
 import com.cobblemon.mod.common.net.messages.client.storage.pc.wallpaper.ChangePCBoxWallpaperPacket

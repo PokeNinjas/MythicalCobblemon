@@ -12,10 +12,10 @@ import com.cobblemon.mod.common.api.conditional.RegistryLikeCondition
 import com.cobblemon.mod.common.api.conditional.RegistryLikeIdentifierCondition
 import com.cobblemon.mod.common.api.conditional.RegistryLikeTagCondition
 import com.cobblemon.mod.common.api.pokemon.PokemonProperties
-import com.cobblemon.mod.common.api.pokemon.evolution.requirement.EvolutionRequirement
+import com.cobblemon.mod.common.api.pokemon.requirement.Requirement
 import com.cobblemon.mod.common.api.spawning.TimeRange
 import com.cobblemon.mod.common.api.spawning.condition.MoonPhase
-import com.cobblemon.mod.common.pokemon.evolution.requirements.*
+import com.cobblemon.mod.common.pokemon.requirements.*
 import com.cobblemon.mod.common.pokemon.evolution.variants.ItemInteractionEvolution
 import com.cobblemon.mod.common.pokemon.evolution.variants.LevelUpEvolution
 import com.cobblemon.mod.common.pokemon.evolution.variants.TradeEvolution
@@ -56,7 +56,7 @@ data class ClientsidePokedexEvolutionInfo(
             val requirementsString = StringBuilder()
 
             if (evolution is ItemInteractionEvolution) {
-                requirementsString.append("Item: ${getStringForRegistryLikeCondition(evolution.requiredContext.item)}, ")
+                //requirementsString.append("Item: ${getStringForRegistryLikeCondition(evolution.requiredContext.item)}, ")
             }
 
             for (requirement in evolution.requirements) {
@@ -67,7 +67,7 @@ data class ClientsidePokedexEvolutionInfo(
             return ClientsidePokedexEvolutionInfo(type, result, requirementsString.removeSuffix(", ").toString())
         }
 
-        fun getEvolutionRequirementString(requirement: EvolutionRequirement) : String {
+        fun getEvolutionRequirementString(requirement: Requirement) : String {
             return when (requirement) {
                 is AnyRequirement -> StringBuilder("Any of: ").apply { requirement.possibilities.forEach {append("${getEvolutionRequirementString(it)}, ")} }.toString()
                 is AreaRequirement -> "In specific coords, "
@@ -82,13 +82,13 @@ data class ClientsidePokedexEvolutionInfo(
                 is DamageTakenRequirement -> "Taken ${requirement.amount} damage, "
                 is DefeatRequirement -> "Defeat ${requirement.amount} ${requirement.target.species}, "
                 is FriendshipRequirement -> "${requirement.amount} Friendship, "
-                is HeldItemRequirement -> "Held Item: ${getStringForRegistryLikeCondition(requirement.itemCondition.item)}, "
+                //is HeldItemRequirement -> "Held Item: ${getStringForRegistryLikeCondition(requirement.itemCondition.item)}, "
                 is LevelRequirement -> "Level: ${requirement.minLevel}, "
                 is MoonPhaseRequirement -> "Moon Phase: ${when (requirement.moonPhase) {MoonPhase.FULL_MOON -> "Full Moon"; MoonPhase.WANING_GIBBOUS -> "Waning Gibbous"; MoonPhase.THIRD_QUARTER -> "Third Quarter"; MoonPhase.WANING_CRESCENT -> "Waning Crescent"; MoonPhase.NEW_MOON -> "New Moon"; MoonPhase.WAXING_CRESCENT -> "Waxing Crescent"; MoonPhase.FIRST_QUARTER -> "First Quarter"; MoonPhase.WAXING_GIBBOUS -> "Waxing Gibbous" }}, "
                 is MoveSetRequirement -> "Has Move: ${requirement.move.name}, "
                 is MoveTypeRequirement -> "Has Move Type: ${requirement.type.name}, "
                 is PartyMemberRequirement -> if (requirement.contains) "Party Contains: ${requirement.target.species}, " else "<st>Party Contains: ${requirement.target.species}</st>, "
-                is PlayerHasAdvancementRequirement -> "Advancement: ${nameFromResourceLocation(requirement.requiredAdvancement)}, "
+                //is PlayerHasAdvancementRequirement -> "Advancement: ${nameFromResourceLocation(requirement.requiredAdvancement)}, "
                 is PokemonPropertiesRequirement -> "Properties: ${requirement.target.asString()}, "
                 is PropertyRangeRequirement -> "${requirement.range.start} <= ${requirement.feature} <= ${requirement.range.endInclusive}, "
                 is RecoilRequirement -> "Recoil without fainting: ${requirement.amount}, "

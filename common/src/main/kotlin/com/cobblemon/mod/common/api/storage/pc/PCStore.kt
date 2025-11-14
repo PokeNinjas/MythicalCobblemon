@@ -285,7 +285,7 @@ open class PCStore(
         }
     }
 
-    override fun onPokemonChange(pokemon: Pokemon) {
+    override fun onPokemonChanged(pokemon: Pokemon) {
         this.pcChangeObservable.emit(Unit)
     }
 

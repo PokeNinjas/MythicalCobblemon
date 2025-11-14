@@ -172,6 +172,7 @@ object DataKeys {
     const val POKEMON_ITEM_SCALE = "scale" // CUSTOM: MythicalNetwork - Scale item models, for MythicalRaids
 
     // Features
+    const val CAN_BE_MILKED = "milkable"
     const val HAS_BEEN_SHEARED = "sheared"
     const val CAN_BE_COLORED = "color"
 

@@ -106,7 +106,7 @@ fun drawProfilePokemon(
         context.put(RenderContext.DO_QUIRKS, doQuirks)
 
         state.currentModel = model
-        val resolver = PokemonModelRepository.variations[species]
+        val resolver = VaryingModelRepository.variations[species]
         val ghost = resolver?.isGhost(state) == true
 
         val effectId = CustomRenderType.getEffectId(model.context)

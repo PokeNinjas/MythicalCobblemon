@@ -25,11 +25,11 @@ import net.minecraft.commands.Commands.argument
 import net.minecraft.commands.Commands.literal
 import net.minecraft.commands.arguments.EntityArgument
 import net.minecraft.commands.arguments.coordinates.Vec3Argument
-import net.minecraft.core.Vec3i
 import net.minecraft.network.chat.Component
 import net.minecraft.world.entity.MobSpawnType
 import net.minecraft.world.phys.Vec3
 import net.minecraft.world.level.Level
+import net.minecraft.world.level.ServerLevelAccessor
 
 object SpawnPokemon {
 
@@ -91,7 +91,7 @@ object SpawnPokemon {
             val pokemonEntity = properties.createEntity(world)
             pokemonEntity.moveTo(pos.x, pos.y, pos.z, pokemonEntity.yRot, pokemonEntity.xRot)
             pokemonEntity.entityData.set(PokemonEntity.SPAWN_DIRECTION, pokemonEntity.random.nextFloat() * 360F)
-            pokemonEntity.finalizeSpawn(world, world.getCurrentDifficultyAt(blockPos), MobSpawnType.COMMAND, null)
+            pokemonEntity.finalizeSpawn(world as ServerLevelAccessor, world.getCurrentDifficultyAt(blockPos), MobSpawnType.COMMAND, null)
             if (world.addFreshEntity(pokemonEntity)) {
                 return Command.SINGLE_SUCCESS
             }

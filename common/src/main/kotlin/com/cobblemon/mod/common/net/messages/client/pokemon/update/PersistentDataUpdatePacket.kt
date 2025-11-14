@@ -29,7 +29,7 @@ class PersistentDataUpdatePacket(pokemon: () -> Pokemon, value: CompoundTag): Si
         fun decode(buffer: RegistryFriendlyByteBuf): PersistentDataUpdatePacket {
             val pokemon = decodePokemon(buffer)
             val persistentData = buffer.readNbt() ?: CompoundTag()
-            return PersistentDataUpdatePacket(pokemon, persistentData)
+            return PersistentDataUpdatePacket({ pokemon()!! }, persistentData)
         }
     }
 }

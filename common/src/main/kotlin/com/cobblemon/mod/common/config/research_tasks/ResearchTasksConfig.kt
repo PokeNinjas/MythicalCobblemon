@@ -9,7 +9,7 @@
 package com.cobblemon.mod.common.config.research_tasks
 
 import com.cobblemon.mod.common.config.Category
-import com.cobblemon.mod.common.config.NodeCategory
+//import com.cobblemon.mod.common.config.NodeCategory
 import com.google.gson.GsonBuilder
 
 class ResearchTasksConfig {
@@ -21,7 +21,7 @@ class ResearchTasksConfig {
             .create()
     }
 
-    @NodeCategory(Category.Pokedex)
+    //@NodeCategory(Category.Pokedex)
     var taskExamplesForReference = listOf(
         ResearchTaskConfig("catch"),
         ResearchTaskConfig("catch", amountNeeded=20),
@@ -78,7 +78,7 @@ class ResearchTasksConfig {
         ResearchTaskConfig("catch_aspect", "magikarp-jump-purple-diamonds", 20),
     )
 
-    @NodeCategory(Category.Pokedex)
+    //@NodeCategory(Category.Pokedex)
     var tasks = mapOf(
         "bulbasaur" to listOf(
             ResearchTaskConfig("catch", amountNeeded=20),
@@ -102,7 +102,7 @@ class ResearchTasksConfig {
             ResearchTaskConfig("use_move", "growl", 10)),
     )
 
-    @NodeCategory(Category.Pokedex)
+    // @NodeCategory(Category.Pokedex)
     var goldenPokeballShinyRates = mapOf(
         "default" to 10000f,
         "bulbasaur" to 5000f,

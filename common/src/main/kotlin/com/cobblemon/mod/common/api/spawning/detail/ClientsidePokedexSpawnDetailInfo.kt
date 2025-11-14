@@ -56,7 +56,7 @@ data class ClientsidePokedexSpawnDetailInfo(
 
         fun from(detail: PokemonSpawnDetail) : ClientsidePokedexSpawnDetailInfo {
             val name = detail.displayName ?: displayNameFromId(detail.id)
-            var contextName = detail.context.name.split(" ").map { it.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() } }.joinToString(" ")
+            var contextName = detail.spawnablePositionType.name.split(" ").map { it.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() } }.joinToString(" ")
             var bucketName = detail.bucket.name.split("-").map { it.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() } }.joinToString("-")
 
             var conditionsString = StringBuilder()

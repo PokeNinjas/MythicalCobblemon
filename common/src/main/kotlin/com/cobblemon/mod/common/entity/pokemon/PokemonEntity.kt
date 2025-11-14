@@ -178,6 +178,7 @@ import kotlin.math.PI
 import kotlin.math.ceil
 import kotlin.math.max
 import kotlin.math.min
+import kotlin.toString
 
 @Suppress("unused")
 open class PokemonEntity(
@@ -2549,7 +2550,6 @@ open class PokemonEntity(
     override fun resolveEntityScan(): LivingEntity {
         return this
     }
-}
 
     override fun canWalk() = exposedForm.behaviour.moving.walk.canWalk
     override fun canSwimInWater() = exposedForm.behaviour.moving.swim.canSwimInWater
@@ -2634,3 +2634,7 @@ open class PokemonEntity(
         }
     }
 }
+
+
+
+

@@ -97,7 +97,7 @@ abstract class SpawningCondition<T : SpawnablePosition> {
             return false
         } else if (dimensions != null && dimensions!!.isNotEmpty() && spawnablePosition.world.dimension().location() !in dimensions!!) {
             return false
-        } else if (biomes != null && biomes!!.isNotEmpty() && biomes!!.none { condition -> condition.fits(ctx.biomeHolder) }) {
+        } else if (biomes != null && biomes!!.isNotEmpty() && biomes!!.none { condition -> condition.fits(spawnablePosition.biomeHolder) }) {
             return false
         } else if (markers != null && markers!!.isNotEmpty() && markers!!.none { marker -> marker in spawnablePosition.markers }) {
             return false

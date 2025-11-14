@@ -70,11 +70,6 @@ open class PartyStore(override val uuid: UUID) : PokemonStore<PartyPosition>() {
 //            .pipe(stopAfter { pokemon.storeCoordinates.get()?.store != this })
 //            .subscribe { anyChangeObservable.emit(Unit) }
     }
-
-    override fun onPokemonChange(pokemon: Pokemon) {
-        anyChangeObservable.emit(Unit)
-    }
-
     override fun getFirstAvailablePosition(): PartyPosition? {
         for (i in slots.indices) {
             if (slots[i] == null) {
