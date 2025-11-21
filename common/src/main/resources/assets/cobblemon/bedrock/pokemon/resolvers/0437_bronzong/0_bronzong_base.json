@@ -7,7 +7,24 @@
       "poser": "cobblemon:bronzong",
       "model": "cobblemon:bronzong.geo",
       "texture": "cobblemon:textures/pokemon/0437_bronzong/bronzong.png",
-      "layers": []
+      "layers": [
+        {
+          "name": "emissive",
+          "texture": "cobblemon:textures/pokemon/0437_bronzong/bronzong_emissive.png",
+          "emissive": true
+        }
+      ]
+    },
+    {
+      "aspects": ["shiny"],
+      "texture": "cobblemon:textures/pokemon/0437_bronzong/bronzong_shiny.png",
+      "layers": [
+        {
+          "name": "emissive",
+          "texture": "cobblemon:textures/pokemon/0437_bronzong/bronzong_emissive_shiny.png",
+          "emissive": true
+        }
+      ]
     },
     {
       "aspects": [
@@ -17,105 +34,45 @@
     },
     {
       "aspects": [
-        "shiny"
-      ],
-      "texture": "cobblemon:textures/pokemon/0437_bronzong/bronzong_shiny.png"
-    },
-    {
-      "aspects": [
         "mythical_radiant"
       ],
-      "texture": "cobblemon:textures/pokemon/0437_bronzong/bronzong_radiant.png",
       "effectname": "RADIANT"
-    },
-    {
-      "aspects": [
-        "mythical_radiant",
-        "shiny"
-      ],
-      "texture": "cobblemon:textures/pokemon/0437_bronzong/bronzong_shiny_radiant.png"
     },
     {
       "aspects": [
         "mythical_magma"
       ],
-      "texture": "cobblemon:textures/pokemon/0437_bronzong/bronzong_magma.png"
-    },
-    {
-      "aspects": [
-        "mythical_magma",
-        "shiny"
-      ],
-      "texture": "cobblemon:textures/pokemon/0437_bronzong/bronzong_shiny_magma.png"
+      "effectname": "MAGMA"
     },
     {
       "aspects": [
         "mythical_glitch"
       ],
-      "texture": "cobblemon:textures/pokemon/0437_bronzong/bronzong_glitch.png",
       "effectname": "GLITCH"
-    },
-    {
-      "aspects": [
-        "mythical_glitch",
-        "shiny"
-      ],
-      "texture": "cobblemon:textures/pokemon/0437_bronzong/bronzong_shiny_glitch.png"
     },
     {
       "aspects": [
         "mythical_galaxy"
       ],
-      "texture": "cobblemon:textures/pokemon/0437_bronzong/bronzong_galaxy.png",
       "effectname": "GALAXY"
-    },
-    {
-      "aspects": [
-        "mythical_galaxy",
-        "shiny"
-      ],
-      "texture": "cobblemon:textures/pokemon/0437_bronzong/bronzong_shiny_galaxy.png"
     },
     {
       "aspects": [
         "mythical_matrix"
       ],
-      "texture": "cobblemon:textures/pokemon/0437_bronzong/bronzong_matrix.png",
       "effectname": "MATRIX"
-    },
-    {
-      "aspects": [
-        "mythical_matrix",
-        "shiny"
-      ],
-      "texture": "cobblemon:textures/pokemon/0437_bronzong/bronzong_shiny_matrix.png"
     },
     {
       "aspects": [
         "mythical_fireworks"
       ],
-      "texture": "cobblemon:textures/pokemon/0437_bronzong/bronzong_fireworks.png"
-    },
-    {
-      "aspects": [
-        "mythical_fireworks",
-        "shiny"
-      ],
-      "texture": "cobblemon:textures/pokemon/0437_bronzong/bronzong_shiny_fireworks.png"
+      "effectname": "FIREWORK"
     },
     {
       "aspects": [
         "radar_spawned"
       ],
-      "texture": "cobblemon:textures/pokemon/0437_bronzong/bronzong_holographic.png",
       "effectname": "HOLOGRAPHIC"
-    },
-    {
-      "aspects": [
-        "radar_spawned",
-        "shiny"
-      ],
-      "texture": "cobblemon:textures/pokemon/0437_bronzong/bronzong_shiny_holographic.png"
     }
   ]
 }

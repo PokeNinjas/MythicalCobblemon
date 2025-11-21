@@ -54,9 +54,10 @@
 - Added functionality to Everstone when held by a Pokémon; suppresses evolution notification and hides evolve button in summary interface.
 - Added optional `filePath` parameter to MoLang functions to allow for global stores (ex. `../global/`). Path must end in a forward slash.
 - Added new optional property `attachment_options` for most EmitterShapes to be attached to the locator/entities scale, rotation, and/or position. Position is true by default.
+- Added Statistics for battles won, fled, and total, Pokémon captured (shiny and total), Pokémon released, dex entries added, trades completed, Pokémon levels gained, Pokémon evolved, fossils revived, PokéRod casts and reel-ins and Pokémon times ridden.
 - Galarica Nut bushes now generate on beaches.
 - Some Pokémon now pitch their bodies in the direction they're moving.
-- Added new advancements Didn't Stop To Think, We Need To Cook, and Pokémon Jockey!.
+- Added new advancements Didn't Stop To Think, We Need To Cook, Pokémon Jockey!, Souped-Up Stats, Culinary World Tour, Mochi Mochi!, A Luring Aroma, That's Bait, Star Pokéathlete, Home on the Range, and Just a Smackerel.
 - Berries can now be smelted into their respective dyes.
 - Added Syrupy Apples.
 - Added `/runmolang <molang> [<npc>|<player>|<pokemon>]` command that executes a MoLang expression with the provided options as environment variables, as well as the entity (as `q.entity`) that executed the command.
@@ -72,6 +73,8 @@
 - Added `min_perfect_ivs` property to PokemonProperties to specify the minimum number of perfect IVs of the Pokemon.
 - Added `defaultKeyItems` config option to specify which key items players always have.
 - Added `scale_modifier` property to PokemonProperties to modify the scale of the Pokemon.
+- Added advancement trigger to check riding stat boosts.
+- Added Tasty Tail which you can get from Slowpokes if you happen to have a pair of shears. They don't mind, we asked.
 
 ### Pokémon Added
 
@@ -319,7 +322,6 @@
 - Tauros - Paldea Blaze
 - Tauros - Paldea Combat
 - Dewgong
-- Exeggutor - Kanto
 - Corphish (updated placeholders for crustaceous tripod gait legs)
 - Crawdaunt (updated placeholders for crustaceous bipedal legs)
 - Dragapult
@@ -485,8 +487,7 @@
 - When using the `cobblemon` or `generation_9` capture calculators a critical capture with a single shake will always play for successful captures when you've already registered the Pokémon as caught in your Pokédex.
 - Improved the performance of saving Pokédex and player data.
 - Pokémon hitbox now scales with entity attribute `generic.scale`.
-- Removed Shulker aspect and replaced it with cosmetic_item-shulker_shell.
-- Shulker shell Forretress is now a cosmetic rather than a special evo and thus all shulker Forretress will revert back to normal until a shulker shell is put in their cosmetic slot.
+- Removed Shulker shell Forretress.
 - Updated `doPokemonSpawning` gamerule to support per-dimension configurations.
 - The Pokedex now displays a form name of a "normal" Pokémon for when the base form is still a named form.
 - Improved the zoom functionality of the Pokédex Scanner by giving the levels logarithmic scaling.
@@ -495,7 +496,7 @@
 - Quirk animations no longer play in the battle GUI since they were pretty distracting.
 - A number of Pokemon that float above the ground visually (Gastly, Klingklang, etc.)  are no longer considered to be touching the ground
 - Changed the recipes for Level, Lure, and Moon Balls to be cleaner
-- Renamed `pokemonId` and `type` to `species` in relevant Advancement triggers for conformity, this is a breaking change.
+- Renamed `pokemonId` and `type` to `species` and `evolved` to `has_evolved` in relevant Advancement triggers for conformity, this is a breaking change.
 - Added a separate `species` argument to the `pick_starter`, `pasture_use` and `resurrect_pokemon` Advancement triggers.
 - Made `CobblemonAgingDespawner` thresholds configurable via the config file.
 - Tweaked Berry flavor data to balance cooking pot mechanics
@@ -530,10 +531,17 @@
 - Updated `HatchEggEvent.Post` to include the Pokemon that hatched.
 - Roseli Berry Trees now naturally generate in their preferred biomes.
 - Refactored dynamic lights compat to be more future proof. The dynamic light support is only tested with LambDynamicLights, on NeoForged use that mod in combination with Sinytra Connector
+- Renamed Masterful Dedication advancement to This will affect the Whiscash Population
+- Changed icon for the following advancements: New Angles for Angling, Researcher Recruit, Doing my Part, Reapriforestation
+- Disabled advancement Mother Nature's Bounty from appearing in chat when obtained, now only appears as a toast and in the advancements menu
+- Removed Oki-Doki Vivichokey advancement
+- Shulker Boxes and Traveler's Backpacks can no longer be held by Pokémon. Thanks Monocle ;) You could re-enable this with a datapack but you'd be crazy.
 - Shulker Boxes and Traveler's Backpacks AND Packed Up backpacks can no longer be held by Pokémon. Thanks Monocle ;) You could re-enable this with our datapack (but you'd be crazy).
 - Moomoo Milk now clears Pokémon stat changes when used in battle.
 - Updated Evolution Stone Block light levels
 - Added light levels to Evolution Stone Ores. These levels are reduced versions of the full blocks light levels
+- Added a steps counter to the summary screen for Pokémon that require walking a certain number of steps to evolve.
+- Reordered berries in the creative tab
 
 ### Fixes
 - Fixed game crashing when removing national pokedex using datapacks
@@ -618,11 +626,19 @@
 - Fixed singular Pokémon corruption causing entire storage corruption. Storages will now skip corrupted Pokémon and print an error to console.
 - Fixed species additions not being able to properly mark a species as implemented.
 - Fixed Pokémon item models not showing a glint when enchanted.
+- Fixed the missing Terracotta Sun Stone Ore smelting and blasting recipes
+- Improved experience gain from smelting evolution stone ores to better match other ore types
 - Fixed some specific bag items not being dropped when used in battle.
 - The Corphish line will now sink in water.
 - Fixed the "use all berry bait" achievement not being progressed
 - Fixed bobber hook and berry sprouts texture sizes causing mipmap issues.
+- Fixed Ally Switch not updating party positions. 
 - Fixed head locator not taking into account scale for positioning.
+- Fixed Pokémon step counts not being saved when recalling them to a Pokéball or reentering the world.
+- Fixed NPC pokémon not being linked to their NPC, which previously caused NPC pokémon to be catchable.
+- Fixed an uncommon error caused by scanning a pokémon on a player's shoulder.
+- Fixed Alcremie and Eevee clipping into the player head when shoulder mounted
+- Fixed a case where spawning could fail and log warnings when nothing wrong was happening.
 
 ### Developer
 - A finished battle now has winners and losers set inside of `PokemonBattle` instead of them always being empty.
@@ -691,6 +707,8 @@
 - Added `IVs.MAX_TOTAL` constant.
 - Added `PokemonStats#total()`.
 - Add `NatureAdapter` for serializing and deserializing Natures using Gson.
+- Added `Pokemon.getBaseRideStat(RidingStat)` for getting the base value of the given stat.
+- Fixed `Species#create` using the species name instead of identifier, which had led to certain mismatches generating random pokémon.
 
 ### MoLang & Datapacks
 - The following usages for item predicates can now use item conditions like advancements do, you can learn about them in the [Minecraft wiki](https://minecraft.wiki/w/Advancement_definition#minecraft:filled_bucket)
@@ -731,6 +749,7 @@
 - Adds Flows for `POKEMON_HEALED`, `POKEMON_SCANNED`, `BERRY_HARVEST`, `LOOT_DROPPED`, `POKEMON_SEEN`, `COLLECT_EGG`, `HATCH_EGG`, and `EXPERIENCE_GAINED`.
 - Adds Flows for `POKEMON_CATCH_RATE`, `BAIT_SET`, `BAIT_SET_PRE`, `BAIT_CONSUMED`, `POKEROD_CAST_PRE`, `POKEROD_CAST_POST`, `POKEROD_REEL`, and `BOBBER_SPAWN_POKEMON_PRE`.
 - Adds Flows for `POKEMON_ASPECTS_CHANGED`, `FRIENDSHIP_UPDATED`, `CHANGE_PC_BOX_WALLPAPER_EVENT_PRE`, `CHANGE_PC_BOX_WALLPAPER_EVENT_POST`, and `FULLNESS_UPDATED`.
+- Added Callback for `SERVER_STOPPING`
 - MoLang triggered battles may now set the battle format, whether to clone the player's party, set level, or heal prior.
 - Added Molang function for Player: `inventory`
 - Adds Flows for `STARTER_CHOSEN`, `EV_GAINED`, `POKEMON_RELEASED`, `POKEMON_NICKNAMED`, `HELD_ITEM`, and `TRADE_COMPLETED` events
@@ -800,6 +819,12 @@
 - Added support for species-specific move action effects, using the format `{move_id}_{species}.json`.
 - Added `look_at_entity_types` variable for look_at_entities to specify what entity type or entity tag to look at.
 - Added `Looks At Players` behaviour preset that only sets the look target to players.
+- Added various functions to `q.file` for JSON file handling in MoLang, strictly for `./config` and `./data` folders that have `/molang/` in the path:
+  - `q.file.save(<path>, <struct>)` Saves to the given file path with the given variable struct.
+  - `q.file.load(<path>)` Loads a variable struct from the given path, or gets it from the cache if it's already been loaded.
+  - `q.file.exists(<path>)` Returns 1 if the given file path exists.
+  - `q.file.clear(<path>)` Clears the given file from the cache.
+- Using `q.run_script` will now allow additional arguments which will be put into `c.arg_1`, `c.arg_2`, etc.
 
 ### Particles
 Added new/updated particles for the following moves:

@@ -35,7 +35,6 @@ import com.cobblemon.mod.common.util.asTranslated
 import com.cobblemon.mod.common.util.getPlayer
 import com.cobblemon.mod.common.util.lang
 import com.cobblemon.mod.common.util.toJsonArray
-import com.google.gson.JsonArray
 import com.google.gson.JsonObject
 import java.util.UUID
 import net.minecraft.core.RegistryAccess
@@ -181,8 +180,12 @@ open class PCStore(
 
         removeDuplicates()
 
-        unlockedWallpapers.addAll(nbt.getList(DataKeys.STORE_UNLOCKED_WALLPAPERS, Tag.TAG_STRING.toInt()).map { ResourceLocation.parse(it.asString) })
-        unseenWallpapers.addAll(nbt.getList(DataKeys.STORE_UNSEEN_WALLPAPERS, Tag.TAG_STRING.toInt()).map { ResourceLocation.parse(it.asString) })
+        if (nbt.contains(DataKeys.STORE_UNLOCKED_WALLPAPERS)) {
+            unlockedWallpapers.addAll(nbt.getList(DataKeys.STORE_UNLOCKED_WALLPAPERS, Tag.TAG_STRING.toInt()).map { ResourceLocation.parse(it.asString) })
+        }
+        if (nbt.contains(DataKeys.STORE_UNSEEN_WALLPAPERS)) {
+            unseenWallpapers.addAll(nbt.getList(DataKeys.STORE_UNSEEN_WALLPAPERS, Tag.TAG_STRING.toInt()).map { ResourceLocation.parse(it.asString) })
+        }
         return this
     }
 
@@ -227,19 +230,12 @@ open class PCStore(
 
         removeDuplicates()
 
-        if (!json.has(DataKeys.STORE_UNLOCKED_WALLPAPERS)) {
-            val defaultArray = JsonArray().apply {
-                add("cobblemon:biome_forest")
-            }
-            json.add(DataKeys.STORE_UNLOCKED_WALLPAPERS, defaultArray)
+        if (json.has(DataKeys.STORE_UNLOCKED_WALLPAPERS)) {
+            unlockedWallpapers.addAll(json.getAsJsonArray(DataKeys.STORE_UNLOCKED_WALLPAPERS).map { ResourceLocation.parse(it.asString) })
         }
-
-        if (!json.has(DataKeys.STORE_UNSEEN_WALLPAPERS)) {
-            json.add(DataKeys.STORE_UNSEEN_WALLPAPERS, JsonArray())
+        if (json.has(DataKeys.STORE_UNSEEN_WALLPAPERS)) {
+            unseenWallpapers.addAll(json.getAsJsonArray(DataKeys.STORE_UNSEEN_WALLPAPERS).map { ResourceLocation.parse(it.asString) })
         }
-
-        unlockedWallpapers.addAll(json.getAsJsonArray(DataKeys.STORE_UNLOCKED_WALLPAPERS).map { ResourceLocation.parse(it.asString) })
-        unseenWallpapers.addAll(json.getAsJsonArray(DataKeys.STORE_UNSEEN_WALLPAPERS).map { ResourceLocation.parse(it.asString) })
 
         return this
     }
@@ -298,7 +294,7 @@ open class PCStore(
     }
 
     override fun onPokemonChanged(pokemon: Pokemon) {
-        this.pcChangeObservable.emit(Unit)
+        pcChangeObservable.emit(Unit)
     }
 
     fun clearPC() {

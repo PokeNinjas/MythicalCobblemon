@@ -548,7 +548,7 @@ object CobblemonItemGroups {
         entries.accept(CobblemonItems.POKE_BAIT)
         entries.accept(CobblemonItems.POKE_SNACK)
         entries.accept(CobblemonItems.POKE_CAKE)
-        entries.accept(CobblemonItems.POKE_PUFF)
+//        entries.accept(CobblemonItems.POKE_PUFF)
 
         entries.accept(defaultAprijuice(CobblemonItems.APRIJUICE_RED))
         entries.accept(defaultAprijuice(CobblemonItems.APRIJUICE_YELLOW))
