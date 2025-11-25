@@ -40,7 +40,6 @@ import net.minecraft.world.level.block.*
 import net.minecraft.world.level.block.state.BlockBehaviour
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.level.block.state.properties.BlockSetType
-import net.minecraft.world.level.block.state.properties.BlockStateProperties
 import net.minecraft.world.level.block.state.properties.BlockStateProperties.LIT
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument
 import net.minecraft.world.level.block.state.properties.WoodType
@@ -494,43 +493,43 @@ object CobblemonBlocks : PlatformRegistry<Registry<Block>, ResourceKey<Registry<
     val LECTERN = create("lectern", LecternBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).instrument(NoteBlockInstrument.BASS).sound(SoundType.WOOD).strength(2.5F).ignitedByLava().lightLevel { if (it.getValue(LecternBlock.EMIT_LIGHT) as Boolean) 13 else 0 }))
 
     @JvmField
-    val DISPLAY_CASE = create("display_case", DisplayCaseBlock(BlockBehaviour.Properties.of().sound(CobblemonSounds.DISPLAY_CASE_SOUNDS).noOcclusion().pushReaction(PushReaction.BLOCK).mapColor(MapColor.STONE).strength(0.3F).requiresCorrectToolForDrops()))
+    val DISPLAY_CASE = create("display_case", DisplayCaseBlock(BlockBehaviour.Properties.of().sound(CobblemonSounds.DISPLAY_CASE_SOUNDS).noOcclusion().pushReaction(PushReaction.BLOCK).mapColor(MapColor.STONE).strength(0.3F)))
     @JvmField
-    val GREEN_DISPLAY_CASE = create("green_display_case", DisplayCaseBlock(BlockBehaviour.Properties.of().sound(CobblemonSounds.DISPLAY_CASE_SOUNDS).noOcclusion().pushReaction(PushReaction.BLOCK).mapColor(MapColor.COLOR_GREEN).strength(0.3f).requiresCorrectToolForDrops()))
+    val GREEN_DISPLAY_CASE = create("green_display_case", DisplayCaseBlock(BlockBehaviour.Properties.of().sound(CobblemonSounds.DISPLAY_CASE_SOUNDS).noOcclusion().pushReaction(PushReaction.BLOCK).mapColor(MapColor.COLOR_GREEN).strength(0.3f)))
     @JvmField
-    val GOLD_DISPLAY_CASE = create("gold_display_case", DisplayCaseBlock(BlockBehaviour.Properties.of().sound(CobblemonSounds.DISPLAY_CASE_SOUNDS).noOcclusion().pushReaction(PushReaction.BLOCK).mapColor(MapColor.GOLD).strength(0.3f).requiresCorrectToolForDrops()))
+    val GOLD_DISPLAY_CASE = create("gold_display_case", DisplayCaseBlock(BlockBehaviour.Properties.of().sound(CobblemonSounds.DISPLAY_CASE_SOUNDS).noOcclusion().pushReaction(PushReaction.BLOCK).mapColor(MapColor.GOLD).strength(0.3f)))
     @JvmField
-    val PURPLE_DISPLAY_CASE = create("purple_display_case", DisplayCaseBlock(BlockBehaviour.Properties.of().sound(CobblemonSounds.DISPLAY_CASE_SOUNDS).noOcclusion().pushReaction(PushReaction.BLOCK).mapColor(MapColor.COLOR_PURPLE).strength(0.3f).requiresCorrectToolForDrops()))
+    val PURPLE_DISPLAY_CASE = create("purple_display_case", DisplayCaseBlock(BlockBehaviour.Properties.of().sound(CobblemonSounds.DISPLAY_CASE_SOUNDS).noOcclusion().pushReaction(PushReaction.BLOCK).mapColor(MapColor.COLOR_PURPLE).strength(0.3f)))
     @JvmField
-    val WOODEN_DISPLAY_CASE = create("wooden_display_case", DisplayCaseBlock(BlockBehaviour.Properties.of().sound(CobblemonSounds.DISPLAY_CASE_SOUNDS).noOcclusion().pushReaction(PushReaction.BLOCK).mapColor(MapColor.COLOR_BROWN).strength(0.3f).requiresCorrectToolForDrops()))
+    val WOODEN_DISPLAY_CASE = create("wooden_display_case", DisplayCaseBlock(BlockBehaviour.Properties.of().sound(CobblemonSounds.DISPLAY_CASE_SOUNDS).noOcclusion().pushReaction(PushReaction.BLOCK).mapColor(MapColor.COLOR_BROWN).strength(0.3f)))
     @JvmField
-    val RAINBOW_DISPLAY_CASE = create("rainbow_display_case", DisplayCaseBlock(BlockBehaviour.Properties.of().sound(CobblemonSounds.DISPLAY_CASE_SOUNDS).noOcclusion().pushReaction(PushReaction.BLOCK).mapColor(MapColor.STONE).strength(0.3f).requiresCorrectToolForDrops()))
+    val RAINBOW_DISPLAY_CASE = create("rainbow_display_case", DisplayCaseBlock(BlockBehaviour.Properties.of().sound(CobblemonSounds.DISPLAY_CASE_SOUNDS).noOcclusion().pushReaction(PushReaction.BLOCK).mapColor(MapColor.STONE).strength(0.3f)))
     @JvmField
-    val FUTURISTIC_DISPLAY_CASE = create("futuristic_display_case", DisplayCaseBlock(BlockBehaviour.Properties.of().sound(CobblemonSounds.DISPLAY_CASE_SOUNDS).noOcclusion().pushReaction(PushReaction.BLOCK).mapColor(MapColor.STONE).strength(0.3f).requiresCorrectToolForDrops()))
+    val FUTURISTIC_DISPLAY_CASE = create("futuristic_display_case", DisplayCaseBlock(BlockBehaviour.Properties.of().sound(CobblemonSounds.DISPLAY_CASE_SOUNDS).noOcclusion().pushReaction(PushReaction.BLOCK).mapColor(MapColor.STONE).strength(0.3f)))
     @JvmField
-    val GLASS_DISPLAY_CASE = create("glass_display_case", DisplayCaseBlock(BlockBehaviour.Properties.of().sound(CobblemonSounds.DISPLAY_CASE_SOUNDS).noOcclusion().pushReaction(PushReaction.BLOCK).mapColor(MapColor.STONE).strength(0.3f).requiresCorrectToolForDrops()))
+    val GLASS_DISPLAY_CASE = create("glass_display_case", DisplayCaseBlock(BlockBehaviour.Properties.of().sound(CobblemonSounds.DISPLAY_CASE_SOUNDS).noOcclusion().pushReaction(PushReaction.BLOCK).mapColor(MapColor.STONE).strength(0.3f)))
     @JvmField
-    val NETHERITE_DISPLAY_CASE = create("netherite_display_case", DisplayCaseBlock(BlockBehaviour.Properties.of().sound(CobblemonSounds.DISPLAY_CASE_SOUNDS).noOcclusion().pushReaction(PushReaction.BLOCK).mapColor(MapColor.COLOR_BLACK).strength(0.3f).requiresCorrectToolForDrops()))
+    val NETHERITE_DISPLAY_CASE = create("netherite_display_case", DisplayCaseBlock(BlockBehaviour.Properties.of().sound(CobblemonSounds.DISPLAY_CASE_SOUNDS).noOcclusion().pushReaction(PushReaction.BLOCK).mapColor(MapColor.COLOR_BLACK).strength(0.3f)))
     @JvmField
-    val POKE_DISPLAY_CASE = create("poke_display_case", DisplayCaseBlock(BlockBehaviour.Properties.of().sound(CobblemonSounds.DISPLAY_CASE_SOUNDS).noOcclusion().pushReaction(PushReaction.BLOCK).mapColor(MapColor.COLOR_RED).strength(0.3f).requiresCorrectToolForDrops()))
+    val POKE_DISPLAY_CASE = create("poke_display_case", DisplayCaseBlock(BlockBehaviour.Properties.of().sound(CobblemonSounds.DISPLAY_CASE_SOUNDS).noOcclusion().pushReaction(PushReaction.BLOCK).mapColor(MapColor.COLOR_RED).strength(0.3f)))
     @JvmField
-    val NEON_BLUE_DISPLAY_CASE = create("neon_blue_display_case", DisplayCaseBlock(BlockBehaviour.Properties.of().sound(CobblemonSounds.DISPLAY_CASE_SOUNDS).noOcclusion().pushReaction(PushReaction.BLOCK).mapColor(MapColor.COLOR_BLUE).strength(0.3f).requiresCorrectToolForDrops()))
+    val NEON_BLUE_DISPLAY_CASE = create("neon_blue_display_case", DisplayCaseBlock(BlockBehaviour.Properties.of().sound(CobblemonSounds.DISPLAY_CASE_SOUNDS).noOcclusion().pushReaction(PushReaction.BLOCK).mapColor(MapColor.COLOR_BLUE).strength(0.3f)))
     @JvmField
-    val NEON_CYAN_DISPLAY_CASE = create("neon_cyan_display_case", DisplayCaseBlock(BlockBehaviour.Properties.of().sound(CobblemonSounds.DISPLAY_CASE_SOUNDS).noOcclusion().pushReaction(PushReaction.BLOCK).mapColor(MapColor.COLOR_CYAN).strength(0.3f).requiresCorrectToolForDrops()))
+    val NEON_CYAN_DISPLAY_CASE = create("neon_cyan_display_case", DisplayCaseBlock(BlockBehaviour.Properties.of().sound(CobblemonSounds.DISPLAY_CASE_SOUNDS).noOcclusion().pushReaction(PushReaction.BLOCK).mapColor(MapColor.COLOR_CYAN).strength(0.3f)))
     @JvmField
-    val NEON_GREEN_DISPLAY_CASE = create("neon_green_display_case", DisplayCaseBlock(BlockBehaviour.Properties.of().sound(CobblemonSounds.DISPLAY_CASE_SOUNDS).noOcclusion().pushReaction(PushReaction.BLOCK).mapColor(MapColor.COLOR_GREEN).strength(0.3f).requiresCorrectToolForDrops()))
+    val NEON_GREEN_DISPLAY_CASE = create("neon_green_display_case", DisplayCaseBlock(BlockBehaviour.Properties.of().sound(CobblemonSounds.DISPLAY_CASE_SOUNDS).noOcclusion().pushReaction(PushReaction.BLOCK).mapColor(MapColor.COLOR_GREEN).strength(0.3f)))
     @JvmField
-    val NEON_MAGENTA_DISPLAY_CASE = create("neon_magenta_display_case", DisplayCaseBlock(BlockBehaviour.Properties.of().sound(CobblemonSounds.DISPLAY_CASE_SOUNDS).noOcclusion().pushReaction(PushReaction.BLOCK).mapColor(MapColor.COLOR_MAGENTA).strength(0.3f).requiresCorrectToolForDrops()))
+    val NEON_MAGENTA_DISPLAY_CASE = create("neon_magenta_display_case", DisplayCaseBlock(BlockBehaviour.Properties.of().sound(CobblemonSounds.DISPLAY_CASE_SOUNDS).noOcclusion().pushReaction(PushReaction.BLOCK).mapColor(MapColor.COLOR_MAGENTA).strength(0.3f)))
     @JvmField
-    val NEON_ORANGE_DISPLAY_CASE = create("neon_orange_display_case", DisplayCaseBlock(BlockBehaviour.Properties.of().sound(CobblemonSounds.DISPLAY_CASE_SOUNDS).noOcclusion().pushReaction(PushReaction.BLOCK).mapColor(MapColor.COLOR_ORANGE).strength(0.3f).requiresCorrectToolForDrops()))
+    val NEON_ORANGE_DISPLAY_CASE = create("neon_orange_display_case", DisplayCaseBlock(BlockBehaviour.Properties.of().sound(CobblemonSounds.DISPLAY_CASE_SOUNDS).noOcclusion().pushReaction(PushReaction.BLOCK).mapColor(MapColor.COLOR_ORANGE).strength(0.3f)))
     @JvmField
-    val NEON_PINK_DISPLAY_CASE = create("neon_pink_display_case", DisplayCaseBlock(BlockBehaviour.Properties.of().sound(CobblemonSounds.DISPLAY_CASE_SOUNDS).noOcclusion().pushReaction(PushReaction.BLOCK).mapColor(MapColor.COLOR_PINK).strength(0.3f).requiresCorrectToolForDrops()))
+    val NEON_PINK_DISPLAY_CASE = create("neon_pink_display_case", DisplayCaseBlock(BlockBehaviour.Properties.of().sound(CobblemonSounds.DISPLAY_CASE_SOUNDS).noOcclusion().pushReaction(PushReaction.BLOCK).mapColor(MapColor.COLOR_PINK).strength(0.3f)))
     @JvmField
-    val NEON_PURPLE_DISPLAY_CASE = create("neon_purple_display_case", DisplayCaseBlock(BlockBehaviour.Properties.of().sound(CobblemonSounds.DISPLAY_CASE_SOUNDS).noOcclusion().pushReaction(PushReaction.BLOCK).mapColor(MapColor.COLOR_PURPLE).strength(0.3f).requiresCorrectToolForDrops()))
+    val NEON_PURPLE_DISPLAY_CASE = create("neon_purple_display_case", DisplayCaseBlock(BlockBehaviour.Properties.of().sound(CobblemonSounds.DISPLAY_CASE_SOUNDS).noOcclusion().pushReaction(PushReaction.BLOCK).mapColor(MapColor.COLOR_PURPLE).strength(0.3f)))
     @JvmField
-    val NEON_RED_DISPLAY_CASE = create("neon_red_display_case", DisplayCaseBlock(BlockBehaviour.Properties.of().sound(CobblemonSounds.DISPLAY_CASE_SOUNDS).noOcclusion().pushReaction(PushReaction.BLOCK).mapColor(MapColor.COLOR_RED).strength(0.3f).requiresCorrectToolForDrops()))
+    val NEON_RED_DISPLAY_CASE = create("neon_red_display_case", DisplayCaseBlock(BlockBehaviour.Properties.of().sound(CobblemonSounds.DISPLAY_CASE_SOUNDS).noOcclusion().pushReaction(PushReaction.BLOCK).mapColor(MapColor.COLOR_RED).strength(0.3f)))
     @JvmField
-    val NEON_YELLOW_DISPLAY_CASE = create("neon_yellow_display_case", DisplayCaseBlock(BlockBehaviour.Properties.of().sound(CobblemonSounds.DISPLAY_CASE_SOUNDS).noOcclusion().pushReaction(PushReaction.BLOCK).mapColor(MapColor.COLOR_YELLOW).strength(0.3f).requiresCorrectToolForDrops()))
+    val NEON_YELLOW_DISPLAY_CASE = create("neon_yellow_display_case", DisplayCaseBlock(BlockBehaviour.Properties.of().sound(CobblemonSounds.DISPLAY_CASE_SOUNDS).noOcclusion().pushReaction(PushReaction.BLOCK).mapColor(MapColor.COLOR_YELLOW).strength(0.3f)))
 
     // TODO after 1.7
 //    @JvmField

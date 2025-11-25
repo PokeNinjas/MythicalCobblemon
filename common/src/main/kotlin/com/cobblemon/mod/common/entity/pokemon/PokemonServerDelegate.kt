@@ -17,6 +17,8 @@ import com.cobblemon.mod.common.CobblemonSounds
 import com.cobblemon.mod.common.OrientationControllable
 import com.cobblemon.mod.common.api.entity.PokemonSender
 import com.cobblemon.mod.common.api.entity.PokemonSideDelegate
+import com.cobblemon.mod.common.api.events.CobblemonEvents.HELD_ITEM_DROPPED
+import com.cobblemon.mod.common.api.events.drops.HeldItemDroppedEvent
 import com.cobblemon.mod.common.api.molang.MoLangFunctions.addPokemonEntityFunctions
 import com.cobblemon.mod.common.api.molang.MoLangFunctions.addPokemonFunctions
 import com.cobblemon.mod.common.api.molang.ObjectValue
@@ -405,7 +407,12 @@ class PokemonServerDelegate : PokemonSideDelegate {
     fun doDeathDrops() {
         if (entity.ownerUUID == null && entity.owner == null && entity.level().gameRules.getBoolean(CobblemonGameRules.DO_POKEMON_LOOT)) {
             val heldItem = (entity as PokemonEntity?)?.pokemon?.heldItemNoCopy() ?: ItemStack.EMPTY
-            if (!heldItem.isEmpty) entity.spawnAtLocation(heldItem.item)
+            if (!heldItem.isEmpty){
+                HELD_ITEM_DROPPED.postThen(
+                    event = HeldItemDroppedEvent(entity, heldItem),
+                    ifSucceeded = { entity.spawnAtLocation(heldItem.item) }
+                )
+            }
 
             val dropTable = (entity.drops ?: entity.pokemon.form.drops)
             val drops = dropTable.getDrops().toMutableList()

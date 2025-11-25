@@ -6,7 +6,7 @@
       "aspects": [],
       "poser": "cobblemon:kommo-o",
       "model": "cobblemon:kommo-o.geo",
-      "texture": "cobblemon:textures/pokemon/0784_kommo-o/kommo-o.png",
+      "texture": "cobblemon:textures/pokemon/0784_kommoo/kommo-o.png",
       "layers": []
     },
     {
@@ -49,7 +49,7 @@
       "aspects": [
         "shiny"
       ],
-      "texture": "cobblemon:textures/pokemon/0784_kommo-o/kommo-o_shiny.png"
+      "texture": "cobblemon:textures/pokemon/0784_kommoo/kommo-o_shiny.png"
     }
   ]
 }

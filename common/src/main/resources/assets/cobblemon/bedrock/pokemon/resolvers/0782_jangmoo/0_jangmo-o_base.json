@@ -6,7 +6,7 @@
       "aspects": [],
       "poser": "cobblemon:jangmo-o",
       "model": "cobblemon:jangmo-o.geo",
-      "texture": "cobblemon:textures/pokemon/0782_jangmo-o/jangmo-o.png",
+      "texture": "cobblemon:textures/pokemon/0782_jangmoo/jangmo-o.png",
       "layers": []
     },
     {
@@ -49,7 +49,7 @@
       "aspects": [
         "shiny"
       ],
-      "texture": "cobblemon:textures/pokemon/0782_jangmo-o/jangmo-o_shiny.png"
+      "texture": "cobblemon:textures/pokemon/0782_jangmoo/jangmo-o_shiny.png"
     }
   ]
 }
