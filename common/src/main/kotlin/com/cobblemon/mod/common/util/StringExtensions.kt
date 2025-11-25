@@ -8,7 +8,6 @@
 
 package com.cobblemon.mod.common.util
 
-import com.cobblemon.mod.common.Cobblemon
 import com.cobblemon.mod.common.api.pokemon.PokemonProperties
 import com.mojang.datafixers.util.Either
 import net.minecraft.core.Registry
@@ -81,28 +80,17 @@ fun String.isLaterVersion(otherVersion: String): Boolean {
         return false
     }
 
-    val splits1 = this.split(".")
-    val splits2 = otherVersion.split(".")
+    val a = this.split('.')
+    val b = otherVersion.split('.')
+    val maxLen = maxOf(a.size, b.size)
 
-    var smaller = if (splits1.size > splits2.size) this else otherVersion
-
-    for (i in 0 until smaller.split(".").size) {
-        try {
-            val v1 = splits1[i].toInt()
-            val v2 = splits2[i].toInt()
-
-            if (v1 > v2) {
-                return true;
-            } else if (v2 > v1) {
-                return false;
-            }
-        } catch (e: NumberFormatException) {
-            Cobblemon.LOGGER.error("Tried comparing versions $this and $otherVersion but at least one of them isn't formatted like a version.")
-            return false
-        }
+    for (i in 0 until maxLen) {
+        val v1 = a.getOrNull(i)?.toIntOrNull() ?: 0
+        val v2 = b.getOrNull(i)?.toIntOrNull() ?: 0
+        if (v1 != v2) return v1 > v2
     }
 
-    return smaller != this
+    return false
 }
 
 fun String.toProperties() = PokemonProperties.parse(this)

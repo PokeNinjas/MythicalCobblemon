@@ -1,5 +1,5 @@
 {
-  "lastSavedVersion": "1.7.0",
+  "lastSavedVersion": "1.7.0.1",
   "maxPokemonLevel": 100,
   "maxPokemonFriendship": 255,
   "announceDropItems": true,
@@ -7,7 +7,7 @@
   "dropAfterDeathAnimation": false,
   "ambientPokemonCryTicks": 1080,
   "defaultKeyItems": [],
-  "defaultBoxCount": 40,
+  "defaultBoxCount": 100,
   "pokemonSaveIntervalSeconds": 30,
   "storageFormat": "nbt",
   "preventCompletePartyDeposit": false,

@@ -153,7 +153,7 @@ object DebugKeybindings {
     class ToggleRidingStatsDebugGUIKeybinding : CobblemonKeyBinding(
         "key.cobblemon.toggleridingstatsgui",
         InputConstants.Type.KEYSYM,
-        InputConstants.KEY_SEMICOLON,
+        InputConstants.UNKNOWN.value,
         KeybindCategories.COBBLEMON_DEBUG_CATEGORY
     ) {
         override fun onPress() {
