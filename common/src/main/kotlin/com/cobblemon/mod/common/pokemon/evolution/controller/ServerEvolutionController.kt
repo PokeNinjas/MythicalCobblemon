@@ -37,7 +37,8 @@ class ServerEvolutionController(
         this.progress.removeIf { !it.shouldKeep(this.pokemon) }
         val pokemonEvolutions = this.pokemon.evolutions.map { it.id }.toSet()
         this.evolutionIds.removeIf { !pokemonEvolutions.contains(it.lowercase()) }
-        this.evolutionIds.forEach { this.findEvolutionFromId(it)?.let(this::silentAdd) }
+        if (!pokemon.blocksEvolutionFromFlags()) { this.evolutionIds.forEach { this.findEvolutionFromId(it)?.let(this::silentAdd) }}
+        else { this.evolutionIds.clear() }
     }
 
     override val size: Int
@@ -46,6 +47,7 @@ class ServerEvolutionController(
     override fun pokemon(): Pokemon = this.pokemon
 
     override fun start(evolution: Evolution) {
+        if (pokemon.blocksEvolutionFromFlags()) return
         CobblemonEvents.EVOLUTION_ACCEPTED.postThen(
             event = EvolutionAcceptedEvent(this.pokemon, evolution),
             ifSucceeded = {
@@ -76,6 +78,7 @@ class ServerEvolutionController(
         // Removes duplicate evolutions that result in the same outcome, keeping only the most recent evolution.
         // For example, Karrablast can evolve via trade or link cable, which otherwise creates duplicate
         // entries in the summary screen.
+        if (pokemon.blocksEvolutionFromFlags()) return false
         val duplicatedEvolutions = this.filter { element.result.matches(it.result) }
         duplicatedEvolutions.forEach { it -> this.remove(it) }
 
@@ -93,6 +96,7 @@ class ServerEvolutionController(
         // Removes duplicate evolutions that result in the same outcome, keeping only the most recent evolution.
         // For example, Karrablast can evolve via trade or link cable, which otherwise creates duplicate
         // entries in the summary screen.
+        if (pokemon.blocksEvolutionFromFlags()) return false
         val duplicatedEvolutions = this.filter { element.result.matches(it.result) }
         duplicatedEvolutions.forEach { it -> this.remove(it) }
 

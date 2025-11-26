@@ -47,6 +47,8 @@ import com.cobblemon.mod.common.api.pokemon.evolution.EvolutionProxy
 import com.cobblemon.mod.common.api.pokemon.evolution.PreEvolution
 import com.cobblemon.mod.common.api.pokemon.experience.ExperienceGroup
 import com.cobblemon.mod.common.api.pokemon.experience.ExperienceSource
+import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeature
+import com.cobblemon.mod.common.api.pokemon.feature.FlagSpeciesFeatureProvider
 import com.cobblemon.mod.common.api.pokemon.feature.IntSpeciesFeature
 import com.cobblemon.mod.common.api.pokemon.feature.SpeciesFeature
 import com.cobblemon.mod.common.api.pokemon.feature.SpeciesFeatures
@@ -2242,6 +2244,20 @@ open class Pokemon : ShowdownIdentifiable {
 //        }
 //    }
 
+    fun blocksEvolutionFromFlags(): Boolean {
+        val providers = SpeciesFeatures.getFeaturesFor(this.species)
+            .filterIsInstance<FlagSpeciesFeatureProvider>()
+
+        return providers.any { prov ->
+            prov.blockEvolve && (
+                    (prov.isAspect && this.aspects.contains(prov.keys.first())) ||
+                            (!prov.isAspect && (
+                                    this.getFeature<FlagSpeciesFeature>(prov.keys.first())?.enabled == true ||
+                                            prov.default?.toBoolean() == true
+                                    ))
+                    )
+        }
+    }
     companion object {
         /**
          * The [FriendshipMutationCalculator] used when a Pokémon levels up.

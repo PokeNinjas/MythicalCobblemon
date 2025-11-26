@@ -90,6 +90,7 @@ class FlagSpeciesFeatureProvider : SynchronizedSpeciesFeatureProvider<FlagSpecie
     var default: String? = null
     var isAspect = true
     override var visible: Boolean = false
+    var blockEvolve: Boolean = false
 
     override fun invoke(buffer: RegistryFriendlyByteBuf, name: String): FlagSpeciesFeature? {
         return if (name in keys) {
@@ -103,12 +104,14 @@ class FlagSpeciesFeatureProvider : SynchronizedSpeciesFeatureProvider<FlagSpecie
         buffer.writeCollection(keys) { _, value -> buffer.writeString(value) }
         buffer.writeNullable(default) { _, value -> buffer.writeString(value) }
         buffer.writeBoolean(isAspect)
+        buffer.writeBoolean(blockEvolve)
     }
 
     override fun loadFromBuffer(buffer: RegistryFriendlyByteBuf) {
         keys = buffer.readList { it.readString() }
         default = buffer.readNullable { it.readString() }
         isAspect = buffer.readBoolean()
+        blockEvolve = buffer.readBoolean()
     }
 
     override fun getRenderer(pokemon: Pokemon): SummarySpeciesFeatureRenderer<FlagSpeciesFeature>? {
