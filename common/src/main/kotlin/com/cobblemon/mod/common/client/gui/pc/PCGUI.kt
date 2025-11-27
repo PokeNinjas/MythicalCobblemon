@@ -653,16 +653,6 @@ class PCGUI(
             )
         }
 
-        // Box Label
-        drawScaledText(
-            context = context,
-            font = CobblemonResources.DEFAULT_LARGE,
-            text = Component.translatable("cobblemon.ui.pc.box.title", (this.storageWidget.box + 1).toString()).bold(),
-            x = x + 172,
-            y = y + 15,
-            centered = true
-        )
-
         if (pokemon != null) {
             val growth = Growth.getFromPokemon(pokemon)
 
