@@ -183,15 +183,32 @@ open class PokeSnackBlockEntity(pos: BlockPos, state: BlockState) :
             PokeSnackSpawnPokemonEvent.Pre(this, spawnAction),
             { },
             { event ->
-                spawnAction.complete()
-                val result = spawnAction.future
-                val resultingSpawn = result.get()
+                try {
+                    spawnAction.complete()
+                } catch (ex: Exception) {
+                    Cobblemon.LOGGER.warn("PokeSnack: spawnAction.complete() failed for {}", blockPos, ex)
+                    return@postThen
+                }
 
-                if (resultingSpawn is EntitySpawnResult) {
-                    val pokemonEntity = resultingSpawn.entities.firstOrNull() as PokemonEntity
-                    CobblemonEvents.POKE_SNACK_SPAWN_POKEMON_POST.post(
-                        PokeSnackSpawnPokemonEvent.Post(this, spawnAction, pokemonEntity)
-                    )
+                spawnAction.future.whenComplete { resultingSpawn, throwable ->
+                    if (throwable != null) {
+                        Cobblemon.LOGGER.warn("PokeSnack: spawn future completed exceptionally for {}",blockPos,throwable)
+                        return@whenComplete
+                    }
+
+                    val entityResult = resultingSpawn as? EntitySpawnResult ?: return@whenComplete
+                    val pokemonEntity = entityResult.entities.firstOrNull() as? PokemonEntity ?: return@whenComplete
+
+                    val srvLevel = level as? ServerLevel ?: return@whenComplete
+                    srvLevel.server.execute {
+                        try {
+                            CobblemonEvents.POKE_SNACK_SPAWN_POKEMON_POST.post(
+                                PokeSnackSpawnPokemonEvent.Post(this, spawnAction, pokemonEntity)
+                            )
+                        } catch (ex: Exception) {
+                            Cobblemon.LOGGER.error("PokeSnack: error while posting spawn post-event at $blockPos", ex)
+                        }
+                    }
                 }
             }
         )
