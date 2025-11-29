@@ -5,6 +5,11 @@
 - Added trades for Saccharine Saplings, Hearty Grains, Chipped Pot, and Masterpiece Teacup to the Wandering Trader.
 - Added brewing recipe for Throat Spray.
 
+### Model updates for the following Pokémon
+- Tinkatink
+- Tinkatuff
+- Tinkaton
+
 ### Changes
 - Converted the riding freelook button to a configurable keybinding.
 - Reduced the cost of the Vivichoke Seed trade with the Wandering Trader.
