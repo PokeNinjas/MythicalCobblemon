@@ -649,6 +649,10 @@ class PokemonInfoWidget(val pX: Int, val pY: Int, val updateForm: (PokedexForm) 
     }
 
     private fun switchForm(nextIndex: Boolean) {
+        if (visibleForms.isEmpty() || currentEntry == null) {
+            return
+        }
+        
         selectedPoseIndex = 0
 
         if (nextIndex) {
@@ -658,6 +662,8 @@ class PokemonInfoWidget(val pX: Int, val pY: Int, val updateForm: (PokedexForm) 
             if (selectedFormIndex > 0) selectedFormIndex--
             else selectedFormIndex = visibleForms.lastIndex
         }
+
+        selectedFormIndex = selectedFormIndex.coerceIn(0, visibleForms.lastIndex)
 
         setupButtons(currentEntry!!, visibleForms[selectedFormIndex])
         updateAspects()
