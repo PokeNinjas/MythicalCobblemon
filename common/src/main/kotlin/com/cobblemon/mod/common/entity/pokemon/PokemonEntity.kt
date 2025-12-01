@@ -1236,6 +1236,7 @@ open class PokemonEntity(
 
     private fun showInteractionWheel(player: ServerPlayer, itemStack: ItemStack) {
          val canRide = ifRidingAvailableSupply(false) { behaviour, settings, state ->
+            if (Cobblemon.config.disableRidingMounts) return@ifRidingAvailableSupply false
             if (platform != PlatformType.NONE) return@ifRidingAvailableSupply false
             if (tethering != null) return@ifRidingAvailableSupply false;
             if (seats.isEmpty()) return@ifRidingAvailableSupply false;

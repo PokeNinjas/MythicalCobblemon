@@ -333,6 +333,9 @@ class CobblemonConfig {
     @CobblemonConfigField(Category.Riding, lang = "remember_riding_camera", CLIENT)
     var rememberRidingCamera = false
 
+    @CobblemonConfigField(Category.Riding, lang = "disable_riding_mounts", SERVER)
+    var disableRidingMounts = false
+
     @CobblemonConfigField(Category.Debug, lang = "enable_debug_keys", CLIENT)
     var enableDebugKeys = false
 
