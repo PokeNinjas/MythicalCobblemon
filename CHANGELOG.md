@@ -549,6 +549,8 @@
 ### Changes
 
 ### Fixes
+- Fixed orientation not getting reset after crashing while flying and getting back on the Pokémon.
+- Fixed Furfrou not being trimmable on NeoForge.
 
 ### Developer
 - A finished battle now has winners and losers set inside of `PokemonBattle` instead of them always being empty.
