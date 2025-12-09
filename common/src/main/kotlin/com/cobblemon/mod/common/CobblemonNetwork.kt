@@ -35,6 +35,8 @@ import com.cobblemon.mod.common.client.net.npc.CloseNPCEditorHandler
 import com.cobblemon.mod.common.client.net.npc.OpenNPCEditorHandler
 import com.cobblemon.mod.common.client.net.orientation.ClientboundUpdateOrientationHandler
 import com.cobblemon.mod.common.client.net.pasture.*
+import com.cobblemon.mod.common.client.net.pokedex.ClientsidePokedexSpawnInfoManager
+import com.cobblemon.mod.common.client.net.pokedex.PokedexTextureBlacklistHandler
 import com.cobblemon.mod.common.client.net.pokedex.ServerConfirmedRegisterHandler
 import com.cobblemon.mod.common.client.net.pokemon.update.ClientboundUpdateRidingStateHandler
 import com.cobblemon.mod.common.client.net.pokemon.update.PokemonUpdatePacketHandler
@@ -75,6 +77,10 @@ import com.cobblemon.mod.common.net.messages.client.npc.OpenNPCEditorPacket
 import com.cobblemon.mod.common.net.messages.client.orientation.ClientboundUpdateDriverInputPacket
 import com.cobblemon.mod.common.net.messages.client.orientation.ClientboundUpdateOrientationPacket
 import com.cobblemon.mod.common.net.messages.client.pasture.*
+import com.cobblemon.mod.common.net.messages.client.pokedex.PokedexSpawnInfoPacket
+import com.cobblemon.mod.common.net.messages.client.pokedex.PokedexTextureBlacklistPacket
+import com.cobblemon.mod.common.net.messages.client.pokedex.ResearchTasksAllCompletedPacket
+import com.cobblemon.mod.common.net.messages.client.pokedex.ResearchTasksInfoPacket
 import com.cobblemon.mod.common.net.messages.client.pokedex.ServerConfirmedRegisterPacket
 import com.cobblemon.mod.common.net.messages.client.pokemon.update.*
 import com.cobblemon.mod.common.net.messages.client.pokemon.update.evolution.AddEvolutionPacket
