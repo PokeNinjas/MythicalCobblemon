@@ -53,8 +53,16 @@ class VaryingRenderableResolver(
     }
 
     fun getResolvedTexture(state: PosableState): ResourceLocation {
-        return getVariationValue(state) { texture }?.invoke(state)
-            ?: throw IllegalStateException("Unable to find a texture for $name with aspects ${state.currentAspects.joinToString()}. This shouldn't be possible if you've defined the fallback variation.")
+        return variations
+            .asReversed()
+            .firstNotNullOfOrNull { variation ->
+                if (variation.fits(state)) variation.resolveTexture(state) else null
+            }
+            ?: throw IllegalStateException(
+                "Unable to find a texture for $name with aspects " +
+                        state.currentAspects.joinToString() +
+                        ". This shouldn't be possible if you've defined the fallback variation."
+            )
     }
 
     fun getSprite(state: PosableState, type: SpriteType): ResourceLocation? {
@@ -178,6 +186,7 @@ class ModelAssetVariation(
     val poser: ResourceLocation? = null,
     val model: ResourceLocation? = null,
     val texture: ModelTextureSupplier? = null,
+    val textures: List<ResourceLocation>? = null,
     val layers: List<ModelLayer>? = null,
     val sprites: Map<SpriteType, ResourceLocation>? = null,
     val ghost: Boolean? = null,
@@ -185,6 +194,18 @@ class ModelAssetVariation(
 ) {
     fun fits(state: PosableState): Boolean {
         return aspects.all { it in state.currentAspects } && (condition == null || state.runtime.resolveBoolean(condition))
+    }
+    fun resolveTexture(state: PosableState): ResourceLocation? {
+        texture?.let { return it(state) }
+
+        val pool = textures ?: return null
+        if (pool.isEmpty()) return null
+
+        val entity = state.getEntity()
+        val seed = entity?.uuid?.hashCode() ?: state.hashCode()
+        val index = kotlin.math.abs(seed) % pool.size
+
+        return pool[index]
     }
 }
 
