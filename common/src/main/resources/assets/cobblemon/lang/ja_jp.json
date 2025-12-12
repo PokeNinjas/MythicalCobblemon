@@ -9035,13 +9035,17 @@
     "cobblemon.config.ui.default_key_items.tooltip": "プレイヤーがデフォルトで開始時に所持する主要アイテム。",
     "advancements.cobblemon.cook_all_regional_delicacies": "世界のご当地料理巡り",
     "advancements.cobblemon.cook_all_regional_delicacies.description": "ご当地料理をすべて調理する",
-    "advancements.cobblemon.cook_all_ev_mochi": "キビキビー！！",
-    "advancements.cobblemon.cook_all_ev_mochi.description": "ポケモンに基礎ポイントを与えることが出来るもちを様々な味で調理する",
+    "advancements.cobblemon.cook_all_ev_mochi": "おモち ドうゾ",
+    "advancements.cobblemon.cook_all_ev_mochi.description": "ポケモンの基礎ポイントを上げられるもちを様々な味で調理する",
     "advancements.cobblemon.cook_snack": "かおりのわな",
     "advancements.cobblemon.max_ride_stats.description": "風味付きボンドリンクを与え、ポケモンの5つのライド能力を5つすべて最大にする\n風味によって上昇するステータスは異なる",
     "advancements.cobblemon.interact_with_pokemon.description": "数あるツールのどれか一つを使い、ポケモンから資源を入手する",
     "advancements.cobblemon.cook_snack.description": "使ったきのみによって特定のポケモンを引き寄せられるポケモンスナックを調理する",
     "advancements.cobblemon.use_poke_bait.description": "焚き火鍋でポケモンのエサを調理し、それを使ってポケモンを釣り上げる",
     "advancements.cobblemon.use_poke_bait": "シェフを呼んでくれ",
-    "advancements.cobblemon.max_ride_stats": "ポケスリート マスター"
+    "advancements.cobblemon.max_ride_stats": "ポケスリート マスター",
+    "advancements.cobblemon.slather_saccharine.description": "あまったるい木の幹にハチミツ入りの瓶を塗りつけ、特定のポケモンを誘い出す",
+    "advancements.cobblemon.slather_saccharine": "ちょっとだけなら",
+    "gamerule.healersHealPC": "かいふく装置を使用した時、パソコン内に居るポケモンも回復する",
+    "advancements.cobblemon.interact_with_pokemon": "峠の我が家"
 }
