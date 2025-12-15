@@ -1406,7 +1406,7 @@
     "cobblemon.status.poison.apply": "%1$s의 몸에 독이 퍼졌다!",
     "cobblemon.status.poison.cure": "%1$s의 독이 치료되었다!",
     "cobblemon.status.poisonbadly.apply": "%1$s의 몸에 맹독이 퍼졌다!",
-    "cobblemon.status.poison.hurt": "%1$s는 독에 의한 데미지를 입었다!",
+    "cobblemon.status.poison.hurt": "%1$s은(는) 독에 의한 데미지를 입었다!",
     "cobblemon.status.burn.apply": "%1$s은(는) 화상을 입었다!",
     "cobblemon.status.burn.hurt": "%1$s은(는) 화상 데미지를 입었다!",
     "cobblemon.status.burn.cure": "%1$s의 화상이 치료되었다!",
