@@ -319,7 +319,25 @@ object CobblemonClient {
             CobblemonBlocks.PINK_CAMPFIRE_POT,
             CobblemonBlocks.RED_CAMPFIRE_POT,
             CobblemonBlocks.WHITE_CAMPFIRE_POT,
-            CobblemonBlocks.YELLOW_CAMPFIRE_POT
+            CobblemonBlocks.YELLOW_CAMPFIRE_POT,
+            CobblemonBlocks.WHITE_PLAQUE,
+            CobblemonBlocks.LIGHT_GRAY_PLAQUE,
+            CobblemonBlocks.GRAY_PLAQUE,
+            CobblemonBlocks.BLACK_PLAQUE,
+            CobblemonBlocks.BROWN_PLAQUE,
+            CobblemonBlocks.RED_PLAQUE,
+            CobblemonBlocks.ORANGE_PLAQUE,
+            CobblemonBlocks.YELLOW_PLAQUE,
+            CobblemonBlocks.LIME_PLAQUE,
+            CobblemonBlocks.GREEN_PLAQUE,
+            CobblemonBlocks.CYAN_PLAQUE,
+            CobblemonBlocks.LIGHT_BLUE_PLAQUE,
+            CobblemonBlocks.BLUE_PLAQUE,
+            CobblemonBlocks.PURPLE_PLAQUE,
+            CobblemonBlocks.MAGENTA_PLAQUE,
+            CobblemonBlocks.PINK_PLAQUE,
+            CobblemonBlocks.BLUNDER_POLICY,
+            CobblemonBlocks.WEAKNESS_POLICY
         )
 
         this.createBoatModelLayers()

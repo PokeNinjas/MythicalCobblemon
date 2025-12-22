@@ -507,6 +507,23 @@ object CobblemonItems : PlatformRegistry<Registry<Item>, ResourceKey<Registry<It
     @JvmField val SCROLL_OF_DARKNESS = noSettingsItem("scroll_of_darkness")
     @JvmField val SCROLL_OF_WATERS = noSettingsItem("scroll_of_waters")
 
+    @JvmField val WHITE_PLAQUE = blockItem("white_plaque", CobblemonBlocks.WHITE_PLAQUE)
+    @JvmField val LIGHT_GRAY_PLAQUE = blockItem("light_gray_plaque", CobblemonBlocks.LIGHT_GRAY_PLAQUE)
+    @JvmField val GRAY_PLAQUE = blockItem("gray_plaque", CobblemonBlocks.GRAY_PLAQUE)
+    @JvmField val BLACK_PLAQUE = blockItem("black_plaque", CobblemonBlocks.BLACK_PLAQUE)
+    @JvmField val BROWN_PLAQUE = blockItem("brown_plaque", CobblemonBlocks.BROWN_PLAQUE)
+    @JvmField val RED_PLAQUE = blockItem("red_plaque", CobblemonBlocks.RED_PLAQUE)
+    @JvmField val ORANGE_PLAQUE = blockItem("orange_plaque", CobblemonBlocks.ORANGE_PLAQUE)
+    @JvmField val YELLOW_PLAQUE = blockItem("yellow_plaque", CobblemonBlocks.YELLOW_PLAQUE)
+    @JvmField val LIME_PLAQUE = blockItem("lime_plaque", CobblemonBlocks.LIME_PLAQUE)
+    @JvmField val GREEN_PLAQUE = blockItem("green_plaque", CobblemonBlocks.GREEN_PLAQUE)
+    @JvmField val CYAN_PLAQUE = blockItem("cyan_plaque", CobblemonBlocks.CYAN_PLAQUE)
+    @JvmField val LIGHT_BLUE_PLAQUE = blockItem("light_blue_plaque", CobblemonBlocks.LIGHT_BLUE_PLAQUE)
+    @JvmField val BLUE_PLAQUE = blockItem("blue_plaque", CobblemonBlocks.BLUE_PLAQUE)
+    @JvmField val PURPLE_PLAQUE = blockItem("purple_plaque", CobblemonBlocks.PURPLE_PLAQUE)
+    @JvmField val MAGENTA_PLAQUE = blockItem("magenta_plaque", CobblemonBlocks.MAGENTA_PLAQUE)
+    @JvmField val PINK_PLAQUE = blockItem("pink_plaque", CobblemonBlocks.PINK_PLAQUE)
+
     private val berries = mutableMapOf<ResourceLocation, BerryItem>()
     // Plants
     @JvmField val CHERI_BERRY = berryItem("cheri", StatusCuringBerryItem(CobblemonBlocks.CHERI_BERRY, Statuses.PARALYSIS))
@@ -922,7 +939,7 @@ object CobblemonItems : PlatformRegistry<Registry<Item>, ResourceKey<Registry<It
     @JvmField
     val BLACK_SLUDGE = heldItem("black_sludge")
     @JvmField
-    val BLUNDER_POLICY = heldItem("blunder_policy")
+    val BLUNDER_POLICY = itemNameBlockItem("blunder_policy", CobblemonBlocks.BLUNDER_POLICY)
     @JvmField
     val CELL_BATTERY = heldItem("cell_battery")
     @JvmField
@@ -1056,7 +1073,7 @@ object CobblemonItems : PlatformRegistry<Registry<Item>, ResourceKey<Registry<It
     @JvmField
     val UTILITY_UMBRELLA = heldItem("utility_umbrella")
     @JvmField
-    val WEAKNESS_POLICY = heldItem("weakness_policy")
+    val WEAKNESS_POLICY = itemNameBlockItem("weakness_policy", CobblemonBlocks.WEAKNESS_POLICY)
     @JvmField
     val WIDE_LENS = heldItem("wide_lens")
     @JvmField
@@ -1553,6 +1570,7 @@ object CobblemonItems : PlatformRegistry<Registry<Item>, ResourceKey<Registry<It
             }
         }
     )
+
     private fun heldItem(name: String, item: Item, remappedName: String? = null) = create(
         name = name,
         entry = item.also {
