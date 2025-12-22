@@ -408,8 +408,6 @@ object VaryingModelRepository {
         inbuilt("tandemaus", ::TandemausModel)
         inbuilt("maushold", ::MausholdModel)
         inbuilt("mausholdfour", ::MausholdfourModel)
-        inbuilt("chingling", ::ChinglingModel)
-        inbuilt("chimecho", ::ChimechoModel)
         inbuilt("fidough", ::FidoughModel)
         inbuilt("dachsbun", ::DachsbunModel)
         inbuilt("chatot", ::ChatotModel)
