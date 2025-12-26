@@ -1,4 +1,4 @@
-package com.cobblemon.mod.common.item.components
+package com.cobblemon.mod.common.item.berry
 
 import com.mojang.serialization.Codec
 import net.minecraft.network.RegistryFriendlyByteBuf

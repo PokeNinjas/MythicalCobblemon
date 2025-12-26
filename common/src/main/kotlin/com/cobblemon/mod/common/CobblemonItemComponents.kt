@@ -8,7 +8,18 @@
 
 package com.cobblemon.mod.common
 
-import com.cobblemon.mod.common.item.components.*
+import com.cobblemon.mod.common.item.berry.BerryQuality
+import com.cobblemon.mod.common.item.components.BaitEffectsComponent
+import com.cobblemon.mod.common.item.components.FlavourComponent
+import com.cobblemon.mod.common.item.components.FoodColourComponent
+import com.cobblemon.mod.common.item.components.FoodComponent
+import com.cobblemon.mod.common.item.components.HeldItemEffectComponent
+import com.cobblemon.mod.common.item.components.IngredientComponent
+import com.cobblemon.mod.common.item.components.MobEffectsComponent
+import com.cobblemon.mod.common.item.components.PokemonItemComponent
+import com.cobblemon.mod.common.item.components.PotComponent
+import com.cobblemon.mod.common.item.components.RideBoostsComponent
+import com.cobblemon.mod.common.item.components.RodBaitComponent
 import com.cobblemon.mod.common.platform.PlatformRegistry
 import com.mojang.serialization.Codec
 import net.minecraft.core.Registry
@@ -94,7 +105,7 @@ object CobblemonItemComponents : PlatformRegistry<Registry<DataComponentType<*>>
         .build())
 
     @JvmField
-    val BERRY_QUALITY: DataComponentType<BerryQuality> = create(ResourceLocation.parse("mythicalberryfarming:berry_farming"), DataComponentType.builder<BerryQuality>()
+    val BERRY_QUALITY: DataComponentType<BerryQuality> = create(ResourceLocation.parse("mythicalberryfarming:berry_quality"), DataComponentType.builder<BerryQuality>()
         .persistent(BerryQuality.CODEC)
         .networkSynchronized(BerryQuality.PACKET_CODEC)
         .build())
@@ -111,7 +122,7 @@ object CobblemonItemComponents : PlatformRegistry<Registry<DataComponentType<*>>
         Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE, ResourceLocation.parse("cobblemon:food"), FOOD)
         Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE, ResourceLocation.parse("cobblemon:mob_effects"), MOB_EFFECTS)
         Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE, ResourceLocation.parse("cobblemon:held_item_effect"), HELD_ITEM_EFFECT)
-        Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE, ResourceLocation.parse("mythicalberryfarming:berry_farming"), BERRY_QUALITY)
+        Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE, ResourceLocation.parse("mythicalberryfarming:berry_quality"), BERRY_QUALITY)
     }
 
     override val registry = BuiltInRegistries.DATA_COMPONENT_TYPE

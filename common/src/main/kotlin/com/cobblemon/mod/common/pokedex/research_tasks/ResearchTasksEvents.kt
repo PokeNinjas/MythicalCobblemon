@@ -19,7 +19,12 @@ import com.cobblemon.mod.common.pokemon.Pokemon
 import net.minecraft.server.level.ServerPlayer
 
 object ResearchTasksEvents {
+
+    val disabled = true
+
     fun init() {
+        if(disabled) return
+
         CobblemonEvents.POKEMON_CAPTURED.subscribe { event ->
             val player = event.player
             val data = ComponentRegistry.RESEARCH_TASKS_DATA.get(player)
@@ -90,23 +95,27 @@ object ResearchTasksEvents {
 
     // Called from MythicalRaids
     fun raidDefeated(player: ServerPlayer, pokemon: Pokemon) {
+        if(disabled) return
         val data = ComponentRegistry.RESEARCH_TASKS_DATA.get(player)
         data.incrementProgress(pokemon.species.resourceIdentifier.path, RaidDefeatResearchTask())
     }
 
     // Called from MythicalDaycare
     fun pokemonHatched(player: ServerPlayer, pokemon: Pokemon) {
+        if(disabled) return
         val data = ComponentRegistry.RESEARCH_TASKS_DATA.get(player)
         data.incrementProgress(pokemon.species.resourceIdentifier.path, HatchResearchTask())
     }
 
     // Called from MythicalCobbled
     fun megaEvolved(player: ServerPlayer, pokemon: Pokemon) {
+        if(disabled) return
         val data = ComponentRegistry.RESEARCH_TASKS_DATA.get(player)
         data.incrementProgress(pokemon.species.resourceIdentifier.path, MegaEvolveResearchTask())
     }
 
     fun moveUsed(actor: BattleActor, pokemon: ActiveBattlePokemon, move: String) {
+        if(disabled) return
         if (actor is PlayerBattleActor) {
             actor.entity?.let {player ->
                 pokemon.battlePokemon?.originalPokemon?.species?.resourceIdentifier?.path?.let {
@@ -118,16 +127,19 @@ object ResearchTasksEvents {
     }
 
     fun pokemonSheared(player: ServerPlayer, pokemon: PokemonEntity) {
+        if(disabled) return
         val data = ComponentRegistry.RESEARCH_TASKS_DATA.get(player)
         data.incrementProgress(pokemon.pokemon.species.resourceIdentifier.path, ShearResearchTask())
     }
 
     fun pokemonMilked(player: ServerPlayer, pokemon: PokemonEntity) {
+        if(disabled) return
         val data = ComponentRegistry.RESEARCH_TASKS_DATA.get(player)
         data.incrementProgress(pokemon.pokemon.species.resourceIdentifier.path, MilkResearchTask())
     }
 
     fun pokemonDefeated(winnerBattleActor: BattleActor, looser: Pokemon) {
+        if(disabled) return
         if (looser.aspects.contains("radar_spawned")) return // Don't count radar mons
         if (winnerBattleActor is PlayerBattleActor) {
             winnerBattleActor.entity?.let {

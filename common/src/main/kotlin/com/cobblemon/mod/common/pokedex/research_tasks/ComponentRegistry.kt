@@ -20,6 +20,7 @@ object ComponentRegistry: EntityComponentInitializer {
     val RESEARCH_TASKS_DATA: ComponentKey<PlayerResearchTasksData> = ComponentRegistryV3.INSTANCE.getOrCreate(ResourceLocation.fromNamespaceAndPath(Cobblemon.MODID, "research_tasks_data"), PlayerResearchTasksData::class.java)
 
     override fun registerEntityComponentFactories(registry: EntityComponentFactoryRegistry) {
-        registry.registerForPlayers(RESEARCH_TASKS_DATA, { c ->  PlayerResearchTasksData(c) }, RespawnCopyStrategy.ALWAYS_COPY)
+        // disabled for testing
+//        registry.registerForPlayers(RESEARCH_TASKS_DATA, { c ->  PlayerResearchTasksData(c) }, RespawnCopyStrategy.ALWAYS_COPY)
     }
 }
