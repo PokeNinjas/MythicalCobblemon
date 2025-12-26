@@ -89,9 +89,15 @@ object CobblemonItemComponents : PlatformRegistry<Registry<DataComponentType<*>>
 
     @JvmField
     val CRAFTED: DataComponentType<Boolean> = create("crafted", DataComponentType.builder<Boolean>()
-            .persistent(Codec.BOOL)
-            .networkSynchronized(ByteBufCodecs.BOOL)
-            .build())
+        .persistent(Codec.BOOL)
+        .networkSynchronized(ByteBufCodecs.BOOL)
+        .build())
+
+    @JvmField
+    val BERRY_QUALITY: DataComponentType<BerryQuality> = create(ResourceLocation.parse("mythicalberryfarming:berry_farming"), DataComponentType.builder<BerryQuality>()
+        .persistent(BerryQuality.CODEC)
+        .networkSynchronized(BerryQuality.PACKET_CODEC)
+        .build())
 
     fun register() {
         Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE, ResourceLocation.parse("cobblemon:pokemon_item"), POKEMON_ITEM)
@@ -105,6 +111,7 @@ object CobblemonItemComponents : PlatformRegistry<Registry<DataComponentType<*>>
         Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE, ResourceLocation.parse("cobblemon:food"), FOOD)
         Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE, ResourceLocation.parse("cobblemon:mob_effects"), MOB_EFFECTS)
         Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE, ResourceLocation.parse("cobblemon:held_item_effect"), HELD_ITEM_EFFECT)
+        Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE, ResourceLocation.parse("mythicalberryfarming:berry_farming"), BERRY_QUALITY)
     }
 
     override val registry = BuiltInRegistries.DATA_COMPONENT_TYPE
