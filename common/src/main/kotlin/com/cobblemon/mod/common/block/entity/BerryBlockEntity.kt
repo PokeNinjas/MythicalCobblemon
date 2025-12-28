@@ -16,6 +16,7 @@ import com.cobblemon.mod.common.api.events.CobblemonEvents
 import com.cobblemon.mod.common.api.events.berry.BerryHarvestEvent
 import com.cobblemon.mod.common.api.mulch.MulchVariant
 import com.cobblemon.mod.common.block.BerryBlock
+import com.cobblemon.mod.common.item.berry.BerryQuality
 import net.minecraft.ResourceLocationException
 import net.minecraft.core.BlockPos
 import net.minecraft.core.HolderLookup
@@ -39,7 +40,7 @@ import net.minecraft.world.level.block.entity.BlockEntityTicker
 import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.level.gameevent.GameEvent
 
-class BerryBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(CobblemonBlockEntities.BERRY, pos, state) {
+open class BerryBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(CobblemonBlockEntities.BERRY, pos, state) {
     lateinit var berryIdentifier: ResourceLocation
     private val ticksPerMinute = 1200
     var renderState: RenderState? = null
@@ -62,7 +63,8 @@ class BerryBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(Cobblemon
             }
             field = value
         }
-    private val growthPoints = arrayListOf<ResourceLocation>()
+    val growthPoints = arrayListOf<ResourceLocation>()
+    val growthQualityByIndex = arrayListOf<BerryQuality>()
     var mulchVariant = MulchVariant.NONE
 
     /**
@@ -77,9 +79,11 @@ class BerryBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(Cobblemon
      * Kinda confusing but it works without saving an array or something. Protections
      * exist for when there are fewer than 16 growth points on a tree (currently always).
      */
-    private var growthPointSequence = "0123456789ABCDEF"
+    var growthPointSequence = "0123456789ABCDEF"
     // Just a cheat to not invoke markDirty unnecessarily
     private var wasLoading = false
+    // if true, #setChanged will never be triggered
+    var shouldNeverSetChanged = false
     var mulchDuration = 0
         set(value) {
             field = value
@@ -200,8 +204,10 @@ class BerryBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(Cobblemon
         val berry = this.berry() ?: return
         val yield = berry.calculateYield(world, state, pos, placer)
         this.growthPoints.clear()
+        this.growthQualityByIndex.clear()
         repeat(yield) {
             this.growthPoints += berry.identifier
+            this.growthQualityByIndex += BerryQuality.NORMAL
         }
         this.growthPointSequence = this.growthPointSequence.toCharArray().also { if (berry.randomizedGrowthPoints) it.shuffle() }.concatToString()
         this.setChanged()
@@ -212,6 +218,7 @@ class BerryBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(Cobblemon
         val numBerries = berry()?.baseYield?.random() ?: return
         repeat(numBerries) {
             growthPoints.add(berryIdentifier)
+            growthQualityByIndex.add(BerryQuality.NORMAL)
         }
         this.growthPointSequence = this.growthPointSequence.toCharArray().also { if (berry()?.randomizedGrowthPoints != false) it.shuffle() }.concatToString()
     }
@@ -228,13 +235,15 @@ class BerryBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(Cobblemon
     fun harvest(world: Level, state: BlockState, pos: BlockPos, player: Player?): Collection<ItemStack> {
         val drops = arrayListOf<ItemStack>()
         val unique = this.growthPoints.groupingBy { it }.eachCount()
-        unique.forEach { (identifier, amount) ->
+        unique.entries.forEachIndexed { index, (identifier, amount) ->
             val berryItem = Berries.getByIdentifier(identifier)?.item()
+            val quality = growthQualityByIndex.getOrNull(index) ?: BerryQuality.NORMAL
             if (berryItem != null) {
                 var remain = amount
                 while (remain > 0) {
                     val count = remain.coerceAtMost(berryItem.defaultMaxStackSize)
-                    drops += ItemStack(berryItem, count)
+                    val stack = ItemStack(berryItem, count)
+                    drops += stack
                     remain -= count
                 }
             }
@@ -256,6 +265,7 @@ class BerryBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(Cobblemon
         this.berryIdentifier = ResourceLocation.parse(nbt.getString(BERRY).takeIf { it.isNotBlank() } ?: "cobblemon:pecha")
         this.wasLoading = true
         this.growthPoints.clear()
+        this.growthQualityByIndex.clear()
         this.growthTimer = nbt.getInt(GROWTH_TIMER).coerceAtLeast(0)
         this.stageTimer = nbt.getInt(STAGE_TIMER).coerceAtLeast(0)
         //this.lifeCycles = nbt.getInt(LIFE_CYCLES).coerceAtLeast(0)
@@ -264,6 +274,13 @@ class BerryBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(Cobblemon
             try {
                 val identifier = ResourceLocation.parse(element.asString)
                 this.growthPoints += identifier
+            } catch (ignored: ResourceLocationException) {}
+        }
+        nbt.getList(GROWTH_QUALITIES, ListTag.TAG_STRING.toInt()).filterIsInstance<StringTag>().forEach { element ->
+            // In case some 3rd party mutates the NBT incorrectly
+            try {
+                val quality = BerryQuality.valueOf(element.asString)
+                this.growthQualityByIndex += quality
             } catch (ignored: ResourceLocationException) {}
         }
         this.mulchDuration = nbt.getInt(MULCH_DURATION)
@@ -283,6 +300,9 @@ class BerryBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(Cobblemon
         val list = ListTag()
         list += this.growthPoints.map { StringTag.valueOf(it.toString()) }
         nbt.put(GROWTH_POINTS, list)
+        val listQuality = ListTag()
+        listQuality += this.growthQualityByIndex.map { StringTag.valueOf(it.toString()) }
+        nbt.put(GROWTH_QUALITIES, listQuality)
         nbt.putString(BERRY, berryIdentifier.toString())
         nbt.putInt(MULCH_DURATION, mulchDuration)
         nbt.putString(GROWTH_POINTS_SEQUENCE, growthPointSequence)
@@ -290,7 +310,7 @@ class BerryBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(Cobblemon
     }
 
     override fun setChanged() {
-        if (!this.wasLoading) {
+        if (!this.wasLoading && !this.shouldNeverSetChanged) {
             super.setChanged()
         }
     }
@@ -308,7 +328,7 @@ class BerryBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(Cobblemon
      *
      * @return Collection of the [Berry] and [GrowthPoint].
      */
-    internal fun berryAndGrowthPoint(): List<Pair<Berry, GrowthPoint>> {
+    fun berryAndGrowthPoint(): List<Pair<Berry, GrowthPoint>> {
         val baseBerry = this.berry() ?: return emptyList()
         val berryPoints = arrayListOf<Pair<Berry, GrowthPoint>>()
         val sequenceIndices = growthPointSequence.toCharArray().filter { it.digitToInt(16) < baseBerry.growthPoints.size }
@@ -330,7 +350,7 @@ class BerryBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(Cobblemon
      *
      * @param berry The [Berry] being mutated.
      */
-    internal fun mutate(berry: Berry) {
+    fun mutate(berry: Berry) {
         if (this.growthPoints.isEmpty()) {
             return
         }
@@ -345,6 +365,10 @@ class BerryBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(Cobblemon
         world.gameEvent(player, GameEvent.BLOCK_CHANGE, pos)
         resetGrowTimers(pos, newState)
         return
+    }
+
+    fun setUnchanging() {
+        this.shouldNeverSetChanged = true
     }
 
     //Using a similar approach to ComputerCraft, implement this client side
@@ -365,6 +389,7 @@ class BerryBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(Cobblemon
         }
         //private const val LIFE_CYCLES = "life_cycles"
         private const val GROWTH_POINTS = "GrowthPoints"
+        private const val GROWTH_QUALITIES = "GrowthQuality"
         private const val GROWTH_POINTS_SEQUENCE = "GrowthPointsSequence"
         private const val GROWTH_TIMER = "GrowthTimer"
         private const val STAGE_TIMER = "StageTimer"

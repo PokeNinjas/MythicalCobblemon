@@ -17,6 +17,9 @@ import net.minecraft.resources.ResourceLocation
 import java.util.Locale
 
 object ResearchTasks {
+
+    val disabled = true
+
     fun fromFullIdentifier(fullIdentifier: String): ResearchTask {
         return when (fullIdentifier) {
             "catch" -> CatchResearchTask()
