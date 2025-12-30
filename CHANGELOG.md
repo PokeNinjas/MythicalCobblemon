@@ -4,9 +4,7 @@
 ### Additions
 
 ### Model updates for the following Pokémon
-- Tinkatink
-- Tinkatuff
-- Tinkaton
+- Falinks
 
 ### Changes
 
