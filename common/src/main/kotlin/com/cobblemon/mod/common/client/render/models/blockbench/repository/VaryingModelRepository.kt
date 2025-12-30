@@ -422,7 +422,6 @@ object VaryingModelRepository {
         inbuilt("surskit", ::SurskitModel)
         inbuilt("masquerain", ::MasquerainModel)
         inbuilt("carnivine", ::CarnivineModel)
-        inbuilt("falinks", ::FalinksModel)
         inbuilt("stufful", ::StuffulModel)
         inbuilt("bewear", ::BewearModel)
         inbuilt("scatterbug", ::ScatterbugModel)
