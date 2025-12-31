@@ -31,7 +31,7 @@ open class WallAttachedDirectionalBlock(settings: Properties): HorizontalDirecti
     override fun codec(): MapCodec<out WallAttachedDirectionalBlock> = CODEC
 
     override fun createBlockStateDefinition(builder: StateDefinition.Builder<Block, BlockState>) {
-        builder.add(FACING, WATERLOGGED)
+        builder.add(HORIZONTAL_FACING, WATERLOGGED)
     }
 
     override fun getStateForPlacement(context: BlockPlaceContext): BlockState? {
@@ -42,7 +42,7 @@ open class WallAttachedDirectionalBlock(settings: Properties): HorizontalDirecti
 
         val fluidState = context.level.getFluidState(context.clickedPos)
         val blockState = this.defaultBlockState()
-            .setValue(FACING, direction)
+            .setValue(HORIZONTAL_FACING, direction)
             .setValue(WATERLOGGED, fluidState.type === Fluids.WATER
         ) as BlockState
 
@@ -60,12 +60,12 @@ open class WallAttachedDirectionalBlock(settings: Properties): HorizontalDirecti
         if (state.getValue(WATERLOGGED)) {
             world.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(world))
         }
-        return if (state.getValue(FACING).opposite == direction && !state.canSurvive(world, pos)) Blocks.AIR.defaultBlockState()
+        return if (state.getValue(HORIZONTAL_FACING).opposite == direction && !state.canSurvive(world, pos)) Blocks.AIR.defaultBlockState()
         else super.updateShape(state, direction, neighborState, world, pos, neighborPos)
     }
 
     override fun canSurvive(state: BlockState, level: LevelReader, pos: BlockPos): Boolean {
-        return canAttach(level, pos, state.getValue(FACING))
+        return canAttach(level, pos, state.getValue(HORIZONTAL_FACING))
     }
 
     fun canAttach(reader: LevelReader, pos: BlockPos, direction: Direction): Boolean {

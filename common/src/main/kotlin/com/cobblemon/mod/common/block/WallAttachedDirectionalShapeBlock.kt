@@ -26,27 +26,19 @@ class WallAttachedDirectionalShapeBlock(settings: Properties, val width: Int = 1
          * @return A VoxelShape.
          */
         fun convertToShape(sizeX: Int, sizeY: Int, sizeZ: Int): VoxelShape {
-            val clampedX = sizeX.coerceIn(0, 16)
-            val clampedY = sizeY.coerceIn(0, 16)
-            val clampedZ = sizeZ.coerceIn(0, 16)
+            val x = sizeX.coerceIn(0, 16).toDouble()
+            val y = sizeY.coerceIn(0, 16).toDouble()
+            val z = sizeZ.coerceIn(0, 16).toDouble()
 
-            val fromX = 8.0 - (clampedX / 2)
-            val toX = 8.0 + (clampedX / 2)
+            val minX = (8.0 - (x / 2.0)) / 16.0
+            val maxX = (8.0 + (x / 2.0)) / 16.0
 
-            val fromY = 8.0 - (clampedY / 2)
-            val toY = 8.0 + (clampedY / 2)
+            val minY = (8.0 - (y / 2.0)) / 16.0
+            val maxY = (8.0 + (y / 2.0)) / 16.0
 
-            val fromZ = 16.0 - clampedZ
-            val toZ = 16.0
+            val minZ = (16.0 - z) / 16.0
 
-            val minX = fromX / 16.0
-            val minY = fromY / 16.0
-            val minZ = fromZ / 16.0
-            val maxX = toX / 16.0
-            val maxY = toY / 16.0
-            val maxZ = toZ / 16.0
-
-            return Shapes.box(minX, minY, minZ, maxX, maxY, maxZ)
+            return Shapes.box(minX, minY, minZ, maxX, maxY, 1.0)
         }
     }
 
