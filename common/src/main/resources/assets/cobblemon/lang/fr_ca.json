@@ -9125,5 +9125,8 @@
     "cobblemon.ui.stats.blocks_traveled": "Pas",
     "tag.item.cobblemon.berries.colour.blue": "Baies bleues",
     "tag.item.cobblemon.berries.colour.magenta": "Baies magenta",
-    "tag.item.cobblemon.berries.colour.pink": "Baies roses"
+    "tag.item.cobblemon.berries.colour.pink": "Baies roses",
+    "tag.item.cobblemon.recipe_filters.poke_puff_seasoning": "Objets d'assaisonnement de Pofiteroles",
+    "tag.item.cobblemon.recipe_filters.tea_seasoning": "Objets d'assaisonnement de thé",
+    "cobblemon.ui.pokedex.info.form.furfrou-matcha": "Coupe Matcha"
 }
