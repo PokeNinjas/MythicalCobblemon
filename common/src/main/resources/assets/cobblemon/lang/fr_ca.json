@@ -9128,5 +9128,16 @@
     "tag.item.cobblemon.berries.colour.pink": "Baies roses",
     "tag.item.cobblemon.recipe_filters.poke_puff_seasoning": "Objets d'assaisonnement de Pofiteroles",
     "tag.item.cobblemon.recipe_filters.tea_seasoning": "Objets d'assaisonnement de thé",
-    "cobblemon.ui.pokedex.info.form.furfrou-matcha": "Coupe Matcha"
+    "cobblemon.ui.pokedex.info.form.furfrou-matcha": "Coupe Matcha",
+    "cobblemon.species.furfrou-rocker.desc": "Il fut un temps où la noblesse organisait des concours pour déterminer quel Couafarel arborait la plus belle coupe.",
+    "cobblemon.species.furfrou-matcha.desc": "Il fut un temps où la noblesse organisait des concours pour déterminer quel Couafarel arborait la plus belle coupe.",
+    "cobblemon.ui.pokedex.info.form.furfrou-lavender": "Coupe Lavande",
+    "cobblemon.species.furfrou-lavender.desc": "Il fut un temps où la noblesse organisait des concours pour déterminer quel Couafarel arborait la plus belle coupe.",
+    "cobblemon.ui.pokedex.info.form.furfrou-cinnamon": "Coupe Cannelle",
+    "cobblemon.species.furfrou-cinnamon.desc": "Il fut un temps où la noblesse organisait des concours pour déterminer quel Couafarel arborait la plus belle coupe.",
+    "cobblemon.ui.pokedex.info.form.furfrou-crusader": "Coupe Croisade",
+    "cobblemon.species.furfrou-crusader.desc": "Il fut un temps où la noblesse organisait des concours pour déterminer quel Couafarel arborait la plus belle coupe.",
+    "cobblemon.ui.pokedex.info.form.furfrou-rocker": "Coupe Rock",
+    "cobblemon.ui.pokedex.info.form.furfrou-mourner": "Coupe Deuil",
+    "cobblemon.species.furfrou-mourner.desc": "Il fut un temps où la noblesse organisait des concours pour déterminer quel Couafarel arborait la plus belle coupe."
 }
