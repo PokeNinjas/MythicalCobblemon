@@ -9123,5 +9123,6 @@
     "cobblemon.fishing_bait_effects.drops_reroll.tooltip": "%1$s%% - Relance des butins %3$s×",
     "cobblemon.requires_debug_keys": "Les touches de débogage doivent être activées sur le serveur pour utiliser cette fonctionnalité.",
     "cobblemon.ui.stats.blocks_traveled": "Pas",
-    "tag.item.cobblemon.berries.colour.blue": "Baies bleues"
+    "tag.item.cobblemon.berries.colour.blue": "Baies bleues",
+    "tag.item.cobblemon.berries.colour.magenta": "Baies magenta"
 }
