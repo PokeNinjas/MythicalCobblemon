@@ -9165,5 +9165,6 @@
     "stat.cobblemon.eggs_hatched": "Œufs de Pokémon éclos",
     "stat.cobblemon.evolved": "Pokémons évolués",
     "stat.cobblemon.fossils_revived": "Fossiles Pokémon ressuscités",
-    "stat.cobblemon.level_up": "Niveaux de Pokémon gagnés"
+    "stat.cobblemon.level_up": "Niveaux de Pokémon gagnés",
+    "stat.cobblemon.pokemon_interacted_with": "Interactions avec les Pokémons"
 }
