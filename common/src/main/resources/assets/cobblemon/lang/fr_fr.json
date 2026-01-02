@@ -9159,5 +9159,7 @@
     "stat.cobblemon.battles_lost": "Combats Pokémon perdus",
     "stat.cobblemon.battles_total": "Combats Pokémon totaux",
     "stat.cobblemon.battles_won": "Combats Pokémon gagnés",
-    "stat.cobblemon.captured": "Pokémon capturés"
+    "stat.cobblemon.captured": "Pokémon capturés",
+    "stat.cobblemon.dex_entries": "Entrées du Pokédex",
+    "stat.cobblemon.eggs_collected": "Œufs Pokémon Collectés"
 }
