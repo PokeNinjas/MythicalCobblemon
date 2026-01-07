@@ -107,7 +107,7 @@ class PartySlotWidget(
                 )
             }
 
-            val ballIcon = cobblemonResource("textures/gui/ball/" + slotPokemon.caughtBall.name.path + ".png")
+            val ballIcon = ResourceLocation.fromNamespaceAndPath(slotPokemon.caughtBall.name.namespace,"textures/gui/ball/" + slotPokemon.caughtBall.name.path + ".png")
             val ballHeight = 22
             blitk(
                 matrixStack = matrices,

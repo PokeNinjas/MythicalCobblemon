@@ -43,7 +43,8 @@
 - Added Saccharine Boats and Saccharine Boat with Chests to relevant boat tags.
 - Fixed the `run_script` Molang function to not fail if the environment's context is null.
 - Fixed the movesets of certain Pokémon being incorrectly sanitized upon reload.
-
+- Changed the resource location of pokeball icons in the gui to use the balls namespace instead of cobblemon, allowing mods to properly use their own name space for these textures
+- 
 ### Developer
 - Changed the `owner` parameter in the `OwnerQueryRequirement` interface from `ServerPlayer` to `Player`. This method is now also called on the client to verify whether a Pokémon interaction succeeded, so make sure to update your implementations to handle both server and client contexts. 
 
