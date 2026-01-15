@@ -492,8 +492,6 @@ object VaryingModelRepository {
         inbuilt("zigzagoon_galarian", :: ZigzagoonGalarianModel)
         inbuilt("linoone_galarian", :: LinooneGalarianModel)
         inbuilt("obstagoon", :: ObstagoonModel)
-        inbuilt("cottonee", :: CottoneeModel)
-        inbuilt("whimsicott", :: WhimsicottModel)
         inbuilt("wishiwashi_solo", :: WishiwashiSoloModel)
         inbuilt("wishiwashi_schooling", :: WishiwashiSchoolingModel)
         inbuilt("meowth_alolan", ::MeowthAlolanModel)
