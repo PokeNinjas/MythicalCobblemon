@@ -5,6 +5,8 @@
 
 ### Model updates for the following Pokémon
 - Falinks
+- Cottonee
+- Whimsicott
 
 ### Changes
 
