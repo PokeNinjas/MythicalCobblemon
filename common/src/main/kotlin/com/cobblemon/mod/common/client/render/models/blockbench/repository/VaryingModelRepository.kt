@@ -584,8 +584,6 @@ object VaryingModelRepository {
         inbuilt("makuhita", ::MakuhitaModel)
         inbuilt("hariyama", ::HariyamaModel)
         inbuilt("alomomola", ::AlomomolaModel)
-        inbuilt("ferroseed", ::FerroseedModel)
-        inbuilt("ferrothorn", ::FerrothornModel)
         inbuilt("carbink", ::CarbinkModel)
         inbuilt("goomy", ::GoomyModel)
         inbuilt("goomy_hisui_bias", ::GoomyHisuiBiasModel)

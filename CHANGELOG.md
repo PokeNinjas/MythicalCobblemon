@@ -7,6 +7,8 @@
 - Falinks
 - Cottonee
 - Whimsicott
+- Ferroseed
+- Ferrothorn
 
 ### Changes
 
