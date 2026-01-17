@@ -3,6 +3,7 @@
   "portraitTranslation": [-0.41,0.55,0],
   "profileScale": 0.39,
   "profileTranslation": [-0.08,0.9,-6],
+  "rootBone": "ferrothorn",
   "animations": {
     "cry": "q.bedrock_stateful('ferrothorn', 'cry')"
   },
