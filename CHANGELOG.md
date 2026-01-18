@@ -10,6 +10,12 @@
 - Ferroseed
 - Ferrothorn
 
+### Pokémon Added
+
+#### Gen 6
+- Swirlix
+- Slurpuff
+
 ### Changes
 
 ### Fixes
