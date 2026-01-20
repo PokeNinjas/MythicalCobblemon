@@ -47,7 +47,7 @@
       "isBattle": true,
       "animations": [
         "q.look('head_ai', 1, 1, 10, -10, 45, -45)",
-        "q.bedrock('honchkrow', 'ground_idle')",
+        "q.bedrock('honchkrow', 'battle_idle')",
         {
           "condition": "q.is_holding_item",
           "animation": "q.bedrock('honchkrow', 'hold_item')"
