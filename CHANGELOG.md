@@ -47,6 +47,7 @@
 - Added Saccharine Boats and Saccharine Boat with Chests to relevant boat tags.
 - Fixed the `run_script` Molang function to not fail if the environment's context is null.
 - Fixed issue #1917
+- Fixed issue #1917 
 - Fixed the movesets of certain Pokémon being incorrectly sanitized upon reload.
 - Fixed the ordering of Aprijuice's riding stat boosts to always have the same order.
 - Fixed the Molang functions `date_local_time`, `date_of`, `date_is_after` to use the correct date format.
@@ -62,6 +63,7 @@
 - Fixed Pokémon interactions occasionally crashing the game when spamming an interaction with a 0 cooldown.
 - Fixed Pokémon fullness decreasing more than intended when the Pokémon was pastured.
 - Fixed crashing when sending a Pokémon out after editing its form
+- Fixed crashing when sending a Pokémon out after editing its form 
 - Fixed Super Potion recipes incorrectly using Hondew Berry instead of Aguav Berry.
 - Fixed `/calculateseatpositions` expecting a locator format that even we don't use. It needs an underscore after "seat".
 - Fixed invulnerability-bypassed damage being resisted by invulnerable NPC entities.
