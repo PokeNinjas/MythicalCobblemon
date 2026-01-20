@@ -13,6 +13,8 @@
 ### Pokémon Added
 
 #### Gen 6
+- Litleo
+- Pyroar
 - Spritzee
 - Aromatisse
 - Swirlix
