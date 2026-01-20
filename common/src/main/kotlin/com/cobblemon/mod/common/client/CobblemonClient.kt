@@ -337,7 +337,30 @@ object CobblemonClient {
             CobblemonBlocks.MAGENTA_PLAQUE,
             CobblemonBlocks.PINK_PLAQUE,
             CobblemonBlocks.BLUNDER_POLICY,
-            CobblemonBlocks.WEAKNESS_POLICY
+            CobblemonBlocks.WEAKNESS_POLICY,
+            CobblemonBlocks.POTION,
+            CobblemonBlocks.SUPER_POTION,
+            CobblemonBlocks.HYPER_POTION,
+            CobblemonBlocks.MAX_POTION,
+            CobblemonBlocks.FULL_RESTORE,
+            CobblemonBlocks.ANTIDOTE,
+            CobblemonBlocks.AWAKENING,
+            CobblemonBlocks.BURN_HEAL,
+            CobblemonBlocks.ICE_HEAL,
+            CobblemonBlocks.PARALYZE_HEAL,
+            CobblemonBlocks.FULL_HEAL,
+            CobblemonBlocks.ETHER,
+            CobblemonBlocks.MAX_ETHER,
+            CobblemonBlocks.ELIXIR,
+            CobblemonBlocks.MAX_ELIXIR,
+            CobblemonBlocks.DIRE_HIT,
+            CobblemonBlocks.GUARD_SPEC,
+            CobblemonBlocks.X_ACCURACY,
+            CobblemonBlocks.X_ATTACK,
+            CobblemonBlocks.X_DEFENSE,
+            CobblemonBlocks.X_SP_ATK,
+            CobblemonBlocks.X_SP_DEF,
+            CobblemonBlocks.X_SPEED
         )
 
         this.createBoatModelLayers()
