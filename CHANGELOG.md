@@ -102,6 +102,7 @@
 - Fixed memory leak from battles not being cleaned up after ending.
 - Fixed Galarian Weezing crashing the world if it decides to blink the wrong way.
 - Fixed Wishiwashi not schooling properly
+- Fixed PokeSnack/Bait effects so EV Yield, Type, and Egg Group filters now all apply together when weighting spawns
 
 ### Developer
 - Changed the `owner` parameter in the `OwnerQueryRequirement` interface from `ServerPlayer` to `Player`. This method is now also called on the client to verify whether a Pokémon interaction succeeded, so make sure to update your implementations to handle both server and client contexts.
