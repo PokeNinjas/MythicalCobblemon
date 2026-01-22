@@ -42,6 +42,8 @@
 - Aromatisse
 - Swirlix
 - Slurpuff
+- Added block models for existing items: Potion, Super Potion, Hyper Potion, Max Potion, Full Restore, Antidote, Awakening, Burn Heal, Ice Heal, Paralyze Heal, Full Heal, Ether, Elixir, Max Ether, Max Elixir, X Accuracy, X Attack, X Defence, X Special Attack, X Special Defence, X Speed, Dire Hit, Guard Spec, Weakness Policy, Blunder Policy, Cleanse Tag, and Spell Tag.
+- Added decorative sign blocks, Plaques.
 
 ### Changes
 - Ride sounds have been separated into stereo for passengers and mono for other players. Riding will now sound more spacious.
@@ -52,7 +54,7 @@
   - Example: `this.add('-activate', pokemon, 'ability: example', '[msg]message1');` will parse to lang key `cobblemon.battle.activate.example.message1`
 
 ### Fixes
-- Fixed an issue in the OmniPathNodeMaker/Navigation that prevented Combees from pathing into and out of Saccharine leaves.
+- Fixed an issue in the OmniPathNodeMaker/Navigation that prevented Combee from pathing into and out of Saccharine Leaves.
 - Fixed orientation not getting reset after crashing while flying and getting back on the Pokémon.
 - Fixed Furfrou not being trimmable on NeoForge.
 - Fixed shiny Pokémon not respecting the silent flag on spawn.
@@ -66,19 +68,27 @@
 - Fixed missing apricorn textures for Adorn blocks
 - Fixed crashing when riding due to malformed json file, instead resetting it
 - Fixed mochi items consuming two items at a time
+- Fix all Pokémon being saved to chunks and never despawning.
+- Fixed possible error on world generation when Combee are placed in naturally generated bee nests.
+- Fixed Poké Snacks crashing if there was no available spawn.
+- Fixed Pokémon spawn influences not being specific to regional forms.
+- Fixed crashing when viewing another player in spectator mode.
+- Fixed missing apricorn textures for Adorn blocks.
+- Fixed crashing when riding due to malformed json file instead of resetting it.
+- Fixed mochi items consuming two items at a time.
 - Fix item interaction sometimes not working properly when playing on servers.
 - Fixed Soothe Bell not being properly tagged as a held item.
 - Fixed Mint Leaves not being usable for filling the Resurrection Machine.
 - Added Saccharine Boats and Saccharine Boat with Chests to relevant boat tags.
 - Fixed the `run_script` Molang function to not fail if the environment's context is null.
-- Fixed issue #1917 
+- Fixed battle item duplication issue.
 - Fixed the movesets of certain Pokémon being incorrectly sanitized upon reload.
 - Fixed the ordering of Aprijuice's riding stat boosts to always have the same order.
 - Fixed the Molang functions `date_local_time`, `date_of`, `date_is_after` to use the correct date format.
 - Fixed the bottom half of pasture blocks having an incorrect hit-box when facing north or south.
 - Fixed Galarian Mr. Mime incorrectly being rideable.
-- Fixed gimmicks not being usable in double / triple battles
-- Fixed gimmick buttons showing when already used in the same turn in double / triple battles
+- Fixed gimmicks not being usable in double / triple battles.
+- Fixed gimmick buttons showing when already used in the same turn in double / triple battles.
 - Fixed Apricorn block model rotation for counters/sinks/cupboards/drawers to match that of most recent version of Adorn.
 - Fixed Fresh Start Mochi EV reset not syncing health changes properly.
 - Fixed requirements such as `biomeCondition` crashing the game when used to define Pokémon interactions.
@@ -86,7 +96,7 @@
 - Fixed Pokémon interaction cooldowns taking longer than intended when the Pokémon was in the player’s party.
 - Fixed Pokémon interactions occasionally crashing the game when spamming an interaction with a 0 cooldown.
 - Fixed Pokémon fullness decreasing more than intended when the Pokémon was pastured.
-- Fixed crashing when sending a Pokémon out after editing its form 
+- Fixed crashing when sending a Pokémon out after editing its form.
 - Fixed Super Potion recipes incorrectly using Hondew Berry instead of Aguav Berry.
 - Fixed `/calculateseatpositions` expecting a locator format that even we don't use. It needs an underscore after "seat".
 - Fixed invulnerability-bypassed damage being resisted by invulnerable NPC entities.
@@ -105,8 +115,8 @@
 - Added `display_name`, `description`, and `max_pp` functions to the `Movetemplate` struct.
 
 ### Molang & Datapacks
-- Ride sounds can now be set as exclusive to passengers
-- Ride sounds no longer play when submerged unless specified with a new setting
+- Ride sounds can now be set as exclusive to passengers.
+- Ride sounds no longer play when submerged unless specified with a new setting.
 - Exception handling has been added to `run_molang`, resolving some crashes caused by malformed MoLang expressions.
 - Added the `create_itemstack`, `has_inventory_space`, `set_inventory_slot`, and `give_item` MoLang functions for item and inventory utility.
 - Added the `get_move_from_id` MoLang function for general move info queries without requiring a Moveset object to access.
