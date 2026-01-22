@@ -31,8 +31,7 @@ open class PokemonBattleActor(
     artificialDecider: BattleAI = RandomBattleAI(),
 ) : AIBattleActor(uuid, listOf(pokemon), artificialDecider), EntityBackedBattleActor<PokemonEntity>, FleeableBattleActor {
 
-    override val initialPos: Vec3?
-        get() = entity?.position()
+    override val initialPos: Vec3? = pokemon.entity?.position()
     override fun getName() = pokemon.effectedPokemon.species.translatedName
     override fun nameOwned(name: String): MutableComponent = Component.literal(name)
     override fun getWorldAndPosition(): Pair<ServerLevel, Vec3>? {
