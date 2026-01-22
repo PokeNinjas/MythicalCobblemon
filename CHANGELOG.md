@@ -9,6 +9,8 @@
 - Whimsicott
 - Ferroseed
 - Ferrothorn
+- Chingling
+- Chimecho
 
 ### Pokémon Added
 
