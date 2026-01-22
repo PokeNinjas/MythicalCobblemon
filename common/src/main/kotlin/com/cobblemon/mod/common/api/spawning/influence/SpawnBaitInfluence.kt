@@ -50,6 +50,7 @@ open class SpawnBaitInfluence(val effects: List<SpawnBait.Effect>, val onUsed: (
         }
     }
 
+    // EV, Type, and Egg Group related bait effects
     override fun affectWeight(detail: SpawnDetail, spawnablePosition: SpawnablePosition, weight: Float): Float {
         val merged = SpawnBaitUtils.mergeEffects(effects)
 
