@@ -26,7 +26,7 @@ import net.minecraft.world.entity.Entity
 /**
  * A [SpawningInfluence] that applies some number of SpawnBait effects.
  *
- * @author Hiroku, Plastered_Crab
+ * @author Hiroku, Plastered_Crab, ppVon
  * @since March 18th, 2025
  */
 open class SpawnBaitInfluence(val effects: List<SpawnBait.Effect>, val onUsed: (time: Int, entity: PokemonEntity?) -> Unit = { _, _ -> }) : SpawningInfluence {
@@ -53,6 +53,15 @@ open class SpawnBaitInfluence(val effects: List<SpawnBait.Effect>, val onUsed: (
     // EV, Type, and Egg Group related bait effects
     override fun affectWeight(detail: SpawnDetail, spawnablePosition: SpawnablePosition, weight: Float): Float {
         val merged = SpawnBaitUtils.mergeEffects(effects)
+
+        val hasRelevantEffects =
+            merged.any { it.type == Effects.EV } ||
+            merged.any { it.type == Effects.TYPING } ||
+            merged.any { it.type == Effects.EGG_GROUP }
+
+        if (!hasRelevantEffects) {
+            return super.affectWeight(detail, spawnablePosition, weight)
+        }
 
         val pokemonDetail = detail as? PokemonSpawnDetail
             ?: return super.affectWeight(detail, spawnablePosition, weight)
