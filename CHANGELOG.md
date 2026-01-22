@@ -20,6 +20,25 @@
   - washing honey off Saccharine Slathered Logs.
   - applying & removing honey on Saccharine Leaves.
 
+### Model updates for the following Pokémon
+- Falinks
+- Cottonee
+- Whimsicott
+- Ferroseed
+- Ferrothorn
+- Chingling
+- Chimecho
+
+### Pokémon Added
+
+#### Gen 6
+- Litleo
+- Pyroar
+- Spritzee
+- Aromatisse
+- Swirlix
+- Slurpuff
+
 ### Changes
 - Ride sounds have been separated into stereo for passengers and mono for other players. Riding will now sound more spacious.
 - Added a new config option, `Enable In-Flight Dismounting` (default: off), which lets you dismount while riding a Pokémon in the air.
@@ -71,6 +90,8 @@
 - Fixed killer not being set early enough on a wild wild Pokémon entity from WinInstruction.
 - Fixed an issue that prevented registering custom dispenser behaviours (no longer overrides vanilla behaviour).
 - Fixed memory leak from battles not being cleaned up after ending.
+- Fix Galarian Weezing crashing the world if it decides to blink the wrong way.
+- Fixed Wishiwashi not schooling properly
 
 ### Developer
 - Changed the `owner` parameter in the `OwnerQueryRequirement` interface from `ServerPlayer` to `Player`. This method is now also called on the client to verify whether a Pokémon interaction succeeded, so make sure to update your implementations to handle both server and client contexts.
