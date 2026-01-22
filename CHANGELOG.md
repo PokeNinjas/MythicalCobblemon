@@ -109,6 +109,7 @@
 - Added register methods for custom instructions to `ShowdownInterpreter`.
 - Changed callback operations in `BattlePokemon` to allow multiple callbacks and is now mutable.
 - Added `display_name`, `description`, and `max_pp` functions to the `Movetemplate` struct.
+- Changed the implementations of `AIBattleActor` to be open classes to allow extension.
 
 ### Molang & Datapacks
 - Ride sounds can now be set as exclusive to passengers.
