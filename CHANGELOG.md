@@ -31,6 +31,10 @@
 
 ### Pokémon Added
 
+#### Gen 
+- Throh
+- Sawk
+
 #### Gen 6
 - Litleo
 - Pyroar
@@ -54,7 +58,7 @@
 - Fixed shiny Pokémon not respecting the silent flag on spawn.
 - Fixed honey from Saccharine Leaves being harvestable at less than the max age.
 - Items given from interacting with Saccharine Leaves are placed in the active hotbar slot if possible.
-- Fix all Pokémon being saved to chunks and never despawning.
+- Fixed all Pokémon being saved to chunks and never despawning.
 - Fixed possible error on world generation when Combees are placed in naturally generated bee nests.
 - Fixed PokeSnacks crashing if there was no available spawn.
 - Fixed Pokémon spawn influences not being specific to regional forms
@@ -90,7 +94,7 @@
 - Fixed killer not being set early enough on a wild wild Pokémon entity from WinInstruction.
 - Fixed an issue that prevented registering custom dispenser behaviours (no longer overrides vanilla behaviour).
 - Fixed memory leak from battles not being cleaned up after ending.
-- Fix Galarian Weezing crashing the world if it decides to blink the wrong way.
+- Fixed Galarian Weezing crashing the world if it decides to blink the wrong way.
 - Fixed Wishiwashi not schooling properly
 
 ### Developer
@@ -98,7 +102,6 @@
 - Added `pnx` to the `BattleFaintedEvent` and `FormeChangeEvent`.
 - Added register methods for custom instructions to `ShowdownInterpreter`.
 - Changed callback operations in `BattlePokemon` to allow multiple callbacks and is now mutable.
-- Changed the `owner` parameter in the `OwnerQueryRequirement` interface from `ServerPlayer` to `Player`. This method is now also called on the client to verify whether a Pokémon interaction succeeded, so make sure to update your implementations to handle both server and client contexts. 
 - Added `display_name`, `description`, and `max_pp` functions to the `Movetemplate` struct.
 
 ### Molang & Datapacks
