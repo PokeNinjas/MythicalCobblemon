@@ -19,6 +19,8 @@
   - Applying a Honey Bottle to Saccharine Logs.
   - washing honey off Saccharine Slathered Logs.
   - applying & removing honey on Saccharine Leaves.
+- Added block models for existing items: Potion, Super Potion, Hyper Potion, Max Potion, Full Restore, Antidote, Awakening, Burn Heal, Ice Heal, Paralyze Heal, Full Heal, Ether, Elixir, Max Ether, Max Elixir, X Accuracy, X Attack, X Defence, X Special Attack, X Special Defence, X Speed, Dire Hit, Guard Spec, Weakness Policy, Blunder Policy, Cleanse Tag, and Spell Tag.
+- Added decorative sign blocks, Plaques.
 
 ### Model updates for the following Pokémon
 - Falinks
@@ -28,6 +30,10 @@
 - Ferrothorn
 - Chingling
 - Chimecho
+
+### New rideable Pokémon
+- Honchkrow 
+- Mantine
 
 ### Pokémon Added
 
@@ -42,8 +48,6 @@
 - Aromatisse
 - Swirlix
 - Slurpuff
-- Added block models for existing items: Potion, Super Potion, Hyper Potion, Max Potion, Full Restore, Antidote, Awakening, Burn Heal, Ice Heal, Paralyze Heal, Full Heal, Ether, Elixir, Max Ether, Max Elixir, X Accuracy, X Attack, X Defence, X Special Attack, X Special Defence, X Speed, Dire Hit, Guard Spec, Weakness Policy, Blunder Policy, Cleanse Tag, and Spell Tag.
-- Added decorative sign blocks, Plaques.
 
 ### Changes
 - Ride sounds have been separated into stereo for passengers and mono for other players. Riding will now sound more spacious.
@@ -60,14 +64,6 @@
 - Fixed shiny Pokémon not respecting the silent flag on spawn.
 - Fixed honey from Saccharine Leaves being harvestable at less than the max age.
 - Items given from interacting with Saccharine Leaves are placed in the active hotbar slot if possible.
-- Fixed all Pokémon being saved to chunks and never despawning.
-- Fixed possible error on world generation when Combees are placed in naturally generated bee nests.
-- Fixed PokeSnacks crashing if there was no available spawn.
-- Fixed Pokémon spawn influences not being specific to regional forms
-- Fixed crashing when viewing another player in spectator mode
-- Fixed missing apricorn textures for Adorn blocks
-- Fixed crashing when riding due to malformed json file, instead resetting it
-- Fixed mochi items consuming two items at a time
 - Fix all Pokémon being saved to chunks and never despawning.
 - Fixed possible error on world generation when Combee are placed in naturally generated bee nests.
 - Fixed Poké Snacks crashing if there was no available spawn.
