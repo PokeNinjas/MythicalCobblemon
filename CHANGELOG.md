@@ -12,6 +12,13 @@
 - Chingling
 - Chimecho
 
+### Animation updates for the following Pokémon
+- Mantine (ride animations)
+- Flygon (ride_jump)
+- Honchkrow (ride animations)
+- Croagunk
+- Toxicroak
+
 ### Pokémon Added
 
 #### Gen 6
