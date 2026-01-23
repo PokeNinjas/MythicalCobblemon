@@ -349,16 +349,6 @@ class StatWidget(
                         scale = SCALE
                     )
 
-//                    drawScaledText(
-//                        context = context,
-//                        font = CobblemonResources.DEFAULT_LARGE,
-//                        text = lang("ui.ride_style.${selectedBehaviour.key.name.lowercase()}").bold(),
-//                        x = x + (WIDTH / 2),
-//                        y = y + 66,
-//                        shadow = true,
-//                        centered = true
-//                    )
-
                     // Stat Labels
                     renderPolygonLabels(
                         context = context,
