@@ -53,6 +53,7 @@
 - Fixed Boltund's model
 - Fixed Cyclizar's textures
 - Fixed Furfrou's pink and magenta trims being swapped
+- Fixed Scraggy line, Milcery line, and Morpeko spawning on unnatural blocks. 
 
 ### Developer
 
