@@ -14,7 +14,7 @@
 	  "#minecraft:wool_carpets"
 	],
 	"neededNearbyBlocks": [
-	  "#cobblemon:mansion_blocks"
+	  "#cobblemon:mansion_bedroom_blocks"
 	]
   }
 }

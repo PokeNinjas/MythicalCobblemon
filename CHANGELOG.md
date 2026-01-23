@@ -58,6 +58,7 @@
   - Example: `this.add('-activate', pokemon, 'ability: example', '[msg]message1');` will parse to lang key `cobblemon.battle.activate.example.message1`
 
 ### Fixes
+- Fixed Scraggy line, Milcery line, and Morpeko spawning on unnatural blocks. 
 - Fixed an issue in the OmniPathNodeMaker/Navigation that prevented Combee from pathing into and out of Saccharine Leaves.
 - Fixed orientation not getting reset after crashing while flying and getting back on the Pokémon.
 - Fixed Furfrou not being trimmable on NeoForge.

@@ -4,13 +4,31 @@
     "neededUninstalledMods": [],
     "spawns": [
         {
-            "id": "milcery-1",
-            "pokemon": "milcery",
+            "id": "slurpuff-4",
+            "pokemon": "slurpuff",
+            "presets": [
+                "mansion_dining"
+            ],
             "type": "pokemon",
             "spawnablePositionType": "grounded",
             "bucket": "common",
-            "level": "2-27",
-            "weight": 9.5,
+            "level": "29-48",
+            "weight": 0.3,
+            "condition": {
+                "canSeeSky": false,
+                "biomes": [
+                    "#cobblemon:is_overworld"
+                ]
+            }
+        },
+        {
+            "id": "slurpuff-1",
+            "pokemon": "slurpuff",
+            "type": "pokemon",
+            "spawnablePositionType": "grounded",
+            "bucket": "common",
+            "level": "29-48",
+            "weight": 0.5,
             "condition": {
                 "biomes": [
                     "#aether:is_aether",
@@ -22,51 +40,22 @@
             },
             "anticondition": {
                 "neededNearbyBlocks": [
-                    "minecraft:sugar_cane",
-                    "#cobblemon:saccharine_trees"
-                ]
-            }
-        },
-        {
-            "id": "milcery-2",
-            "pokemon": "milcery",
-            "presets": [
-                "natural"
-            ],
-            "type": "pokemon",
-            "spawnablePositionType": "grounded",
-            "bucket": "common",
-            "level": "2-27",
-            "weight": 1.9,
-            "condition": {
-                "minSkyLight": 8,
-                "maxSkyLight": 15,
-                "biomes": [
-                    "#aether:is_aether",
-                    "#cobblemon:is_overworld"
-                ],
-                "neededNearbyBlocks": [
-                    "#cobblemon:saccharine_trees"
-                ]
-            },
-            "anticondition": {
-                "neededNearbyBlocks": [
-                    "minecraft:cake",
+                    "#cobblemon:saccharine_trees",
                     "minecraft:sugar_cane"
                 ]
             }
         },
         {
-            "id": "milcery-3",
-            "pokemon": "milcery",
+            "id": "slurpuff-2",
+            "pokemon": "slurpuff",
             "presets": [
                 "natural"
             ],
             "type": "pokemon",
             "spawnablePositionType": "grounded",
             "bucket": "uncommon",
-            "level": "2-27",
-            "weight": 1.84,
+            "level": "29-48",
+            "weight": 0.48,
             "condition": {
                 "minSkyLight": 8,
                 "maxSkyLight": 15,
@@ -80,26 +69,37 @@
             },
             "anticondition": {
                 "neededNearbyBlocks": [
-                    "minecraft:cake",
-                    "#cobblemon:saccharine_trees"
+                    "#cobblemon:saccharine_trees",
+                    "minecraft:cake"
                 ]
             }
         },
         {
-            "id": "milcery-4",
-            "pokemon": "milcery",
+            "id": "slurpuff-3",
+            "pokemon": "slurpuff",
             "presets": [
-                "mansion_dining"
+                "natural"
             ],
             "type": "pokemon",
             "spawnablePositionType": "grounded",
             "bucket": "common",
-            "level": "2-27",
-            "weight": 1.9,
+            "level": "29-48",
+            "weight": 0.3,
             "condition": {
-                "canSeeSky": false,
+                "minSkyLight": 8,
+                "maxSkyLight": 15,
                 "biomes": [
+                    "#aether:is_aether",
                     "#cobblemon:is_overworld"
+                ],
+                "neededNearbyBlocks": [
+                    "#cobblemon:saccharine_trees"
+                ]
+            },
+            "anticondition": {
+                "neededNearbyBlocks": [
+                    "minecraft:cake",
+                    "minecraft:sugar_cane"
                 ]
             }
         }
