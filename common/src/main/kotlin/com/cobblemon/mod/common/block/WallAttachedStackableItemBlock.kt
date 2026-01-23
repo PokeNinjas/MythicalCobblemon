@@ -8,8 +8,6 @@
 
 package com.cobblemon.mod.common.block
 
-import com.cobblemon.mod.common.block.StackableItemBlock.Companion.AMOUNT
-import com.cobblemon.mod.common.block.StackableItemBlock.Companion.MAX_AMOUNT
 import com.cobblemon.mod.common.util.rotateShape
 import com.mojang.serialization.MapCodec
 import com.mojang.serialization.codecs.RecordCodecBuilder
@@ -23,6 +21,7 @@ import net.minecraft.world.level.block.state.BlockState
 import net.minecraft.world.level.block.state.StateDefinition
 import net.minecraft.world.level.block.state.properties.BlockStateProperties.HORIZONTAL_FACING
 import net.minecraft.world.level.block.state.properties.BlockStateProperties.WATERLOGGED
+import net.minecraft.world.level.block.state.properties.IntegerProperty
 import net.minecraft.world.phys.shapes.CollisionContext
 import net.minecraft.world.phys.shapes.Shapes
 import net.minecraft.world.phys.shapes.VoxelShape
@@ -40,6 +39,9 @@ class WallAttachedStackableItemBlock(settings: Properties, val type: WallStackab
     }
 
     companion object {
+        val MAX_AMOUNT: Int = 8
+        val AMOUNT: IntegerProperty = IntegerProperty.create("amount", 1, MAX_AMOUNT)
+
         val CODEC: MapCodec<WallAttachedStackableItemBlock> = RecordCodecBuilder.mapCodec { it.group(
             propertiesCodec(),
             WallStackableItemBlockType.CODEC.fieldOf("type").forGetter(WallAttachedStackableItemBlock::type)

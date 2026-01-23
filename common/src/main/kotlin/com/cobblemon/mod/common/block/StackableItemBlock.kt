@@ -16,7 +16,9 @@ import net.minecraft.core.Direction
 import net.minecraft.util.StringRepresentable
 import net.minecraft.world.item.context.BlockPlaceContext
 import net.minecraft.world.level.BlockGetter
+import net.minecraft.world.level.LevelAccessor
 import net.minecraft.world.level.block.Block
+import net.minecraft.world.level.block.Blocks
 import net.minecraft.world.level.block.HorizontalDirectionalBlock
 import net.minecraft.world.level.block.SimpleWaterloggedBlock
 import net.minecraft.world.level.block.state.BlockState
@@ -24,6 +26,8 @@ import net.minecraft.world.level.block.state.StateDefinition
 import net.minecraft.world.level.block.state.properties.BlockStateProperties.HORIZONTAL_FACING
 import net.minecraft.world.level.block.state.properties.BlockStateProperties.WATERLOGGED
 import net.minecraft.world.level.block.state.properties.IntegerProperty
+import net.minecraft.world.level.material.FluidState
+import net.minecraft.world.level.material.Fluids
 import net.minecraft.world.phys.shapes.CollisionContext
 import net.minecraft.world.phys.shapes.Shapes
 import net.minecraft.world.phys.shapes.VoxelShape
@@ -45,7 +49,7 @@ class StackableItemBlock(settings: Properties, val type: StackableItemBlockType)
     }
 
     companion object {
-        val MAX_AMOUNT: Int = 8
+        val MAX_AMOUNT: Int = 4
         val AMOUNT: IntegerProperty = IntegerProperty.create("amount", 1, MAX_AMOUNT)
 
         val CODEC: MapCodec<StackableItemBlock> = RecordCodecBuilder.mapCodec { it.group(
@@ -163,6 +167,16 @@ class StackableItemBlock(settings: Properties, val type: StackableItemBlockType)
         builder.add(HORIZONTAL_FACING, AMOUNT, WATERLOGGED)
     }
 
+    override fun getFluidState(blockState: BlockState): FluidState? = if (blockState.getValue(WATERLOGGED)) Fluids.WATER.getSource(false) else super.getFluidState(blockState)
+
+    override fun updateShape(state: BlockState, direction: Direction, neighborState: BlockState, world: LevelAccessor, pos: BlockPos, neighborPos: BlockPos): BlockState {
+        if (state.getValue(WATERLOGGED)) {
+            world.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(world))
+        }
+        return if (state.getValue(HORIZONTAL_FACING).opposite == direction && !state.canSurvive(world, pos)) Blocks.AIR.defaultBlockState()
+        else super.updateShape(state, direction, neighborState, world, pos, neighborPos)
+    }
+
     override fun getCollisionShape(state: BlockState, level: BlockGetter, pos: BlockPos, context: CollisionContext): VoxelShape {
         val direction = state.getValue(HORIZONTAL_FACING)
         val count = state.getValue(AMOUNT)
@@ -175,8 +189,9 @@ class StackableItemBlock(settings: Properties, val type: StackableItemBlockType)
 
     override fun getStateForPlacement(context: BlockPlaceContext): BlockState? {
         val blockState = context.level.getBlockState(context.clickedPos)
+        val fluidState = context.level.getFluidState(context.clickedPos)
         return if (blockState.`is`(this)) blockState.setValue(AMOUNT, min(getMaxAmount(type), (blockState.getValue(AMOUNT) + 1)))
-            else super.getStateForPlacement(context)?.setValue(HORIZONTAL_FACING, context.horizontalDirection.opposite)
+            else super.getStateForPlacement(context)?.setValue(HORIZONTAL_FACING, context.horizontalDirection.opposite)?.setValue(WATERLOGGED, fluidState.type === Fluids.WATER)
     }
 
     override fun canBeReplaced(state: BlockState, useContext: BlockPlaceContext): Boolean {

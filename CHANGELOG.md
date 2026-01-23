@@ -19,6 +19,8 @@
   - Applying a Honey Bottle to Saccharine Logs.
   - washing honey off Saccharine Slathered Logs.
   - applying & removing honey on Saccharine Leaves.
+- Added ride style labels to ride stats in Pokédex.
+- Added ride style icons to ride stats in summary.
 - Added block models for existing items: Potion, Super Potion, Hyper Potion, Max Potion, Full Restore, Antidote, Awakening, Burn Heal, Ice Heal, Paralyze Heal, Full Heal, Ether, Elixir, Max Ether, Max Elixir, X Accuracy, X Attack, X Defence, X Special Attack, X Special Defence, X Speed, Dire Hit, Guard Spec, Weakness Policy, Blunder Policy, Cleanse Tag, and Spell Tag.
 - Added decorative sign blocks, Plaques.
 
