@@ -127,3 +127,6 @@
 
 ### Localization
 - Updated translations for:
+  - French
+  - Canadian French
+  - Simplified Chinese
