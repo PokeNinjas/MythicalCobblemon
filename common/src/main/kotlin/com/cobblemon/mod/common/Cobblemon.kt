@@ -42,8 +42,8 @@ import com.cobblemon.mod.common.api.scheduling.ServerRealTimeTaskTracker
 import com.cobblemon.mod.common.api.scheduling.ServerTaskTracker
 import com.cobblemon.mod.common.api.spawning.BestSpawner
 import com.cobblemon.mod.common.api.spawning.CobblemonSpawningZoneGenerator
-import com.cobblemon.mod.common.api.spawning.position.AreaSpawnablePositionResolver
 import com.cobblemon.mod.common.api.spawning.SpawningZoneGenerator
+import com.cobblemon.mod.common.api.spawning.position.AreaSpawnablePositionResolver
 import com.cobblemon.mod.common.api.starter.StarterHandler
 import com.cobblemon.mod.common.api.stats.CobblemonStats
 import com.cobblemon.mod.common.api.storage.PokemonStoreManager
@@ -68,7 +68,7 @@ import com.cobblemon.mod.common.api.tags.CobblemonItemTags
 import com.cobblemon.mod.common.battles.*
 import com.cobblemon.mod.common.battles.actor.PokemonBattleActor
 import com.cobblemon.mod.common.battles.pokemon.BattlePokemon
-import com.cobblemon.mod.common.block.DispenserBehaviorRegistry
+import com.cobblemon.mod.common.block.dispenser.DispenserBehaviorRegistry
 import com.cobblemon.mod.common.client.CobblemonPack
 import com.cobblemon.mod.common.command.argument.*
 import com.cobblemon.mod.common.config.CobblemonConfig
@@ -76,12 +76,7 @@ import com.cobblemon.mod.common.config.LastChangedVersion
 import com.cobblemon.mod.common.config.constraint.IntConstraint
 import com.cobblemon.mod.common.config.starter.StarterConfig
 import com.cobblemon.mod.common.data.CobblemonDataProvider
-import com.cobblemon.mod.common.events.AdvancementHandler
-import com.cobblemon.mod.common.events.EntityCallbackHandler
-import com.cobblemon.mod.common.events.CallbackHandler
-import com.cobblemon.mod.common.events.PokedexHandler
-import com.cobblemon.mod.common.events.ServerTickHandler
-import com.cobblemon.mod.common.events.StatHandler
+import com.cobblemon.mod.common.events.*
 import com.cobblemon.mod.common.net.messages.client.settings.ServerSettingsPacket
 import com.cobblemon.mod.common.permission.LaxPermissionValidator
 import com.cobblemon.mod.common.platform.events.PlatformEvents
@@ -96,7 +91,7 @@ import com.cobblemon.mod.common.pokemon.feature.SlowpokeTailRegrowthSpeciesFeatu
 import com.cobblemon.mod.common.pokemon.feature.TagSeasonResolver
 import com.cobblemon.mod.common.pokemon.helditem.CobblemonHeldItemManager
 import com.cobblemon.mod.common.pokemon.properties.*
-import com.cobblemon.mod.common.pokemon.properties.tags.PokemonFlagProperty
+import com.cobblemon.mod.common.pokemon.properties.LabelProperty
 import com.cobblemon.mod.common.pokemon.stat.CobblemonStatProvider
 import com.cobblemon.mod.common.starter.CobblemonStarterHandler
 import com.cobblemon.mod.common.util.*
@@ -206,6 +201,7 @@ object Cobblemon {
         implementation.registerEntityDataSerializers()
         implementation.registerCriteria()
         implementation.registerEntitySubPredicates()
+        implementation.registerMobEffects()
         DispenserBehaviorRegistry.registerDispenserBehaviors()
 
         DropEntry.register("command", CommandDropEntry::class.java)
@@ -319,7 +315,7 @@ object Cobblemon {
 
         CustomPokemonProperty.register(UncatchableProperty)
         CustomPokemonProperty.register(BattleCloneProperty)
-        CustomPokemonProperty.register(PokemonFlagProperty)
+        CustomPokemonProperty.register(LabelProperty)
         CustomPokemonProperty.register(HiddenAbilityPropertyType)
         CustomPokemonProperty.register(AspectPropertyType)
         CustomPokemonProperty.register(UnaspectPropertyType)
