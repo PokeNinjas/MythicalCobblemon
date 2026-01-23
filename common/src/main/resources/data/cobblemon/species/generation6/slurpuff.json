@@ -1,4 +1,5 @@
 {
+  "implemented": true,
   "nationalPokedexNumber": 685,
   "name": "Slurpuff",
   "primaryType": "fairy",
@@ -40,7 +41,7 @@
   "catchRate": 140,
   "eggCycles": 20,
   "baseFriendship": 50,
-  "baseScale": 0.65,
+  "baseScale": 0.7,
   "standingEyeHeight": 0.7,
   "hitbox": {
     "width": 1.2,
