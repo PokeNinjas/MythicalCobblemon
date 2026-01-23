@@ -19,6 +19,7 @@
   - Applying a Honey Bottle to Saccharine Logs.
   - washing honey off Saccharine Slathered Logs.
   - applying & removing honey on Saccharine Leaves.
+- Added ride style icons to ride stats in summary. 
 
 ### Changes
 - Ride sounds have been separated into stereo for passengers and mono for other players. Riding will now sound more spacious.
