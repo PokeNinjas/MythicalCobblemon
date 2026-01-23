@@ -31,7 +31,7 @@ object CobblemonNeoForgeNetworkManager : NetworkManager {
         val netRegistrar = event
             .registrar(Cobblemon.MODID)
             .versioned(PROTOCOL_VERSION)
-            .executesOn(HandlerThread.NETWORK)
+            .executesOn(HandlerThread.MAIN)
 
         val syncPackets = HashSet<ResourceLocation>()
         val asyncPackets = HashSet<ResourceLocation>()
