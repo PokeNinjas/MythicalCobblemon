@@ -51,6 +51,25 @@
   },
   "riding": {
     "behaviours": {
+      "AIR": {
+        "key": "cobblemon:air/bird",
+        "rideSounds": [
+          {
+            "muffleEnabled": true,
+            "pitchExpr": "math.max(1.0 ,0.2 + math.pow(math.min(q.ride_velocity() / 1.5, 1.0),2))",
+            "playForNonPassengers": true,
+            "soundLocation": "cobblemon:ride.loop.wind",
+            "volumeExpr": "math.pow(math.min(q.ride_velocity() / 1.5, 1.0),2)"
+          }
+        ],
+        "stats": {
+          "ACCELERATION": "50-80",
+          "JUMP": "50-75",
+          "SKILL": "30-50",
+          "SPEED": "35-55",
+          "STAMINA": "0-5"
+        }
+      },
       "LAND": {
         "key": "cobblemon:land/horse",
         "rideSounds": [],
