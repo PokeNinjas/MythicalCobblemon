@@ -7024,5 +7024,11 @@
     "advancements.cobblemon.cook_all_regional_delicacies.description": "Приготуйте кожен регіональний делікатес",
     "advancements.cobblemon.place_campfire_pot": "Час куховарства",
     "advancements.cobblemon.place_campfire_pot.description": "Розмістіть казанок будь якого кольору на багаття",
-    "advancements.cobblemon.cook_snack": "Манливий аромат"
+    "advancements.cobblemon.cook_snack": "Манливий аромат",
+    "advancements.cobblemon.cook_snack.description": "Приготуйте Поке-снек - смачний торт, що може приваблювати певних Покемонів залежно від ягідної начинки",
+    "advancements.cobblemon.slather_saccharine": "Лише крапельку",
+    "advancements.cobblemon.slather_saccharine.description": "Змасти стовбур сахаринового дерева медом, щоб заманити певних Покемонів",
+    "advancements.cobblemon.use_iv_candy": "Максимальний потенціал",
+    "key.cobblemon.ridingfreelook": "Вільний огляд верхи",
+    "cobblemon.cosmetic_item": "Аксесуар"
 }
