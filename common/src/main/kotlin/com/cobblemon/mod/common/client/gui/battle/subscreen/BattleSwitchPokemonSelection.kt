@@ -37,6 +37,7 @@ import net.minecraft.client.gui.narration.NarratableEntry
 import net.minecraft.client.gui.narration.NarrationElementOutput
 import net.minecraft.client.resources.sounds.SimpleSoundInstance
 import net.minecraft.client.sounds.SoundManager
+import net.minecraft.resources.ResourceLocation
 import org.joml.Quaternionf
 import org.joml.Vector3f
 
@@ -231,7 +232,7 @@ class BattleSwitchPokemonSelection(
                     textureHeight = SELECT_HEIGHT * 2,
                 )
 
-                val ballIcon = cobblemonResource("textures/gui/ball/" + pokemon.caughtBall.name.path + ".png")
+                val ballIcon = ResourceLocation.fromNamespaceAndPath(pokemon.caughtBall.name.namespace,"textures/gui/ball/" + pokemon.caughtBall.name.path + ".png")
                 val ballHeight = 22
                 blitk(
                     matrixStack = matrixStack,

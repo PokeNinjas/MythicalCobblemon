@@ -110,6 +110,8 @@
 - Fixed Fabric network packets not being handled immediately, fixing incompatibilities with Supplementaries, Prometheus, Sleep Tight, and others.
 - Fixed 'Plain' prefix not being applied to all low quality Aprijuice.
 - Fixed Scraggy line, Milcery line, and Morpeko spawning on unnatural blocks. 
+- Fixed the movesets of certain Pokémon being incorrectly sanitized upon reload.
+- Changed the resource location of pokeball icons in the gui to use the balls namespace instead of cobblemon, allowing mods to properly use their own name space for these textures
 
 ### Developer
 - Changed the `owner` parameter in the `OwnerQueryRequirement` interface from `ServerPlayer` to `Player`. This method is now also called on the client to verify whether a Pokémon interaction succeeded, so make sure to update your implementations to handle both server and client contexts.
