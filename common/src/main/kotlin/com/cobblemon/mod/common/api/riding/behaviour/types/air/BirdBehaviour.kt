@@ -132,7 +132,7 @@ class BirdBehaviour : RidingBehaviour<BirdSettings, BirdState> {
             else if (state.gliding.get()) min(1.0f,stam - stamDrainRate * glideMod * diveMod) // Gliding drain logic
             else max(0.0f,stam - stamDrainRate * 0.5f) // if hovering half the stam drain
 
-        state.stamina.set(newStam.coerceIn(0F, 1F))
+        state.stamina.set(newStam)
     }
 
     override fun rotation(
