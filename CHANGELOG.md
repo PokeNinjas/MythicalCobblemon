@@ -113,6 +113,7 @@
 - Fixed Wishiwashi not schooling properly
 - Fixed PokeSnack/Bait effects so EV Yield, Type, and Egg Group filters now all apply together when weighting spawns
 - Fixed Fabric network packets not being handled immediately, fixing incompatibilities with Supplementaries, Prometheus, Sleep Tight, and others.
+- Fixed 'Plain' prefix not being applied to all low quality Aprijuice.
 
 ### Developer
 - Changed the `owner` parameter in the `OwnerQueryRequirement` interface from `ServerPlayer` to `Player`. This method is now also called on the client to verify whether a Pokémon interaction succeeded, so make sure to update your implementations to handle both server and client contexts.
