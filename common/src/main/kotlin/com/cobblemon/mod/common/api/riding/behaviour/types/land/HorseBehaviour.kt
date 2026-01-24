@@ -196,7 +196,7 @@ class HorseBehaviour : RidingBehaviour<HorseSettings, HorseState> {
             min(1.0f,stam + stamDrainRate * 4)
         }
 
-        state.stamina.set(newStam)
+        state.stamina.set(newStam.coerceIn(0F, 1F))
     }
 
     override fun updatePassengerRotation(
