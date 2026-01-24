@@ -134,3 +134,8 @@
   - French
   - Canadian French
   - Simplified Chinese
+  - Ukrainian
+  - Brazilian Portuguese
+  - Spanish
+  - Korean
+  - Japanese
