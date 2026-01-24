@@ -63,11 +63,11 @@
           }
         ],
         "stats": {
-          "ACCELERATION": "50-80",
-          "JUMP": "50-75",
+          "ACCELERATION": "75-100",
+          "JUMP": "25-45",
           "SKILL": "30-50",
-          "SPEED": "35-55",
-          "STAMINA": "0-5"
+          "SPEED": "20-40",
+          "STAMINA": "0-0"
         }
       },
       "LAND": {
@@ -88,10 +88,10 @@
         "rideSounds": [],
         "stats": {
           "ACCELERATION": "30-55",
-          "JUMP": "60-100",
-          "SKILL": "40-75",
-          "SPEED": "20-50",
-          "STAMINA": "50-70"
+          "JUMP": "40-80",
+          "SKILL": "45-75",
+          "SPEED": "20-40",
+          "STAMINA": "20-40"
         }
       }
     },
