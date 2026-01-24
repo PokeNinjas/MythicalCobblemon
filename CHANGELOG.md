@@ -110,7 +110,6 @@
 - Fixed Fabric network packets not being handled immediately, fixing incompatibilities with Supplementaries, Prometheus, Sleep Tight, and others.
 - Fixed 'Plain' prefix not being applied to all low quality Aprijuice.
 - Fixed Scraggy line, Milcery line, and Morpeko spawning on unnatural blocks. 
-- Fixed the movesets of certain Pokémon being incorrectly sanitized upon reload.
 - Changed the resource location of pokeball icons in the gui to use the balls namespace instead of cobblemon, allowing mods to properly use their own name space for these textures
 
 ### Developer
