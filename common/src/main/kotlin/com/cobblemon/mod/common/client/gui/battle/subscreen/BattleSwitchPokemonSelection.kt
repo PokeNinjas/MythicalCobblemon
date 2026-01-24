@@ -31,6 +31,7 @@ import com.cobblemon.mod.common.util.battleLang
 import com.cobblemon.mod.common.util.cobblemonResource
 import com.cobblemon.mod.common.util.lang
 import com.cobblemon.mod.common.util.math.fromEulerXYZDegrees
+import com.cobblemon.mod.common.util.toAssetPath
 import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.GuiGraphics
 import net.minecraft.client.gui.narration.NarratableEntry
@@ -232,7 +233,7 @@ class BattleSwitchPokemonSelection(
                     textureHeight = SELECT_HEIGHT * 2,
                 )
 
-                val ballIcon = ResourceLocation.fromNamespaceAndPath(pokemon.caughtBall.name.namespace,"textures/gui/ball/" + pokemon.caughtBall.name.path + ".png")
+                val ballIcon = pokemon.caughtBall.name.toAssetPath("textures/gui/ball/", ".png")
                 val ballHeight = 22
                 blitk(
                     matrixStack = matrixStack,

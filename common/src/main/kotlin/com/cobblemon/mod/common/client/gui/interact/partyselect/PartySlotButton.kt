@@ -24,6 +24,7 @@ import com.cobblemon.mod.common.util.asIdentifierDefaultingNamespace
 import com.cobblemon.mod.common.util.cobblemonResource
 import com.cobblemon.mod.common.util.lang
 import com.cobblemon.mod.common.util.math.fromEulerXYZDegrees
+import com.cobblemon.mod.common.util.toAssetPath
 import com.google.common.collect.Lists
 import net.minecraft.client.gui.GuiGraphics
 import net.minecraft.client.gui.components.Button
@@ -112,7 +113,7 @@ class PartySlotButton(
         )
         context.pose().popPose()
 
-        val ballIcon = ResourceLocation.fromNamespaceAndPath(pokemon.pokeball!!.asIdentifierDefaultingNamespace().namespace,"textures/gui/ball/" + pokemon.pokeball!!.asIdentifierDefaultingNamespace().path + ".png")
+        val ballIcon = pokemon.pokeball!!.asIdentifierDefaultingNamespace().toAssetPath("textures/gui/ball/", ".png")
         val ballHeight = 22
         blitk(
             matrixStack = matrices,

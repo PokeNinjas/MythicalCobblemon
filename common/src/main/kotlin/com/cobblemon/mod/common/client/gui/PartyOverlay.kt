@@ -29,6 +29,7 @@ import com.cobblemon.mod.common.client.render.renderScaledGuiItemIcon
 import com.cobblemon.mod.common.pokemon.Gender
 import com.cobblemon.mod.common.util.cobblemonResource
 import com.cobblemon.mod.common.util.lang
+import com.cobblemon.mod.common.util.toAssetPath
 import java.util.UUID
 import net.minecraft.client.DeltaTracker
 import net.minecraft.client.Minecraft
@@ -468,7 +469,7 @@ class PartyOverlay : Gui(Minecraft.getInstance()) {
                     )
                 }
 
-                val ballIcon = ResourceLocation.fromNamespaceAndPath(pokemon.caughtBall.name.namespace,"textures/gui/ball/" + pokemon.caughtBall.name.path + ".png")
+                val ballIcon = pokemon.caughtBall.name.toAssetPath("textures/gui/ball/", ".png")
                 val ballHeight = 22
                 blitk(
                     matrixStack = matrices,
