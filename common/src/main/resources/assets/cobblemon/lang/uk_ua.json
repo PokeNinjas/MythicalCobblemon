@@ -7030,5 +7030,10 @@
     "advancements.cobblemon.slather_saccharine.description": "Змасти стовбур сахаринового дерева медом, щоб заманити певних Покемонів",
     "advancements.cobblemon.use_iv_candy": "Максимальний потенціал",
     "key.cobblemon.ridingfreelook": "Вільний огляд верхи",
-    "cobblemon.cosmetic_item": "Аксесуар"
+    "cobblemon.cosmetic_item": "Аксесуар",
+    "cobblemon.config.ui.category.starter": "Стартер",
+    "cobblemon.config.ui.category.pokedex": "Покедекс",
+    "cobblemon.config.ui.category.pokemon": "Покемон",
+    "cobblemon.config.ui.category.spawning": "Поява",
+    "cobblemon.config.ui.category.battles": "Битви"
 }

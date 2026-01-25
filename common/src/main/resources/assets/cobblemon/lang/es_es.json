@@ -8684,5 +8684,8 @@
     "cobblemon.ui.ride_style.liquid.dolphin": "Delfín",
     "cobblemon.ui.ride_style.liquid.submarine": "Submarino",
     "cobblemon.ui.ride_style.liquid.boat": "Bote",
-    "cobblemon.ui.ride_style.land.cart": "Coche"
+    "cobblemon.ui.ride_style.land.cart": "Coche",
+    "effect.cobblemon.cleanse_all": "Limpieza de efectos",
+    "effect.cobblemon.cleanse_negative": "Limpieza de efectos negativos",
+    "effect.cobblemon.mental_restoration": "Descanso mental"
 }
