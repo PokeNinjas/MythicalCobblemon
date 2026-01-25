@@ -1,5 +1,5 @@
 # Changelog
-## [1.7.2 (January Xth, 2026)](#1-7-2)
+## [1.7.2 (January 25th, 2026)](#1-7-2)
 
 ### Additions
 - Added Saccharine wood furniture for Adorn.
