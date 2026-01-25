@@ -9194,5 +9194,7 @@
     "cobblemon.behaviour.defend_owner.name": "Défendre le propriétaire",
     "cobblemon.behaviour.defend_owner.desc": "Défend son propriétaire lorsqu'il est attaqué.",
     "stat.cobblemon.riding_land": "Distance parcourue par Pokémon sur terre",
-    "stat.cobblemon.riding_air": "Distance parcourue par Pokémon dans les airs"
+    "stat.cobblemon.riding_air": "Distance parcourue par Pokémon dans les airs",
+    "stat.cobblemon.riding_liquid": "Distance parcourue par Pokémon dans un liquide",
+    "cobblemon.ui.ride_style.air.bird": "Oiseau"
 }
