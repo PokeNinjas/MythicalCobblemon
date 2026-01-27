@@ -6193,7 +6193,9 @@
     "tag.item.cobblemon.berries.colour.pink": "Bagas Rosa",
     "tag.item.cobblemon.item_blocks": "Itens Decorativos",
     "cobblemon.move.guardianofalola": "Guardião de Alola",
-    "cobblemon.move.guardianofalola.desc": "O utilizador, o Pokémon Espírito da Terra, obtém a energia de Alola usando o seu Poder Z e ataca o alvo, reduzindo significativamente o HP do alvo.",
+    "cobblemon.move.guardianofalola.desc": "O utilizador, o Pokémon Espírito da Terra, obtém a energia de Alola usando o seu Poder-Z e ataca o alvo, reduzindo significativamente o HP do alvo.",
     "cobblemon.move.oceanicoperetta": "Sinfonia Marítima",
-    "cobblemon.move.oceanicoperetta.desc": "O utilizador, Primarina, invoca uma enorme quantidade de água usando o seu Z-Power e ataca o alvo com toda a força."
+    "cobblemon.move.oceanicoperetta.desc": "O utilizador, Primarina, invoca uma enorme quantidade de água usando o seu Z-Power e ataca o alvo com toda a força.",
+    "cobblemon.move.pulverizingpancake": "Panqueca Pulverizadora",
+    "cobblemon.move.pulverizingpancake.desc": "O Poder-Z revela as verdadeiras capacidades do utilizador, Snorlax. O Pokémon move o seu enorme corpo energicamente e ataca o alvo com toda a força."
 }
