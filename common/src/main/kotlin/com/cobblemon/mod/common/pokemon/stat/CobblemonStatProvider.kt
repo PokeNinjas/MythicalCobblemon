@@ -8,6 +8,8 @@
 
 package com.cobblemon.mod.common.pokemon.stat
 
+import com.cobblemon.mod.common.api.events.CobblemonEvents
+import com.cobblemon.mod.common.api.events.pokemon.StatProvidedEvent
 import com.cobblemon.mod.common.api.pokemon.stats.Stat
 import com.cobblemon.mod.common.api.pokemon.stats.StatProvider
 import com.cobblemon.mod.common.api.pokemon.stats.StatTypeAdapter
@@ -90,7 +92,8 @@ object CobblemonStatProvider : StatProvider {
         val base = pokemon.form.baseStats[stat]!!
         val ev = pokemon.evs.getOrDefault(stat)
         val level = pokemon.level
-        return if (stat == Stats.HP) {
+        // Custom MythicalNetwork code to insert event.
+        val value = if (stat == Stats.HP) {
             if (pokemon.species.resourceIdentifier == Pokemon.SHEDINJA) {
                 1
             } else {
@@ -101,6 +104,11 @@ object CobblemonStatProvider : StatProvider {
         } else {
             pokemon.effectiveNature.modifyStat(stat, ((2 * base + iv + (ev / 4)) * level) / 100 + 5)
         }
+
+        val event = StatProvidedEvent(pokemon, stat, value)
+        CobblemonEvents.POKEMON_STAT_PROVIDED.emit(event)
+        return event.calculateFinalValue()
+        // end MythicalNetwork code
     }
 
     override fun fromIdentifier(identifier: ResourceLocation): Stat? = this.stats[identifier]

@@ -10,6 +10,8 @@ package com.cobblemon.mod.common.api.storage.party
 
 import com.cobblemon.mod.common.Cobblemon.LOGGER
 import com.cobblemon.mod.common.CobblemonNetwork.sendPacket
+import com.cobblemon.mod.common.api.events.CobblemonEvents
+import com.cobblemon.mod.common.api.events.pokemon.PartyStoreToBattlePokemonEvent
 import com.cobblemon.mod.common.api.molang.MoLangFunctions.asMoLangValue
 import com.cobblemon.mod.common.api.reactive.Observable
 import com.cobblemon.mod.common.api.reactive.SimpleObservable
@@ -264,11 +266,14 @@ open class PartyStore(override val uuid: UUID) : PokemonStore<PartyPosition>() {
     @JvmOverloads
     fun toBattleTeam(clone: Boolean = false, healPokemon: Boolean = false, leadingPokemon: UUID? = null) : List<BattlePokemon> {
         val result = this.mapNotNull {
-            return@mapNotNull if (clone) {
+            val bp = if (clone) {
                 BattlePokemon.safeCopyOf(it)
             } else {
                 BattlePokemon.playerOwned(it)
             }.also { if (healPokemon) it.effectedPokemon.heal() }
+
+            return@mapNotNull bp
+
         }.toMutableList()
 
         // reposition lead to front of the party
@@ -278,6 +283,9 @@ open class PartyStore(override val uuid: UUID) : PokemonStore<PartyPosition>() {
                 result.add(0, lead)
             }
         }
+
+        // MythicalNetwork event. Allows for modification of the BattlePokemon team
+        CobblemonEvents.PARTY_STORE_BATTLE_POKEMON_CREATED.emit(PartyStoreToBattlePokemonEvent(this, result))
 
         return result
     }

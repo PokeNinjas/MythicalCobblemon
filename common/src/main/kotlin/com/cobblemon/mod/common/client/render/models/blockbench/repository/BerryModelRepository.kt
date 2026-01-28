@@ -57,12 +57,14 @@ object BerryModelRepository : JsonDataRegistry<TexturedModel> {
             val flowerTexId = it.flowerTexture
             val fruitTex = CobblemonAtlases.BERRY_SPRITE_ATLAS.getSprite(fruitTexId)
             val flowerTex = CobblemonAtlases.BERRY_SPRITE_ATLAS.getSprite(flowerTexId)
+            // register normal fruits
             processedModels[it.fruitModelIdentifier] = fruitModel?.createWithUvOverride(
                 fruitTex.x,
                 fruitTex.y,
                 CobblemonAtlases.BERRY_SPRITE_ATLAS.textureAtlas.width,
                 CobblemonAtlases.BERRY_SPRITE_ATLAS.textureAtlas.height
             )?.bakeRoot()!!
+            // register flower
             processedModels[it.flowerModelIdentifier] = flowerModel?.createWithUvOverride(
                 flowerTex.x,
                 flowerTex.y,
@@ -70,6 +72,14 @@ object BerryModelRepository : JsonDataRegistry<TexturedModel> {
                 CobblemonAtlases.BERRY_SPRITE_ATLAS.textureAtlas.height
             )?.bakeRoot()!!
         }
+    }
+
+    fun addProcessedModel(key: ResourceLocation, part: ModelPart) {
+        processedModels[key] = part
+    }
+
+    fun getRawModel(key: ResourceLocation): TexturedModel? {
+        return rawModels[key]
     }
 
     fun modelOf(identifier: ResourceLocation) = this.processedModels[identifier]

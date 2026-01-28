@@ -49,6 +49,7 @@ import com.cobblemon.mod.common.api.reactive.Observable.Companion.filter
 import com.cobblemon.mod.common.api.reactive.Observable.Companion.map
 import com.cobblemon.mod.common.api.reactive.SimpleObservable
 import com.cobblemon.mod.common.api.riding.events.SelectDriverEvent
+import com.cobblemon.mod.common.battles.pokemon.BattlePokemon
 import com.cobblemon.mod.common.entity.pokemon.PokemonEntity
 import net.minecraft.server.level.ServerPlayer
 
@@ -120,9 +121,17 @@ object CobblemonEvents {
 
     @JvmField
     val BATTLE_FAINTED = EventObservable<BattleFaintedEvent>()
+
     // CUSTOM: MythicalNetwork - For MythicalNPCs
     @JvmField
     val BATTLE_END = EventObservable<BattleEndEvent>()
+
+    // CUSTOM: MythicalNetwork - For modifying the Pokemon stat provider
+    @JvmField
+    val POKEMON_STAT_PROVIDED = SimpleObservable<StatProvidedEvent>()
+    // CUSTOM: MythicalNetwork - For modifying Party Battle Pokemon when they're created.
+    @JvmField
+    val PARTY_STORE_BATTLE_POKEMON_CREATED = SimpleObservable<PartyStoreToBattlePokemonEvent>()
 
     // instructions
     @JvmField

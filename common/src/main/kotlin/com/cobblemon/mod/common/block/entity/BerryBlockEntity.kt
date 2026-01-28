@@ -64,6 +64,8 @@ open class BerryBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(Cobb
             field = value
         }
     val growthPoints = arrayListOf<ResourceLocation>()
+
+    // linked with growthPoints to ensure that each index in the list corresponds to a quality here. Not the best I'll admit, but it does work.
     val growthQualityByIndex = arrayListOf<BerryQuality>()
     var mulchVariant = MulchVariant.NONE
 
@@ -80,8 +82,10 @@ open class BerryBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(Cobb
      * exist for when there are fewer than 16 growth points on a tree (currently always).
      */
     var growthPointSequence = "0123456789ABCDEF"
+
     // Just a cheat to not invoke markDirty unnecessarily
     private var wasLoading = false
+
     // if true, #setChanged will never be triggered
     var shouldNeverSetChanged = false
     var mulchDuration = 0
@@ -90,7 +94,7 @@ open class BerryBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(Cobb
             setChanged()
         }
 
-    constructor(pos: BlockPos, state: BlockState, berryIdentifier: ResourceLocation): this(pos, state) {
+    constructor(pos: BlockPos, state: BlockState, berryIdentifier: ResourceLocation) : this(pos, state) {
         this.berryIdentifier = berryIdentifier
         resetGrowTimers(pos, state)
         if (state.getValue(BerryBlock.WAS_GENERATED) && state.getValue(BerryBlock.AGE) >= 4) {
@@ -144,8 +148,8 @@ open class BerryBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(Cobb
         val avgStageTime = growthTimer / stagesLeft
         //A number between 80% and 100% the average stage time
         //So stages have some variance
-        stageTimer = this.level?.random?.nextIntBetweenInclusive((avgStageTime * 8) / 10, avgStageTime) ?:
-                (((Math.random() *  0.2) + 0.8) * avgStageTime).toInt()
+        stageTimer = this.level?.random?.nextIntBetweenInclusive((avgStageTime * 8) / 10, avgStageTime)
+            ?: (((Math.random() * 0.2) + 0.8) * avgStageTime).toInt()
         growthTimer -= stageTimer
     }
 
@@ -167,7 +171,7 @@ open class BerryBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(Cobb
         if (mulchVariant != MulchVariant.GROWTH) {
             return timer
         }
-        if (decrementMulch)  {
+        if (decrementMulch) {
             level?.let {
                 decrementMulchDuration(it, pos, state)
             }
@@ -207,9 +211,10 @@ open class BerryBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(Cobb
         this.growthQualityByIndex.clear()
         repeat(yield) {
             this.growthPoints += berry.identifier
-            this.growthQualityByIndex += BerryQuality.NORMAL
         }
-        this.growthPointSequence = this.growthPointSequence.toCharArray().also { if (berry.randomizedGrowthPoints) it.shuffle() }.concatToString()
+        this.growthPointSequence =
+            this.growthPointSequence.toCharArray().also { if (berry.randomizedGrowthPoints) it.shuffle() }
+                .concatToString()
         this.setChanged()
     }
 
@@ -218,9 +223,10 @@ open class BerryBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(Cobb
         val numBerries = berry()?.baseYield?.random() ?: return
         repeat(numBerries) {
             growthPoints.add(berryIdentifier)
-            growthQualityByIndex.add(BerryQuality.NORMAL)
         }
-        this.growthPointSequence = this.growthPointSequence.toCharArray().also { if (berry()?.randomizedGrowthPoints != false) it.shuffle() }.concatToString()
+        this.growthPointSequence =
+            this.growthPointSequence.toCharArray().also { if (berry()?.randomizedGrowthPoints != false) it.shuffle() }
+                .concatToString()
     }
 
     /**
@@ -237,12 +243,13 @@ open class BerryBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(Cobb
         val unique = this.growthPoints.groupingBy { it }.eachCount()
         unique.entries.forEachIndexed { index, (identifier, amount) ->
             val berryItem = Berries.getByIdentifier(identifier)?.item()
-            val quality = growthQualityByIndex.getOrNull(index) ?: BerryQuality.NORMAL
+            val quality = BerryQuality.NORMAL
             if (berryItem != null) {
                 var remain = amount
                 while (remain > 0) {
                     val count = remain.coerceAtMost(berryItem.defaultMaxStackSize)
                     val stack = ItemStack(berryItem, count)
+                    quality.set(stack)
                     drops += stack
                     remain -= count
                 }
@@ -257,12 +264,13 @@ open class BerryBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(Cobb
         return drops
     }
 
-    fun harvest(world: Level, state: BlockState, pos: BlockPos): Collection<ItemStack>{
+    fun harvest(world: Level, state: BlockState, pos: BlockPos): Collection<ItemStack> {
         return harvest(world, state, pos, null);
     }
 
     override fun loadAdditional(nbt: CompoundTag, registryLookup: HolderLookup.Provider) {
-        this.berryIdentifier = ResourceLocation.parse(nbt.getString(BERRY).takeIf { it.isNotBlank() } ?: "cobblemon:pecha")
+        this.berryIdentifier =
+            ResourceLocation.parse(nbt.getString(BERRY).takeIf { it.isNotBlank() } ?: "cobblemon:pecha")
         this.wasLoading = true
         this.growthPoints.clear()
         this.growthQualityByIndex.clear()
@@ -274,14 +282,16 @@ open class BerryBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(Cobb
             try {
                 val identifier = ResourceLocation.parse(element.asString)
                 this.growthPoints += identifier
-            } catch (ignored: ResourceLocationException) {}
+            } catch (ignored: ResourceLocationException) {
+            }
         }
         nbt.getList(GROWTH_QUALITIES, ListTag.TAG_STRING.toInt()).filterIsInstance<StringTag>().forEach { element ->
             // In case some 3rd party mutates the NBT incorrectly
             try {
                 val quality = BerryQuality.valueOf(element.asString)
                 this.growthQualityByIndex += quality
-            } catch (ignored: ResourceLocationException) {}
+            } catch (ignored: ResourceLocationException) {
+            }
         }
         this.mulchDuration = nbt.getInt(MULCH_DURATION)
         this.wasLoading = false
@@ -331,7 +341,8 @@ open class BerryBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(Cobb
     fun berryAndGrowthPoint(): List<Pair<Berry, GrowthPoint>> {
         val baseBerry = this.berry() ?: return emptyList()
         val berryPoints = arrayListOf<Pair<Berry, GrowthPoint>>()
-        val sequenceIndices = growthPointSequence.toCharArray().filter { it.digitToInt(16) < baseBerry.growthPoints.size }
+        val sequenceIndices =
+            growthPointSequence.toCharArray().filter { it.digitToInt(16) < baseBerry.growthPoints.size }
         for ((index, identifier) in this.growthPoints.withIndex()) {
             // Don't brick old broken worlds that had too many
             if (index >= sequenceIndices.size) {
@@ -356,6 +367,8 @@ open class BerryBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(Cobb
         }
         val index = this.growthPoints.indices.random()
         this.growthPoints[index] = berry.identifier
+        if (index < this.growthQualityByIndex.size)
+            this.growthQualityByIndex[index] = BerryQuality.NORMAL // always revert to normal for safety
         this.setChanged()
     }
 
@@ -377,7 +390,7 @@ open class BerryBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(Cobb
     }
 
     companion object {
-        internal val TICKER = BlockEntityTicker<BerryBlockEntity> { world, pos, state, blockEntity ->
+        val TICKER = BlockEntityTicker<BerryBlockEntity> { world, pos, state, blockEntity ->
             if (world.isClientSide) return@BlockEntityTicker
             if (state.getValue(BerryBlock.IS_ROOTED)) return@BlockEntityTicker
             if (blockEntity.stageTimer >= 0) {
@@ -387,6 +400,7 @@ open class BerryBlockEntity(pos: BlockPos, state: BlockState) : BlockEntity(Cobb
                 (state.block as BerryBlock).growHelper(world as ServerLevel, world.random, pos, state)
             }
         }
+
         //private const val LIFE_CYCLES = "life_cycles"
         private const val GROWTH_POINTS = "GrowthPoints"
         private const val GROWTH_QUALITIES = "GrowthQuality"

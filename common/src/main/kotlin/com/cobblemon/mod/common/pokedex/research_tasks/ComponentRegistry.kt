@@ -21,7 +21,7 @@ object ComponentRegistry: EntityComponentInitializer {
 
     override fun registerEntityComponentFactories(registry: EntityComponentFactoryRegistry) {
         // disabled for testing
-        if(ResearchTasks.disabled)
+        if(!ResearchTasks.disabled)
             registry.registerForPlayers(RESEARCH_TASKS_DATA, { c ->  PlayerResearchTasksData(c) }, RespawnCopyStrategy.ALWAYS_COPY)
     }
 }
