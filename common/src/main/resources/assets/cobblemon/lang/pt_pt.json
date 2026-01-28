@@ -6201,5 +6201,19 @@
     "cobblemon.move.lightthatburnsthesky": "Luz Que Queima o Céu",
     "cobblemon.move.lightthatburnsthesky.desc": "Este ataque compara os atributos de Ataque e Ataque Especial do utilizador e usa o que for mais elevado. Este movimento ignora a Habilidade do alvo.",
     "cobblemon.move.letssnuggleforever": "Aconchego Eterno",
-    "cobblemon.move.letssnuggleforever.desc": "Usando o seu Poder-Z, o utilizador, Mimikyu, espanca o alvo com toda a sua força."
+    "cobblemon.move.letssnuggleforever.desc": "Usando o seu Poder-Z, o utilizador, Mimikyu, espanca o alvo com toda a sua força.",
+    "cobblemon.move.blackholeeclipse": "Buraco Negro Eclipsante",
+    "cobblemon.move.blackholeeclipse.desc": "O utilizador reúne energia negra usando o seu Poder-Z e suga o alvo para dentro dela. O poder varia, dependendo do movimento original.",
+    "cobblemon.entity.variable.resource_identifier.desc": "O identificador de recurso a ser usado para controlar a aparência do NPC, como cobblemon:standard ou cobblemon:mudkip.",
+    "cobblemon.entity.variable.resource_identifier.name": "Identificador de Recurso",
+    "cobblemon.move.continentalcrush": "Colisão Continental",
+    "cobblemon.move.continentalcrush.desc": "O utilizador invoca uma enorme montanha rochosa usando o seu Poder-Z e deixa-a cair sobre o alvo. O poder varia, dependendo do movimento original.",
+    "cobblemon.move.tectonicrage": "Fúria Tectónica",
+    "cobblemon.move.tectonicrage.desc": "O utilizador enterra-se no solo e atinge o alvo com toda a força do seu Poder-Z. O poder varia, dependendo do movimento original.",
+    "cobblemon.behaviour.configurable_resource_identifier.name": "Identificador de Recurso Configurável",
+    "cobblemon.behaviour.configurable_resource_identifier.desc": "Permite alterar o identificador de recurso que controla a aparência do NPC.",
+    "cobblemon.entity.variable.dialogue_selection.name": "Diálogo",
+    "cobblemon.entity.variable.dialogue_selection.desc": "O identificador de recurso do diálogo a ser aberto na interação, como cobblemon:your_dialogue",
+    "cobblemon.move.aciddownpour": "Dilúvio Ácido",
+    "cobblemon.move.aciddownpour.desc": "O utilizador cria um pântano venenoso usando o seu Poder-Z, afundando o alvo. O poder varia, dependendo do movimento original."
 }
