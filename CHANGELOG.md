@@ -16,6 +16,7 @@
 ### Fixes
 
 ### Developer
+- Poké Ball GUI textures now respect the ball's namespace, enabling proper texture loading for custom balls from other mods.
 
 ### Molang & Datapacks
 
