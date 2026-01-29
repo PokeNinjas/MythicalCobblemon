@@ -389,6 +389,7 @@ object Cobblemon {
 
                         val mongoClientSettings = MongoClientSettings.builder()
                             .applyConnectionString(ConnectionString(config.mongoDBConnectionString))
+                            .applicationName("Cobblemon")
                             .build()
                         mongoClient = MongoClients.create(mongoClientSettings)
                         val generalMongoFactory = CachedPlayerDataStoreFactory(PlayerDataMongoBackend(mongoClient, config.mongoDBDatabaseName, "PlayerDataCollection"))
