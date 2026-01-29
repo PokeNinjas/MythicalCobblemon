@@ -9174,5 +9174,17 @@
     "stat.cobblemon.battles_fled": "宝可梦对战逃跑次数",
     "stat.cobblemon.eggs_collected": "已收集宝可梦蛋数",
     "stat.cobblemon.level_up": "提升宝可梦等级次数",
-    "stat.cobblemon.times_ridden": "骑乘宝可梦次数"
+    "stat.cobblemon.times_ridden": "骑乘宝可梦次数",
+    "effect.cobblemon.cleanse_all": "效果清除",
+    "effect.cobblemon.cleanse_negative": "负面效果清除",
+    "effect.cobblemon.mental_restoration": "精神恢复",
+    "cobblemon.ui.ride_style.air.bird": "鸟类",
+    "cobblemon.ui.ride_style.air.hover": "悬浮",
+    "cobblemon.ui.ride_style.air.jet": "喷射",
+    "cobblemon.ui.ride_style.air.rocket": "火箭",
+    "cobblemon.ui.ride_style.land.horse": "常规",
+    "cobblemon.ui.ride_style.land.cart": "轮驱",
+    "cobblemon.ui.ride_style.liquid.boat": "乘船",
+    "cobblemon.ui.ride_style.liquid.dolphin": "海豚",
+    "cobblemon.ui.ride_style.liquid.submarine": "潜艇"
 }
