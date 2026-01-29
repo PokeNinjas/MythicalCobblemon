@@ -37,6 +37,7 @@ repositories {
     mavenLocal()
     maven("https://oss.sonatype.org/content/repositories/snapshots")
     maven(url = "https://api.modrinth.com/maven")
+    maven(url = "https://maven.architectury.dev/")
     maven(url = "https://maven.terraformersmc.com/")
 }
 
