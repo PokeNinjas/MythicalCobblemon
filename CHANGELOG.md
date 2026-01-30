@@ -14,11 +14,13 @@
 ### Changes
 
 ### Fixes
+- Fixed randomly being unable to join servers.
 
 ### Developer
 - Poké Ball GUI textures now respect the ball's namespace, enabling proper texture loading for custom balls from other mods.
 
 ### Molang & Datapacks
+- Added a `chance` requirement type for Pokémon interactions.
 
 ### Localization
 - Updated translations for:
