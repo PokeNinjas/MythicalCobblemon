@@ -60,8 +60,8 @@ object PcTakeCommand {
             val slot = IntegerArgumentType.getInteger(context, "slot")
             val pc = target.pc()
             
-            if (box > Cobblemon.config.defaultBoxCount) {
-                context.source.sendFailure(commandLang("pctake.too_many_boxes", Cobblemon.config.defaultBoxCount))
+            if (box > pc.boxes.size) {
+                context.source.sendFailure(commandLang("pctake.too_many_boxes", pc.boxes.size))
                 return 0
             }
             
