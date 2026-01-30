@@ -20,3 +20,4 @@
   - Korean
   - Portuguese
   - Simplified Chinese
+  - Spanish
