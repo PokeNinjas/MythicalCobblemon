@@ -1,4 +1,5 @@
 {
+  "implemented": true,
   "nationalPokedexNumber": 480,
   "name": "Uxie",
   "primaryType": "psychic",
@@ -236,17 +237,16 @@
     },
     "moving": {
       "swim": {
-        "avoidsWater": true
+        "avoidsWater": true,
+        "canWalkOnWater": true
       },
       "fly": {
         "canFly": true
-      },
-      "walk": {
-        "canWalk": false
       }
     },
     "combat": {
-      "willDefendOwner": true
+      "willDefendOwner": true,
+      "willFlee": false
     }
   }
 }

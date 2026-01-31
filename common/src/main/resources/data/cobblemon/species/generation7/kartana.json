@@ -1,4 +1,5 @@
 {
+  "implemented": true,
   "nationalPokedexNumber": 798,
   "name": "Kartana",
   "primaryType": "grass",
@@ -148,13 +149,11 @@
     },
     "moving": {
       "swim": {
-        "avoidsWater": true
+        "avoidsWater": true,
+        "canWalkOnWater": true
       },
       "fly": {
         "canFly": true
-      },
-      "walk": {
-        "canWalk": false
       }
     },
     "combat": {

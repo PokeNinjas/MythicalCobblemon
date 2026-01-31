@@ -1,4 +1,5 @@
 {
+  "implemented": true,
   "nationalPokedexNumber": 1004,
   "name": "Chi-Yu",
   "primaryType": "dark",
@@ -128,14 +129,10 @@
     },
     "moving": {
       "swim": {
-        "canBreatheUnderwater": true,
-        "canSwimInLava": true
+        "canBreatheUnderwater": true
       },
       "fly": {
         "canFly": true
-      },
-      "walk": {
-        "canWalk": false
       }
     },
     "combat": {

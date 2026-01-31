@@ -1,4 +1,5 @@
 {
+  "implemented": true,
   "nationalPokedexNumber": 490,
   "name": "Manaphy",
   "primaryType": "water",
@@ -73,7 +74,8 @@
       "rouseChance": 0.0042
     },
     "combat": {
-      "willDefendOwner": true
+      "willDefendOwner": true,
+      "willFlee": false
     }
   },
   "drops": {

@@ -1,4 +1,5 @@
 {
+  "implemented": true,
   "nationalPokedexNumber": 493,
   "name": "Arceus",
   "primaryType": "normal",
@@ -1089,7 +1090,8 @@
   "behaviour": {
     "moving": {
       "swim": {
-        "avoidsWater": true
+        "avoidsWater": true,
+        "canWalkOnWater": true
       },
       "fly": {
         "canFly": true

@@ -1,4 +1,5 @@
 {
+  "implemented": true,
   "nationalPokedexNumber": 492,
   "name": "Shaymin",
   "primaryType": "grass",
@@ -301,7 +302,8 @@
         },
         "moving": {
           "swim": {
-            "avoidsWater": true
+            "avoidsWater": true,
+            "canWalkOnWater": true
           },
           "fly": {
             "canFly": true
@@ -340,7 +342,8 @@
       }
     },
     "combat": {
-      "willDefendOwner": true
+      "willDefendOwner": true,
+      "willFlee": false
     }
   }
 }

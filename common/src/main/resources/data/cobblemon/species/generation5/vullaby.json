@@ -1,4 +1,5 @@
 {
+  "implemented": true,
   "nationalPokedexNumber": 629,
   "name": "Vullaby",
   "primaryType": "dark",
@@ -219,7 +220,8 @@
       }
     },
     "combat": {
-      "willDefendOwner": true
+      "willDefendOwner": true,
+      "willFlee": false
     }
   }
 }

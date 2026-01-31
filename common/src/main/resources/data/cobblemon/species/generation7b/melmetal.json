@@ -1,4 +1,5 @@
 {
+  "implemented": true,
   "nationalPokedexNumber": 809,
   "name": "Melmetal",
   "primaryType": "steel",
@@ -150,8 +151,7 @@
     },
     "moving": {
       "swim": {
-        "avoidsWater": true,
-        "canSwimInWater": false
+        "avoidsWater": true
       }
     },
     "combat": {

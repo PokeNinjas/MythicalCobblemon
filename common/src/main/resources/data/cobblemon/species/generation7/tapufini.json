@@ -1,4 +1,5 @@
 {
+  "implemented": true,
   "nationalPokedexNumber": 788,
   "name": "Tapu Fini",
   "primaryType": "water",
@@ -157,13 +158,11 @@
   "behaviour": {
     "moving": {
       "swim": {
-        "canBreatheUnderwater": true
+        "canBreatheUnderwater": true,
+        "canWalkOnWater": true
       },
       "fly": {
         "canFly": true
-      },
-      "walk": {
-        "canWalk": false
       }
     },
     "combat": {

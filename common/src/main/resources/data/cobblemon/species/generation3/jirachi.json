@@ -1,4 +1,5 @@
 {
+  "implemented": true,
   "nationalPokedexNumber": 385,
   "name": "Jirachi",
   "primaryType": "steel",
@@ -226,17 +227,16 @@
     },
     "moving": {
       "swim": {
-        "avoidsWater": true
+        "avoidsWater": true,
+        "canWalkOnWater": true
       },
       "fly": {
         "canFly": true
-      },
-      "walk": {
-        "canWalk": false
       }
     },
     "combat": {
-      "willDefendOwner": true
+      "willDefendOwner": true,
+      "willFlee": false
     }
   }
 }

@@ -1,4 +1,5 @@
 {
+  "implemented": true,
   "nationalPokedexNumber": 806,
   "name": "Blacephalon",
   "primaryType": "fire",
@@ -166,8 +167,7 @@
   "behaviour": {
     "moving": {
       "swim": {
-        "avoidsWater": true,
-        "canSwimInLava": true
+        "avoidsWater": true
       }
     },
     "combat": {

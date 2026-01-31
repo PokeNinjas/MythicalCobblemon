@@ -1,4 +1,5 @@
 {
+  "implemented": true,
   "nationalPokedexNumber": 790,
   "name": "Cosmoem",
   "primaryType": "psychic",
@@ -109,15 +110,10 @@
     },
     "moving": {
       "swim": {
-        "avoidsWater": true
+        "avoidsWater": true,
+        "canWalkOnWater": true
       },
-      "canLook": false,
-      "walk": {
-        "canWalk": false
-      },
-      "fly": {
-        "canFly": true
-      }
+      "canLook": false
     },
     "combat": {
       "willFlee": false

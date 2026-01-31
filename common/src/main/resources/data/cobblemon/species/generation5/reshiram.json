@@ -1,4 +1,5 @@
 {
+  "implemented": true,
   "nationalPokedexNumber": 643,
   "name": "Reshiram",
   "primaryType": "dragon",
@@ -186,8 +187,7 @@
   "behaviour": {
     "moving": {
       "swim": {
-        "avoidsWater": true,
-        "canSwimInLava": true
+        "avoidsWater": true
       },
       "fly": {
         "canFly": true

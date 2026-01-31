@@ -1,4 +1,5 @@
 {
+  "implemented": true,
   "nationalPokedexNumber": 383,
   "name": "Groudon",
   "primaryType": "ground",
@@ -54,8 +55,7 @@
     "moving": {
       "swim": {
         "avoidsWater": true,
-        "canBreatheInLava": true,
-        "canSwimInLava": true
+        "canBreatheInLava": true
       }
     },
     "combat": {

@@ -1,4 +1,5 @@
 {
+  "implemented": true,
   "nationalPokedexNumber": 744,
   "name": "Rockruff",
   "primaryType": "rock",
@@ -83,7 +84,8 @@
       }
     },
     "combat": {
-      "willDefendOwner": true
+      "willDefendOwner": true,
+      "willFlee": false
     }
   },
   "drops": {

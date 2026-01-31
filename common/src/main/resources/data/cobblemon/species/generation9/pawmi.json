@@ -1,4 +1,5 @@
 {
+  "implemented": true,
   "nationalPokedexNumber": 921,
   "name": "Pawmi",
   "primaryType": "electric",
@@ -164,7 +165,8 @@
       }
     },
     "combat": {
-      "willDefendOwner": true
+      "willDefendOwner": true,
+      "willFlee": false
     }
   }
 }

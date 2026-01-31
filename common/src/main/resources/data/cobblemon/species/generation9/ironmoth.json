@@ -1,4 +1,5 @@
 {
+  "implemented": true,
   "nationalPokedexNumber": 994,
   "name": "Iron Moth",
   "primaryType": "fire",
@@ -137,14 +138,11 @@
     "moving": {
       "swim": {
         "avoidsWater": true,
-        "canBreatheUnderwater": true,
-        "canSwimInLava": true
+        "canWalkOnWater": true,
+        "canBreatheUnderwater": true
       },
       "fly": {
         "canFly": true
-      },
-      "walk": {
-        "canWalk": false
       }
     },
     "combat": {

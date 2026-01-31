@@ -1,4 +1,5 @@
 {
+  "implemented": true,
   "nationalPokedexNumber": 787,
   "name": "Tapu Bulu",
   "primaryType": "grass",
@@ -166,13 +167,11 @@
   "behaviour": {
     "moving": {
       "swim": {
-        "avoidsWater": true
+        "avoidsWater": true,
+        "canWalkOnWater": true
       },
       "fly": {
         "canFly": true
-      },
-      "walk": {
-        "canWalk": false
       }
     },
     "combat": {

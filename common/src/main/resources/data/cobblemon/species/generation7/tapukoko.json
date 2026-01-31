@@ -1,4 +1,5 @@
 {
+  "implemented": true,
   "nationalPokedexNumber": 785,
   "name": "Tapu Koko",
   "primaryType": "electric",
@@ -159,13 +160,11 @@
   "behaviour": {
     "moving": {
       "swim": {
-        "avoidsWater": true
+        "avoidsWater": true,
+        "canWalkOnWater": true
       },
       "fly": {
         "canFly": true
-      },
-      "walk": {
-        "canWalk": false
       }
     },
     "combat": {

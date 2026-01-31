@@ -1,4 +1,5 @@
 {
+  "implemented": true,
   "nationalPokedexNumber": 1003,
   "name": "Ting-Lu",
   "primaryType": "dark",
@@ -42,11 +43,6 @@
   "catchRate": 6,
   "eggCycles": 50,
   "baseFriendship": 0,
-  "hitbox": {
-    "width": 2,
-    "height": 3,
-    "fixed": false
-  },
   "moves": [
     "1:meanlook",
     "1:sandtomb",

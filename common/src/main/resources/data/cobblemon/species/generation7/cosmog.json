@@ -1,4 +1,5 @@
 {
+  "implemented": true,
   "nationalPokedexNumber": 789,
   "name": "Cosmog",
   "primaryType": "psychic",
@@ -101,13 +102,8 @@
     },
     "moving": {
       "swim": {
-        "avoidsWater": true
-      },
-      "walk": {
-        "canWalk": false
-      },
-      "fly": {
-        "canFly": true
+        "avoidsWater": true,
+        "canWalkOnWater": true
       }
     }
   }

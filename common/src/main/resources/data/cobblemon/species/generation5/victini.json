@@ -1,4 +1,5 @@
 {
+  "implemented": true,
   "nationalPokedexNumber": 494,
   "name": "Victini",
   "primaryType": "psychic",
@@ -206,15 +207,15 @@
     },
     "moving": {
       "swim": {
-        "avoidsWater": true,
-        "canSwimInLava": true
+        "avoidsWater": true
       },
       "fly": {
         "canFly": true
       }
     },
     "combat": {
-      "willDefendOwner": true
+      "willDefendOwner": true,
+      "willFlee": false
     },
     "fireImmune": true
   }

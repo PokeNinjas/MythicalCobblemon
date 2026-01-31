@@ -1,4 +1,5 @@
 {
+  "implemented": true,
   "nationalPokedexNumber": 987,
   "name": "Flutter Mane",
   "primaryType": "ghost",
@@ -149,13 +150,11 @@
     },
     "moving": {
       "swim": {
-        "avoidsWater": true
+        "avoidsWater": true,
+        "canWalkOnWater": true
       },
       "fly": {
         "canFly": true
-      },
-      "walk": {
-        "canWalk": false
       }
     },
     "combat": {

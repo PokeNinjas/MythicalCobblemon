@@ -1,4 +1,5 @@
 {
+  "implemented": true,
   "nationalPokedexNumber": 645,
   "name": "Landorus",
   "primaryType": "ground",
@@ -207,13 +208,11 @@
   "behaviour": {
     "moving": {
       "swim": {
-        "avoidsWater": true
+        "avoidsWater": true,
+        "canWalkOnWater": true
       },
       "fly": {
         "canFly": true
-      },
-      "walk": {
-        "canWalk": false
       }
     },
     "combat": {

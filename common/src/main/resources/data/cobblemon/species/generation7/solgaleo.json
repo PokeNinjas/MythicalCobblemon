@@ -1,4 +1,5 @@
 {
+  "implemented": true,
   "nationalPokedexNumber": 791,
   "name": "Solgaleo",
   "primaryType": "psychic",
@@ -59,7 +60,8 @@
     },
     "moving": {
       "swim": {
-        "avoidsWater": true
+        "avoidsWater": true,
+        "canWalkOnWater": true
       },
       "fly": {
         "canFly": true

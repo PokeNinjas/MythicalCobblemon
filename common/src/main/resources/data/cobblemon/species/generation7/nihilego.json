@@ -1,4 +1,5 @@
 {
+  "implemented": true,
   "nationalPokedexNumber": 793,
   "name": "Nihilego",
   "primaryType": "rock",
@@ -179,13 +180,11 @@
     },
     "moving": {
       "swim": {
-        "avoidsWater": true
+        "avoidsWater": true,
+        "canWalkOnWater": true
       },
       "fly": {
         "canFly": true
-      },
-      "walk": {
-        "canWalk": false
       }
     },
     "combat": {

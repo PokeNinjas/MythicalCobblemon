@@ -1,4 +1,5 @@
 {
+  "implemented": true,
   "nationalPokedexNumber": 905,
   "name": "Enamorus",
   "primaryType": "fairy",
@@ -169,13 +170,11 @@
   "behaviour": {
     "moving": {
       "swim": {
-        "avoidsWater": true
+        "avoidsWater": true,
+        "canWalkOnWater": true
       },
       "fly": {
         "canFly": true
-      },
-      "walk": {
-        "canWalk": false
       }
     },
     "combat": {

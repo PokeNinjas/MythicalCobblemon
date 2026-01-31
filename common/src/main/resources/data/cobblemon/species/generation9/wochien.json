@@ -1,4 +1,5 @@
 {
+  "implemented": true,
   "nationalPokedexNumber": 1001,
   "name": "Wo-Chien",
   "primaryType": "dark",
@@ -42,11 +43,6 @@
   "catchRate": 6,
   "eggCycles": 50,
   "baseFriendship": 0,
-  "hitbox": {
-    "width": 2,
-    "height": 2,
-    "fixed": false
-  },
   "moves": [
     "1:absorb",
     "1:spite",
