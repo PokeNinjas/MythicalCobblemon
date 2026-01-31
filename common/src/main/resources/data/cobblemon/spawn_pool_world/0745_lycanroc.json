@@ -1,0 +1,64 @@
+{
+    "enabled": true,
+    "neededInstalledMods": [],
+    "neededUninstalledMods": [],
+    "spawns": [
+        {
+            "id": "lycanroc-1",
+            "pokemon": "lycanroc lycanroc-form=midday",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "context": "grounded",
+            "bucket": "uncommon",
+            "level": "25-35",
+            "weight": 1.0,
+            "condition": {
+                "canSeeSky": true,
+                "biomes": [
+                    "#cobblemon:is_temperate"
+                ],
+                "timeRange": "day"
+            }
+        },
+        {
+            "id": "lycanroc-midnight-2",
+            "pokemon": "lycanroc lycanroc-form=midnight",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "context": "grounded",
+            "bucket": "uncommon",
+            "level": "25-35",
+            "weight": 1.0,
+            "condition": {
+                "canSeeSky": true,
+                "biomes": [
+                    "#cobblemon:is_temperate"
+                ],
+                "timeRange": "night"
+            }
+        },
+        {
+            "id": "lycanroc-dusk-3",
+            "pokemon": "lycanroc lycanroc-form=dusk",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "context": "grounded",
+            "bucket": "uncommon",
+            "level": "25-35",
+            "weight": 1.0,
+            "condition": {
+                "canSeeSky": true,
+                "biomes": [
+                    "#cobblemon:is_temperate"
+                ],
+                "timeRange": "dusk"
+            }
+        }
+    ]
+}

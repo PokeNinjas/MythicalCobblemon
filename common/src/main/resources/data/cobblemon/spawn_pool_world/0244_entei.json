@@ -1,0 +1,24 @@
+{
+    "enabled": true,
+    "neededInstalledMods": [],
+    "neededUninstalledMods": [],
+    "spawns": [
+        {
+            "id": "entei-1",
+            "pokemon": "entei",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "context": "grounded",
+            "bucket": "legendary",
+            "level": "60-70",
+            "weight": 1.0,
+            "condition": {
+                "biomes": [
+                    "#cobblemon:is_volcanic"
+                ]
+            }
+        }
+    ]
+}

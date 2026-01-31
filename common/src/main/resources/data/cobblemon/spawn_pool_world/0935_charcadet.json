@@ -42,16 +42,25 @@
             "id": "charcadet-2",
             "pokemon": "charcadet",
             "presets": [
-                "ruined_portal"
+                "ruined_portal",
+                "natural"
             ],
             "type": "pokemon",
             "spawnablePositionType": "grounded",
-            "bucket": "uncommon",
-            "level": "1-26",
-            "weight": 18.4,
+            "bucket": "common",
+            "level": "1-19",
+            "weight": 18.0,
             "condition": {
+                "minSkyLight": 8,
+                "maxSkyLight": 15,
                 "biomes": [
                     "#cobblemon:is_overworld"
+                ],
+                "canSeeSky": true
+            },
+            "anticondition": {
+                "biomes": [
+                    "#cobblemon:is_caves"
                 ]
             }
         },

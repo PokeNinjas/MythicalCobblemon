@@ -1,0 +1,24 @@
+{
+    "enabled": true,
+    "neededInstalledMods": [],
+    "neededUninstalledMods": [],
+    "spawns": [
+        {
+            "id": "chiyu-1",
+            "pokemon": "chiyu",
+            "type": "pokemon",
+            "context": "grounded",
+            "bucket": "ultra-rare",
+            "level": "50-60",
+            "weight": 0.1,
+            "condition": {
+                "biomes": [
+                    "minecraft:deep_dark"
+                ],
+				"neededNearbyBlocks": [
+                    "minecraft:reinforced_deepslate"
+                ]
+            }
+        }
+    ]
+}

@@ -1,0 +1,27 @@
+{
+    "enabled": true,
+    "neededInstalledMods": [],
+    "neededUninstalledMods": [],
+    "spawns": [
+        {
+            "id": "greavard-1",
+            "pokemon": "greavard",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "context": "grounded",
+            "bucket": "common",
+            "level": "15-29",
+            "weight": 7.0,
+            "condition": {
+                "canSeeSky": true,
+                "biomes": [
+                    "#cobblemon:is_snowy",
+                    "#cobblemon:is_tundra"
+                ],
+                "timeRange": "night"
+            }
+        }
+    ]
+}

@@ -13,14 +13,19 @@
             "type": "pokemon",
             "spawnablePositionType": "grounded",
             "bucket": "common",
-            "level": "6-31",
-            "weight": 5.4,
+            "level": "1-19",
+            "weight": 18.0,
             "condition": {
                 "minSkyLight": 8,
                 "maxSkyLight": 15,
                 "biomes": [
-                    "#cobblemon:is_badlands",
-                    "#cobblemon:is_volcanic"
+                    "#cobblemon:is_overworld"
+                ],
+                "canSeeSky": true
+            },
+            "anticondition": {
+                "biomes": [
+                    "#cobblemon:is_caves"
                 ]
             }
         },

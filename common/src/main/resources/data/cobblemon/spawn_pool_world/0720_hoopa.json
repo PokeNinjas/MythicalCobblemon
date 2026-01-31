@@ -1,0 +1,48 @@
+{
+    "enabled": true,
+    "neededInstalledMods": [],
+    "neededUninstalledMods": [],
+    "spawns": [
+        {
+            "id": "hoopa-1",
+            "pokemon": "hoopa",
+            "presets": [
+                "natural",
+                "ruined_portal"
+            ],
+            "type": "pokemon",
+            "context": "grounded",
+            "bucket": "legendary",
+            "level": "60-70",
+            "weight": 1.0,
+            "condition": {
+                "canSeeSky": true,
+                "biomes": [
+                    "#cobblemon:is_overworld"
+                ]
+            }
+        },
+        {
+            "id": "hoopa-2",
+            "pokemon": "hoopa",
+            "presets": [
+                "natural",
+                "stronghold"
+            ],
+            "type": "pokemon",
+            "context": "grounded",
+            "bucket": "legendary",
+            "level": "60-70",
+            "weight": 1.0,
+            "condition": {
+                "canSeeSky": false,
+                "biomes": [
+                    "#cobblemon:is_overworld"
+                ],
+                "neededNearbyBlocks": [
+                    "minecraft:end_portal_frame"
+                ]
+            }
+        }
+    ]
+}
