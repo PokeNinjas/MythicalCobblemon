@@ -566,8 +566,13 @@
 ### Animation updates for the following Pokémon
 
 ### Changes
+## [1.7.3 (January 31st, 2026)](#1-7-3)
 
 ### Fixes
+- Fixed mounted Pokémon not playing sounds.
+- Fixed players failing to join servers randomly.
+- Fixed some Pokémon having no stamina for flying.
+- Fixed /pctake not respecting the actual size of the PC.
 
 ### Developer
 - A finished battle now has winners and losers set inside of `PokemonBattle` instead of them always being empty.
@@ -657,8 +662,16 @@
     - `TradeEvent`
     - `EvGainedEvent`
 - Changed the `owner` parameter in the `OwnerQueryRequirement` interface from `ServerPlayer` to `Player`. This method is now also called on the client to verify whether a Pokémon interaction succeeded, so make sure to update your implementations to handle both server and client contexts. 
+- Poké Ball GUI textures now respect the ball's namespace, enabling proper texture loading for custom balls from other mods.
 
 ### Molang & Datapacks
+- Added a `chance` requirement type for Pokémon interactions.
 
 ### Localization
 - Updated translations for:
+  - French
+  - Canadian French
+  - Korean
+  - Portuguese
+  - Simplified Chinese
+  - Spanish
