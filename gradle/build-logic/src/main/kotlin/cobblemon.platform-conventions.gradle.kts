@@ -49,6 +49,7 @@ tasks {
         mergeServiceFiles()
 
         relocate ("com.mongodb", "com.cobblemon.mod.relocations.mongodb")
+        relocate("org.bson", "com.cobblemon.mod.relocations.bson")
         relocate ("org.graalvm", "com.cobblemon.mod.relocations.graalvm")
         relocate ("com.oracle", "com.cobblemon.mod.relocations.oracle")
     }
