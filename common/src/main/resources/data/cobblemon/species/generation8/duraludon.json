@@ -1,4 +1,5 @@
 {
+  "implemented": true,
   "nationalPokedexNumber": 884,
   "name": "Duraludon",
   "primaryType": "steel",
@@ -43,10 +44,10 @@
   "catchRate": 45,
   "eggCycles": 30,
   "baseFriendship": 50,
-  "baseScale": 1,
+  "baseScale": 1.4,
   "hitbox": {
-    "width": 1,
-    "height": 1,
+    "width": 0.8,
+    "height": 1.2,
     "fixed": false
   },
   "drops": {

@@ -103,6 +103,45 @@
                     "#cobblemon:is_frozen_ocean"
                 ]
             }
+        },
+        {
+            "id": "avalugg-hisuian-6",
+            "pokemon": "avalugg hisuian",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "context": "grounded",
+            "bucket": "uncommon",
+            "level": "30-60",
+            "weight": 8.0,
+            "condition": {
+                "biomes": [
+                    "minecraft:jagged_peaks",
+                    "minecraft:frozen_peaks",
+                    "minecraft:snowy_slopes",
+                    "terralith:emerald_peaks",
+                    "terralith:scarlet_mountains",
+                    "wythers:snowy_peaks"
+                ]
+            }
+        },
+        {
+            "id": "avalugg-hisuian-7",
+            "pokemon": "avalugg hisuian",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "context": "grounded",
+            "bucket": "rare",
+            "level": "30-60",
+            "weight": 8.0,
+            "condition": {
+                "biomes": [
+                    "#cobblemon:is_snowy_forest"
+                ]
+            }
         }
     ]
 }

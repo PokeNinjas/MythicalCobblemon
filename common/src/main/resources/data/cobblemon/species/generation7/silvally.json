@@ -42,7 +42,7 @@
   "catchRate": 3,
   "eggCycles": 120,
   "baseFriendship": 0,
-  "baseScale": 1,
+  "baseScale": 0.6,
   "hitbox": {
     "width": 1,
     "height": 1,
@@ -203,6 +203,7 @@
       "maleRatio": -1,
       "height": 23,
       "weight": 1005,
+      "baseScale": 1,
       "pokedex": [
         "cobblemon.species.silvally-fighting.desc"
       ],
@@ -356,6 +357,7 @@
       "maleRatio": -1,
       "height": 23,
       "weight": 1005,
+      "baseScale": 1,
       "pokedex": [
         "cobblemon.species.silvally-flying.desc"
       ],
@@ -509,6 +511,7 @@
       "maleRatio": -1,
       "height": 23,
       "weight": 1005,
+      "baseScale": 1,
       "pokedex": [
         "cobblemon.species.silvally-poison.desc"
       ],
@@ -662,6 +665,7 @@
       "maleRatio": -1,
       "height": 23,
       "weight": 1005,
+      "baseScale": 1,
       "pokedex": [
         "cobblemon.species.silvally-ground.desc"
       ],
@@ -815,6 +819,7 @@
       "maleRatio": -1,
       "height": 23,
       "weight": 1005,
+      "baseScale": 1,
       "pokedex": [
         "cobblemon.species.silvally-rock.desc"
       ],
@@ -968,6 +973,7 @@
       "maleRatio": -1,
       "height": 23,
       "weight": 1005,
+      "baseScale": 1,
       "pokedex": [
         "cobblemon.species.silvally-bug.desc"
       ],
@@ -1121,6 +1127,7 @@
       "maleRatio": -1,
       "height": 23,
       "weight": 1005,
+      "baseScale": 1,
       "pokedex": [
         "cobblemon.species.silvally-ghost.desc"
       ],
@@ -1274,6 +1281,7 @@
       "maleRatio": -1,
       "height": 23,
       "weight": 1005,
+      "baseScale": 1,
       "pokedex": [
         "cobblemon.species.silvally-steel.desc"
       ],
@@ -1427,6 +1435,7 @@
       "maleRatio": -1,
       "height": 23,
       "weight": 1005,
+      "baseScale": 1,
       "pokedex": [
         "cobblemon.species.silvally-fire.desc"
       ],
@@ -1580,6 +1589,7 @@
       "maleRatio": -1,
       "height": 23,
       "weight": 1005,
+      "baseScale": 1,
       "pokedex": [
         "cobblemon.species.silvally-water.desc"
       ],
@@ -1733,6 +1743,7 @@
       "maleRatio": -1,
       "height": 23,
       "weight": 1005,
+      "baseScale": 1,
       "pokedex": [
         "cobblemon.species.silvally-grass.desc"
       ],
@@ -1886,6 +1897,7 @@
       "maleRatio": -1,
       "height": 23,
       "weight": 1005,
+      "baseScale": 1,
       "pokedex": [
         "cobblemon.species.silvally-electric.desc"
       ],
@@ -2039,6 +2051,7 @@
       "maleRatio": -1,
       "height": 23,
       "weight": 1005,
+      "baseScale": 1,
       "pokedex": [
         "cobblemon.species.silvally-psychic.desc"
       ],
@@ -2192,6 +2205,7 @@
       "maleRatio": -1,
       "height": 23,
       "weight": 1005,
+      "baseScale": 1,
       "pokedex": [
         "cobblemon.species.silvally-ice.desc"
       ],
@@ -2345,6 +2359,7 @@
       "maleRatio": -1,
       "height": 23,
       "weight": 1005,
+      "baseScale": 1,
       "pokedex": [
         "cobblemon.species.silvally-dragon.desc"
       ],
@@ -2498,6 +2513,7 @@
       "maleRatio": -1,
       "height": 23,
       "weight": 1005,
+      "baseScale": 1,
       "pokedex": [
         "cobblemon.species.silvally-dark.desc"
       ],
@@ -2651,6 +2667,7 @@
       "maleRatio": -1,
       "height": 23,
       "weight": 1005,
+      "baseScale": 1,
       "pokedex": [
         "cobblemon.species.silvally-fairy.desc"
       ],

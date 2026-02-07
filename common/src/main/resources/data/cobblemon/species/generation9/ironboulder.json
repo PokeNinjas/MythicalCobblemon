@@ -1,4 +1,5 @@
 {
+  "implemented": true,
   "nationalPokedexNumber": 1022,
   "name": "Iron Boulder",
   "primaryType": "rock",
@@ -42,6 +43,12 @@
   "catchRate": 10,
   "eggCycles": 50,
   "baseFriendship": 0,
+  "baseScale": 1.0,
+  "hitbox": {
+    "width": 2,
+    "height": 2.5,
+    "fixed": false
+  },
   "moves": [
     "1:hornattack",
     "1:leer",

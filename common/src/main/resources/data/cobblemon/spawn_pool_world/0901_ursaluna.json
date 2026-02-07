@@ -60,22 +60,21 @@
         },
         {
             "id": "ursaluna-3",
-            "pokemon": "ursaluna",
+            "pokemon": "ursaluna bloodmoon",
+            "presets": [
+                "natural",
+                "wild"
+            ],
             "type": "pokemon",
-            "spawnablePositionType": "grounded",
-            "bucket": "common",
-            "level": "45-55",
-            "weight": 0.01,
+            "context": "grounded",
+            "bucket": "ultra-rare",
+            "level": "70",
+            "weight": 0.1,
             "condition": {
                 "biomes": [
-                    "the_bumblezone:crystal_canyon",
-                    "the_bumblezone:floral_meadow"
-                ]
-            },
-            "anticondition": {
-                "structures": [
-                    "#the_bumblezone:sempiternal_sanctums"
-                ]
+                    "#minecraft:dark_forest"
+                ],
+                "moonPhase": 1
             }
         }
     ]

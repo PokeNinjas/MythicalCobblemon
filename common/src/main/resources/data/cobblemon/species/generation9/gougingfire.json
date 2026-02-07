@@ -1,4 +1,5 @@
 {
+  "implemented": true,
   "nationalPokedexNumber": 1020,
   "name": "Gouging Fire",
   "primaryType": "fire",
@@ -42,6 +43,12 @@
   "catchRate": 10,
   "eggCycles": 50,
   "baseFriendship": 0,
+  "baseScale": 1.0,
+  "hitbox": {
+    "width": 1.7,
+    "height": 2,
+    "fixed": false
+  },
   "moves": [
     "1:stomp",
     "1:leer",

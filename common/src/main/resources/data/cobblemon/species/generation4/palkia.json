@@ -203,6 +203,7 @@
       "maleRatio": -1,
       "height": 63,
       "weight": 6600,
+      "baseScale": 0.75,
       "pokedex": [
         "cobblemon.species.palkia-origin.desc"
       ],

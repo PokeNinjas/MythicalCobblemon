@@ -1,10 +1,13 @@
 {
+  "implemented": true,
   "nationalPokedexNumber": 351,
   "name": "Castform",
   "primaryType": "normal",
   "maleRatio": 0.5,
   "height": 3,
   "weight": 8,
+  "standingEyeHeight": 0.8,
+  "swimmingEyeHeight": 0.8,
   "pokedex": [
     "cobblemon.species.castform.desc"
   ],
@@ -45,8 +48,8 @@
   "baseFriendship": 50,
   "baseScale": 1,
   "hitbox": {
-    "width": 1,
-    "height": 1,
+    "width": 0.6,
+    "height": 1.4,
     "fixed": false
   },
   "behaviour": {

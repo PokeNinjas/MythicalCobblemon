@@ -198,6 +198,7 @@
       "maleRatio": -1,
       "height": 70,
       "weight": 8500,
+      "baseScale": 0.75,
       "pokedex": [
         "cobblemon.species.dialga-origin.desc"
       ],

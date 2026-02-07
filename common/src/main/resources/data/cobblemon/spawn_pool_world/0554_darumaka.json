@@ -89,6 +89,23 @@
                     "#cobblemon:nether/is_toxic"
                 ]
             }
+        },
+        {
+            "id": "darumaka-galarian-5",
+            "pokemon": "darumaka galarian",
+            "presets": [
+                "natural"
+            ],
+            "type": "pokemon",
+            "context": "grounded",
+            "bucket": "uncommon",
+            "level": "7-32",
+            "weight": 6.0,
+            "condition": {
+                "biomes": [
+                    "#cobblemon:is_snowy"
+                ]
+            }
         }
     ]
 }

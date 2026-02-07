@@ -6,6 +6,8 @@
   "maleRatio": 0.5,
   "height": 10,
   "weight": 995,
+  "standingEyeHeight": 0.4,
+  "swimmingEyeHeight": 0.4,
   "pokedex": [
     "cobblemon.species.bergmite.desc"
   ],
@@ -196,6 +198,40 @@
         {
           "variant": "level",
           "minLevel": 37
+        }
+      ]
+    },
+    {
+      "id": "bergmite_avalugg",
+      "variant": "level_up",
+      "result": "avalugg hisuian",
+      "consumeHeldItem": false,
+      "learnableMoves": [
+        "bodyslam"
+      ],
+      "requirements": [
+        {
+          "variant": "level",
+          "minLevel": 37
+        }
+      ]
+    },
+    {
+      "id": "bergmite_avalugg_hisuian",
+      "variant": "level_up",
+      "result": "avalugg hisuian",
+      "consumeHeldItem": false,
+      "learnableMoves": [
+        "rockslide"
+      ],
+      "requirements": [
+        {
+          "variant": "level",
+          "minLevel": 37
+        },
+        {
+          "variant": "biome",
+          "biomeCondition": "#cobblemon:is_mountain"
         }
       ]
     }

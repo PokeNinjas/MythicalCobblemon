@@ -1,4 +1,5 @@
 {
+  "implemented": true,
   "nationalPokedexNumber": 993,
   "name": "Iron Jugulis",
   "primaryType": "dark",
@@ -42,6 +43,12 @@
   "catchRate": 30,
   "eggCycles": 50,
   "baseFriendship": 0,
+  "baseScale": 2.5,
+  "hitbox": {
+    "width": 1.2,
+    "height": 2.5,
+    "fixed": false
+  },
   "moves": [
     "1:electricterrain",
     "1:workup",

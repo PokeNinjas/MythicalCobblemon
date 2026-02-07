@@ -226,6 +226,11 @@
       "maleRatio": 0.5,
       "height": 11,
       "weight": 250,
+      "hitbox": {
+        "width": 1,
+        "height": 2.4,
+        "fixed": false
+      },
       "pokedex": [
         "cobblemon.species.lycanroc-midnight.desc"
       ],

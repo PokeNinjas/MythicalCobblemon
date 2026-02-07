@@ -1,4 +1,5 @@
 {
+  "implemented": true,
   "nationalPokedexNumber": 1006,
   "name": "Iron Valiant",
   "primaryType": "fairy",
@@ -42,6 +43,12 @@
   "catchRate": 10,
   "eggCycles": 50,
   "baseFriendship": 0,
+  "baseScale": 1,
+  "hitbox": {
+    "width": 0.9,
+    "height": 2.1,
+    "fixed": false
+  },
   "moves": [
     "1:disable",
     "1:doubleteam",

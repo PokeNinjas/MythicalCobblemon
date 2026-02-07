@@ -1,4 +1,5 @@
 {
+  "implemented": true,
   "nationalPokedexNumber": 826,
   "name": "Orbeetle",
   "primaryType": "bug",
@@ -42,10 +43,10 @@
   "catchRate": 45,
   "eggCycles": 15,
   "baseFriendship": 50,
-  "baseScale": 1,
+  "baseScale": 0.75,
   "hitbox": {
-    "width": 1,
-    "height": 1,
+    "width": 1.4,
+    "height": 1.6,
     "fixed": false
   },
   "drops": {

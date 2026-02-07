@@ -1,10 +1,13 @@
 {
+  "implemented": true,
   "nationalPokedexNumber": 268,
   "name": "Cascoon",
   "primaryType": "bug",
   "maleRatio": 0.5,
   "height": 7,
   "weight": 115,
+  "standingEyeHeight": 0.4,
+  "swimmingEyeHeight": 0.4,
   "pokedex": [
     "cobblemon.species.cascoon.desc"
   ],
@@ -45,7 +48,7 @@
   "baseScale": 1,
   "hitbox": {
     "width": 1,
-    "height": 1,
+    "height": 0.65,
     "fixed": false
   },
   "behaviour": {

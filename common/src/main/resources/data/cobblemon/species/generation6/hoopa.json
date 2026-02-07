@@ -213,6 +213,7 @@
       "maleRatio": -1,
       "height": 65,
       "weight": 4900,
+      "baseScale": 0.5,
       "pokedex": [
         "cobblemon.species.hoopa-unbound.desc"
       ],

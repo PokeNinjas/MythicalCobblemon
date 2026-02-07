@@ -1,4 +1,5 @@
 {
+  "implemented": true,
   "nationalPokedexNumber": 842,
   "name": "Appletun",
   "primaryType": "grass",
@@ -43,12 +44,14 @@
   "catchRate": 45,
   "eggCycles": 20,
   "baseFriendship": 50,
-  "baseScale": 1,
+  "baseScale": 1.2,
   "hitbox": {
     "width": 1,
     "height": 1,
     "fixed": false
   },
+  "standingEyeHeight": 0.3,
+  "swimmingEyeHeight": 0.3,
   "drops": {
     "amount": 2,
     "entries": [

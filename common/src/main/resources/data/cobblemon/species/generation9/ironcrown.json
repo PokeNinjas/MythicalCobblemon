@@ -1,4 +1,5 @@
 {
+  "implemented": true,
   "nationalPokedexNumber": 1023,
   "name": "Iron Crown",
   "primaryType": "steel",
@@ -42,6 +43,12 @@
   "catchRate": 10,
   "eggCycles": 50,
   "baseFriendship": 0,
+  "baseScale": 1,
+  "hitbox": {
+    "width": 1.4,
+    "height": 2.5,
+    "fixed": false
+  },
   "moves": [
     "1:leer",
     "1:electricterrain",
