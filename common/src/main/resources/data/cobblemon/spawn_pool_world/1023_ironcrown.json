@@ -4,8 +4,8 @@
     "neededUninstalledMods": [],
     "spawns": [
         {
-            "id": "ragingbolt-1",
-            "pokemon": "ragingbolt",
+            "id": "ironcrown-1",
+            "pokemon": "ironcrown",
             "presets": [
                 "natural"
             ],
@@ -17,7 +17,7 @@
             "condition": {
                 "canSeeSky": true,
                 "biomes": [
-                    "#cobblemon:is_jungle"
+                    "#cobblemon:is_mountain"
                 ]
             }
         }

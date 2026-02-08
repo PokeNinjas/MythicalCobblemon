@@ -4,8 +4,8 @@
     "neededUninstalledMods": [],
     "spawns": [
         {
-            "id": "ragingbolt-1",
-            "pokemon": "ragingbolt",
+            "id": "terapagos-1",
+            "pokemon": "terapagos",
             "presets": [
                 "natural"
             ],
@@ -17,7 +17,7 @@
             "condition": {
                 "canSeeSky": true,
                 "biomes": [
-                    "#cobblemon:is_jungle"
+                    "#cobblemon:is_thermal"
                 ]
             }
         }

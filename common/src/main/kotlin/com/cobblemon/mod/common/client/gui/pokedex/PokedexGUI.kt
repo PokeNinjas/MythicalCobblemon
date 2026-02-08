@@ -25,7 +25,6 @@ import com.cobblemon.mod.common.api.pokedex.filter.SearchFilter
 import com.cobblemon.mod.common.api.pokemon.PokemonSpecies
 import com.cobblemon.mod.common.api.storage.player.client.ClientPokedexManager
 import com.cobblemon.mod.common.api.text.bold
-import com.cobblemon.mod.common.api.text.font
 import com.cobblemon.mod.common.api.text.text
 import com.cobblemon.mod.common.client.ClientMoLangFunctions.setupClient
 import com.cobblemon.mod.common.client.CobblemonClient
@@ -647,7 +646,7 @@ class PokedexGUI private constructor(
                     (tabInfoElement as EvolutionsScrollingWidget).scrollAmount = 0.0
                 }
                 TAB_LOCATIONS -> {
-                    val speciesName = species.name.lowercase()
+                    val speciesName = species.name.lowercase().replace(" ", "")
                     if (ClientsidePokedexSpawnInfoManager.map.contains(speciesName)) {
                         (tabInfoElement as LocationsScrollingWidget).locations = ClientsidePokedexSpawnInfoManager.map[speciesName]!!
                         (tabInfoElement as LocationsScrollingWidget).setEntries()

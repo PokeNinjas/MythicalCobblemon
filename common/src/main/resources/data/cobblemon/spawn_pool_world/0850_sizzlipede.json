@@ -13,19 +13,14 @@
             "type": "pokemon",
             "spawnablePositionType": "grounded",
             "bucket": "common",
-            "level": "1-19",
-            "weight": 18.0,
+            "level": "6-31",
+            "weight": 5.4,
             "condition": {
                 "minSkyLight": 8,
                 "maxSkyLight": 15,
                 "biomes": [
-                    "#cobblemon:is_overworld"
-                ],
-                "canSeeSky": true
-            },
-            "anticondition": {
-                "biomes": [
-                    "#cobblemon:is_caves"
+                    "#cobblemon:is_badlands",
+                    "#cobblemon:is_volcanic"
                 ]
             }
         },
@@ -51,7 +46,7 @@
                 "entries": [
                     {
                         "item": "minecraft:blaze_powder",
-                        "percentage": 5.0
+                        "percentage": 5
                     },
                     {
                         "item": "cobblemon:charti_berry",
@@ -71,7 +66,7 @@
             "spawnablePositionType": "grounded",
             "bucket": "common",
             "level": "6-31",
-            "weight": 9.0,
+            "weight": 9,
             "condition": {
                 "biomes": [
                     "#cobblemon:nether/is_wasteland"
