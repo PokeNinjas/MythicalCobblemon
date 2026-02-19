@@ -72,9 +72,9 @@
             "weight": 0.1,
             "condition": {
                 "biomes": [
-                    "#minecraft:dark_forest"
+                    "#cobblemon:is_forest"
                 ],
-                "moonPhase": 1
+                "moonPhase": 0
             }
         }
     ]
