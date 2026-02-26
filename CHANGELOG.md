@@ -573,6 +573,17 @@
 - Fixed players failing to join servers randomly.
 - Fixed some Pokémon having no stamina for flying.
 - Fixed /pctake not respecting the actual size of the PC.
+- Decrease default pastured mon wander radius to 32.
+
+### Fixes
+- Fixes https://gitlab.com/cable-mc/cobblemon/-/issues/1943
+- Fix occasional crash on retrieving revived fossils
+- Fixed a compatibility issue with World Game Rules which caused some log spam in specific cases.
+- Fixed improper validation of Pokémon when performing a trade.
+- Fixed issue where particle like beam can disappear when you don't see the beginning of the beam or you look away
+ - Fixes https://gitlab.com/cable-mc/cobblemon/-/issues/1943
+ - Fix occasional crash on retrieving revived fossils
+ - Fix Pastured mons despawning and running away.
 
 ### Developer
 - A finished battle now has winners and losers set inside of `PokemonBattle` instead of them always being empty.
