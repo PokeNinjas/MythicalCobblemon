@@ -12,7 +12,6 @@ import com.bedrockk.molang.runtime.struct.MoStruct
 import com.bedrockk.molang.runtime.struct.QueryStruct
 import com.bedrockk.molang.runtime.value.DoubleValue
 import com.bedrockk.molang.runtime.value.StringValue
-import com.cobblemon.mod.common.api.moves.animations.ActionEffectTimeline
 import com.cobblemon.mod.common.api.moves.categories.DamageCategories
 import com.cobblemon.mod.common.api.moves.categories.DamageCategory
 import com.cobblemon.mod.common.api.types.ElementalType
@@ -129,6 +128,48 @@ open class MoveTemplate(
         }
         if (name == "hiddenpower") {
             return HiddenPowerUtil.getHiddenPowerType(pokemon)
+        }
+        if (name == "judgment") {
+            return pokemon.types.firstOrNull() ?: elementalType
+        }
+        if (name == "technoblast"){
+            return when (pokemon.heldItem.descriptionId) {
+                "item.mythicalmod.burn_drive" -> ElementalTypes.FIRE
+                "item.mythicalmod.chill_drive" -> ElementalTypes.ICE
+                "item.mythicalmod.douse_drive" -> ElementalTypes.WATER
+                "item.mythicalmod.shock_drive" -> ElementalTypes.ELECTRIC
+                else -> this.elementalType
+            }
+        }
+        if (name == "multiattack") {
+            return when (pokemon.heldItem.descriptionId) {
+                "item.mythicalmod.dragon_memory"   -> ElementalTypes.DRAGON
+                "item.mythicalmod.dark_memory"     -> ElementalTypes.DARK
+                "item.mythicalmod.ground_memory"   -> ElementalTypes.GROUND
+                "item.mythicalmod.fighting_memory" -> ElementalTypes.FIGHTING
+                "item.mythicalmod.fire_memory"     -> ElementalTypes.FIRE
+                "item.mythicalmod.ice_memory"      -> ElementalTypes.ICE
+                "item.mythicalmod.bug_memory"      -> ElementalTypes.BUG
+                "item.mythicalmod.steel_memory"    -> ElementalTypes.STEEL
+                "item.mythicalmod.grass_memory"    -> ElementalTypes.GRASS
+                "item.mythicalmod.psychic_memory"  -> ElementalTypes.PSYCHIC
+                "item.mythicalmod.fairy_memory"    -> ElementalTypes.FAIRY
+                "item.mythicalmod.flying_memory"   -> ElementalTypes.FLYING
+                "item.mythicalmod.water_memory"    -> ElementalTypes.WATER
+                "item.mythicalmod.ghost_memory"    -> ElementalTypes.GHOST
+                "item.mythicalmod.rock_memory"     -> ElementalTypes.ROCK
+                "item.mythicalmod.poison_memory"   -> ElementalTypes.POISON
+                "item.mythicalmod.electric_memory" -> ElementalTypes.ELECTRIC
+                else -> this.elementalType
+            }
+        }
+        if (name == "ivycudgel"){
+            return when (pokemon.heldItem.descriptionId) {
+                "item.mythicalmod.cornerstone_mask" -> ElementalTypes.ROCK
+                "item.mythicalmod.hearthflame_mask" -> ElementalTypes.FIRE
+                "item.mythicalmod.wellspring_mask"  -> ElementalTypes.WATER
+                else -> this.elementalType
+            }
         }
         // TODO: Handle ability suppression: clientactivebattlepokemon needs data about volatiles
         // TODO: Handle Liquid Voice: need to know what moves have the sound flag
